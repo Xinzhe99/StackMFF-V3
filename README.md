@@ -32,8 +32,6 @@
 
 ## 📖 Overview
 
-Multi-focus image fusion is a computational imaging technique that overcomes the depth-of-field limitation of optical systems by integrating information from multiple focal planes into an all-in-focus image. Recently, learning-based multi-focus image fusion approaches have attracted growing attention. Among them, the StackMFF Series has progressively advanced the paradigm from image pairs to image stacks. Its first-generation model effectively mitigated error accumulation during fusion but failed to preserve the fidelity of the fused image. The second-generation model further incorporated an ordered-focus prior, providing an open-source solution whose performance rivals that of commercial software. Nevertheless, it assumes ideal inputs, requiring a well-ordered multi-focus image stack without defocused or invalid layers. To eliminate this constraint and enhance generality, we propose StackMFF V3, the first general multi-focus image fusion network featuring a redesigned architecture and training strategy. It first employs a Pyramid Fusion MLP to model long-range intra-layer dependencies and estimate layer-wise focus, followed by the proposed Pixel-wise Cross-layer Attention module, which efficiently captures cross-layer relations without relying on focus order. Finally, we formulate focus map generation as a pixel-wise multi-class classification task, directly predicting the focus map used to synthesize the fused image. Extensive experiments demonstrate that StackMFF V3 is currently the most versatile and comprehensive model, achieving state-of-the-art performance across diverse benchmarks and real-world applications.
-
 <div align="center">
 <img src="assets/stackmffv3_framework.jpg" width="800px"/>
 <p>Overview of StackMFF-V3 Framework</p>
@@ -131,5 +129,6 @@ TBD.
 ⭐ If you find this project helpful, please give it a star!
 
 </div>
+
 
 
