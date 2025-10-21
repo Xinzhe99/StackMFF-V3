@@ -298,7 +298,7 @@ def main():
     Directory structure should be:
     test_root/
         dataset1/
-            dof_stack/
+            image stack/
                 scene1/
                     img1.png
                     img2.png
@@ -306,7 +306,7 @@ def main():
                 scene2/
                     ...
         dataset2/
-            dof_stack/
+            image stack/
                 ...
     """
     # Parse command line arguments
@@ -351,7 +351,7 @@ def main():
 
         # Create dataset and dataloader
         dataset = TestDataset(
-            root_dir=os.path.join(dataset_root, 'dof_stack'),
+            root_dir=os.path.join(dataset_root, 'image stack'),
             transform=transform
         )
 
