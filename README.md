@@ -23,7 +23,6 @@
 - [Overview](#-overview)
 - [Highlights](#-highlights)
 - [Installation](#-installation)
-- [Data Preparation](#-data-preparation)
 - [Downloads](#-downloads)
 - [Usage](#-usage)
 - [Citation](#-citation)
@@ -61,14 +60,6 @@ conda activate stackmffv3
 ```bash
 pip install -r requirements.txt
 ```
-
-## 📖 Data Preparation
-
-We provide the test datasets used in our paper for research purposes. These datasets were used to evaluate the performance of our proposed method and compare it with other state-of-the-art approaches:
-- Mobile_Depth
-- Middlebury
-- FlyingThings3D
-- Road-MF
 
 ## 📥 Downloads
 
@@ -213,4 +204,5 @@ abstract = {Multi-focus image fusion is a vital computational imaging technique 
 TBD.
 
 ⭐ If you find this project helpful, please give it a star!
+
 
