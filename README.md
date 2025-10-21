@@ -2,39 +2,21 @@
 
 # <img src="assets/stackmffv3_framework.jpg" alt="StackMFF V3" height="320" style="vertical-align: middle;"/> StackMFF V3
 
-**One-Shot Multi-Focus Image Stack Fusion via Continuous Depth Estimation**
+**General Multi-focus Image Fusion Network**
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.8+-red.svg)](https://pytorch.org/)
 [![GitHub](https://img.shields.io/badge/GitHub-StackMFF--V3-black.svg)](https://github.com/Xinzhe99/StackMFF-V3)
-[![Paper](https://img.shields.io/badge/Elsevier-Published-orange.svg)](https://authors.elsevier.com/c/1lwyn3OWJ9CXcd)
 
-*Official PyTorch implementation for One-Shot Multi-Focus Image Stack Fusion via Continuous Depth Estimation*
+*Official PyTorch implementation for General Multi-focus Image Fusion Network*
 
 </div>
 
 ## 📢 News
 
 > [!NOTE]
-> 🎉 **2025.10**: The paper has been published! Please visit [Elsevier Author Link](https://authors.elsevier.com/c/1lwyn3OWJ9CXcd)
-> 
-> 🎉 **2025.10**: We are pleased to share that StackMFF V3 has been accepted for publication in the journal Engineering Applications of Artificial Intelligence (EAAI), and the paper will be available online soon!
-> 
-> 🎉 **2025.09**: StackMFF V3, the most advanced and versatile multi-focus image fusion network to date, will be presented in 2026. Stay tuned!
-
-> 🎉 **2025.09**: We updated the code to index the fused image based on the focus map using `torch.gather`, which has improved pixel indexing speed by 100%!
-
-> 🎉 **2025.08**: We fixed a numerical precision bug in our code, which had previously caused degraded fusion image quality.
-
-> 🎉 **2025.08**: We have updated the multifocus image stack registration script `Registration.py` in the code repository. You can now easily integrate it into your own workflow.
-
-> 🎉 **2025.08**: To facilitate user processing of image pair datasets, we provide the `predict_pair_datasets.py` script for batch evaluation of image pair datasets with A/B folder structure. Each dataset is processed separately with organized output folders.
-
-> 🎉 **2025.04**: Our StackMFF V3 paper has been submitted! Coming soon~
-
-> 🎉 **2024.03**: Our StackMFF V1 paper has been accepted by Applied Intelligence (APIN)!
-
+> 🎉 **2025.11**: Our article has been submitted, so please stay tuned. The complete code and data will be added after it is accepted.
 </div>
 
 ##  Table of Contents
@@ -48,8 +30,7 @@
 - [Citation](#-citation)
 
 ## 📖 Overview
-
-Multi-focus image fusion is a vital computational imaging technique for applications that require an extended depth of field, including medical imaging, microscopy, professional photography, and autonomous driving. While existing methods excel at fusing image pairs, they often suffer from error accumulation that leads to quality degradation, as well as computational inefficiency when applied to large image stacks. To address these challenges, we introduce a one-shot fusion framework that reframes image-stack fusion as a continuous depth estimation problem. The framework comprises three key stages: intra-layer focus estimation, inter-layer focus estimation, and focus map regression. By employing a differentiable soft regression strategy and using depth maps as proxy supervisory signals, our method enables end-to-end training without requiring manual focus map annotations. Comprehensive experiments on five public datasets demonstrate that our approach achieves state-of-the-art performance with minimal computational overhead. The resulting efficiency and scalability make the proposed framework a compelling solution for real-time deployment in resource-constrained environments and lay the groundwork for broader practical adoption of multi-focus image fusion.
+Multi-focus image fusion is a computational imaging technique that overcomes the depth-of-field limitation of optical systems by integrating information from multiple focal planes into an all-in-focus image. Recently, learning-based multi-focus image fusion approaches have attracted growing attention. Among them, the StackMFF Series has progressively advanced the paradigm from image pairs to image stacks. Its first-generation model effectively mitigated error accumulation during fusion but failed to preserve the fidelity of the fused image. The second-generation model further incorporated an ordered-focus prior, providing an open-source solution whose performance rivals that of commercial software. Nevertheless, it assumes ideal inputs, requiring a well-ordered multi-focus image stack without defocused or invalid layers. To eliminate this constraint and enhance generality, we propose StackMFF V3, the first general multi-focus image fusion network featuring a redesigned architecture and training strategy. It first employs a Pyramid Fusion MLP to model long-range intra-layer dependencies and estimate layer-wise focus, followed by the proposed Pixel-wise Cross-layer Attention module, which efficiently captures cross-layer relations without relying on focus order. Finally, we formulate focus map generation as a pixel-wise multi-class classification task, directly predicting the focus map used to synthesize the fused image. Extensive experiments demonstrate that StackMFF V3 is currently the most versatile and comprehensive model, achieving state-of-the-art performance across diverse benchmarks and real-world applications.
 
 <div align="center">
 <img src="assets/stackmffv3_framework.jpg" width="800px"/>
@@ -58,16 +39,11 @@ Multi-focus image fusion is a vital computational imaging technique for applicat
 
 ## ✨ Highlights
 
-🌟 Reformulates the stack fusion task into a continuous depth estimation problem.
-
-🔑 Depth maps serve as proxy supervision signals, avoiding manual annotations.
-
-🛠️ Employs a differentiable soft-regression strategy to enable end-to-end training.
-
-🎯 Recovers focal depth information during image acquisition via focus map regression.
-
-🏆 Attains SOTA performance with a compact model size and low computational overhead.
-
+🌟 Presents the first general multi-focus image fusion network.
+🔑 Reformulates stack fusion as a pixel-wise multi-class classification task.
+🛠️ Employs an MLP-based backbone for intra-layer focus estimation with global context.
+🎯 Proposes a \textit{Pixel-wise Cross-layer Attention} module for inter-layer modeling.
+🏆 Provides an open-source solution that outperforms commercial software at low cost.
  
 ## 🚀 Installation
 
@@ -95,15 +71,13 @@ We provide the test datasets used in our paper for research purposes. These data
 - Middlebury
 - FlyingThings3D
 - Road_MF
-- NYU_Depth_V2
 
 ## 📥 Downloads
 
 | Resource | Link | Code | Description |
 |----------|------|------|-------------|
-| 🗂️ **Test Datasets** | [![Download](https://img.shields.io/badge/Download-4CAF50?style=flat-square)](https://pan.baidu.com/s/1vnEciGFDDjDybmoxNSAVSA) | `cite` | Complete evaluation datasets |
-| 📊 **Benchmark Results** | [![Download](https://img.shields.io/badge/Download-FF9800?style=flat-square)](https://pan.baidu.com/s/1wzv8UKU_0boL1cSs58sr2w) | `cite` | Fusion results from all methods |
-| 🧰 **Fusion Toolbox** | [![GitHub](https://img.shields.io/badge/GitHub-2196F3?style=flat-square)](https://github.com/Xinzhe99/Toolbox-for-Multi-focus-Image-Stack-Fusion) | - | Iterative fusion implementations |
+| 🗂️ **Test Datasets** | [![Download](https://img.shields.io/badge/Download-4CAF50?style=flat-square)](https://pan.baidu.com/s/1VbdYvN5_H8X08wLgyww0iw?pwd=cite) | `cite` | Complete evaluation datasets |
+| 📊 **Benchmark Results** | [![Download](https://img.shields.io/badge/Download-FF9800?style=flat-square)](https://pan.baidu.com/s/1E1jMPWQH9QHmmjlD06Tw4w?pwd=cite) | `cite` | Fusion results from all methods |
 
 These are the exact datasets used in our quantitative evaluation and computational efficiency analysis. After downloading, please organize the datasets following the structure described in the [Predict Dataset](#predict-dataset) section.
 
@@ -123,7 +97,7 @@ For depth maps, except for the NYU Depth V2 dataset which uses its own depth map
 
 ## 💻 Usage
 
-The pre-trained model weights file `stackmffv3_star.pth` should be placed in the [weights](file:///c:/Users/dell/Desktop/Working/StackMFF%20V3/github_use/weights) directory.
+The pre-trained model weights file [`stackmffv3_star.pth` and `stackmffv3_star.pth`](https://pan.baidu.com/s/1Xhs-VBV3ZVfAmNFTM5306g?pwd=cite) should be placed in the `weights` directory.
 
 ### Predict Single Stack
 
@@ -139,7 +113,7 @@ python predict_one_stack_star.py \
 For batch testing multiple datasets, organize your test data as follows:
 
 ```
-test_root/
+test_datasets/
 ├── Mobile_Depth/
 │   └── dof_stack/
 │       ├── scene1/
@@ -156,33 +130,13 @@ test_root/
 │       └── scene2/
 ├── FlyingThings3D/
 │   └── dof_stack/
-├── Road_MF/
+├── Road-MF/
 │   └── dof_stack/
-└── NYU_Depth_V2/
+└── NYU-V2/
     └── dof_stack/
 ```
 
-Each dataset folder (e.g., Mobile_Depth, Middlebury, FlyingThings3D, Road_MF, NYU_Depth_V2) should contain a `dof_stack` subfolder with multiple scene folders. Each scene folder contains the multi-focus image stack numbered sequentially.
-
-Run prediction on multiple datasets:
-```bash
-python predict_datasets_star.py \
-    --model_path weights/stackmffv3_star.pth \
-    --test_root test_root \
-    --test_datasets Mobile_Depth Middlebury FlyingThings3D Road_MF NYU_Depth_V2 \
-    --output_dir results
-```
-
-The framework will:
-1. Test on each dataset independently
-2. Generate fusion results for each scene
-3. Save results in separate folders for each dataset
-
-Parameters:
-- `--test_root`: Root directory containing all test datasets
-- `--test_datasets`: List of dataset names to test (e.g., Mobile_Depth Middlebury)
-- `--output_dir`: Directory for saving results
-- `--model_path`: Path to model weights file (optional, defaults to `weights/stackmffv3_star.pth`)
+Each dataset folder (e.g., Mobile_Depth, Middlebury) should contain a `dof_stack` subfolder with multiple scene folders. Each scene folder contains the multi-focus image stack numbered sequentially.
 
 ### Predict Image Pair Datasets
 
@@ -207,138 +161,14 @@ test_root/
 └── dataset3/
     ├── A/
     └── B/
-```
 
-Run prediction on image pair datasets:
-```bash
-python predict_pair_datasets_star.py \
-    --test_root /path/to/test_root \
-    --test_datasets dataset1 dataset2 dataset3 \
-    --model_path weights/stackmffv3_star.pth \
-    --output_dir ./output_pair
-```
-
-The script will:
-1. Process each dataset independently with separate output folders
-2. Automatically match numerically ordered images from A and B folders (e.g., A/1.png pairs with B/1.png)
-3. Treat each image pair as a two-image stack for fusion
-4. Generate fusion results for each dataset in organized subdirectories
-5. Support various image formats (.png, .jpg, .jpeg, .bmp, .tiff, .tif, .webp, .ppm, .pgm, .pbm)
-
-Parameters:
-- `--test_root`: Root directory containing image pair datasets
-- `--test_datasets`: List of dataset folder names to process
-- `--model_path`: Path to model weights file
-- `--output_dir`: Directory for saving fusion results (default: ./output_pair)
-- `--batch_size`: Batch size for processing (default: 1)
-- `--num_workers`: Number of data loading workers (default: 4)
-
-### Training
-
-The framework supports training and validation with multiple datasets. Each dataset should be organized as follows:
-
-```
-project_root/
-├── train_dataset1/          
-│   ├── image_stacks/
-│   │   ├── stack1/
-│   │   │   ├── 1.png
-│   │   │   ├── 2.png
-│   │   │   └── ...
-│   │   └── stack2/
-│   │       ├── 1.png
-│   │       ├── 2.png
-│   │       └── ...
-│   └── depth_maps/
-│       ├── stack1.png
-│       └── stack2.png
-├── train_dataset2/
-├── train_dataset3/
-├── train_dataset4/
-├── train_dataset5/
-├── val_dataset1/         
-│   ├── image_stacks/
-│   │   ├── stack1/
-│   │   │   ├── 1.png
-│   │   │   ├── 2.png
-│   │   │   └── ...
-│   │   └── stack2/
-│   │       ├── 1.png
-│   │       ├── 2.png
-│   │       └── ...
-│   └── depth_maps/
-│       ├── stack1.png
-│       └── stack2.png
-├── val_dataset2/
-├── val_dataset3/
-├── val_dataset4/
-└── val_dataset5/
-```
-
-Key directory structure requirements:
-- Each dataset has two main subdirectories: `image_stacks` and `depth_maps`
-- In `image_stacks`, each scene has its own folder containing sequentially numbered images (e.g., 1.png, 2.png, ...)
-- In `depth_maps`, each scene has a corresponding depth map with the same name as its stack folder (e.g., stack1.png for stack1 folder)
-- All training and validation datasets follow the same structure as shown in the examples above
-- Images should be in PNG, JPG, or BMP format
-- Depth maps should be in grayscale PNG format
-
-The framework supports up to 5 training datasets and 5 validation datasets simultaneously. You can control which datasets to use during training with the following flags:
-- `--use_train_dataset_1` to `--use_train_dataset_5`
-- `--use_val_dataset_1` to `--use_val_dataset_5`
-
-During training, the framework will:
-1. Train on all enabled training datasets
-2. Validate on all enabled validation datasets separately
-3. Save validation metrics for each dataset independently
-4. Generate visualization results for each validation dataset
-
-Training command example with multiple datasets:
-```bash
-python train_star.py \
-    --train_stack "train_dataset1/image_stacks" \
-    --train_depth_continuous "train_dataset1/depth_maps" \
-    --train_stack_2 "train_dataset2/image_stacks" \
-    --train_depth_continuous_2 "train_dataset2/depth_maps" \
-    --train_stack_3 "train_dataset3/image_stacks" \
-    --train_depth_continuous_3 "train_dataset3/depth_maps" \
-    --train_stack_4 "train_dataset4/image_stacks" \
-    --train_depth_continuous_4 "train_dataset4/depth_maps" \
-    --train_stack_5 "train_dataset5/image_stacks" \
-    --train_depth_continuous_5 "train_dataset5/depth_maps" \
-    --val_stack "val_dataset1/image_stacks" \
-    --val_depth_continuous "val_dataset1/depth_maps" \
-    --val_stack_2 "val_dataset2/image_stacks" \
-    --val_depth_continuous_2 "val_dataset2/depth_maps" \
-    --val_stack_3 "val_dataset3/image_stacks" \
-    --val_depth_continuous_3 "val_dataset3/depth_maps" \
-    --val_stack_4 "val_dataset4/image_stacks" \
-    --val_depth_continuous_4 "val_dataset4/depth_maps" \
-    --val_stack_5 "val_dataset5/image_stacks" \
-    --val_depth_continuous_5 "val_dataset5/depth_maps" \
-    --batch_size 12 \
-    --num_epochs 50 \
-    --lr 1e-3 \
-    --training_image_size 384
-```
-
-For detailed parameter descriptions, please refer to the source code.
 
 ### Some training details
 - **Case 1 (multi-GPU training):**  
   - **OS:** Ubuntu 
   - **GPU:** 2 × NVIDIA RTX A6000 
   - **Hyperparameters:** original settings  
-  - **Training time:** ~50 min per epoch
-- **Case 2 (single-GPU training):**  
-  - **OS:** Windows  
-  - **GPU:** 1 × NVIDIA GeForce RTX 4090D  
-  - **Hyperparameters (changed for Windows):**  
-    - `num_workers = 0` (only in training, data loading code itself does not require modification)  
-    - `batch_size = 4` (adjusted according to GPU memory)  
-  - **Training time:** ~4 h per epoch  
-- **Note:** On Windows, if you encounter dataloader errors or unusually long training times, try setting `num_workers` to 0. This limitation does not apply to Linux/Ubuntu systems.
-
+  - **Training time:** ~3.54 h per epoch
 
 ## 📚 Citation
 
