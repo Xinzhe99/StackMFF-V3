@@ -1,0 +1,96 @@
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Modern gradient definitions -->
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="highlightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#f8f9ff;stop-opacity:0.7" />
+    </linearGradient>
+    
+    <!-- Modern shadow and glow effects -->
+    <filter id="modernGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/> 
+      </feMerge>
+    </filter>
+    
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="shadow"/>
+      <feOffset dx="0" dy="2" result="offset"/>
+      <feFlood flood-color="#000000" flood-opacity="0.1"/>
+      <feComposite in="offset" operator="in"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Modern geometric patterns -->
+    <pattern id="gridPattern" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="4" fill="none"/>
+      <path d="M 0 4 L 4 0" stroke="#667eea" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background with subtle pattern -->
+  <circle cx="20" cy="20" r="19" fill="url(#primaryGradient)" opacity="0.05"/>
+  <circle cx="20" cy="20" r="18" fill="url(#gridPattern)" opacity="0.1"/>
+  
+  <!-- Main focus stack - modern 3D isometric design -->
+  <g transform="translate(6, 8)">
+    <!-- Back layer (deepest) -->
+    <rect x="2" y="8" width="20" height="16" rx="3" fill="url(#primaryGradient)" opacity="0.3" 
+          transform="skewX(-10) translate(0, 2)"/>
+    
+    <!-- Middle layer -->
+    <rect x="4" y="4" width="20" height="16" rx="3" fill="url(#primaryGradient)" opacity="0.6" 
+          transform="skewX(-5) translate(0, 1)"/>
+    
+    <!-- Front layer (main focus) -->
+    <rect x="6" y="0" width="20" height="16" rx="3" fill="url(#primaryGradient)" opacity="0.9" 
+          filter="url(#softShadow)"/>
+    
+    <!-- Modern focus indicator with pulse effect -->
+    <g transform="translate(16, 8)">
+      <circle cx="0" cy="0" r="4" fill="url(#accentGradient)" opacity="0.8" filter="url(#modernGlow)"/>
+      <circle cx="0" cy="0" r="2" fill="url(#highlightGradient)"/>
+      <circle cx="0" cy="0" r="1" fill="#ffffff"/>
+    </g>
+    
+    <!-- Modern connection lines -->
+    <g stroke="url(#accentGradient)" stroke-width="1.5" fill="none" opacity="0.6">
+      <path d="M 8 8 Q 12 4 16 8" stroke-dasharray="2,2"/>
+      <path d="M 20 8 Q 24 4 28 8" stroke-dasharray="2,2"/>
+    </g>
+  </g>
+  
+  <!-- Modern geometric accent - floating elements -->
+  <g transform="translate(28, 6)">
+    <polygon points="0,0 6,3 0,6 1.5,3" fill="url(#accentGradient)" opacity="0.8" 
+             transform="rotate(15 3 3)"/>
+  </g>
+  
+  <g transform="translate(4, 28)">
+    <circle cx="3" cy="3" r="2" fill="url(#primaryGradient)" opacity="0.6"/>
+    <circle cx="3" cy="3" r="1" fill="url(#highlightGradient)"/>
+  </g>
+  
+  <!-- Subtle version indicator -->
+  <g transform="translate(32, 32)">
+    <rect x="0" y="0" width="6" height="6" rx="1" fill="url(#accentGradient)" opacity="0.7"/>
+    <text x="3" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="4" 
+          font-weight="bold" fill="#ffffff">3</text>
+  </g>
+</svg>
