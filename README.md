@@ -18,9 +18,7 @@
 > [!NOTE]
 > 🎉 **2025.10**: Our StackMFF V3 paper is about to be submitted, and the complete code will be uploaded after acceptance.
 
-</div>
-
-##  Table of Contents
+## Table of Contents
 
 - [Overview](#-overview)
 - [Highlights](#-highlights)
@@ -67,7 +65,7 @@ pip install -r requirements.txt
 
 ## 📖 Data Preparation
 
-We provide the test datasets used in our paper for research purposes. These datasets were used to evaluate the performance of our proposed method and compare with other state-of-the-art approaches:
+We provide the test datasets used in our paper for research purposes. These datasets were used to evaluate the performance of our proposed method and compare it with other state-of-the-art approaches:
 - Mobile_Depth
 - Middlebury
 - FlyingThings3D
@@ -85,7 +83,7 @@ We provide the test datasets used in our paper for research purposes. These data
 
 The pre-trained model weights files (`stackmffv3.pth` and `stackmffv3_star.pth`) should be placed in the [weights](https://github.com/Xinzhe99/StackMFF-V3/tree/main/weights) directory.
 
-### Examples for fusing an image stack
+### Example for fusing an image stack
 
 To fuse a stack of multi-focus images, organize your input images in a folder with numeric filenames (e.g., `0.png`, `1.png`, etc.):
 
@@ -108,14 +106,14 @@ Run the StackMFF V3-star prediction script:
 ```bash
 python predict_one_stack_star.py --input_dir ./input_stack --output_dir ./results_star
 ```
-### Example of batch processing test dataset
+### Example of batch processing test datasets
 
 To perform batch processing on multiple test datasets, organize your data in the following directory structure:
 
 ```
 test_datasets/
 ├── Mobile Depth/
-│   └── dof_stack/
+│   └── image stack/
 │       ├── scene1/
 │       │   ├── 0.png
 │       │   ├── 1.png
@@ -125,9 +123,9 @@ test_datasets/
 │           ├── 1.png
 │           └── 2.png
 ├── FlyingThings3D/
-│   └── dof_stack/
+│   └── image stack/
 └── Middlebury/
-    └── dof_stack/
+    └── image stack/
 ```
 
 Run the StackMFF V3 prediction script:
@@ -141,11 +139,39 @@ Run the StackMFF V3-star prediction script:
 ```bash
 python predict_datasets_star.py --test_root ./test_datasets --output_dir ./bench_results_star
 ```
+### Example of fusing image pairs from datasets
 
-Example with custom parameters:
+To fuse image pairs from multiple datasets, organize your data in the following directory structure:
+
+```
+image_pair_datasets/
+├── Lytro/
+│   ├── A/
+│   │   ├── 1.png
+│   │   ├── 2.png
+│   │   └── 3.png
+│   └── B/
+│       ├── 1.png
+│       ├── 2.png
+│       └── 3.png
+├── MFFW/
+│   ├── A/
+│   └── B/
+└── MFI-WHU/
+    ├── A/
+    └── B/
+```
+
+Run the StackMFF V3 image pair prediction script:
 
 ```bash
-python predict_datasets.py --test_root ./test_datasets --output_dir ./bench_results --test_datasets "Mobile Depth" "FlyingThings3D" "Middlebury" "Road-MF"
+python predict_pair_datasets.py --test_root ./image_pair_datasets --output_dir ./pair_results
+```
+
+Run the StackMFF V3-star image pair prediction script:
+
+```bash
+python predict_pair_datasets_star.py --test_root ./image_pair_datasets --output_dir ./pair_results_star
 ```
 
 ## 📚 Citation
@@ -188,11 +214,3 @@ abstract = {Multi-focus image fusion is a vital computational imaging technique 
 TBD.
 
 ⭐ If you find this project helpful, please give it a star!
-
-</div>
-
-
-
-
-
-
