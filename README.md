@@ -85,7 +85,34 @@ We provide the test datasets used in our paper for research purposes. These data
 
 The pre-trained model weights files (`stackmffv3.pth` and `stackmffv3_star.pth`) should be placed in the [weights](https://github.com/Xinzhe99/StackMFF-V3/tree/main/weights) directory.
 
+### Example
 
+To fuse a stack of multi-focus images, organize your input images in a folder with numeric filenames (e.g., `0.png`, `1.png`, etc.):
+
+```
+input_stack/
+├── 0.png
+├── 1.png
+├── 2.png
+└── 3.png
+```
+
+Then run the prediction script:
+
+```bash
+python predict_one_stack.py --input_dir ./input_stack --output_dir ./results
+```
+
+This will generate four output files in the `./results` directory:
+- `fused_gray_*.png`: Grayscale fused image
+- `color_fused_*.png`: Color fused image reconstructed from the original color images
+- `focus_indices_*.png`: Focus index map showing which source image contributed to each pixel
+- `focus_colormap_*.png`: Colormap visualization of the focus indices
+
+For additional options, see:
+```bash
+python predict_one_stack.py --help
+```
 
 ## 📚 Citation
 
@@ -129,6 +156,7 @@ TBD.
 ⭐ If you find this project helpful, please give it a star!
 
 </div>
+
 
 
 
