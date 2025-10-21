@@ -32,7 +32,6 @@
 
 <div align="center">
 <img src="assets/stackmffv3_framework.jpg" width="800px"/>
-<p>Overview of StackMFF-V3 Framework</p>
 </div>
 
 ## ✨ Highlights
@@ -214,3 +213,4 @@ abstract = {Multi-focus image fusion is a vital computational imaging technique 
 TBD.
 
 ⭐ If you find this project helpful, please give it a star!
+
