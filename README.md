@@ -1,6 +1,6 @@
 <div align="center">
 
-# <img src="assets/stackmffv3_logo.svg.jpg" alt="StackMFF V3" height="320" style="vertical-align: middle;"/> StackMFF V3
+# <img src="assets/stackmffv3_logo.svg" alt="StackMFF V3" height="320" style="vertical-align: middle;"/> StackMFF V3
 
 **One-Shot Multi-Focus Image Stack Fusion via Continuous Depth Estimation**
 
@@ -406,3 +406,4 @@ We sincerely thank all the reviewers and the editors for their responsible effor
 ⭐ If you find this project helpful, please give it a star!
 
 </div>
+
