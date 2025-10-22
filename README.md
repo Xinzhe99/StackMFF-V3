@@ -168,41 +168,13 @@ python predict_pair_datasets_star.py --test_root ./image_pair_datasets --output_
 
 If you use this project in your research, please cite our papers:
 
-<details>
-<summary>📋 BibTeX</summary>
-
-```bibtex
-@article{xie2025stackmffv2,
-title = {One-shot multi-focus image stack fusion via focal depth regression},
-journal = {Engineering Applications of Artificial Intelligence},
-volume = {162},
-pages = {112667},
-year = {2025},
-issn = {0952-1976},
-doi = {https://doi.org/10.1016/j.engappai.2025.112667},
-url = {https://www.sciencedirect.com/science/article/pii/S0952197625026983},
-author = {Xinzhe Xie and Buyu Guo and Shuangyan He and Yanzhen Gu and Yanjun Li and Peiliang Li},
-keywords = {Multi-focus image fusion, Focus measure, Computational photography, Image stack processing},
-abstract = {Multi-focus image fusion is a vital computational imaging technique for applications that require an extended depth of field, including medical imaging, microscopy, professional photography, and autonomous driving. While existing methods excel at fusing image pairs, they often suffer from error accumulation that leads to quality degradation, as well as computational inefficiency when applied to large image stacks. To address these challenges, we introduce a one-shot fusion framework that reframes image-stack fusion as a focal-plane depth regression problem. The framework comprises three key stages: intra-layer focus estimation, inter-layer focus estimation, and focus map regression. By employing a differentiable soft regression strategy and using depth maps as proxy supervisory signals, our method enables end-to-end training without requiring manual focus map annotations. Comprehensive experiments on five public datasets demonstrate that our approach achieves state-of-the-art performance with minimal computational overhead. The resulting efficiency and scalability make the proposed framework a compelling solution for real-time deployment in resource-constrained environments and lay the groundwork for broader practical adoption of multi-focus image fusion. The code is available at https://github.com/Xinzhe99/StackMFF-V2.}
-}
-@article{xie2025stackmff,
-  title={StackMFF: end-to-end multi-focus image stack fusion network},
-  author={Xie, Xinzhe and Qingyan, Jiang and Chen, Dong and Guo, Buyu and Li, Peiliang and Zhou, Sangjun},
-  journal={Applied Intelligence},
-  volume={55},
-  number={6},
-  pages={503},
-  year={2025},
-  publisher={Springer}
-}
-```
-
-</details>
+TBD.
 
 ## 🙏 Acknowledgments
 
 TBD.
 
 ⭐ If you find this project helpful, please give it a star!
+
 
 
