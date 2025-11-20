@@ -16,7 +16,7 @@
 ## 📢 News
 
 > [!NOTE]
-> 🎉 **2025.10**: The paper for StackMFF V3 has been submitted. The preprint will be released soon, and the complete code, including the training part, will be uploaded after acceptance.
+> 🎉 **2025.10**: The paper for StackMFF V3 has been submitted.
 
 ## Table of Contents
 
@@ -175,6 +175,7 @@ TBD.
 TBD.
 
 ⭐ If you find this project helpful, please give it a star!
+
 
 
 
