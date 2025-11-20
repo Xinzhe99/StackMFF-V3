@@ -200,15 +200,17 @@ python train_star.py \
 
 ## 📚 Citation
 
-If you use this project in your research, please cite our papers:
-
 TBD.
 
 ## 🙏 Acknowledgments
 
 TBD.
 
-⭐ If you find this project helpful, please give it a star!
+<div align="center">
+
+⭐ If you find this project helpful, please give it a star and cite our paper!
+
+</div>
 
 
 
