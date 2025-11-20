@@ -164,6 +164,40 @@ Run the StackMFF V3-star image pair prediction script:
 python predict_pair_datasets_star.py --test_root ./image_pair_datasets --output_dir ./pair_results_star
 ```
 
+## 🏋️ Training
+
+### Training StackMFF V3
+
+To train the StackMFF V3 model, run the following command:
+
+```bash
+python train.py \
+  --save_name train_stackmffv3 \
+  --datasets_root /data/stackmff_datasets \
+  --train_datasets NYU-V2 DUTS DIODE Cityscapes ADE \
+  --val_datasets NYU-V2 DUTS DIODE Cityscapes ADE \
+  --batch_size 8 \
+  --num_epochs 50 \
+  --lr 1e-3 \
+  --gpu_ids 0
+```
+
+### Training StackMFF V3-Star
+
+To train the StackMFF V3-Star model, run the following command:
+
+```bash
+python train_star.py \
+  --save_name train_stackmffv3_star \
+  --datasets_root /data/stackmff_datasets \
+  --train_datasets NYU-V2 DUTS DIODE Cityscapes ADE \
+  --val_datasets NYU-V2 DUTS DIODE Cityscapes ADE \
+  --batch_size 8 \
+  --num_epochs 50 \
+  --lr 1e-3 \
+  --gpu_ids 0
+```
+
 ## 📚 Citation
 
 If you use this project in your research, please cite our papers:
@@ -175,6 +209,7 @@ TBD.
 TBD.
 
 ⭐ If you find this project helpful, please give it a star!
+
 
 
 
