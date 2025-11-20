@@ -164,7 +164,7 @@ Run the StackMFF V3-star image pair prediction script:
 python predict_pair_datasets_star.py --test_root ./image_pair_datasets --output_dir ./pair_results_star
 ```
 
-## 🏋️ Training
+##  Training
 
 ### Training StackMFF V3
 
@@ -209,6 +209,7 @@ TBD.
 TBD.
 
 ⭐ If you find this project helpful, please give it a star!
+
 
 
 
