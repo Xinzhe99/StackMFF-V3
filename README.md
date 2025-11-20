@@ -166,6 +166,62 @@ python predict_pair_datasets_star.py --test_root ./image_pair_datasets --output_
 
 ##  Training
 
+### Dataset Structure
+
+#### For StackMFF V3:
+
+```
+datasets_root/
+├── DatasetName1/
+│   ├── TR/ (Training set)
+│   │   ├── focus_stack/ (image stacks)
+│   │   │   ├── scene1/
+│   │   │   │   ├── 0.png
+│   │   │   │   ├── 1.png
+│   │   │   │   └── 2.png
+│   │   │   └── scene2/
+│   │   │       ├── 0.png
+│   │   │       ├── 1.png
+│   │   │       └── 2.png
+│   │   └── focus_index_gt/ (Focus index ground truth)
+│   │       ├── scene1.npy
+│   │       └── scene2.npy
+│   └── TE/ (Test/Validation set)
+│       ├── focus_stack/
+│       └── focus_index_gt/
+├── DatasetName2/
+│   ├── TR/
+│   └── TE/
+└── ...
+```
+
+#### For StackMFF V3-Star:
+
+```
+datasets_root/
+├── DatasetName1/
+│   ├── TR/ (Training set)
+│   │   ├── focus_stack/ (image stacks)
+│   │   │   ├── scene1/
+│   │   │   │   ├── 0.png
+│   │   │   │   ├── 1.png
+│   │   │   │   └── 2.png
+│   │   │   └── scene2/
+│   │   │       ├── 0.png
+│   │   │       ├── 1.png
+│   │   │       └── 2.png
+│   │   └── depth/ (Depth maps)
+│   │       ├── scene1.png
+│   │       └── scene2.png
+│   └── TE/ (Test/Validation set)
+│       ├── focus_stack/
+│       └── depth/
+├── DatasetName2/
+│   ├── TR/
+│   └── TE/
+└── ...
+```
+
 ### Training StackMFF V3
 
 To train the StackMFF V3 model, run the following command:
