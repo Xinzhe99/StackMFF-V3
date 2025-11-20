@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+# @Author  : XinZhe Xie
+# @University  : ZheJiang University
+
+"""
+Training script for StackMFF V3-Star.
+"""
+
 import argparse
 import time
 import os
@@ -22,14 +30,14 @@ def parse_args():
     parser = argparse.ArgumentParser(description="StackMFF V3 Star Training Script")
     parser.add_argument('--save_name', default='train_runs_star')
     parser.add_argument('--datasets_root', 
-                        default=r'/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/stackmffv2_training_datasets',
+                        default='training_datasets',
                         type=str, help='Root path to all datasets')
 
     parser.add_argument('--train_datasets', nargs='+', 
                         default=['DUTS', 'DIODE', 'Cityscapes', 'NYU-V2', 'ADE'],
                         help='List of datasets to use for training')
     parser.add_argument('--val_datasets', nargs='+',
-                        default=['DUTS', 'DIODE', 'Cityscapes', 'NYU-V2'],
+                        default=['DUTS', 'DIODE', 'Cityscapes', 'NYU-V2', 'ADE'],
                         help='List of datasets to use for validation')
     parser.add_argument('--subset_fraction_train', type=float, default=1.0,
                         help='Fraction of training data to use')
@@ -66,7 +74,7 @@ def create_dataset_loaders(args):
         dataset_path = os.path.join(args.datasets_root, dataset_name, 'TR')
         if os.path.exists(dataset_path):
             train_dataset_params.append({
-                'root_dir': os.path.join(dataset_path, 'dof_stack'),
+                'root_dir': os.path.join(dataset_path, 'focus_stack'),
                 'continuous_depth_dir': os.path.join(dataset_path, 'depth'),
                 'subset_fraction': args.subset_fraction_train
             })
@@ -91,7 +99,7 @@ def create_dataset_loaders(args):
         if os.path.exists(dataset_path):
             val_loader = get_updated_dataloader(
                 [{
-                    'root_dir': os.path.join(dataset_path, 'dof_stack'),
+                    'root_dir': os.path.join(dataset_path, 'focus_stack'),
                     'continuous_depth_dir': os.path.join(dataset_path, 'depth'),
                     'subset_fraction': args.subset_fraction_val
                 }],
@@ -204,18 +212,23 @@ def validate_dataset(model, val_loader, criterion_depth, device, epoch, save_pat
             avg_depth_mse, avg_depth_mae)
 
 def main():
+    """Main training function."""
     args = parse_args()
     
+    # Print banner information
     print_banner()
     
+    # Initialization
     model_save_path = config_model_dir(resume=False, subdir_name=args.save_name)
     writer = SummaryWriter(log_dir=model_save_path)
     train_loader, val_loaders = create_dataset_loaders(args)
 
+    # Create model
     model = StackMFF_V3_Star()
     num_params = count_parameters(model)
     print_model_info(model, num_params)
     
+    # Device configuration
     use_parallel = False
     gpu_count = 0
     
@@ -285,10 +298,10 @@ def main():
     
     print_training_config(args, optimizer, scheduler)
 
+    # Training variables
     best_val_loss = float('inf')
     best_epoch = -1
     start_time = time.time()
-
     val_results_data = []
 
     # Training loop
@@ -296,6 +309,8 @@ def main():
         print(f"Epoch {epoch + 1}/{args.num_epochs}")
 
         # Training
+        train_loss = None
+        train_depth_loss = None
         if train_loader:
             train_loss, train_depth_loss = train(model, train_loader, criterion_depth, optimizer, device, epoch, args.num_epochs)
 
@@ -376,6 +391,7 @@ def main():
 
         scheduler.step()
 
+    # Training complete
     print_training_complete(start_time, model_save_path)
     
     # Print best epoch information

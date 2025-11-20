@@ -1,4 +1,11 @@
-import argparse
+# -*- coding: utf-8 -*-
+# @Author  : XinZhe Xie
+# @University  : ZheJiang University
+
+"""
+Training script for StackMFF V3.
+"""
+
 import argparse
 import time
 import sys
@@ -27,13 +34,11 @@ def parse_args():
     Returns:
         argparse.Namespace: Parsed arguments
     """
-    # Datasetset configuration
     parser = argparse.ArgumentParser(description="StackMFF V3 Training Script")
     parser.add_argument('--save_name', default='train_runs')
     parser.add_argument('--datasets_root', 
-                        default=r'/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/stackmffv3_training_datasets',
+                        default='training_datasets',
                         type=str, help='Root path to all datasets')
-
     parser.add_argument('--train_datasets', nargs='+', 
                         default=['NYU-V2', 'DUTS', 'DIODE', 'Cityscapes', 'ADE'],
                         help='List of datasets to use for training')
@@ -45,7 +50,6 @@ def parse_args():
     parser.add_argument('--subset_fraction_val', type=float, default=0.1,
                         help='Fraction of validation data to use')
 
-    
     # Training and model configuration
     parser.add_argument('--training_image_size', type=int, default=256,
                         help='Target image size for training')
@@ -125,12 +129,12 @@ def create_dataset_loaders(args):
     return train_loader, val_loaders
 
 def train(model, train_loader, optimizer, device, epoch, total_epochs):
-    """训练一个 epoch"""
+    """Train one epoch"""
     model.train()
     train_loss = 0.0
     loss_focus_total = 0.0
     
-    # 创建进度条
+    # Create progress bar
     progress_bar = tqdm(
         train_loader, 
         desc=f"🔥 Epoch {epoch+1}/{total_epochs}",
@@ -143,10 +147,10 @@ def train(model, train_loader, optimizer, device, epoch, total_epochs):
 
         optimizer.zero_grad()
         
-        # 训练时只返回layer_interaction_features
+        # During training, only return layer_interaction_features
         layer_interaction_features = model(image_stack)  # [B, N, H, W]
         
-        # 使用交叉熵损失 - 支持可变类别数目
+        # Use cross-entropy loss - supports variable number of classes
         total_loss = F.cross_entropy(layer_interaction_features, focus_index_gt)
 
         total_loss.backward()
@@ -155,7 +159,7 @@ def train(model, train_loader, optimizer, device, epoch, total_epochs):
         train_loss += total_loss.item()
         loss_focus_total += total_loss.item()
 
-        # 更新进度条
+        # Update progress bar
         progress_bar.set_postfix({
             "Loss": f"{total_loss.item():.4f}",
             "Avg": f"{train_loss/(batch_idx+1):.4f}",
@@ -166,14 +170,14 @@ def train(model, train_loader, optimizer, device, epoch, total_epochs):
             loss_focus_total / len(train_loader))
 
 def validate_dataset(model, val_loader, device, epoch, save_path, dataset_name):
-    """验证函数"""
-    model.eval()  # 设置为评估模式
+    """Validation function"""
+    model.eval()  # Set to evaluation mode
     val_loss = 0.0
     loss_focus_total = 0.0
     correct_predictions = 0
     total_pixels = 0
     
-    # 确保验证保存路径存在
+    # Ensure validation save path exists
     os.makedirs(save_path, exist_ok=True)
 
     progress_bar = tqdm(
@@ -198,10 +202,10 @@ def validate_dataset(model, val_loader, device, epoch, save_path, dataset_name):
             
             batch_accuracy = correct / total
             
-            # 使用交叉熵损失计算验证损失（但不进行反向传播）
-            # 注意：这里只是为了监控训练进度，实际验证指标以accuracy为准
-            # 由于推理模式下模型返回的是fused_image和focus_indices，我们直接使用精度作为主要指标
-            # 设置一个虚拟的loss值用于显示（实际上是1-accuracy）
+            # Use cross-entropy loss to calculate validation loss (but no backpropagation)
+            # Note: This is just for monitoring training progress, actual validation metrics use accuracy
+            # Since in inference mode the model returns fused_image and focus_indices, we directly use accuracy as the main metric
+            # Set a pseudo loss value for display (actually 1-accuracy)
             pseudo_loss = 1.0 - batch_accuracy
 
             val_loss += pseudo_loss
@@ -226,23 +230,24 @@ def validate_dataset(model, val_loader, device, epoch, save_path, dataset_name):
             overall_accuracy)
 
 def main():
-    # 解析参数
+    """Main training function."""
+    # Parse arguments
     args = parse_args()
     
-    # 打印banner信息
+    # Print banner information
     print_banner()
     
-    # 初始化
+    # Initialization
     model_save_path = config_model_dir(resume=False, subdir_name=args.save_name)
     writer = SummaryWriter(log_dir=model_save_path)
     train_loader, val_loaders = create_dataset_loaders(args)
     
-    # 创建模型
+    # Create model
     model = StackMFF_V3()
     num_params = count_parameters(model)
     print_model_info(model, num_params)
     
-    # 设备配置
+    # Device configuration
     use_parallel = False
     gpu_count = 0
     
@@ -273,7 +278,7 @@ def main():
                     # Multiple specific GPUs
                     device = torch.device(f"cuda:{valid_gpu_ids[0]}")
                     model.to(device)
-                    # 设置可见的GPU设备
+                    # Set visible GPU devices
                     os.environ['CUDA_VISIBLE_DEVICES'] = ','.join(map(str, valid_gpu_ids))
                     model = nn.DataParallel(model, device_ids=list(range(len(valid_gpu_ids))))
                     use_parallel = True
@@ -304,13 +309,13 @@ def main():
     print_device_info(device, use_parallel, gpu_count)
     print_dataset_info(train_loader, val_loaders, args)
     
-    # 优化器和调度器
+    # Optimizer and scheduler
     optimizer = AdamW(model.parameters(), lr=args.lr)
     scheduler = ExponentialLR(optimizer, gamma=args.lr_decay)
     
     print_training_config(args, optimizer, scheduler)
     
-    # 训练循环
+    # Training loop
     best_val_loss = float('inf')
     best_epoch = -1
     start_time = time.time()
@@ -320,13 +325,13 @@ def main():
         train_loss = None
         train_focus_loss = None
         
-        # 训练
+        # Training
         if train_loader:
             train_loss, train_focus_loss = train(model, train_loader, optimizer, device, epoch, args.num_epochs)
             writer.add_scalar('Loss/train/total', train_loss, epoch)
             writer.add_scalar('Loss/train/focus_loss', train_focus_loss, epoch)
         
-        # 验证
+        # Validation
         val_results = []
         epoch_val_data = {'epoch': epoch + 1}
         
@@ -358,16 +363,16 @@ def main():
         
         val_results_data.append(epoch_val_data)
         
-        # 保存结果
+        # Save results
         val_results_df = pd.DataFrame(val_results_data)
         val_results_df.to_csv(os.path.join(model_save_path, 'validation_results.csv'), index=False)
         
-        # 保存模型
+        # Save model
         os.makedirs(os.path.join(model_save_path, 'model_save'), exist_ok=True)
         state_dict = model.module.state_dict() if hasattr(model, 'module') else model.state_dict()
         torch.save(state_dict, f"{os.path.join(model_save_path, 'model_save')}/epoch_{epoch}.pth")
         
-        # 检查最佳模型
+        # Check best model
         improved = False
         if val_loaders:
             avg_val_loss = sum(results[0] for results in val_results) / len(val_results)
@@ -378,14 +383,14 @@ def main():
                 state_dict = model.module.state_dict() if hasattr(model, 'module') else model.state_dict()
                 torch.save(state_dict, f"{model_save_path}/best_model.pth")
         
-        # 打印epoch结果
+        # Print epoch results
         print_epoch_results(epoch, args.num_epochs, train_loss, val_results, 
                            args.val_datasets[:len(val_loaders)], 
                            scheduler.get_last_lr()[0], best_val_loss, improved)
         
         scheduler.step()
     
-    # 训练完成
+    # Training complete
     print_training_complete(start_time, model_save_path)
     
     # Print best epoch information
