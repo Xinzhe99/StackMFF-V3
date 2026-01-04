@@ -4,6 +4,7 @@
 
 **General Multi-focus Image Fusion Network**
 
+[![SSRN](https://img.shields.io/badge/SSRN-5954614-orange.svg)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5954614)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.8+-red.svg)](https://pytorch.org/)
@@ -271,6 +272,7 @@ TBD.
 ⭐ If you find this project helpful, please give it a star and cite our paper!
 
 </div>
+
 
 
 
