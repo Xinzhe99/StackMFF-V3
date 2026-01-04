@@ -16,7 +16,11 @@
 ## 📢 News
 
 > [!NOTE]
-> 🎉 **2025.10**: The paper for StackMFF V3 has been submitted.
+> 🎉 **2026.01**: This work has been included in [StackMFF-Series](https://github.com/Xinzhe99/StackMFF-Series)
+
+> 🎉 **2026.01**: StackMFF V4 has been submitted and is under review! [Project Link](https://github.com/Xinzhe99/StackMFF-V4)
+
+> 🎉 **2025.11**: The paper for StackMFF V3 has been submitted.
 
 ## Table of Contents
 
@@ -267,6 +271,7 @@ TBD.
 ⭐ If you find this project helpful, please give it a star and cite our paper!
 
 </div>
+
 
 
 
