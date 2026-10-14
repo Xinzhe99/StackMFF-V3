@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+# Checkpoints and weights
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+# Experiment outputs
+outputs/
+runs/
+results/
+# Data caches
+cache/
+cache*/
+*.npz
+# Environment
+.venv/
+venv/
+.env
+.vscode/
+.idea/
