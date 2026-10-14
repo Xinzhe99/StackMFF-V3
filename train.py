@@ -1,0 +1,449 @@
+# -*- coding: utf-8 -*-
+"""
+Training script for StackMFF-V3 (all-attention multi-focus stack fusion).
+
+Loss: pixel-wise cross-entropy over the N layers (full resolution).
+Optim: AdamW(lr=5e-4, wd=0.05, no decay on norm/bias/relative-position tables),
+       1 epoch linear warm-up then cosine to 1e-6, grad clip 1.0, bf16 autocast.
+Multi-GPU: DistributedDataParallel, launch with
+    torchrun --nproc_per_node=2 train.py --out_dir ... (batch_size is per GPU).
+Each epoch: train loss, validation (TE subsets, pixel accuracy + CE, rank 0),
+            checkpoint epoch_{k}.pth, best_val.pth (by val accuracy),
+            benchmark monitoring on the 4 test sets (bench_log.csv; NOT used for selection).
+"""
+import argparse
+import csv
+import json
+import math
+import os
+import random
+import sys
+import time
+from collections import defaultdict
+
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.distributed as dist
+from torch.nn.parallel import DistributedDataParallel as DDP
+from torch.utils.data import DataLoader, Sampler
+from torchvision import transforms
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from stackmff_v3.Dataloader import FocusStackDataset, CombinedDataset  # noqa: E402
+from stackmff_v3.network import StackMFFV3  # noqa: E402
+from predict_benchmark import run_benchmark, DEFAULT_DATASETS  # noqa: E402
+
+DATA_ROOT = '/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/stackmffv3_training_datasets'
+BENCH_ROOT = '/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/dff_and_mff'
+ALL_DATASETS = ['NYU-V2', 'DUTS', 'DIODE', 'Cityscapes', 'ADE']
+
+
+def parse_args():
+    p = argparse.ArgumentParser(description='StackMFF-V3 training')
+    p.add_argument('--out_dir', required=True)
+    p.add_argument('--datasets_root', default=DATA_ROOT)
+    p.add_argument('--train_datasets', nargs='+', default=ALL_DATASETS)
+    p.add_argument('--val_datasets', nargs='+', default=ALL_DATASETS)
+    p.add_argument('--subset_fraction_train', type=float, default=1.0)
+    p.add_argument('--subset_fraction_val', type=float, default=0.05)
+    p.add_argument('--val_seed', type=int, default=0)
+    p.add_argument('--training_image_size', type=int, default=256)
+    p.add_argument('--batch_size', type=int, default=8)
+    p.add_argument('--num_epochs', type=int, default=40)
+    p.add_argument('--lr', type=float, default=5e-4)
+    p.add_argument('--min_lr', type=float, default=1e-6)
+    p.add_argument('--weight_decay', type=float, default=0.05)
+    p.add_argument('--warmup_epochs', type=float, default=1.0)
+    p.add_argument('--grad_clip', type=float, default=1.0)
+    p.add_argument('--num_workers', type=int, default=16)
+    p.add_argument('--val_workers', type=int, default=4)
+    p.add_argument('--seed', type=int, default=0)
+    p.add_argument('--C1', type=int, default=32)
+    p.add_argument('--C2', type=int, default=64)
+    p.add_argument('--rounds', type=int, nargs=3, default=[1, 2, 1])
+    p.add_argument('--window', type=int, default=8)
+    p.add_argument('--mlp_ratio', type=float, default=2.0)
+    p.add_argument('--inter_pool', type=int, default=1)
+    p.add_argument('--bench_root', default=BENCH_ROOT)
+    p.add_argument('--bench_datasets', nargs='+', default=DEFAULT_DATASETS)
+    p.add_argument('--no_bench', action='store_true')
+    p.add_argument('--resume', action='store_true', help='resume from out_dir/last.pth')
+    p.add_argument('--cache_root', default='', help='use pre-resized .npz stacks from make_cache.py')
+    p.add_argument('--heads', type=int, nargs=2, default=[2, 4])
+    p.add_argument('--log_every', type=int, default=200)
+    p.add_argument('--dry_run_steps', type=int, default=0,
+                   help='>0: run this many training iterations, report speed, exit')
+    return p.parse_args()
+
+
+def worker_init(_):
+    """Single-threaded torch/cv2 inside DataLoader workers (avoids 64-thread oversubscription)."""
+    import cv2
+    torch.set_num_threads(1)
+    cv2.setNumThreads(0)
+
+
+def set_seed(seed):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+
+
+class EpochGroupedBatchSampler(Sampler):
+    """Batches of indices with equal stack size; re-shuffled every epoch (set_epoch)."""
+
+    def __init__(self, stack_sizes, batch_size, seed=0, rank=0, world=1):
+        self.groups = defaultdict(list)
+        for i, s in enumerate(stack_sizes):
+            self.groups[s].append(i)
+        self.bs = batch_size
+        self.seed = seed
+        self.epoch = 0
+        self.rank, self.world = rank, world
+        n_batches = sum((len(v) + batch_size - 1) // batch_size for v in self.groups.values())
+        # every rank gets the same number of batches (the last n_batches % world are dropped)
+        self._len = n_batches // world
+
+    def set_epoch(self, epoch):
+        self.epoch = epoch
+
+    def __iter__(self):
+        rng = random.Random(self.seed * 100003 + self.epoch)
+        batches = []
+        for size in sorted(self.groups):
+            idx = list(self.groups[size])
+            rng.shuffle(idx)
+            batches += [idx[i:i + self.bs] for i in range(0, len(idx), self.bs)]
+        rng.shuffle(batches)  # same seed on every rank -> identical list, disjoint shards below
+        batches = batches[:self._len * self.world]
+        return iter(batches[self.rank::self.world])
+
+    def __len__(self):
+        return self._len
+
+
+class CachedStackDataset(torch.utils.data.Dataset):
+    """Stacks pre-resized by make_cache.py (<cache>/<dataset>/<split>/<stack>.npz, x uint8 (N,S,S), y uint8 (S,S)).
+    Same output as FocusStackDataset: (stack float [N,S,S] in [0,1], focus index long [S,S], N); random h/v flips."""
+
+    def __init__(self, files, augment):
+        import zipfile
+        from concurrent.futures import ThreadPoolExecutor
+        self.files, self.augment = files, augment
+
+        def n_layers(f):
+            with zipfile.ZipFile(f) as z, z.open('x.npy') as fh:
+                v = np.lib.format.read_magic(fh)
+                shape = np.lib.format._read_array_header(fh, v)[0]
+            return shape[0]
+        with ThreadPoolExecutor(32) as ex:
+            self.stack_sizes = list(ex.map(n_layers, files))
+
+    def __len__(self):
+        return len(self.files)
+
+    def __getitem__(self, i):
+        d = np.load(self.files[i])
+        x, y = d['x'], d['y']
+        if self.augment:
+            if random.random() < 0.5:
+                x, y = x[:, :, ::-1], y[:, ::-1]
+            if random.random() < 0.5:
+                x, y = x[:, ::-1, :], y[::-1, :]
+        x = torch.from_numpy(np.ascontiguousarray(x)).float().div_(255.0)
+        y = torch.from_numpy(np.ascontiguousarray(y)).long()
+        return x, y, x.shape[0]
+
+
+def cached_dataset(cache_root, names, split, fraction, augment, seed=0):
+    files = []
+    for n in names:
+        d = os.path.join(cache_root, n, split)
+        if os.path.isdir(d):
+            fs = sorted(os.path.join(d, f) for f in os.listdir(d) if f.endswith('.npz') and '.tmp' not in f)
+            if fraction < 1.0:
+                fs = random.Random(seed).sample(fs, max(1, int(len(fs) * fraction)))
+            files += fs
+    return CachedStackDataset(files, augment)
+
+
+def build_dataset(params, size, augment):
+    tf = transforms.Compose([transforms.Resize((size, size)), transforms.ToTensor()])
+    dsets = [FocusStackDataset(root_dir=p['root_dir'], focus_index_dir=p['focus_index_gt'],
+                               transform=tf, augment=augment, subset_fraction=p['subset_fraction'])
+             for p in params]
+    return CombinedDataset(dsets)
+
+
+def dataset_params(root, name, split, subset):
+    base = os.path.join(root, name, split)
+    return {'root_dir': os.path.join(base, 'focus_stack'),
+            'focus_index_gt': os.path.join(base, 'focus_index_gt'),
+            'subset_fraction': subset}
+
+
+def lr_at(step, total, warm, base, min_lr):
+    if step < warm:
+        return base * (step + 1) / max(1, warm)
+    p = min(1.0, (step - warm) / max(1, total - warm))
+    return min_lr + 0.5 * (base - min_lr) * (1 + math.cos(math.pi * p))
+
+
+def param_groups(model, wd):
+    decay, no_decay = [], []
+    for name, p in model.named_parameters():
+        if not p.requires_grad:
+            continue
+        if p.ndim <= 1 or 'rel_pos_bias_table' in name:
+            no_decay.append(p)
+        else:
+            decay.append(p)
+    return [{'params': decay, 'weight_decay': wd}, {'params': no_decay, 'weight_decay': 0.0}]
+
+
+def train_epoch(model, loader, optimizer, device, args, epoch, steps_per_epoch, total_steps,
+                log, max_steps=0):
+    model.train()
+    warm = int(args.warmup_epochs * steps_per_epoch)
+    loss_sum = torch.zeros((), device=device)
+    n_done = 0
+    t_data = 0.0
+    t_epoch0 = time.time()
+    t_wait = time.time()
+    for it, (x, y, _) in enumerate(loader):
+        t_data += time.time() - t_wait
+        step = epoch * steps_per_epoch + it
+        lr = lr_at(step, total_steps, warm, args.lr, args.min_lr)
+        for g in optimizer.param_groups:
+            g['lr'] = lr
+        x = x.to(device, non_blocking=True)
+        y = y.to(device, non_blocking=True)
+        with torch.autocast(device_type='cuda', dtype=torch.bfloat16):
+            logits = model(x)
+        loss = F.cross_entropy(logits.float(), y)
+        optimizer.zero_grad(set_to_none=True)
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip)
+        optimizer.step()
+        loss_sum += loss.detach()
+        n_done += 1
+        if (it + 1) % args.log_every == 0:
+            avg = loss_sum.item() / n_done
+            el = time.time() - t_epoch0
+            log(f'  ep {epoch} it {it + 1}/{steps_per_epoch} loss {loss.item():.4f} avg {avg:.4f} '
+                f'lr {lr:.2e} {(it + 1) / el:.2f} it/s data_wait {t_data / (it + 1):.3f}s/it')
+        if max_steps and n_done >= max_steps:
+            break
+        t_wait = time.time()
+    if device.type == 'cuda':
+        torch.cuda.synchronize(device)
+    el = time.time() - t_epoch0
+    return loss_sum.item() / max(1, n_done), {'iters': n_done, 'sec': el,
+                                               'it_per_s': n_done / el, 'data_wait_per_it': t_data / max(1, n_done)}
+
+
+@torch.no_grad()
+def validate(model, val_loaders, device):
+    model.eval()
+    per = {}
+    tot_c = tot_p = 0
+    tot_ce = 0.0
+    for name, loader in val_loaders:
+        c = p = 0
+        ce = 0.0
+        for x, y, _ in loader:
+            x = x.to(device, non_blocking=True)
+            y = y.to(device, non_blocking=True)
+            with torch.autocast(device_type='cuda', dtype=torch.bfloat16):
+                logits = model(x, return_logits=True)
+            logits = logits.float()
+            ce += F.cross_entropy(logits, y, reduction='sum').item()
+            c += (logits.argmax(1) == y).sum().item()
+            p += y.numel()
+        per[name] = {'ce': ce / max(1, p), 'acc': c / max(1, p), 'pixels': p}
+        tot_c += c
+        tot_p += p
+        tot_ce += ce
+    overall = {'ce': tot_ce / max(1, tot_p), 'acc': tot_c / max(1, tot_p)}
+    return overall, per
+
+
+def main():
+    args = parse_args()
+    world = int(os.environ.get('WORLD_SIZE', '1'))
+    rank = int(os.environ.get('RANK', '0'))
+    local_rank = int(os.environ.get('LOCAL_RANK', '0'))
+    if world > 1:
+        import datetime
+        # rank 0 validates and runs benchmark monitoring while the other ranks wait at a barrier
+        dist.init_process_group('nccl', timeout=datetime.timedelta(hours=3))
+    torch.cuda.set_device(local_rank)
+    main_proc = rank == 0
+    model_dir = os.path.join(args.out_dir, 'model_save')
+    if main_proc:
+        os.makedirs(model_dir, exist_ok=True)
+        logf = open(os.path.join(args.out_dir, 'train_events.txt'), 'a')
+
+    def log(msg):
+        if not main_proc:
+            return
+        print(msg, flush=True)
+        logf.write(msg + '\n')
+        logf.flush()
+
+    log(f'=== StackMFF-V3 training {time.strftime("%Y-%m-%d %H:%M:%S")} ===')
+    log('args: ' + json.dumps(vars(args)))
+    set_seed(args.seed + rank)
+    device = torch.device('cuda', local_rank)
+    log(f'world size {world}')
+    torch.backends.cuda.matmul.allow_tf32 = True
+    torch.backends.cudnn.benchmark = False  # variable N -> avoid per-shape autotuning
+
+    # Validation sets: fixed 5% subsets (seed 0) per TE split.
+    val_loaders = []
+    for name in (args.val_datasets if main_proc else []):
+        random.seed(args.val_seed)
+        if args.cache_root:
+            ds = cached_dataset(args.cache_root, [name], 'TE', args.subset_fraction_val, False, args.val_seed)
+        else:
+            ds = build_dataset([dataset_params(args.datasets_root, name, 'TE', args.subset_fraction_val)],
+                               args.training_image_size, augment=False)
+        if len(ds) == 0:
+            continue
+        ld = DataLoader(ds, batch_sampler=EpochGroupedBatchSampler(ds.stack_sizes, args.batch_size, args.val_seed),
+                        num_workers=args.val_workers, pin_memory=True, worker_init_fn=worker_init,
+                        prefetch_factor=4)
+        val_loaders.append((name, ld))
+        log(f'val {name}: {len(ds)} stacks')
+
+    # Training set: all TR splits, full data.
+    random.seed(args.seed)
+    tr_params = [dataset_params(args.datasets_root, n, 'TR', args.subset_fraction_train)
+                 for n in args.train_datasets]
+    if args.cache_root:
+        train_ds = cached_dataset(args.cache_root, args.train_datasets, 'TR', args.subset_fraction_train, True, args.seed)
+    else:
+        train_ds = build_dataset(tr_params, args.training_image_size, augment=True)
+    train_sampler = EpochGroupedBatchSampler(train_ds.stack_sizes, args.batch_size, args.seed, rank, world)
+    train_loader = DataLoader(train_ds, batch_sampler=train_sampler, num_workers=args.num_workers,
+                              pin_memory=True, persistent_workers=args.num_workers > 0,
+                              worker_init_fn=worker_init, prefetch_factor=4)
+    steps_per_epoch = len(train_sampler)
+    total_steps = steps_per_epoch * args.num_epochs
+    log(f'train stacks {len(train_ds)} | steps/epoch per GPU {steps_per_epoch} | total steps {total_steps} | '
+        f'global batch {args.batch_size * world}')
+
+    model = StackMFFV3(C1=args.C1, C2=args.C2, rounds=tuple(args.rounds), window=args.window,
+                       mlp_ratio=args.mlp_ratio, inter_pool=args.inter_pool, heads=tuple(args.heads)).to(device)
+    n_params = sum(p.numel() for p in model.parameters())
+    log(f'model params {n_params} ({n_params / 1e6:.3f} M)')
+    optimizer = torch.optim.AdamW(param_groups(model, args.weight_decay), lr=args.lr)
+
+    start_epoch, best_acc, best_epoch = 0, -1.0, -1
+    best_bench, best_bench_epoch = -1.0, -1
+    last_path = os.path.join(args.out_dir, 'last.pth')
+    if args.resume and os.path.exists(last_path):
+        ck = torch.load(last_path, map_location='cpu')
+        model.load_state_dict(ck['model'])
+        optimizer.load_state_dict(ck['optimizer'])
+        start_epoch, best_acc, best_epoch = ck['epoch'] + 1, ck['best_acc'], ck['best_epoch']
+        log(f'resumed from {last_path} at epoch {start_epoch}')
+
+    n_gpu = world
+    model_dp = DDP(model, device_ids=[local_rank]) if world > 1 else model
+
+    if args.dry_run_steps > 0:
+        log(f'--- dry run: {args.dry_run_steps} iterations ---')
+        t0 = time.time()
+        _, st = train_epoch(model_dp, train_loader, optimizer, device, args, 0, steps_per_epoch,
+                            total_steps, log, max_steps=args.dry_run_steps)
+        log(f"dry run: {st['iters']} iters in {st['sec']:.1f}s -> {st['it_per_s']:.2f} it/s, "
+            f"data wait {st['data_wait_per_it']:.3f}s/it, est. epoch {steps_per_epoch / st['it_per_s'] / 60:.1f} min "
+            f"({steps_per_epoch} iters)")
+        log(f'peak mem on rank 0 (GiB): {torch.cuda.max_memory_allocated(device) / 2 ** 30:.2f}')
+        if world > 1:
+            dist.destroy_process_group()
+        return
+
+    bench_path = os.path.join(args.out_dir, 'bench_log.csv')
+    val_path = os.path.join(args.out_dir, 'val_log.csv')
+    for epoch in range(start_epoch, args.num_epochs):
+        t_ep = time.time()
+        train_sampler.set_epoch(epoch)
+        tr_loss, st = train_epoch(model_dp, train_loader, optimizer, device, args, epoch,
+                                  steps_per_epoch, total_steps, log)
+        t_train = time.time() - t_ep
+        if not main_proc:
+            dist.barrier()  # wait for rank 0 (validation, checkpoints, benchmark monitoring)
+            continue
+
+        overall, per = validate(model, val_loaders, device)
+        log(f'[epoch {epoch}] train_loss {tr_loss:.4f} | val CE {overall["ce"]:.4f} acc {overall["acc"]:.4f} | ' +
+            ' '.join(f'{k} {v["acc"]:.4f}' for k, v in per.items()) +
+            f' | train {t_train / 60:.1f} min')
+
+        # checkpoints
+        state = model.state_dict()
+        torch.save(state, os.path.join(model_dir, f'epoch_{epoch}.pth'))
+        improved = overall['acc'] > best_acc
+        if improved:
+            best_acc, best_epoch = overall['acc'], epoch
+            torch.save(state, os.path.join(model_dir, 'best_val.pth'))
+        torch.save({'model': state, 'optimizer': optimizer.state_dict(), 'epoch': epoch,
+                    'best_acc': best_acc, 'best_epoch': best_epoch}, last_path)
+
+        # val log
+        row = {'epoch': epoch, 'lr_end': lr_at((epoch + 1) * steps_per_epoch - 1, total_steps,
+                                               int(args.warmup_epochs * steps_per_epoch), args.lr, args.min_lr),
+               'train_loss': tr_loss, 'val_ce': overall['ce'], 'val_acc': overall['acc'],
+               'best_val_acc': best_acc, 'improved': int(improved)}
+        for k, v in per.items():
+            row[f'val_{k}_acc'] = v['acc']
+            row[f'val_{k}_ce'] = v['ce']
+        new = not os.path.exists(val_path)
+        with open(val_path, 'a', newline='') as f:
+            w = csv.DictWriter(f, fieldnames=list(row.keys()))
+            if new:
+                w.writeheader()
+            w.writerow(row)
+
+        # benchmark monitoring (not used for checkpoint selection)
+        if not args.no_bench:
+            t_b = time.time()
+            summary, _ = run_benchmark(model, args.bench_root, args.bench_datasets, device,
+                                       save_root=None, log=log, input_mode='pad')
+            new = not os.path.exists(bench_path)
+            with open(bench_path, 'a', newline='') as f:
+                w = csv.writer(f)
+                if new:
+                    w.writerow(['epoch', 'dataset', 'n', 'psnr', 'ssim', 'sec_per_stack'])
+                for ds, v in summary.items():
+                    w.writerow([epoch, ds, v['n'], round(v['psnr'], 4), round(v['ssim'], 5),
+                                round(v['sec_per_stack'], 4)])
+            # model selection on the test benchmarks (user decision 2026-10-14): mean SSIM over the 4 sets
+            m_ssim = float(np.mean([v['ssim'] for v in summary.values()]))
+            m_psnr = float(np.mean([v['psnr'] for v in summary.values()]))
+            log(f'  bench mean SSIM {m_ssim:.5f} PSNR {m_psnr:.3f} | ' +
+                ' '.join(f'{k}: {v["ssim"]:.4f}/{v["psnr"]:.2f}' for k, v in summary.items()))
+            if m_ssim > best_bench:
+                best_bench, best_bench_epoch = m_ssim, epoch
+                torch.save(state, os.path.join(model_dir, 'best_bench.pth'))
+                log(f'  new best_bench.pth (epoch {epoch})')
+            log(f'  bench took {(time.time() - t_b) / 60:.1f} min')
+
+        log(f'[epoch {epoch}] done in {(time.time() - t_ep) / 60:.1f} min | '
+            f'best val acc {best_acc:.4f} @ epoch {best_epoch}')
+        if world > 1:
+            dist.barrier()
+
+    log(f'=== finished. best epoch {best_epoch} (val acc {best_acc:.4f}) -> {os.path.join(model_dir, "best_val.pth")}')
+    if world > 1:
+        dist.destroy_process_group()
+
+
+if __name__ == '__main__':
+    main()

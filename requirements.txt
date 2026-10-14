@@ -1,0 +1,15 @@
+# Core (training, model, data loading)
+torch>=2.1
+torchvision
+numpy
+pillow
+opencv-python
+# Evaluation toolkit (evaluation/)
+scipy
+scikit-image
+scikit-learn
+# Optional: parameter and MAC counting (tools/count_cost.py, tools/size_candidates.py, tools/speed_more.py)
+thop
+# Optional: Excel summary in evaluation/run_eval.py, VIF cross-check in evaluation/validate.py
+openpyxl
+sewar
