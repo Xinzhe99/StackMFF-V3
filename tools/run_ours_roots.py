@@ -27,10 +27,16 @@ def main():
     ap.add_argument('--fusion', choices=['soft', 'hard'], default='soft')
     ap.add_argument('--sigma', type=float, default=1.0, help='Gaussian smoothing of the probability maps (0: off)')
     ap.add_argument('--datasets', nargs='*', help='restrict to these dataset folders')
+    ap.add_argument('--run_dir', default='', help='build the model from this run (any arch); --ckpt may then be a file name in model_save')
+    ap.add_argument('--K', type=int, default=None, help='loop iterations (loop arch)')
     a = ap.parse_args()
     dev = torch.device('cuda:0')
-    m = StackMFFV3(C1=a.C1, C2=a.C2, heads=tuple(a.heads), inter_pool=a.inter_pool).to(dev).eval()
-    sd = torch.load(a.ckpt, map_location='cpu'); m.load_state_dict(sd.get('model', sd))
+    if a.run_dir:
+        from stackmff_v3.model_io import load
+        m = load(a.run_dir, a.ckpt, dev, a.K)
+    else:
+        m = StackMFFV3(C1=a.C1, C2=a.C2, heads=tuple(a.heads), inter_pool=a.inter_pool).to(dev).eval()
+        sd = torch.load(a.ckpt, map_location='cpu'); m.load_state_dict(sd.get('model', sd))
     times = []
     for ds in sorted(os.listdir(a.root)):
         sroot = os.path.join(a.root, ds, 'image stack')

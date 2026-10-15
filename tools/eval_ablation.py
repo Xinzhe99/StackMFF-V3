@@ -9,18 +9,13 @@ import argparse, csv, glob, json, os, re, sys
 import numpy as np, torch
 from skimage.metrics import structural_similarity, peak_signal_noise_ratio
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from stackmff_v3.network import StackMFFV3
+from stackmff_v3.network import StackMFFV3, StackMFFLoop
 from predict_benchmark import list_stacks, index_gt, read_gray, DEFAULT_DATASETS, pad_to_64
 
 ROOT = '/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/dff_and_mff'
 
 
-def build(args):
-    return StackMFFV3(C1=args['C1'], C2=args['C2'], rounds=tuple(args['rounds']), window=args['window'],
-                      mlp_ratio=args['mlp_ratio'], inter_pool=args['inter_pool'], heads=tuple(args['heads']),
-                      intra=args.get('intra', 'attn'), layer_pos=args.get('layer_pos', False),
-                      regression=(args.get('loss', 'ce') == 'reg'))
-
+from stackmff_v3.model_io import build  # noqa: E402  (any architecture, from the run's args)
 
 def fuse(P, st, mode, regression):
     if mode == 'soft':
@@ -36,6 +31,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--abl_dir', required=True); ap.add_argument('--out', required=True)
     ap.add_argument('--runs', nargs='*')
+    ap.add_argument('--perm_seed', type=int, default=-1, help='>=0: shuffle the layers of every stack with this seed')
     a = ap.parse_args()
     dev = torch.device('cuda:0')
     data = {}
@@ -43,6 +39,9 @@ def main():
         gts = index_gt(os.path.join(ROOT, ds, 'AiF'))
         data[ds] = [(np.stack([read_gray(p) for p in paths]), read_gray(gts[n]))
                     for n, paths in list_stacks(os.path.join(ROOT, ds, 'image stack')) if n in gts]
+        if a.perm_seed >= 0:
+            rng = np.random.default_rng(a.perm_seed)
+            data[ds] = [(st[rng.permutation(len(st))], gt) for st, gt in data[ds]]
     runs = a.runs or sorted(os.path.basename(d) for d in glob.glob(os.path.join(a.abl_dir, 'abl_*')) if os.path.isdir(d))
     rows = []
     for run in runs:
