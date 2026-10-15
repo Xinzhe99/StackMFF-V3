@@ -33,7 +33,7 @@ from torchvision import transforms
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from stackmff_v3.Dataloader import FocusStackDataset, CombinedDataset  # noqa: E402
-from stackmff_v3.network import StackMFFV3  # noqa: E402
+from stackmff_v3.network import StackMFFV3, StackMFFLoop  # noqa: E402
 from predict_benchmark import run_benchmark, DEFAULT_DATASETS  # noqa: E402
 
 DATA_ROOT = '/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/stackmffv3_training_datasets'
@@ -80,6 +80,16 @@ def parse_args():
     p.add_argument('--layer_pos', action='store_true', help='ablation: learned positional encoding along N')
     p.add_argument('--loss', choices=['ce', 'reg'], default='ce',
                    help='ablation: ce = layer classification; reg = L1 on the soft-argmax index (V2-style regression)')
+    p.add_argument('--arch', choices=['h', 'loop'], default='h', help='h: StackMFFV3 (rounds per stage); loop: StackMFFLoop')
+    p.add_argument('--kmax', type=int, default=4, help='loop: K ~ U{1..kmax} during training')
+    p.add_argument('--k_eval', type=int, default=3, help='loop: K used for validation / benchmark monitoring')
+    p.add_argument('--share_fine', action='store_true', help='loop: same 1/4-resolution unit before and after the loop')
+    p.add_argument('--single_scale', action='store_true', help='loop ablation: no 1/8 stage; 1/4 unit looped K times')
+    p.add_argument('--margin', type=float, default=0.0, help='additive logit margin m: CE(z - m*onehot(y))')
+    p.add_argument('--synth_root', default='', help='on-the-fly synthesis from (AiF, depth) pairs (make_cache_aif.py)')
+    p.add_argument('--synth_smin', type=float, default=0.4)
+    p.add_argument('--synth_smax', type=float, default=1.6)
+    p.add_argument('--synth_pdisk', type=float, default=0.5)
     p.add_argument('--log_every', type=int, default=200)
     p.add_argument('--dry_run_steps', type=int, default=0,
                    help='>0: run this many training iterations, report speed, exit')
@@ -221,7 +231,7 @@ def train_epoch(model, loader, optimizer, device, args, epoch, steps_per_epoch, 
     t_data = 0.0
     t_epoch0 = time.time()
     t_wait = time.time()
-    for it, (x, y, _) in enumerate(loader):
+    for it, (x, y, _n) in enumerate(loader):
         t_data += time.time() - t_wait
         step = epoch * steps_per_epoch + it
         lr = lr_at(step, total_steps, warm, args.lr, args.min_lr)
@@ -229,6 +239,9 @@ def train_epoch(model, loader, optimizer, device, args, epoch, steps_per_epoch, 
             g['lr'] = lr
         x = x.to(device, non_blocking=True)
         y = y.to(device, non_blocking=True)
+        if args.synth_root:
+            from synth import synth_batch
+            x, y = synth_batch(x, int(_n[0]), args.synth_smin, args.synth_smax, args.synth_pdisk)
         if args.scale_aug > 1.0:
             s_ = random.uniform(1.0, args.scale_aug)
             if s_ > 1.02:
@@ -239,12 +252,20 @@ def train_epoch(model, loader, optimizer, device, args, epoch, steps_per_epoch, 
                 t0_, l0_ = random.randint(0, h2 - H_), random.randint(0, w2 - W_)
                 x = x[:, :, t0_:t0_ + H_, l0_:l0_ + W_].contiguous()
                 y = y[:, t0_:t0_ + H_, l0_:l0_ + W_].contiguous()
+        core = model.module if hasattr(model, 'module') else model
+        if args.arch == 'loop':   # same K on every rank: drawn from the global step
+            core.cur_K = random.Random(args.seed * 100003 + epoch * 1000003 + it).randint(1, args.kmax)
         with torch.autocast(device_type='cuda', dtype=torch.bfloat16):
             logits = model(x)
+        if args.arch == 'loop':
+            core.cur_K = args.k_eval
         if args.loss == 'reg':
             pr = torch.softmax(logits.float(), 1)
             n_idx = torch.arange(pr.shape[1], device=pr.device, dtype=pr.dtype).view(1, -1, 1, 1)
             loss = F.l1_loss((pr * n_idx).sum(1), y.float())
+        elif args.margin > 0:
+            z = logits.float() - args.margin * F.one_hot(y, logits.shape[1]).permute(0, 3, 1, 2).float()
+            loss = F.cross_entropy(z, y)
         else:
             loss = F.cross_entropy(logits.float(), y)
         optimizer.zero_grad(set_to_none=True)
@@ -346,7 +367,11 @@ def main():
     random.seed(args.seed)
     tr_params = [dataset_params(args.datasets_root, n, 'TR', args.subset_fraction_train)
                  for n in args.train_datasets]
-    if args.cache_root:
+    if args.synth_root:
+        from synth import PairDataset, pair_files
+        train_ds = PairDataset(pair_files(args.synth_root, args.train_datasets, 'TR', args.subset_fraction_train, args.seed),
+                               size=args.training_image_size, seed=args.seed)
+    elif args.cache_root:
         train_ds = cached_dataset(args.cache_root, args.train_datasets, 'TR', args.subset_fraction_train, True, args.seed)
     else:
         train_ds = build_dataset(tr_params, args.training_image_size, augment=True)
@@ -359,9 +384,16 @@ def main():
     log(f'train stacks {len(train_ds)} | steps/epoch per GPU {steps_per_epoch} | total steps {total_steps} | '
         f'global batch {args.batch_size * world}')
 
-    model = StackMFFV3(C1=args.C1, C2=args.C2, rounds=tuple(args.rounds), window=args.window,
-                       mlp_ratio=args.mlp_ratio, inter_pool=args.inter_pool, heads=tuple(args.heads),
-                       intra=args.intra, layer_pos=args.layer_pos, regression=(args.loss == 'reg')).to(device)
+    if args.arch == 'loop':
+        model = StackMFFLoop(C1=args.C1, C2=args.C2, heads=tuple(args.heads), window=args.window,
+                             mlp_ratio=args.mlp_ratio, inter_pool=args.inter_pool, kmax=args.kmax,
+                             share_fine=args.share_fine, intra=args.intra, layer_pos=args.layer_pos,
+                             regression=(args.loss == 'reg'), single_scale=args.single_scale).to(device)
+        model.cur_K = args.k_eval
+    else:
+        model = StackMFFV3(C1=args.C1, C2=args.C2, rounds=tuple(args.rounds), window=args.window,
+                           mlp_ratio=args.mlp_ratio, inter_pool=args.inter_pool, heads=tuple(args.heads),
+                           intra=args.intra, layer_pos=args.layer_pos, regression=(args.loss == 'reg')).to(device)
     n_params = sum(p.numel() for p in model.parameters())
     log(f'model params {n_params} ({n_params / 1e6:.3f} M)')
     optimizer = torch.optim.AdamW(param_groups(model, args.weight_decay), lr=args.lr)

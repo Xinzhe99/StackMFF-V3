@@ -12,20 +12,25 @@ import argparse, csv, glob, os, re, sys
 import cv2, numpy as np, torch
 from skimage.metrics import structural_similarity, peak_signal_noise_ratio
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from stackmff_v3.network import StackMFFV3
+from stackmff_v3.network import StackMFFV3, smooth_probs
 from predict_benchmark import list_stacks, index_gt, read_gray, DEFAULT_DATASETS, pad_to_64
 
 ROOT = '/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/dff_and_mff'
+
+
+SIGMA = 1.0   # Gaussian smoothing of P for weighted fusion (final default); hard selection uses the raw P
 
 
 def probs(m, st_gray, dev):
     N, H, W = st_gray.shape
     x = torch.from_numpy(st_gray.astype(np.float32) / 255.0).unsqueeze(0).to(dev)
     with torch.no_grad():
-        return m.forward_probs(pad_to_64(x))[0, :, :H, :W].float().cpu().numpy()
+        P = m.forward_probs(pad_to_64(x))[:, :, :H, :W].float()
+        return np.stack([P[0].cpu().numpy(), smooth_probs(P, SIGMA)[0].cpu().numpy()])
 
 
-def fuse(P, st, mode):
+def fuse(PP, st, mode):
+    P = PP[0] if mode == 'hard' else PP[1]
     if mode == 'hard':
         idx = P.argmax(0)
         return np.take_along_axis(st, idx[(None,) + (slice(None),) * 2 + ((None,) if st.ndim == 4 else ())], 0)[0]
@@ -42,7 +47,11 @@ def main():
     ap.add_argument('--skip_select', action='store_true')
     a = ap.parse_args()
     dev = torch.device('cuda:0')
-    m = StackMFFV3(C1=a.C1, C2=a.C2, heads=tuple(a.heads), inter_pool=a.inter_pool).to(dev).eval()
+    from stackmff_v3.model_io import build, run_args
+    try:
+        m = build(run_args(a.run_dir)).to(dev).eval()
+    except FileNotFoundError:
+        m = StackMFFV3(C1=a.C1, C2=a.C2, heads=tuple(a.heads), inter_pool=a.inter_pool).to(dev).eval()
     data = {}
     for ds in DEFAULT_DATASETS:
         gts = index_gt(os.path.join(ROOT, ds, 'AiF'))

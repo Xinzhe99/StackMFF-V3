@@ -18,10 +18,15 @@ def main():
     ap.add_argument('--scenes', nargs='+', required=True)
     ap.add_argument('--C1', type=int, default=48); ap.add_argument('--C2', type=int, default=96)
     ap.add_argument('--heads', type=int, nargs=2, default=[3, 6]); ap.add_argument('--inter_pool', type=int, default=2)
+    ap.add_argument('--run_dir', default='')
     a = ap.parse_args()
     dev = torch.device('cuda:0')
-    m = StackMFFV3(C1=a.C1, C2=a.C2, heads=tuple(a.heads), inter_pool=a.inter_pool).to(dev).eval()
-    sd = torch.load(a.ckpt, map_location='cpu'); m.load_state_dict(sd.get('model', sd))
+    if a.run_dir:
+        from stackmff_v3.model_io import load
+        m = load(a.run_dir, a.ckpt, dev)
+    else:
+        m = StackMFFV3(C1=a.C1, C2=a.C2, heads=tuple(a.heads), inter_pool=a.inter_pool).to(dev).eval()
+        sd = torch.load(a.ckpt, map_location='cpu'); m.load_state_dict(sd.get('model', sd))
     out = {}
     for sc in a.scenes:
         ds, name = sc.split('/')
@@ -29,7 +34,7 @@ def main():
         st = np.stack([read_gray(p) for p in paths]).astype(np.float32)
         N, H, W = st.shape
         with torch.no_grad():
-            P = m.forward_probs(pad_to_64(torch.from_numpy(st / 255).unsqueeze(0).to(dev)))[0, :, :H, :W].float().cpu().numpy()
+            P = m.forward_probs(pad_to_64(torch.from_numpy(st / 255).unsqueeze(0).to(dev)), sigma=1.0)[0, :, :H, :W].float().cpu().numpy()
         key = sc.replace(' ', '_').replace('/', '__')
         out[key + '__conf'] = P.max(0).astype(np.float16)
         out[key + '__idx'] = P.argmax(0).astype(np.uint8)

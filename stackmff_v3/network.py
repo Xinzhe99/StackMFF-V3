@@ -392,3 +392,80 @@ class StackMFFV3(nn.Module):
         if self.training or return_logits:
             return logits
         return self._fuse_from_logits(x, logits, 'hard')
+
+
+class StackMFFLoop(nn.Module):
+    """
+    Simplified two-scale recurrent design. One basic unit = intra-layer window attention -> inter-layer
+    attention (applied twice with a shifted window grid, i.e. one AttentionRound).
+      stem (1/4) -> U4 -> [down -> U8 x K (shared weights) -> up] + skip -> U4' -> head
+    K is drawn at random in [1, kmax] during training (set self.cur_K before the forward pass); at inference
+    K is fixed (self.cur_K) or, with adaptive=True, the loop stops when the relative change of the 1/8 tokens
+    falls below `tol` (at most kmax_infer iterations).
+    share_fine=True uses the same 1/4 unit before and after the loop.
+    """
+
+    def __init__(self, C1=48, C2=96, heads=(3, 6), window=8, mlp_ratio=2.0, inter_pool=2, kmax=4,
+                 share_fine=False, intra='attn', layer_pos=False, regression=False, single_scale=False):
+        super().__init__()
+        # ablation switches: intra='conv' (conv block instead of window attention), layer_pos (learned embedding
+        # of the layer index; breaks equivariance), regression (inference rounds the soft-argmax index),
+        # single_scale (no 1/8 loop: the 1/4 unit is applied K times instead)
+        self.C1, self.C2, self.window, self.kmax = C1, C2, window, kmax
+        self.regression, self.single_scale = regression, single_scale
+        self.layer_pos = nn.Parameter(torch.zeros(64, C1)) if layer_pos else None
+        self.stem = nn.Conv2d(1, C1, kernel_size=4, stride=4)
+        self.stem_norm = nn.LayerNorm(C1)
+        self.u4a = AttentionRound(C1, heads[0], window, mlp_ratio, inter_pool, intra)
+        self.u4b = self.u4a if share_fine else AttentionRound(C1, heads[0], window, mlp_ratio, inter_pool, intra)
+        if not single_scale:
+            self.down = PatchMerging(C1, C2)
+            self.u8 = AttentionRound(C2, heads[1], window, mlp_ratio, inter_pool, intra)
+            self.up = PixelShuffleUp(C2, C1, r=2)
+        self.head = Head(C1, r=4)
+        self.cur_K = 2
+        self.adaptive, self.tol, self.kmax_infer = False, 1e-2, 8
+        self.last_K = None
+        self.apply(_init_weights)
+
+    def forward_logits(self, x):
+        B, N, H, W = x.shape
+        ph, pw = (-H) % 64, (-W) % 64
+        xp = x.reshape(B * N, 1, H, W)
+        if ph or pw:
+            mode = 'reflect' if (ph < H and pw < W) else 'replicate'
+            xp = F.pad(xp, (0, pw, 0, ph), mode=mode)
+        Hp, Wp = H + ph, W + pw
+        t = self.stem(xp).permute(0, 2, 3, 1)
+        t = self.stem_norm(t).reshape(B, N, Hp // 4, Wp // 4, self.C1)
+        if self.layer_pos is not None:
+            t = t + self.layer_pos[:N].view(1, N, 1, 1, self.C1)
+        t = self.u4a(t)
+        if self.single_scale:
+            for _ in range(self.cur_K):
+                t = self.u4b(t)
+            self.last_K = self.cur_K
+            return self.head(t)[..., :H, :W]
+        skip = t
+        z = self.down(t)
+        if self.adaptive and not self.training:
+            k = 0
+            while k < self.kmax_infer:
+                z_new = self.u8(z); k += 1
+                rel = (z_new - z).float().norm() / (z.float().norm() + 1e-6)
+                z = z_new
+                if rel < self.tol:
+                    break
+            self.last_K = k
+        else:
+            for _ in range(self.cur_K):
+                z = self.u8(z)
+            self.last_K = self.cur_K
+        t = skip + self.up(z)
+        t = self.u4b(t)
+        return self.head(t)[..., :H, :W]
+
+    _fuse_from_logits = StackMFFV3._fuse_from_logits
+    forward_probs = StackMFFV3.forward_probs
+    fuse = StackMFFV3.fuse
+    forward = StackMFFV3.forward

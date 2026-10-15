@@ -1,87 +1,79 @@
 # StackMFF V3
 
-Work in progress; code and weights will be released with the paper.
+**Order-invariant multi-focus stack fusion by pixel-wise classification over the input images.**
 
-StackMFF V3 is a multi-focus image stack fusion network. It classifies every pixel of the input stack into one of the N input images (the layer that is in focus at that pixel), and the fused image copies the observed pixel values from the selected layer. The network is an all-attention model that alternates intra-layer window attention (each layer processed separately) with inter-layer attention (across the N layers at every spatial position), with optional spatial aggregation between stages. Inter-layer attention has no positional encoding and no mask, so the network is permutation-equivariant over the layer axis and accepts any number of layers N >= 2.
+> Status: under review. Code, trained weights, the evaluation toolkit and all fused results will be released here
+> with the paper. Numbers marked *TBD* are filled in at release.
 
-## Installation
+StackMFF V3 fuses a focal stack of any length into one all-in-focus image. For every pixel the network predicts a
+probability distribution over the N input images (which image is in focus there), and the fused value is the
+probability-weighted combination of the values observed at that pixel; a hard-selection output that copies exactly
+one observed value per pixel is available from the same forward pass.
+
+- **Order-invariant by construction.** Every operation either acts on each image with shared weights or attends
+  across images without any encoding of their order, so shuffling the input permutes the probabilities and leaves the
+  fused image unchanged.
+- **Any number of images.** One model handles stacks of 2 to (at least) 33 images.
+- **Simple design.** One kind of attention unit (intra-layer window attention followed by inter-layer attention),
+  used at 1/4 resolution and looped K times with shared weights at 1/8 resolution. *TBD* M parameters.
+- **Observed values only.** The output is a convex combination of the input pixels; no intensities are synthesized.
+
+## Repository layout
+
+| Path | Content |
+|---|---|
+| `stackmff_v3/network.py` | `StackMFFLoop` (final model) and `StackMFFV3` (earlier multi-stage variant used in ablations) |
+| `synth.py` | on-the-fly synthesis of training stacks from (all-in-focus image, depth) pairs at training resolution |
+| `train.py` | training (single GPU or DDP), benchmark monitoring per epoch |
+| `tools/run_ours_roots.py` | fuse folders of stacks (`<root>/<dataset>/image stack/<scene>/<images>`) |
+| `tools/eval_epochs.py`, `tools/eval_ablation.py`, `tools/eval_loop_k.py` | per-epoch, ablation and loop-iteration evaluation |
+| `evaluation/` | unified evaluation toolkit (SSIM, PSNR, VIF, MI, NMI, Q^{X/F}, MEF-SSIM), statistics, MATLAB cross-validation |
+
+## Inference
 
 ```bash
-pip install -r requirements.txt
+python tools/run_ours_roots.py --run_dir <run_dir> --ckpt <checkpoint.pth> \
+    --root /path/to/stacks --out /path/to/results --fusion soft --sigma 1
 ```
 
-Install PyTorch first with the wheel matching your CUDA version if the default wheel does not fit your system (see https://pytorch.org).
-
-## Data
-
-Training stacks are synthesized from NYU Depth V2, DUTS, DIODE, Cityscapes and ADE20K images using layered defocus synthesis. The synthesis code is not part of this repository; the training script reads the resulting stacks from `--datasets_root`, or from the pre-resized cache created by `tools/make_cache.py`.
-
-Benchmarks: Mobile Depth, Middlebury, FlyingThings3D and Road-MF. The benchmark root is set with `--bench_root` (used by `train.py` and `predict_benchmark.py`).
+`--fusion hard --sigma 0` gives the hard-selection output. Images inside a stack may be in any order and of any number.
 
 ## Training
 
-Single GPU:
-
 ```bash
-# Optional: pre-resize the synthetic stacks into a uint8 cache (one .npz per stack)
-python tools/make_cache.py --size 256 --out /path/to/cache256 --workers 48
-
-python train.py --out_dir runs/exp1 --cache_root /path/to/cache256 \
-    --C1 32 --C2 64 --heads 2 4 --rounds 1 2 1 --num_epochs 16 --batch_size 8
+# 1. cache (grey all-in-focus image, depth) pairs at 320x320
+python tools/make_cache_aif.py --out /path/to/cache_aif320 --workers 24
+# 2. train with on-the-fly synthesis (two GPUs)
+torchrun --nproc_per_node=2 train.py --out_dir runs/final --arch loop --C1 48 --C2 96 --heads 3 6 \
+    --inter_pool 2 --kmax 4 --k_eval 2 --synth_root /path/to/cache_aif320 --cache_root /path/to/cache256
 ```
 
-Two GPUs with DistributedDataParallel (`--batch_size` is per GPU):
-
-```bash
-torchrun --nproc_per_node=2 train.py --out_dir runs/exp1 --cache_root /path/to/cache256 \
-    --C1 32 --C2 64 --heads 2 4 --rounds 1 2 1 --num_epochs 16 --batch_size 8
-```
-
-Each epoch writes `epoch_{k}.pth`, `best_val.pth` (selected by validation accuracy) and `bench_log.csv` (benchmark monitoring only, not used for model selection). Use `--resume` to continue from `out_dir/last.pth`. `scripts/launch_night1.sh` shows a two-run launch on two GPUs with the server paths used during development.
-
-Unit tests for shapes, permutation equivariance and memory:
-
-```bash
-python tests/test_network.py
-```
+Training sources: NYU Depth V2, DUTS, DIODE, Cityscapes and ADE20K images with measured or estimated depth
+(Depth Anything V2). Stacks are synthesized on the GPU after resizing: depth quantized into N in {2..24} levels, blur
+radius s·|level − i| with a random step s and a disk or Gaussian kernel, per-image gain and noise, random image order.
 
 ## Evaluation
 
-`evaluation/` contains the unified evaluation toolkit used for all methods in the paper:
-
 ```bash
-python evaluation/run_eval.py run --workers 2 [--dataset NAME] [--only SUBSTRING]
+python evaluation/run_eval.py run --workers 6
 python evaluation/run_eval.py summarize
+python evaluation/stats.py --ref <our method name>
 ```
 
-`run` writes one resumable JSON cache per (method, dataset, scene). `summarize` builds `per_image.csv`, `summary.csv`, `summary.md` and `alignment_log.md`.
+All metrics were cross-checked against the reference MATLAB implementations (differences below 1e-13). Pairwise
+baselines fuse stacks image by image in the numeric order of the file names (the focal order of the benchmarks).
 
-Metrics (higher is better): SSIM (Wang et al., and the 7x7 variant), PSNR, VIF, mutual information (MI), normalized mutual information (NMI), Qabf and MEF-SSIM. Raw and aligned variants are computed; alignment uses phase correlation against the ground truth.
+## Results
 
-The metric implementations were verified against the reference MATLAB files in `evaluation/xval/matlab/` (Octave runs in `evaluation/xval/octave/`); the cross-check tables are `evaluation/xval/xval_table.md` and `evaluation/xval/xval_table_matlab.md`. `evaluation/xval/export_cases.py` and `py_side.py` produce the Python side of that comparison.
+*TBD at release* (Mobile Depth, Middlebury, FlyingThings3D, Road-MF; robustness to shuffled, incomplete and redundant
+stacks; real microscopy and camera stacks).
 
-`evaluation/common.py` contains the local dataset and result paths of the author's machine. Edit these paths before running the toolkit elsewhere.
+## Related repositories
 
-## Notes on paths
+- [StackMFF](https://github.com/Xinzhe99/StackMFF), [StackMFF V2](https://github.com/Xinzhe99/StackMFF-V2)
+- [StackMFF-V3-legacy](https://github.com/Xinzhe99/StackMFF-V3-legacy) and [StackMFF-V4](https://github.com/Xinzhe99/StackMFF-V4) (deprecated; superseded by this repository)
+- [OpenFocus](https://github.com/Xinzhe99/OpenFocus): open-source focus stacking software
 
-Several defaults contain absolute paths from the development server (for example `train.py`, `predict_benchmark.py`, `tools/make_cache.py`, `tools/size_candidates.py`). Override them with command line arguments or edit them. `tools/size_candidates.py` also optionally imports the StackMFF V4 ablation model from an external directory; this is only needed for the size comparison.
+## License
 
-## Previous versions
-
-- StackMFF: https://github.com/Xinzhe99/StackMFF
-- StackMFF V2: https://github.com/Xinzhe99/StackMFF-V2
-
-The earlier StackMFF-V3 and StackMFF-V4 repositories are deprecated and superseded by this repository.
-
-## Citation
-
-Citation information will be added with the paper.
-
-```bibtex
-@article{xie_stackmff_v3,
-  title   = {TBD},
-  author  = {Xie, Xinzhe and TBD},
-  journal = {TBD},
-  year    = {2026}
-}
-```
+See `LICENSE`.
