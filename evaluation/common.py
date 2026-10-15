@@ -12,7 +12,7 @@ METHODS = ['CVT', 'DWT', 'DCT', 'DTCWT', 'NSCT', 'IFCNN-MAX', 'U2Fusion', 'SDNet
            'StackMFF', 'StackMFF V2', 'StackMFF V4']
 # new baselines deployed in 2026-10 (work/new_methods); results live outside the benchmark tree
 NEW_RES = '/mnt/f/Working/StackMFFV3V4/work/new_methods/server_copy/results'
-NEW_METHODS = ['GIFNet', 'DeFusion', 'CSNet', 'MFIF-GAN', 'VAEEDOF']
+NEW_METHODS = ['GIFNet', 'DeFusion', 'CSNet', 'MFIF-GAN', 'VAEEDOF', 'StackMFF_release', 'Ours_H_soft', 'Ours_H_hard', 'Ours_Hms_soft', 'Ours_Hms_hard', 'Ours_Hms_soft_s0']
 # The stored DWT results for these datasets are NSCT outputs (byte-identical to NSCT and reproduced with
 # nsct_fuse); DWT was regenerated with the original protocol (regenerate_mst/regen_mst.m), see README section 7.
 OVERRIDE = {('DWT', ds): os.path.join(EVAL, 'regenerate_mst', 'DWT', ds) for ds in ('Mobile Depth', 'Middlebury', 'FlyingThings3D')}
