@@ -72,7 +72,14 @@ def parse_args():
     p.add_argument('--no_bench', action='store_true')
     p.add_argument('--resume', action='store_true', help='resume from out_dir/last.pth')
     p.add_argument('--cache_root', default='', help='use pre-resized .npz stacks from make_cache.py')
+    p.add_argument('--scale_aug', type=float, default=1.0,
+                   help='>1: per batch, upsample by s ~ U[1, scale_aug] (bilinear, labels nearest) and random-crop '
+                        'back to the input size, so that the network sees larger defocus blur (real stacks)')
     p.add_argument('--heads', type=int, nargs=2, default=[2, 4])
+    p.add_argument('--intra', choices=['attn', 'conv'], default='attn', help='ablation: intra-layer operator')
+    p.add_argument('--layer_pos', action='store_true', help='ablation: learned positional encoding along N')
+    p.add_argument('--loss', choices=['ce', 'reg'], default='ce',
+                   help='ablation: ce = layer classification; reg = L1 on the soft-argmax index (V2-style regression)')
     p.add_argument('--log_every', type=int, default=200)
     p.add_argument('--dry_run_steps', type=int, default=0,
                    help='>0: run this many training iterations, report speed, exit')
@@ -222,9 +229,24 @@ def train_epoch(model, loader, optimizer, device, args, epoch, steps_per_epoch, 
             g['lr'] = lr
         x = x.to(device, non_blocking=True)
         y = y.to(device, non_blocking=True)
+        if args.scale_aug > 1.0:
+            s_ = random.uniform(1.0, args.scale_aug)
+            if s_ > 1.02:
+                B_, N_, H_, W_ = x.shape
+                h2, w2 = int(round(H_ * s_)), int(round(W_ * s_))
+                x = F.interpolate(x, size=(h2, w2), mode='bilinear', align_corners=False)
+                y = F.interpolate(y[:, None].float(), size=(h2, w2), mode='nearest')[:, 0].long()
+                t0_, l0_ = random.randint(0, h2 - H_), random.randint(0, w2 - W_)
+                x = x[:, :, t0_:t0_ + H_, l0_:l0_ + W_].contiguous()
+                y = y[:, t0_:t0_ + H_, l0_:l0_ + W_].contiguous()
         with torch.autocast(device_type='cuda', dtype=torch.bfloat16):
             logits = model(x)
-        loss = F.cross_entropy(logits.float(), y)
+        if args.loss == 'reg':
+            pr = torch.softmax(logits.float(), 1)
+            n_idx = torch.arange(pr.shape[1], device=pr.device, dtype=pr.dtype).view(1, -1, 1, 1)
+            loss = F.l1_loss((pr * n_idx).sum(1), y.float())
+        else:
+            loss = F.cross_entropy(logits.float(), y)
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip)
@@ -338,7 +360,8 @@ def main():
         f'global batch {args.batch_size * world}')
 
     model = StackMFFV3(C1=args.C1, C2=args.C2, rounds=tuple(args.rounds), window=args.window,
-                       mlp_ratio=args.mlp_ratio, inter_pool=args.inter_pool, heads=tuple(args.heads)).to(device)
+                       mlp_ratio=args.mlp_ratio, inter_pool=args.inter_pool, heads=tuple(args.heads),
+                       intra=args.intra, layer_pos=args.layer_pos, regression=(args.loss == 'reg')).to(device)
     n_params = sum(p.numel() for p in model.parameters())
     log(f'model params {n_params} ({n_params / 1e6:.3f} M)')
     optimizer = torch.optim.AdamW(param_groups(model, args.weight_decay), lr=args.lr)

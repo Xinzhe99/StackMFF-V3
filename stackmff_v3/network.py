@@ -188,14 +188,33 @@ class InterLayerAttention(nn.Module):
         return y
 
 
+class IntraLayerConv(nn.Module):
+    """Ablation: convolutional replacement of intra-layer window attention (ConvNeXt-style block:
+    depthwise 7x7 conv + LN + MLP, residual). Input/Output: [M, h, w, C]."""
+
+    def __init__(self, dim, mlp_ratio=2.0):
+        super().__init__()
+        self.dw = nn.Conv2d(dim, dim, 7, padding=3, groups=dim)
+        self.norm = nn.LayerNorm(dim)
+        self.mlp = Mlp(dim, mlp_ratio)
+
+    def forward(self, x):
+        y = self.dw(x.permute(0, 3, 1, 2)).permute(0, 2, 3, 1)
+        return x + self.mlp(self.norm(y))
+
+
 class AttentionRound(nn.Module):
     """One refinement round: intra(regular) -> inter -> intra(shifted) -> inter."""
 
-    def __init__(self, dim, heads, window=8, mlp_ratio=2.0, inter_pool=1):
+    def __init__(self, dim, heads, window=8, mlp_ratio=2.0, inter_pool=1, intra='attn'):
         super().__init__()
-        self.intra_a = IntraLayerWindowAttention(dim, heads, window, shift=False, mlp_ratio=mlp_ratio)
+        if intra == 'conv':
+            self.intra_a = IntraLayerConv(dim, mlp_ratio)
+            self.intra_b = IntraLayerConv(dim, mlp_ratio)
+        else:
+            self.intra_a = IntraLayerWindowAttention(dim, heads, window, shift=False, mlp_ratio=mlp_ratio)
+            self.intra_b = IntraLayerWindowAttention(dim, heads, window, shift=True, mlp_ratio=mlp_ratio)
         self.inter_a = InterLayerAttention(dim, heads, mlp_ratio, pool=inter_pool)
-        self.intra_b = IntraLayerWindowAttention(dim, heads, window, shift=True, mlp_ratio=mlp_ratio)
         self.inter_b = InterLayerAttention(dim, heads, mlp_ratio, pool=inter_pool)
 
     def forward(self, x):                                            # [B, N, h, w, C]
@@ -267,6 +286,17 @@ def _init_weights(m):
             nn.init.zeros_(m.bias)
 
 
+def smooth_probs(P, sigma):
+    """Separable Gaussian smoothing of [B, N, H, W] probability maps (replicate padding), renormalised over N."""
+    r = int(3 * sigma + 0.5)
+    t = torch.arange(-r, r + 1, dtype=P.dtype, device=P.device)
+    k = torch.exp(-t ** 2 / (2 * sigma * sigma)); k = k / k.sum()
+    N = P.shape[1]
+    Q = F.conv2d(F.pad(P, (r, r, 0, 0), mode='replicate'), k.view(1, 1, 1, -1).repeat(N, 1, 1, 1), groups=N)
+    Q = F.conv2d(F.pad(Q, (0, 0, r, r), mode='replicate'), k.view(1, 1, -1, 1).repeat(N, 1, 1, 1), groups=N)
+    return Q / Q.sum(1, keepdim=True)
+
+
 class StackMFFV3(nn.Module):
     """
     All-attention multi-focus stack fusion network.
@@ -282,15 +312,20 @@ class StackMFFV3(nn.Module):
     """
 
     def __init__(self, C1=32, C2=64, rounds=(1, 2, 1), window=8, mlp_ratio=2.0,
-                 inter_pool=1, heads=(2, 4)):
+                 inter_pool=1, heads=(2, 4), intra='attn', layer_pos=False, regression=False):
         super().__init__()
+        # Ablation switches: intra='conv' replaces window attention by a conv block; layer_pos adds a learned
+        # embedding of the layer index after the stem (breaks permutation equivariance); regression=True makes
+        # inference round the soft-argmax index (V2-style) instead of taking the argmax class.
+        self.regression = regression
+        self.layer_pos = nn.Parameter(torch.zeros(64, C1)) if layer_pos else None
         assert len(rounds) == 3
         self.C1, self.C2, self.window = C1, C2, window
         self.stem = nn.Conv2d(1, C1, kernel_size=4, stride=4)
         self.stem_norm = nn.LayerNorm(C1)
 
         def stage(dim, h_, n):
-            return nn.ModuleList([AttentionRound(dim, h_, window, mlp_ratio, inter_pool)
+            return nn.ModuleList([AttentionRound(dim, h_, window, mlp_ratio, inter_pool, intra)
                                   for _ in range(n)])
 
         self.stage1 = stage(C1, heads[0], rounds[0])
@@ -313,6 +348,8 @@ class StackMFFV3(nn.Module):
 
         t = self.stem(xp).permute(0, 2, 3, 1)                        # B*N, h, w, C1
         t = self.stem_norm(t).reshape(B, N, Hp // 4, Wp // 4, self.C1)
+        if self.layer_pos is not None:
+            t = t + self.layer_pos[:N].view(1, N, 1, 1, self.C1)
         for blk in self.stage1:
             t = blk(t)
         skip = t
@@ -325,10 +362,12 @@ class StackMFFV3(nn.Module):
         logits = self.head(t)                                        # B, N, Hp, Wp
         return logits[..., :H, :W]
 
-    @staticmethod
-    def _fuse_from_logits(x, logits, mode):
+    def _fuse_from_logits(self, x, logits, mode):
         probs = torch.softmax(logits.float(), dim=1)                 # B, N, H, W
         focus = probs.argmax(dim=1)                                  # B, H, W (long)
+        if getattr(self, 'regression', False):
+            n_idx = torch.arange(probs.shape[1], device=probs.device, dtype=probs.dtype).view(1, -1, 1, 1)
+            focus = (probs * n_idx).sum(1).round().long().clamp_(0, probs.shape[1] - 1)
         if mode == 'hard':
             fused = torch.gather(x, dim=1, index=focus.unsqueeze(1))
         elif mode == 'soft':
@@ -337,9 +376,12 @@ class StackMFFV3(nn.Module):
             raise ValueError(f"unknown fusion mode {mode}")
         return fused, focus
 
-    def forward_probs(self, x):
-        """Softmax probabilities over the N layers: [B, N, H, W]."""
-        return torch.softmax(self.forward_logits(x).float(), dim=1)
+    def forward_probs(self, x, sigma=0.0):
+        """Softmax probabilities over the N layers: [B, N, H, W]. sigma > 0: each probability map is smoothed by a
+        Gaussian of that standard deviation (pixels) and renormalised, which removes the 4x4 block structure of the
+        pixel-shuffle head; the operation acts on every layer alike, so equivariance is preserved."""
+        P = torch.softmax(self.forward_logits(x).float(), dim=1)
+        return smooth_probs(P, sigma) if sigma > 0 else P
 
     def fuse(self, x, mode='hard'):
         """mode='hard': pick the argmax layer per pixel; 'soft': probability-weighted sum."""

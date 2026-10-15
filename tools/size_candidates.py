@@ -10,7 +10,7 @@ time_MD   : mean forward time (fp32, batch 1, eval, cuda sync) over the 11 real 
 import glob, os, sys, time, re
 import numpy as np, torch, thop, cv2
 from torch.utils.flop_counter import FlopCounterMode
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from stackmff_v3.network import StackMFFV3
 
