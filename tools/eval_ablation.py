@@ -9,7 +9,7 @@ import argparse, csv, glob, json, os, re, sys
 import numpy as np, torch
 from skimage.metrics import structural_similarity, peak_signal_noise_ratio
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from stackmff_v3.network import StackMFFV3, StackMFFLoop
+from stackmff_v3.network import StackMFFV3, StackMFFLoop, smooth_probs
 from predict_benchmark import list_stacks, index_gt, read_gray, DEFAULT_DATASETS, pad_to_64
 
 ROOT = '/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/dff_and_mff'
@@ -31,6 +31,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--abl_dir', required=True); ap.add_argument('--out', required=True)
     ap.add_argument('--runs', nargs='*')
+    ap.add_argument('--sigma', type=float, default=0.0, help='Gaussian smoothing of the probabilities for weighted fusion')
     ap.add_argument('--perm_seed', type=int, default=-1, help='>=0: shuffle the layers of every stack with this seed')
     a = ap.parse_args()
     dev = torch.device('cuda:0')
@@ -61,9 +62,11 @@ def main():
                     N, H, W = st.shape
                     x = torch.from_numpy(st.astype(np.float32) / 255.0).unsqueeze(0).to(dev)
                     with torch.no_grad():
-                        P = m.forward_probs(pad_to_64(x))[0, :, :H, :W].float().cpu().numpy()
+                        Pt = m.forward_probs(pad_to_64(x))[:, :, :H, :W].float()
+                        Ps = smooth_probs(Pt, a.sigma)[0].cpu().numpy() if a.sigma > 0 else None
+                        P = Pt[0].cpu().numpy()
                     for md in ('hard', 'soft'):
-                        f = fuse(P, st, md, reg)
+                        f = fuse(Ps if (md == 'soft' and Ps is not None) else P, st, md, reg)
                         acc[(ds, md)][0].append(structural_similarity(gt, f, data_range=255))
                         acc[(ds, md)][1].append(peak_signal_noise_ratio(gt, f, data_range=255))
             for md in ('hard', 'soft'):

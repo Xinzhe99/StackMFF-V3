@@ -279,6 +279,28 @@ class Head(nn.Module):
         return x.reshape(B, N, h * self.r, w * self.r)
 
 
+class FineHead(nn.Module):
+    """Head with full-resolution guidance: the tokens give cf feature maps per image at full resolution
+    (LN -> Linear(C -> r^2*cf) -> pixel shuffle), a small convolutional branch extracts cf maps from the image
+    itself, and two convolutions map both to one logit per pixel. Every operation acts on each image separately
+    with shared weights, so permutation equivariance is preserved."""
+
+    def __init__(self, dim, r=4, cf=8):
+        super().__init__()
+        self.r, self.cf = r, cf
+        self.norm = nn.LayerNorm(dim)
+        self.proj = nn.Linear(dim, r * r * cf)
+        self.img = nn.Sequential(nn.Conv2d(1, cf, 3, padding=1), nn.GELU(), nn.Conv2d(cf, cf, 3, padding=1), nn.GELU())
+        self.fuse = nn.Sequential(nn.Conv2d(2 * cf, 2 * cf, 3, padding=1), nn.GELU(), nn.Conv2d(2 * cf, 1, 1))
+
+    def forward(self, x, img):                                       # x [B, N, h, w, C], img [B*N, 1, r*h, r*w]
+        B, N, h, w, _ = x.shape
+        x = self.proj(self.norm(x)).reshape(B * N, h, w, -1).permute(0, 3, 1, 2)
+        x = F.pixel_shuffle(x, self.r)                               # B*N, cf, r*h, r*w
+        z = self.fuse(torch.cat([x, self.img(img)], 1))
+        return z.reshape(B, N, h * self.r, w * self.r)
+
+
 def _init_weights(m):
     if isinstance(m, nn.Linear):
         nn.init.trunc_normal_(m.weight, std=.02)
@@ -381,6 +403,17 @@ class StackMFFV3(nn.Module):
         Gaussian of that standard deviation (pixels) and renormalised, which removes the 4x4 block structure of the
         pixel-shuffle head; the operation acts on every layer alike, so equivariance is preserved."""
         P = torch.softmax(self.forward_logits(x).float(), dim=1)
+        scales = getattr(self, 'ms_scales', (1.0,))
+        if len(scales) > 1:   # multi-scale inference: average of the probabilities at several input scales
+            H, W = x.shape[-2:]
+            acc = P if 1.0 in scales else torch.zeros_like(P)
+            for s_ in scales:
+                if s_ == 1.0:
+                    continue
+                xs = F.interpolate(x, scale_factor=s_, mode='bilinear', align_corners=False, antialias=s_ < 1)
+                Ps = torch.softmax(self.forward_logits(xs).float(), dim=1)
+                acc = acc + F.interpolate(Ps, size=(H, W), mode='bilinear', align_corners=False)
+            P = acc / len(scales)
         return smooth_probs(P, sigma) if sigma > 0 else P
 
     def fuse(self, x, mode='hard'):
@@ -406,7 +439,7 @@ class StackMFFLoop(nn.Module):
     """
 
     def __init__(self, C1=48, C2=96, heads=(3, 6), window=8, mlp_ratio=2.0, inter_pool=2, kmax=4,
-                 share_fine=False, intra='attn', layer_pos=False, regression=False, single_scale=False):
+                 share_fine=False, intra='attn', layer_pos=False, regression=False, single_scale=False, fine_head=False):
         super().__init__()
         # ablation switches: intra='conv' (conv block instead of window attention), layer_pos (learned embedding
         # of the layer index; breaks equivariance), regression (inference rounds the soft-argmax index),
@@ -422,7 +455,8 @@ class StackMFFLoop(nn.Module):
             self.down = PatchMerging(C1, C2)
             self.u8 = AttentionRound(C2, heads[1], window, mlp_ratio, inter_pool, intra)
             self.up = PixelShuffleUp(C2, C1, r=2)
-        self.head = Head(C1, r=4)
+        self.fine_head = fine_head
+        self.head = FineHead(C1, r=4) if fine_head else Head(C1, r=4)
         self.cur_K = 2
         self.adaptive, self.tol, self.kmax_infer = False, 1e-2, 8
         self.last_K = None
@@ -445,7 +479,7 @@ class StackMFFLoop(nn.Module):
             for _ in range(self.cur_K):
                 t = self.u4b(t)
             self.last_K = self.cur_K
-            return self.head(t)[..., :H, :W]
+            return self._head(t, xp)[..., :H, :W]
         skip = t
         z = self.down(t)
         if self.adaptive and not self.training:
@@ -463,7 +497,10 @@ class StackMFFLoop(nn.Module):
             self.last_K = self.cur_K
         t = skip + self.up(z)
         t = self.u4b(t)
-        return self.head(t)[..., :H, :W]
+        return self._head(t, xp)[..., :H, :W]
+
+    def _head(self, t, xp):
+        return self.head(t, xp) if self.fine_head else self.head(t)
 
     _fuse_from_logits = StackMFFV3._fuse_from_logits
     forward_probs = StackMFFV3.forward_probs

@@ -16,14 +16,18 @@ def run_args(run_dir):
     raise FileNotFoundError(f'no args line for {run_dir}')
 
 
+MS_SCALES = (1.0, 0.75)   # default inference: probabilities averaged over the input at full and 0.75 scale
+
+
 def build(args):
     if args.get('arch', 'h') == 'loop':
         m = StackMFFLoop(C1=args['C1'], C2=args['C2'], heads=tuple(args['heads']), window=args['window'],
                          mlp_ratio=args['mlp_ratio'], inter_pool=args['inter_pool'], kmax=args.get('kmax', 4),
                          share_fine=args.get('share_fine', False), intra=args.get('intra', 'attn'),
                          layer_pos=args.get('layer_pos', False), regression=(args.get('loss', 'ce') == 'reg'),
-                         single_scale=args.get('single_scale', False))
+                         single_scale=args.get('single_scale', False), fine_head=args.get('fine_head', False))
         m.cur_K = args.get('k_eval', 2)
+        m.ms_scales = MS_SCALES
         return m
     return StackMFFV3(C1=args['C1'], C2=args['C2'], rounds=tuple(args['rounds']), window=args['window'],
                       mlp_ratio=args['mlp_ratio'], inter_pool=args['inter_pool'], heads=tuple(args['heads']),

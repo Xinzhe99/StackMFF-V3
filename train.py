@@ -90,6 +90,18 @@ def parse_args():
     p.add_argument('--synth_smin', type=float, default=0.4)
     p.add_argument('--synth_smax', type=float, default=1.6)
     p.add_argument('--synth_pdisk', type=float, default=0.5)
+    p.add_argument('--synth_occ', action='store_true', help='occlusion-aware layered compositing')
+    p.add_argument('--synth_zoom', action='store_true', help='random crop size (texture-scale augmentation)')
+    p.add_argument('--synth_jitter', action='store_true', help='per-image sub-pixel misalignment')
+    p.add_argument('--synth_hdr', type=float, default=0.0, help='probability of saturated-highlight synthesis per sample')
+    p.add_argument('--synth_slog', action='store_true', help='log-uniform blur step')
+    p.add_argument('--synth_fix_small', action='store_true', help='Gaussian kernel for small radii (distinct small blurs)')
+    p.add_argument('--synth_disp', action='store_true', help='quantize metric depth (NYU, DIODE) in disparity')
+    p.add_argument('--synth_nmax', type=int, default=24)
+    p.add_argument('--ema', type=float, default=0.0, help='EMA decay of the weights (0: off); checkpoints, validation and benchmark use the EMA weights')
+    p.add_argument('--fine_head', action='store_true', help='full-resolution guided head')
+    p.add_argument('--rec_w', type=float, default=0.0, help='weight of the L1 loss between the weighted fusion and the AiF image')
+    p.add_argument('--label_smooth', type=float, default=0.0, help='CE label smoothing over the images')
     p.add_argument('--log_every', type=int, default=200)
     p.add_argument('--dry_run_steps', type=int, default=0,
                    help='>0: run this many training iterations, report speed, exit')
@@ -239,9 +251,18 @@ def train_epoch(model, loader, optimizer, device, args, epoch, steps_per_epoch, 
             g['lr'] = lr
         x = x.to(device, non_blocking=True)
         y = y.to(device, non_blocking=True)
+        aif = None
         if args.synth_root:
-            from synth import synth_batch
-            x, y = synth_batch(x, int(_n[0]), args.synth_smin, args.synth_smax, args.synth_pdisk)
+            from synth import synth_batch, synth_batch_occ
+            if args.synth_occ:
+                x, y = synth_batch_occ(x, int(_n[0]), args.synth_smin, args.synth_smax, args.synth_pdisk, far_large=y[:, 0])
+            else:
+                x, y, aif = synth_batch(x, int(_n[0]), args.synth_smin, args.synth_smax, args.synth_pdisk, return_aif=True,
+                                        p_hdr=args.synth_hdr, slog=args.synth_slog, fix_small=args.synth_fix_small,
+                                        far_large=y[:, 0], disp=args.synth_disp)
+            if args.synth_jitter:
+                from synth import jitter_layers
+                x = jitter_layers(x)
         if args.scale_aug > 1.0:
             s_ = random.uniform(1.0, args.scale_aug)
             if s_ > 1.02:
@@ -252,6 +273,9 @@ def train_epoch(model, loader, optimizer, device, args, epoch, steps_per_epoch, 
                 t0_, l0_ = random.randint(0, h2 - H_), random.randint(0, w2 - W_)
                 x = x[:, :, t0_:t0_ + H_, l0_:l0_ + W_].contiguous()
                 y = y[:, t0_:t0_ + H_, l0_:l0_ + W_].contiguous()
+                if aif is not None:
+                    aif = F.interpolate(aif[:, None], size=(h2, w2), mode='bilinear', align_corners=False)[:, 0]
+                    aif = aif[:, t0_:t0_ + H_, l0_:l0_ + W_].contiguous()
         core = model.module if hasattr(model, 'module') else model
         if args.arch == 'loop':   # same K on every rank: drawn from the global step
             core.cur_K = random.Random(args.seed * 100003 + epoch * 1000003 + it).randint(1, args.kmax)
@@ -267,11 +291,20 @@ def train_epoch(model, loader, optimizer, device, args, epoch, steps_per_epoch, 
             z = logits.float() - args.margin * F.one_hot(y, logits.shape[1]).permute(0, 3, 1, 2).float()
             loss = F.cross_entropy(z, y)
         else:
-            loss = F.cross_entropy(logits.float(), y)
+            loss = F.cross_entropy(logits.float(), y, label_smoothing=args.label_smooth)
+        if args.rec_w > 0 and aif is not None:   # fused image of Eq. (3) vs the all-in-focus image
+            fused = (torch.softmax(logits.float(), 1) * x).sum(1)
+            loss = loss + args.rec_w * (fused - aif).abs().mean()
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip)
         optimizer.step()
+        if getattr(args, '_ema', None) is not None:
+            with torch.no_grad():
+                for pe, pm in zip(args._ema.parameters(), core.parameters()):
+                    pe.mul_(args.ema).add_(pm.detach(), alpha=1 - args.ema)
+                for be, bm in zip(args._ema.buffers(), core.buffers()):
+                    be.copy_(bm)
         loss_sum += loss.detach()
         n_done += 1
         if (it + 1) % args.log_every == 0:
@@ -370,7 +403,7 @@ def main():
     if args.synth_root:
         from synth import PairDataset, pair_files
         train_ds = PairDataset(pair_files(args.synth_root, args.train_datasets, 'TR', args.subset_fraction_train, args.seed),
-                               size=args.training_image_size, seed=args.seed)
+                               size=args.training_image_size, seed=args.seed, zoom=args.synth_zoom, nmax=args.synth_nmax)
     elif args.cache_root:
         train_ds = cached_dataset(args.cache_root, args.train_datasets, 'TR', args.subset_fraction_train, True, args.seed)
     else:
@@ -388,7 +421,7 @@ def main():
         model = StackMFFLoop(C1=args.C1, C2=args.C2, heads=tuple(args.heads), window=args.window,
                              mlp_ratio=args.mlp_ratio, inter_pool=args.inter_pool, kmax=args.kmax,
                              share_fine=args.share_fine, intra=args.intra, layer_pos=args.layer_pos,
-                             regression=(args.loss == 'reg'), single_scale=args.single_scale).to(device)
+                             regression=(args.loss == 'reg'), single_scale=args.single_scale, fine_head=args.fine_head).to(device)
         model.cur_K = args.k_eval
     else:
         model = StackMFFV3(C1=args.C1, C2=args.C2, rounds=tuple(args.rounds), window=args.window,
@@ -410,6 +443,12 @@ def main():
 
     n_gpu = world
     model_dp = DDP(model, device_ids=[local_rank]) if world > 1 else model
+    train_model = model
+    if args.ema > 0:
+        import copy
+        args._ema = copy.deepcopy(model).eval()
+        for p_ in args._ema.parameters():
+            p_.requires_grad_(False)
 
     if args.dry_run_steps > 0:
         log(f'--- dry run: {args.dry_run_steps} iterations ---')
@@ -436,6 +475,8 @@ def main():
             dist.barrier()  # wait for rank 0 (validation, checkpoints, benchmark monitoring)
             continue
 
+        if args.ema > 0:
+            model = args._ema
         overall, per = validate(model, val_loaders, device)
         log(f'[epoch {epoch}] train_loss {tr_loss:.4f} | val CE {overall["ce"]:.4f} acc {overall["acc"]:.4f} | ' +
             ' '.join(f'{k} {v["acc"]:.4f}' for k, v in per.items()) +

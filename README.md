@@ -15,7 +15,8 @@ one observed value per pixel is available from the same forward pass.
   fused image unchanged.
 - **Any number of images.** One model handles stacks of 2 to (at least) 33 images.
 - **Simple design.** One kind of attention unit (intra-layer window attention followed by inter-layer attention),
-  used at 1/4 resolution and looped K times with shared weights at 1/8 resolution. *TBD* M parameters.
+  used at 1/4 resolution and looped K times with shared weights at 1/8 resolution, and a small head that refines the
+  decisions at full resolution. 0.50 M parameters.
 - **Observed values only.** The output is a convex combination of the input pixels; no intensities are synthesized.
 
 ## Repository layout
@@ -37,6 +38,8 @@ python tools/run_ours_roots.py --run_dir <run_dir> --ckpt <checkpoint.pth> \
 ```
 
 `--fusion hard --sigma 0` gives the hard-selection output. Images inside a stack may be in any order and of any number.
+By default the probabilities are averaged over the input at full and 0.75 scale (`stackmff_v3/model_io.py`,
+`MS_SCALES`); set it to `(1.0,)` for a single, faster pass.
 
 ## Training
 
@@ -45,12 +48,17 @@ python tools/run_ours_roots.py --run_dir <run_dir> --ckpt <checkpoint.pth> \
 python tools/make_cache_aif.py --out /path/to/cache_aif320 --workers 24
 # 2. train with on-the-fly synthesis (two GPUs)
 torchrun --nproc_per_node=2 train.py --out_dir runs/final --arch loop --C1 48 --C2 96 --heads 3 6 \
-    --inter_pool 2 --kmax 4 --k_eval 2 --synth_root /path/to/cache_aif320 --cache_root /path/to/cache256
+    --inter_pool 2 --kmax 4 --k_eval 2 --fine_head --synth_hdr 0.5 --ema 0.999 \
+    --synth_root /path/to/cache_aif320 --cache_root /path/to/cache256
 ```
 
 Training sources: NYU Depth V2, DUTS, DIODE, Cityscapes and ADE20K images with measured or estimated depth
 (Depth Anything V2). Stacks are synthesized on the GPU after resizing: depth quantized into N in {2..24} levels, blur
 radius s·|level − i| with a random step s and a disk or Gaussian kernel, per-image gain and noise, random image order.
+For half of the stacks, bright regions and point highlights are amplified in linear intensity before the blur and clipped
+afterwards, so that defocused highlights appear as saturated discs. Options in `train.py` that are off by default
+(`--synth_occ`, `--synth_jitter`, `--synth_zoom`, `--rec_w`, `--label_smooth`, `--margin`) were tested and not used for
+the paper.
 
 ## Evaluation
 
