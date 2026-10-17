@@ -204,7 +204,7 @@ python tools/run_ours_roots.py --root /path/to/benchmarks --out results/Ours_sof
 python tools/run_ours_roots.py --root /path/to/benchmarks --out results/Ours_hard --fusion hard   # hard selection
 ```
 
-`tools/run_ours_roots.py` fuses any folder tree `<root>/<dataset>/image stack/<scene>/` and was also used for the robustness variants (shuffled, incomplete and redundant stacks) and the real-data experiments. The fused images of our model (weighted and hard selection) on all four benchmarks are released as an archive in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0); every number in the paper can be recomputed from them with `evaluation/run_eval.py`.
+`tools/run_ours_roots.py` fuses any folder tree `<root>/<dataset>/image stack/<scene>/` and was also used for the robustness variants (shuffled, incomplete and redundant stacks) and the real-data experiments. The fused images of our model (weighted and hard selection) on all four benchmarks are released as `stackmff_v3_fused_results.tar` (412 PNGs) in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0); every number in the paper can be recomputed from them with `evaluation/run_eval.py`.
 
 ### 4. Evaluation
 
