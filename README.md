@@ -24,7 +24,7 @@ Official PyTorch implementation of *StackMFF V3: Modernizing Multi-Focus Image S
 
 - **2026.10**: Code, pretrained weights and the evaluation toolkit of StackMFF V3 are released. The paper (*StackMFF V3: Modernizing Multi-Focus Image Stack Fusion*) accompanies this release.
 - **Coming soon**: fused results of all four benchmarks as release assets, and StackMFF V3 in [OpenFocus](https://github.com/Xinzhe99/OpenFocus).
-- This repository replaces the earlier StackMFF V3 and StackMFF V4 code bases, now archived as [StackMFF-V3-legacy](https://github.com/Xinzhe99/StackMFF-V3-legacy) and [StackMFF-V4](https://github.com/Xinzhe99/StackMFF-V4).
+- This repository replaces the earlier StackMFF V3 and StackMFF V4 code bases, now archived as [StackMFF-V3-legacy](https://github.com/Xinzhe99/StackMFF-V3-legacy) and [StackMFF-V4-legacy](https://github.com/Xinzhe99/StackMFF-V4-legacy).
 
 <div align="center">
 <img src="assets/fig_order.png" width="900" alt="Failure modes of earlier stack fusion methods and our result on a shuffled stack">
