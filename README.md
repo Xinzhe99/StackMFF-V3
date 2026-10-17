@@ -14,7 +14,7 @@
 [![Weights](https://img.shields.io/badge/Weights-v1.0-244A68.svg)](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0)
 [![GitHub stars](https://img.shields.io/github/stars/Xinzhe99/StackMFF-V3?style=social)](https://github.com/Xinzhe99/StackMFF-V3/stargazers)
 
-Official PyTorch implementation of *StackMFF V3: Pixel-Wise Image Classification with Cross-Image Attention for Multi-Focus Stack Fusion* (submitted to Information Fusion).
+Official PyTorch implementation of *StackMFF V3: Modernizing Multi-Focus Image Stack Fusion* (submitted to Information Fusion).
 
 [Quick start](#quick-start) | [Weights](#pretrained-weights) | [Results](#results) | [Reproducing the paper](#reproducing-the-paper) | [StackMFF series](#related-projects) | [Citation](#citation)
 
@@ -22,7 +22,7 @@ Official PyTorch implementation of *StackMFF V3: Pixel-Wise Image Classification
 
 ## News
 
-- **2026.10**: Code, pretrained weights and the evaluation toolkit of StackMFF V3 are released. The paper (*StackMFF V3: Pixel-Wise Image Classification with Cross-Image Attention for Multi-Focus Stack Fusion*) is under review at Information Fusion.
+- **2026.10**: Code, pretrained weights and the evaluation toolkit of StackMFF V3 are released. The paper (*StackMFF V3: Modernizing Multi-Focus Image Stack Fusion*) is under review at Information Fusion.
 - **Coming soon**: fused results of all four benchmarks as release assets, and StackMFF V3 in [OpenFocus](https://github.com/Xinzhe99/OpenFocus).
 - This repository replaces the earlier StackMFF V3 and StackMFF V4 code bases, now archived as [StackMFF-V3-legacy](https://github.com/Xinzhe99/StackMFF-V3-legacy) and [StackMFF-V4](https://github.com/Xinzhe99/StackMFF-V4).
 
@@ -204,7 +204,7 @@ python tools/run_ours_roots.py --root /path/to/benchmarks --out results/Ours_sof
 python tools/run_ours_roots.py --root /path/to/benchmarks --out results/Ours_hard --fusion hard   # hard selection
 ```
 
-`tools/run_ours_roots.py` fuses any folder tree `<root>/<dataset>/image stack/<scene>/` and was also used for the robustness variants (shuffled, incomplete and redundant stacks) and the real-data experiments. The fused results of the paper will be available as one archive per benchmark in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0) (coming soon).
+`tools/run_ours_roots.py` fuses any folder tree `<root>/<dataset>/image stack/<scene>/` and was also used for the robustness variants (shuffled, incomplete and redundant stacks) and the real-data experiments. The fused images of our model (weighted and hard selection) on all four benchmarks are released as an archive in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0); every number in the paper can be recomputed from them with `evaluation/run_eval.py`.
 
 ### 4. Evaluation
 
@@ -273,7 +273,7 @@ The paper is under review; the entry below will be updated with the final title 
 
 ```bibtex
 @article{xie2026stackmffv3,
-  title   = {StackMFF V3: Pixel-Wise Image Classification with Cross-Image Attention for Multi-Focus Stack Fusion},
+  title   = {StackMFF V3: Modernizing Multi-Focus Image Stack Fusion},
   author  = {Xie, Xinzhe and Guo, Buyu and Li, Bolin and He, Shuangyan and Gu, Yanzhen and Jiang, Qingyan and Liu, Tao and Li, Peiliang},
   journal = {Information Fusion},
   note    = {under review},
