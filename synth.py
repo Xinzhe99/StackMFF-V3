@@ -81,7 +81,7 @@ def _kernel(r, disk, device):
 
 @torch.no_grad()
 def synth_batch(xp, N, smin=0.4, smax=1.6, p_disk=0.5, rmax=20.0, gain=0.03, noise=0.01, return_aif=False,
-                p_hdr=0.0, slog=False, fix_small=False, far_large=None, disp=False):
+                p_hdr=0.0, slog=False, fix_small=False, far_large=None, disp=False, p_linear=0.0, ljit=0.0, qbins=False):
     """xp: [B,2,S,S] (AiF 0..255, depth 0..255) on GPU -> stack [B,N,S,S] in [0,1], label [B,S,S] long.
     Per sample: all N blur levels in one convolution (kernels zero-padded to a common size), layers gathered."""
     B, _, S, _ = xp.shape
@@ -96,7 +96,14 @@ def synth_batch(xp, N, smin=0.4, smax=1.6, p_disk=0.5, rmax=20.0, gain=0.03, noi
                 c = random.uniform(8.0, 64.0)
                 v = 1.0 / (dep[b_] + c)
                 dep[b_] = 255.0 * (v - v.min()) / (v.max() - v.min() + 1e-12)
-    q = (dep * N / 256.0).floor().long().clamp_(0, N - 1)                            # B,S,S
+    if qbins:   # equal-population depth bins per image: every focal level covers the same share of pixels
+        q = torch.empty(dep.shape, dtype=torch.long, device=dev)
+        lv = torch.linspace(0, 1, N + 1, device=dev)[1:-1]
+        for b_ in range(B):
+            qs = torch.quantile(dep[b_].flatten()[::7].float(), lv)
+            q[b_] = torch.bucketize(dep[b_].contiguous(), qs).clamp_(0, N - 1)
+    else:
+        q = (dep * N / 256.0).floor().long().clamp_(0, N - 1)                        # B,S,S
     aif_t = aif.clone()
     out = torch.empty(B, N, S, S, device=dev)
     lab = torch.empty(B, S, S, dtype=torch.long, device=dev)
@@ -104,7 +111,10 @@ def synth_batch(xp, N, smin=0.4, smax=1.6, p_disk=0.5, rmax=20.0, gain=0.03, noi
     for b in range(B):
         s = math.exp(random.uniform(math.log(smin), math.log(smax))) if slog else random.uniform(smin, smax)
         disk = random.random() < p_disk
-        ks = [_kernel(min(s * d, rmax), disk, dev) for d in range(N)]
+        if ljit > 0:   # per-level log-normal jitter of the blur radius (level 0 stays sharp)
+            ks = [_kernel(min(s * d * math.exp(random.gauss(0.0, ljit)), rmax), disk, dev) if d else _kernel(0.0, disk, dev) for d in range(N)]
+        else:
+            ks = [_kernel(min(s * d, rmax), disk, dev) for d in range(N)]
         R = max([k.shape[0] // 2 for k in ks if k is not None] + [0])
         W = torch.zeros(N, 1, 2 * R + 1, 2 * R + 1, device=dev)
         for d, k in enumerate(ks):
@@ -115,6 +125,9 @@ def synth_batch(xp, N, smin=0.4, smax=1.6, p_disk=0.5, rmax=20.0, gain=0.03, noi
                 W[d, 0, R - r:R + r + 1, R - r:R + r + 1] = k
         src = aif[b:b + 1]
         hdr = random.random() < p_hdr
+        linear = hdr or random.random() < p_linear   # blur in linear light
+        if linear and not hdr:
+            src = src.clamp(0, 1) ** 2.2
         if hdr:   # saturated highlights: boost bright regions and add specular points in linear light, clip after blur
             lin = src.clamp(0, 1) ** 2.2
             t = random.uniform(0.75, 0.95); g = math.exp(random.uniform(math.log(4.0), math.log(200.0)))
@@ -127,8 +140,9 @@ def synth_batch(xp, N, smin=0.4, smax=1.6, p_disk=0.5, rmax=20.0, gain=0.03, noi
                 lin = lin + F.conv2d(F.pad(pts, (rp, rp, rp, rp)), kp[None, None])
             src = lin
         Bd = F.conv2d(F.pad(src, (R, R, R, R), mode='reflect'), W)[0]                # N(levels),S,S
-        if hdr:
+        if linear:
             Bd = Bd.clamp(0, 1) ** (1 / 2.2)
+        if hdr:
             aif_t[b, 0] = Bd[0]
         dist = (q[b][None] - lev).abs()                                               # N(layers),S,S
         layers = torch.gather(Bd, 0, dist)

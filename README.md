@@ -14,10 +14,11 @@ one observed value per pixel is available from the same forward pass.
   across images without any encoding of their order, so shuffling the input permutes the probabilities and leaves the
   fused image unchanged.
 - **Any number of images.** One model handles stacks of 2 to (at least) 33 images.
-- **Simple design.** One kind of attention unit (intra-layer window attention followed by inter-layer attention),
-  used at 1/4 resolution and looped K times with shared weights at 1/8 resolution, and a small head that refines the
-  decisions at full resolution. 0.50 M parameters.
-- **Observed values only.** The output is a convex combination of the input pixels; no intensities are synthesized.
+- **Simple design.** One kind of attention unit (intra-image window attention followed by cross-image attention),
+  three units at 1/4 and 1/8 resolution in a single feed-forward pass, and a small head that refines the decisions at
+  full resolution. 0.50 M parameters.
+- **Observed values only.** Every output value is a convex combination of the input values at that pixel, so it never
+  leaves their range (hard selection copies one of them).
 
 ## Repository layout
 
@@ -34,7 +35,7 @@ one observed value per pixel is available from the same forward pass.
 
 ```bash
 python tools/run_ours_roots.py --run_dir <run_dir> --ckpt <checkpoint.pth> \
-    --root /path/to/stacks --out /path/to/results --fusion soft --sigma 1
+    --root /path/to/stacks --out /path/to/results --fusion soft --sigma 0.5
 ```
 
 `--fusion hard --sigma 0` gives the hard-selection output. Images inside a stack may be in any order and of any number.
@@ -48,7 +49,7 @@ By default the probabilities are averaged over the input at full and 0.75 scale 
 python tools/make_cache_aif.py --out /path/to/cache_aif320 --workers 24
 # 2. train with on-the-fly synthesis (two GPUs)
 torchrun --nproc_per_node=2 train.py --out_dir runs/final --arch loop --C1 48 --C2 96 --heads 3 6 \
-    --inter_pool 2 --kmax 4 --k_eval 2 --fine_head --synth_hdr 0.5 --ema 0.999 \
+    --inter_pool 2 --kmax 1 --k_eval 1 --fine_head --synth_hdr 0.5 --w_spread 1 --ema 0.999 \
     --synth_root /path/to/cache_aif320 --cache_root /path/to/cache256
 ```
 
@@ -56,9 +57,11 @@ Training sources: NYU Depth V2, DUTS, DIODE, Cityscapes and ADE20K images with m
 (Depth Anything V2). Stacks are synthesized on the GPU after resizing: depth quantized into N in {2..24} levels, blur
 radius s·|level − i| with a random step s and a disk or Gaussian kernel, per-image gain and noise, random image order.
 For half of the stacks, bright regions and point highlights are amplified in linear intensity before the blur and clipped
-afterwards, so that defocused highlights appear as saturated discs. Options in `train.py` that are off by default
-(`--synth_occ`, `--synth_jitter`, `--synth_zoom`, `--rec_w`, `--label_smooth`, `--margin`) were tested and not used for
-the paper.
+afterwards, so that defocused highlights appear as saturated disks. The cross-entropy of every pixel is weighted by the
+contrast of the stack at that pixel (`--w_spread 1`), so that pixels where all images look alike, whose labels cannot be
+inferred, contribute little. Options in `train.py` that are off by default
+(`--synth_occ`, `--synth_jitter`, `--synth_zoom`, `--synth_plin`, `--synth_ljit`, `--synth_qbins`, `--rec_w`,
+`--label_smooth`, `--margin`; `--kmax > 1` for a weight-shared iteration of the 1/8 unit) were tested and not used for the paper.
 
 ## Evaluation
 

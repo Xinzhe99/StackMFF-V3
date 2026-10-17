@@ -25,7 +25,7 @@ def main():
     ap.add_argument('--C1', type=int, default=48); ap.add_argument('--C2', type=int, default=96)
     ap.add_argument('--heads', type=int, nargs=2, default=[3, 6]); ap.add_argument('--inter_pool', type=int, default=2)
     ap.add_argument('--fusion', choices=['soft', 'hard'], default='soft')
-    ap.add_argument('--sigma', type=float, default=1.0, help='Gaussian smoothing of the probability maps (0: off)')
+    ap.add_argument('--sigma', type=float, default=0.5, help='Gaussian smoothing of the probability maps (0: off)')
     ap.add_argument('--datasets', nargs='*', help='restrict to these dataset folders')
     ap.add_argument('--run_dir', default='', help='build the model from this run (any arch); --ckpt may then be a file name in model_save')
     ap.add_argument('--K', type=int, default=None, help='loop iterations (loop arch)')

@@ -101,6 +101,10 @@ def parse_args():
     p.add_argument('--ema', type=float, default=0.0, help='EMA decay of the weights (0: off); checkpoints, validation and benchmark use the EMA weights')
     p.add_argument('--fine_head', action='store_true', help='full-resolution guided head')
     p.add_argument('--rec_w', type=float, default=0.0, help='weight of the L1 loss between the weighted fusion and the AiF image')
+    p.add_argument('--synth_plin', type=float, default=0.0, help='probability of blurring in linear light (besides HDR samples)')
+    p.add_argument('--synth_ljit', type=float, default=0.0, help='std of the per-level log-normal blur-radius jitter')
+    p.add_argument('--synth_qbins', type=int, default=0, help='equal-population depth bins')
+    p.add_argument('--w_spread', type=int, default=0, help='weight the CE of each pixel by the stack contrast there')
     p.add_argument('--label_smooth', type=float, default=0.0, help='CE label smoothing over the images')
     p.add_argument('--log_every', type=int, default=200)
     p.add_argument('--dry_run_steps', type=int, default=0,
@@ -259,7 +263,8 @@ def train_epoch(model, loader, optimizer, device, args, epoch, steps_per_epoch, 
             else:
                 x, y, aif = synth_batch(x, int(_n[0]), args.synth_smin, args.synth_smax, args.synth_pdisk, return_aif=True,
                                         p_hdr=args.synth_hdr, slog=args.synth_slog, fix_small=args.synth_fix_small,
-                                        far_large=y[:, 0], disp=args.synth_disp)
+                                        far_large=y[:, 0], disp=args.synth_disp,
+                                        p_linear=args.synth_plin, ljit=args.synth_ljit, qbins=bool(args.synth_qbins))
             if args.synth_jitter:
                 from synth import jitter_layers
                 x = jitter_layers(x)
@@ -290,6 +295,10 @@ def train_epoch(model, loader, optimizer, device, args, epoch, steps_per_epoch, 
         elif args.margin > 0:
             z = logits.float() - args.margin * F.one_hot(y, logits.shape[1]).permute(0, 3, 1, 2).float()
             loss = F.cross_entropy(z, y)
+        elif args.w_spread:   # where all images agree the choice does not matter: weight by the stack contrast
+            spread = (x.amax(1) - x.amin(1)).float()
+            w = (spread / (spread.mean(dim=(1, 2), keepdim=True) + 1e-3)).clamp(0, 4)
+            loss = (F.cross_entropy(logits.float(), y, reduction='none') * w).mean()
         else:
             loss = F.cross_entropy(logits.float(), y, label_smoothing=args.label_smooth)
         if args.rec_w > 0 and aif is not None:   # fused image of Eq. (3) vs the all-in-focus image
