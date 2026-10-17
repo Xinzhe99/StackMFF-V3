@@ -1,3 +1,9 @@
+"""Validation of the metric implementations of metrics_lib.py against independent references (skimage, scikit-learn,
+sewar, literal loop transliterations of the MATLAB code) on benchmark scenes; the MATLAB/Octave cross-check itself is in
+xval/. Writes <out_dir>/validation.md. Uses the configuration of common.py through STACKMFF_EVAL_CONFIG, and the
+results of 'StackMFF V4', 'CVT' and 'Helicon Focus 8 - A' from the StackMFF benchmark results (as in the paper).
+  STACKMFF_EVAL_CONFIG=config.json python validate.py
+"""
 import os, sys, math, time, traceback
 import numpy as np
 from PIL import Image
@@ -44,7 +50,7 @@ P('Files: ssim_index.m, mutual_info.m (Z. Liu), Qabf.m (Xydeas-Petrovic, R. Hong
   'SSIM/PSNR/VIF/MI/NMI on full images; Qabf (first two layers) and MEF-SSIM (all layers) on the central 192x192 crop '
   'because the .m files loop over pixels. fspecial/mean2 replaced by equivalents (Octave image package not installed).')
 P()
-for line in open(os.path.join(EVAL, 'xval', 'xval_table.md')):
+for line in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'xval', 'xval_table.md')):
     P(line.rstrip())
 P()
 P('Qabf.m returns gF (not 1) where gA == gF > 0; the pipeline uses the standard min/max ratio (Xydeas & Petrovic 2000), '

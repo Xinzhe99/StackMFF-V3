@@ -1,24 +1,27 @@
 # -*- coding: utf-8 -*-
-"""Evaluate every epoch checkpoint of a run with hard and probability-weighted fusion (old convention:
+"""Evaluate every epoch checkpoint of a run with hard and probability-weighted fusion (monitoring convention:
 cv2 grey, skimage SSIM defaults, PSNR), select the best epoch by mean SSIM over the four benchmarks
-(user decision: selection on the test benchmarks, as in the earlier StackMFF papers), and write the colour
-fused results of the selected epoch for the unified evaluation:
+(selection on the test benchmarks, as in the earlier StackMFF papers; see the paper), and write the colour
+fused results of the selected epoch for the unified evaluation (evaluation/run_eval.py):
   <out>/<tag>_<fusion>/<Dataset>/<scene>.png
-Colour: the probabilities computed on the grey stack weight (or select) the RGB values of the layers.
+Colour: the probabilities computed on the grey stack weight (or select) the RGB values of the images.
+Weighted fusion smooths the probabilities with a Gaussian of SIGMA pixels (environment variable, default 0.5, the
+paper's setting); hard selection uses the raw probabilities. Inference scales: MS_SCALES (default 1,0.75).
 
-  python eval_epochs.py --run_dir runs/H_c48_r121_p2 --C1 48 --C2 96 --heads 3 6 --inter_pool 2 --tag H --out results_new
+  SIGMA=0.5 python tools/eval_epochs.py --run_dir runs/final --tag final --out results --bench_root <benchmarks>
+  (the paper's results: --epoch 2, i.e. the checkpoint after the third epoch)
 """
 import argparse, csv, glob, os, re, sys
 import cv2, numpy as np, torch
 from skimage.metrics import structural_similarity, peak_signal_noise_ratio
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from stackmff_v3.network import StackMFFV3, smooth_probs
+from stackmff_v3.network import smooth_probs
 from predict_benchmark import list_stacks, index_gt, read_gray, DEFAULT_DATASETS, pad_to_64
 
-ROOT = '/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/dff_and_mff'
+ROOT = os.environ.get('STACKMFF_BENCH_ROOT', 'data/benchmarks')
 
 
-SIGMA = 1.0   # Gaussian smoothing of P for weighted fusion (final default); hard selection uses the raw P
+SIGMA = float(os.environ.get('SIGMA', 0.5))   # Gaussian smoothing of P for weighted fusion (final default); hard selection uses the raw P
 
 
 def probs(m, st_gray, dev):
@@ -26,7 +29,7 @@ def probs(m, st_gray, dev):
     x = torch.from_numpy(st_gray.astype(np.float32) / 255.0).unsqueeze(0).to(dev)
     with torch.no_grad():
         P = m.forward_probs(pad_to_64(x))[:, :, :H, :W].float()
-        return np.stack([P[0].cpu().numpy(), smooth_probs(P, SIGMA)[0].cpu().numpy()])
+        return np.stack([P[0].cpu().numpy(), (P if SIGMA == 0 else smooth_probs(P, SIGMA))[0].cpu().numpy()])
 
 
 def fuse(PP, st, mode):
@@ -41,22 +44,24 @@ def fuse(PP, st, mode):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--run_dir', required=True); ap.add_argument('--tag', required=True)
-    ap.add_argument('--C1', type=int, default=32); ap.add_argument('--C2', type=int, default=64)
-    ap.add_argument('--heads', type=int, nargs=2, default=[2, 4]); ap.add_argument('--inter_pool', type=int, default=1)
-    ap.add_argument('--out', default='/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/v3merge_work/results_new')
+    ap.add_argument('--bench_root', default=ROOT, help='<bench_root>/<Dataset>/{image stack,AiF}')
+    ap.add_argument('--out', default='results')
     ap.add_argument('--skip_select', action='store_true')
+    ap.add_argument('--epoch', type=int, default=None, help='evaluate and write results of this epoch only')
     a = ap.parse_args()
-    dev = torch.device('cuda:0')
-    from stackmff_v3.model_io import build, run_args
+    dev = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    from stackmff_v3.model_io import build, run_args, FINAL_ARGS
     try:
         m = build(run_args(a.run_dir)).to(dev).eval()
     except FileNotFoundError:
-        m = StackMFFV3(C1=a.C1, C2=a.C2, heads=tuple(a.heads), inter_pool=a.inter_pool).to(dev).eval()
+        m = build(FINAL_ARGS).to(dev).eval()
     data = {}
     for ds in DEFAULT_DATASETS:
-        gts = index_gt(os.path.join(ROOT, ds, 'AiF'))
-        data[ds] = [(n, p, gts[n]) for n, p in list_stacks(os.path.join(ROOT, ds, 'image stack')) if n in gts]
+        gts = index_gt(os.path.join(a.bench_root, ds, 'AiF'))
+        data[ds] = [(n, p, gts[n]) for n, p in list_stacks(os.path.join(a.bench_root, ds, 'image stack')) if n in gts]
     ckpts = sorted(glob.glob(os.path.join(a.run_dir, 'model_save', 'epoch_*.pth')), key=lambda f: int(re.findall(r'(\d+)', os.path.basename(f))[0]))
+    if a.epoch is not None:
+        ckpts = [c for c in ckpts if int(re.findall(r'(\d+)', os.path.basename(c))[0]) == a.epoch]
     rows = []
     for ck in ckpts:
         ep = int(re.findall(r'(\d+)', os.path.basename(ck))[0])

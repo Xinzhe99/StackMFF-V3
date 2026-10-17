@@ -1,7 +1,8 @@
 """Resumable evaluation runner.
 
-  python3 run_eval.py run [--workers 2] [--only substring] [--dataset NAME]
-  python3 run_eval.py summarize
+  python3 run_eval.py run --config config.json [--workers 2] [--only substring] [--dataset NAME]
+  python3 run_eval.py summarize --config config.json
+  (or give --gt_root, --stack_root, --results_root, --out_dir [--methods ...] instead of / in addition to --config)
 
 run: per scene (dataset/scene), loads GT and the source stack once, then for every method
      computes raw and aligned metrics; one JSON cache file per (method, dataset, scene).
@@ -15,9 +16,14 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import metrics_lib as M
-from common import *
+import common as C
+from common import natural_key
 
-CACHE = os.path.join(EVAL, 'cache')
+
+def cache_root():
+    return os.path.join(C.EVAL, 'cache')
+
+
 METRICS = ['SSIM', 'SSIM_sk7', 'PSNR', 'VIF', 'MI', 'NMI', 'Qabf_N', 'MEF_SSIM']
 SHIFT_THRESH = 2.0
 
@@ -27,7 +33,7 @@ def mdir(method):
 
 
 def cache_file(method, ds, scene):
-    return os.path.join(CACHE, mdir(method), ds.replace(' ', '_'), scene + '.json')
+    return os.path.join(cache_root(), mdir(method), ds.replace(' ', '_'), scene + '.json')
 
 
 def jdump(obj, path):
@@ -40,10 +46,10 @@ def jdump(obj, path):
 
 def scene_list(only=None, dataset=None):
     out = []
-    for ds in DATASETS:
+    for ds in C.DATASETS:
         if dataset and ds != dataset:
             continue
-        gi = gt_index(ds)
+        gi = C.gt_index(ds)
         for key in sorted(gi, key=natural_key):
             gtfile = os.path.basename(gi[key])
             scene = os.path.splitext(gtfile)[0]
@@ -57,16 +63,16 @@ def work_scene(args):
     ds, key, gtfile = args
     scene = os.path.splitext(gtfile)[0]
     t0 = time.time()
-    todo = [m for m in METHODS if not os.path.exists(cache_file(m, ds, scene))]
+    todo = [m for m in C.METHODS if not os.path.exists(cache_file(m, ds, scene))]
     if not todo:
         return (ds, scene, 0, 0.0, 'cached')
     msgs = []
     try:
-        gt = M.load_gray(gt_index(ds)[key])
-        si = stack_index(ds)
+        gt = M.load_gray(C.gt_index(ds)[key])
+        si = C.stack_index(ds)
         if key not in si:
             raise RuntimeError('no source stack for ' + scene)
-        files = stack_files(si[key])
+        files = C.stack_files(si[key])
         layers, stack_resized = [], 0
         for f in files:
             x, rs = M.resize_to(M.load_gray(f), gt.shape)
@@ -83,13 +89,13 @@ def work_scene(args):
         rec = {'method': meth, 'dataset': ds, 'scene': scene, 'gt_file': gtfile,
                'gt_size': list(gt.shape), 'n_layers': len(layers), 'stack_resized_layers': stack_resized}
         try:
-            ri = result_index(meth, ds)
+            ri = C.result_index(meth, ds)
             if key not in ri:
                 rec['error'] = 'missing result'
                 jdump(rec, cache_file(meth, ds, scene))
                 msgs.append(f'{meth}: missing result')
                 continue
-            rec['result_file'] = os.path.relpath(ri[key], RES)
+            rec['result_file'] = os.path.relpath(ri[key], C.RES)
             res0 = M.load_gray(ri[key])
             rec['result_size'] = list(res0.shape)
             rec['result_resized'] = bool(res0.shape != gt.shape)
@@ -98,7 +104,7 @@ def work_scene(args):
             rec['shift'] = [dy, dx]
             rec['shift_mag'] = math.hypot(dy, dx)
             raw = M.all_metrics(res, gt, src_grads, Rf)
-            if (meth in COMMERCIAL) or (rec['shift_mag'] > SHIFT_THRESH):
+            if (meth in C.COMMERCIAL) or (rec['shift_mag'] > SHIFT_THRESH):
                 # homography is estimated from the ORIGINAL-size result (no prior resize), so a crop/scale
                 # difference is undone by a single interpolation
                 warped, info = M.align_to_gt(res0, gt, gkp, (dy, dx))
@@ -125,7 +131,7 @@ def cmd_run(a):
     print(f'{len(scenes)} scenes', flush=True)
     T = time.time()
     n = 0
-    with Pool(a.workers) as pool:
+    with Pool(a.workers, initializer=C.configure, initargs=(a.cfg,)) as pool:
         for ds, scene, done, dt, msg in pool.imap_unordered(work_scene, scenes):
             n += 1
             print(f'[{n}/{len(scenes)}] {ds}/{scene}: computed {done} methods in {dt:.1f}s {msg}', flush=True)
@@ -135,7 +141,7 @@ def cmd_run(a):
 # ------------------------------------------------------------------ summarize
 def load_records():
     recs = []
-    for root, _, files in os.walk(CACHE):
+    for root, _, files in os.walk(cache_root()):
         for f in files:
             if f.endswith('.json'):
                 with open(os.path.join(root, f)) as fh:
@@ -152,7 +158,6 @@ def fmt(v):
 
 
 def cmd_summarize(a):
-    import openpyxl
     from scipy.stats import rankdata
     recs = [r for r in load_records() if 'raw' in r]
     errs = [r for r in load_records() if 'error' in r]
@@ -165,13 +170,13 @@ def cmd_summarize(a):
         shifts = [r['shift_mag'] for r in rs]
         med = float(np.median(shifts))
         all_aligned = all(r.get('aligned') is not None for r in rs)
-        flag[(m, ds)] = (m in COMMERCIAL) or (med > SHIFT_THRESH and all_aligned)
+        flag[(m, ds)] = (m in C.COMMERCIAL) or (med > SHIFT_THRESH and all_aligned)
     # per-image CSV
     cols = ['method', 'dataset', 'scene', 'variant', 'primary', 'result_size', 'gt_size', 'result_resized',
             'n_layers', 'stack_resized_layers', 'shift_dy', 'shift_dx', 'shift_mag', 'align_method',
             'align_matches', 'align_inliers', 'align_scale', 'align_fallback', 'align_valid_frac'] + METRICS
     rows = []
-    for r in sorted(recs, key=lambda r: (METHODS.index(r['method']), DATASETS.index(r['dataset']), natural_key(r['scene']))):
+    for r in sorted(recs, key=lambda r: (C.METHODS.index(r['method']), C.DATASETS.index(r['dataset']), natural_key(r['scene']))):
         f = flag[(r['method'], r['dataset'])]
         al = r['align']
         base = {'method': r['method'], 'dataset': r['dataset'], 'scene': r['scene'],
@@ -190,7 +195,7 @@ def cmd_summarize(a):
             for k in METRICS:
                 row[k] = r[variant][k]
             rows.append(row)
-    with open(os.path.join(EVAL, 'per_image.csv'), 'w', newline='') as fh:
+    with open(os.path.join(C.EVAL, 'per_image.csv'), 'w', newline='') as fh:
         w = csv.DictWriter(fh, fieldnames=cols)
         w.writeheader()
         for row in rows:
@@ -208,24 +213,24 @@ def cmd_summarize(a):
         summ[(m, ds)] = {k: stats(prim, k) for k in METRICS}
         rawsumm[(m, ds)] = {k: stats(rw, k) for k in METRICS}
     ranks = {}
-    for ds in DATASETS:
+    for ds in C.DATASETS:
         for k in METRICS:
-            ms = [m for m in METHODS if (m, ds) in summ]
+            ms = [m for m in C.METHODS if (m, ds) in summ]
             vals = np.array([summ[(m, ds)][k][0] for m in ms])
             rk = rankdata(-vals, method='min') if len(ms) else []
             for m, rr in zip(ms, rk):
                 ranks[(m, ds, k)] = int(rr)
-    with open(os.path.join(EVAL, 'summary.csv'), 'w', newline='') as fh:
+    with open(os.path.join(C.EVAL, 'summary.csv'), 'w', newline='') as fh:
         w = csv.writer(fh)
         w.writerow(['method', 'dataset', 'variant_used', 'metric', 'mean', 'n_images', 'rank_in_dataset', 'n_methods'])
-        for ds in DATASETS:
-            for m in METHODS:
+        for ds in C.DATASETS:
+            for m in C.METHODS:
                 if (m, ds) not in summ:
                     continue
                 vu = 'aligned' if flag[(m, ds)] else 'raw'
                 for k in METRICS:
                     mu, n = summ[(m, ds)][k]
-                    w.writerow([m, ds, vu, k, fmt(mu), n, ranks[(m, ds, k)], sum(1 for x in METHODS if (x, ds) in summ)])
+                    w.writerow([m, ds, vu, k, fmt(mu), n, ranks[(m, ds, k)], sum(1 for x in C.METHODS if (x, ds) in summ)])
     # summary.md
     L = []
     L.append('# StackMFF fusion evaluation: summary')
@@ -238,8 +243,8 @@ def cmd_summarize(a):
              'PSNR vs GT (dB); VIF = VIFp vs GT; MI / NMI (bits, 256 bins) vs GT; Qabf_N = Q^{AB/F} over all N source layers; '
              'MEF_SSIM = mef_ssim.m (single scale) over all N source layers.')
     L.append('')
-    for ds in DATASETS:
-        ms = [m for m in METHODS if (m, ds) in summ]
+    for ds in C.DATASETS:
+        ms = [m for m in C.METHODS if (m, ds) in summ]
         if not ms:
             continue
         L.append(f'## {ds}')
@@ -265,46 +270,49 @@ def cmd_summarize(a):
     L.append('')
     L.append('| Dataset | Method | ' + ' | '.join(METRICS) + ' | aligned minus raw (primary - raw) for SSIM |')
     L.append('|---|---|' + '---|' * (len(METRICS) + 1))
-    for ds in DATASETS:
-        for m in METHODS:
+    for ds in C.DATASETS:
+        for m in C.METHODS:
             if (m, ds) in summ and flag[(m, ds)]:
                 cells = [f'{rawsumm[(m, ds)][k][0]:.4f}' if k != 'PSNR' else f'{rawsumm[(m, ds)][k][0]:.3f}' for k in METRICS]
                 d = summ[(m, ds)]['SSIM'][0] - rawsumm[(m, ds)]['SSIM'][0]
                 L.append(f'| {ds} | {m} | ' + ' | '.join(cells) + f' | {d:+.4f} |')
     L.append('')
-    # comparison with old table
-    L.append('## Comparison with the old table (stackmff_tables.xlsx, sheet stackmffv4, SSIM and PSNR)')
-    L.append('')
-    wb = openpyxl.load_workbook(os.path.join(BASE, 'StackMFFV3V4', 'stackmff_tables.xlsx'), data_only=True)
-    ws = wb['stackmffv4']
-    old = {}
-    for row in ws.iter_rows(min_row=3, max_row=28, values_only=True):  # first table only (rows below hold model-size info)
-        name = row[0]
-        if isinstance(name, str) and name.strip() in METHODS:
-            old[name.strip()] = row[1:9]  # MD SSIM,PSNR; Mid SSIM,PSNR; FT SSIM,PSNR; Road SSIM,PSNR
-    oldmap = {ds: (2 * i, 2 * i + 1) for i, ds in enumerate(['Mobile Depth', 'Middlebury', 'FlyingThings3D', 'Road-MF'])}
-    L.append('Differences flagged when |SSIM diff| > 0.002 or |PSNR diff| > 0.1 dB. Ours uses SSIM_sk7 (skimage 7x7) to match the old convention; '
-             'raw = unaligned, primary = as used in the summary.')
-    L.append('')
-    L.append('| Dataset | Method | old SSIM | ours SSIM_sk7 raw | ours SSIM_sk7 primary | diff (raw) | old PSNR | ours PSNR raw | ours PSNR primary | diff (raw) | flag |')
-    L.append('|---|---|---|---|---|---|---|---|---|---|---|')
+    # optional: comparison with the values of an earlier table (internal consistency check of the paper; --old_table)
     disc = []
-    for ds in DATASETS:
-        for m in METHODS:
-            if m not in old or (m, ds) not in summ:
-                continue
-            oS, oP = old[m][oldmap[ds][0]], old[m][oldmap[ds][1]]
-            rS = rawsumm[(m, ds)]['SSIM_sk7'][0]; pS = summ[(m, ds)]['SSIM_sk7'][0]
-            rP = rawsumm[(m, ds)]['PSNR'][0]; pP = summ[(m, ds)]['PSNR'][0]
-            dS = rS - oS; dP = rP - oP
-            f = (abs(dS) > 0.002) or (abs(dP) > 0.1)
-            if f:
-                disc.append((ds, m, oS, rS, pS, dS, oP, rP, pP, dP))
-            L.append(f'| {ds} | {m} | {oS:.4f} | {rS:.4f} | {pS:.4f} | {dS:+.4f} | {oP:.3f} | {rP:.3f} | {pP:.3f} | {dP:+.3f} | {"DIFF" if f else ""} |')
-    L.append('')
-    n_rows = sum(1 for ds in DATASETS for m in METHODS if m in old and (m, ds) in summ)
-    L.append(f'{len(disc)} of {n_rows} method/dataset rows are flagged (DIFF).')
-    open(os.path.join(EVAL, 'summary.md'), 'w').write('\n'.join(L) + '\n')
+    if a.old_table:
+        # comparison with old table
+        L.append('## Comparison with the old table (stackmff_tables.xlsx, sheet stackmffv4, SSIM and PSNR)')
+        L.append('')
+        import openpyxl
+        wb = openpyxl.load_workbook(a.old_table, data_only=True)
+        ws = wb['stackmffv4']
+        old = {}
+        for row in ws.iter_rows(min_row=3, max_row=28, values_only=True):  # first table only (rows below hold model-size info)
+            name = row[0]
+            if isinstance(name, str) and name.strip() in C.METHODS:
+                old[name.strip()] = row[1:9]  # MD SSIM,PSNR; Mid SSIM,PSNR; FT SSIM,PSNR; Road SSIM,PSNR
+        oldmap = {ds: (2 * i, 2 * i + 1) for i, ds in enumerate(['Mobile Depth', 'Middlebury', 'FlyingThings3D', 'Road-MF'])}
+        L.append('Differences flagged when |SSIM diff| > 0.002 or |PSNR diff| > 0.1 dB. Ours uses SSIM_sk7 (skimage 7x7) to match the old convention; '
+                 'raw = unaligned, primary = as used in the summary.')
+        L.append('')
+        L.append('| Dataset | Method | old SSIM | ours SSIM_sk7 raw | ours SSIM_sk7 primary | diff (raw) | old PSNR | ours PSNR raw | ours PSNR primary | diff (raw) | flag |')
+        L.append('|---|---|---|---|---|---|---|---|---|---|---|')
+        for ds in C.DATASETS:
+            for m in C.METHODS:
+                if m not in old or (m, ds) not in summ:
+                    continue
+                oS, oP = old[m][oldmap[ds][0]], old[m][oldmap[ds][1]]
+                rS = rawsumm[(m, ds)]['SSIM_sk7'][0]; pS = summ[(m, ds)]['SSIM_sk7'][0]
+                rP = rawsumm[(m, ds)]['PSNR'][0]; pP = summ[(m, ds)]['PSNR'][0]
+                dS = rS - oS; dP = rP - oP
+                f = (abs(dS) > 0.002) or (abs(dP) > 0.1)
+                if f:
+                    disc.append((ds, m, oS, rS, pS, dS, oP, rP, pP, dP))
+                L.append(f'| {ds} | {m} | {oS:.4f} | {rS:.4f} | {pS:.4f} | {dS:+.4f} | {oP:.3f} | {rP:.3f} | {pP:.3f} | {dP:+.3f} | {"DIFF" if f else ""} |')
+        L.append('')
+        n_rows = sum(1 for ds in C.DATASETS for m in C.METHODS if m in old and (m, ds) in summ)
+        L.append(f'{len(disc)} of {n_rows} method/dataset rows are flagged (DIFF).')
+    open(os.path.join(C.EVAL, 'summary.md'), 'w').write('\n'.join(L) + '\n')
     # alignment log
     A = ['# Alignment and size log', '',
          'Phase correlation (skimage, 1/10 px) gives the translation that registers each result onto GT. '
@@ -313,8 +321,8 @@ def cmd_summarize(a):
          'valid_frac = fraction of the GT canvas covered by the warped result (uncovered pixels are filled by edge replication; metrics are on the full GT canvas).', '',
          '| Method | Dataset | n | median |shift| px | max |shift| px | frac > 2 px | aligned used | homography scale median (min-max) | inliers median | fallback count | valid_frac median | resized results |',
          '|---|---|---|---|---|---|---|---|---|---|---|']
-    for ds in DATASETS:
-        for m in METHODS:
+    for ds in C.DATASETS:
+        for m in C.METHODS:
             if (m, ds) not in by:
                 continue
             rs = by[(m, ds)]
@@ -346,17 +354,27 @@ def cmd_summarize(a):
     A.append('## Errors and missing results')
     A.append('')
     A.append('None.' if not errs else '\n'.join(f"- {r['method']} / {r['dataset']} / {r['scene']}: {r['error']}" for r in errs))
-    open(os.path.join(EVAL, 'alignment_log.md'), 'w').write('\n'.join(A) + '\n')
+    open(os.path.join(C.EVAL, 'alignment_log.md'), 'w').write('\n'.join(A) + '\n')
     print(f'records={len(recs)} errors={len(errs)} rows={len(rows)} discrepancies={len(disc)}')
 
 
 if __name__ == '__main__':
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(description='Unified evaluation of fused images against references (see common.py).')
     ap.add_argument('cmd', choices=['run', 'summarize'])
+    ap.add_argument('--config', default=os.environ.get('STACKMFF_EVAL_CONFIG'), help='JSON configuration (config_example.json)')
+    ap.add_argument('--gt_root'); ap.add_argument('--gt_subdir'); ap.add_argument('--stack_root')
+    ap.add_argument('--results_root', nargs='+', dest='results_roots')
+    ap.add_argument('--out_dir'); ap.add_argument('--methods', nargs='+'); ap.add_argument('--datasets', nargs='+')
+    ap.add_argument('--aligned_methods', nargs='+')
     ap.add_argument('--workers', type=int, default=2)
-    ap.add_argument('--only', default=None)
+    ap.add_argument('--only', default=None, help='only scenes whose "<dataset>:<scene>" contains this substring')
     ap.add_argument('--dataset', default=None)
+    ap.add_argument('--old_table', default='', help='summarize: compare with an earlier table (xlsx, sheet stackmffv4)')
     a = ap.parse_args()
+    a.cfg = C.configure(a.config, gt_root=a.gt_root, gt_subdir=a.gt_subdir, stack_root=a.stack_root, results_roots=a.results_roots,
+                        out_dir=a.out_dir, methods=a.methods, datasets=a.datasets, aligned_methods=a.aligned_methods)
+    a.cfg.update(methods=C.METHODS, out_dir=C.EVAL)
+    print(f'{len(C.METHODS)} methods, datasets {C.DATASETS}, output {C.EVAL}', flush=True)
     if a.cmd == 'run':
         cmd_run(a)
     else:

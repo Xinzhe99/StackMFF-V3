@@ -74,6 +74,15 @@ class FocusStackDataset(Dataset):
         """
         image_stack = self.image_stacks[idx]
         focus_index_map_path = self.focus_index_maps[idx]
+        remap = None
+        ro = int(os.environ.get('RAW_REORDER', '0'))   # 1: files[order], 2: files[argsort(order)] (choose with order_test_raw.py)
+        lo = os.path.join(os.path.dirname(image_stack[0]), 'layer_order.npy')
+        if ro and os.path.exists(lo):
+            o = (lambda z: np.asarray(z.item()["shuffled_order"] if z.dtype == object else z).astype(int).ravel())(np.load(lo, allow_pickle=True))
+            if len(o) == len(image_stack):
+                r = o if ro == 1 else np.argsort(o)
+                image_stack = [image_stack[i] for i in r]
+                remap = np.argsort(r)   # old file position -> new position
 
         images = []
         for img_path in image_stack:
@@ -90,6 +99,8 @@ class FocusStackDataset(Dataset):
             print(f"Warning: 焦点索引超出有效范围 [0, {max_index}]: 实际范围 [{focus_index_gt.min()}, {focus_index_gt.max()}]")
             focus_index_gt = np.clip(focus_index_gt, 0, max_index)
             
+        if remap is not None:
+            focus_index_gt = remap[focus_index_gt]
         focus_index_gt = torch.from_numpy(focus_index_gt).long()  # 转换为torch.long
 
         if self.augment:

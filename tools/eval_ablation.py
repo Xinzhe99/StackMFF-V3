@@ -2,17 +2,18 @@
 """Evaluate every epoch of each ablation run (hard and probability-weighted fusion, old convention as in
 eval_epochs.py) and pick, per run and fusion mode, the epoch with the best mean SSIM over the four benchmarks
 (same selection rule as the main model). The architecture is rebuilt from the args line of <run>.out.
+Each ablation run lives in <abl_dir>/abl_<name>/ (train.py --out_dir) with its log <abl_dir>/abl_<name>.out.
 
-  python eval_ablation.py --abl_dir ablation --out ablation/ablation_summary.csv
+  python tools/eval_ablation.py --abl_dir ablation --out ablation/ablation_summary.csv --bench_root <benchmarks>
 """
 import argparse, csv, glob, json, os, re, sys
 import numpy as np, torch
 from skimage.metrics import structural_similarity, peak_signal_noise_ratio
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from stackmff_v3.network import StackMFFV3, StackMFFLoop, smooth_probs
+from stackmff_v3.network import smooth_probs
 from predict_benchmark import list_stacks, index_gt, read_gray, DEFAULT_DATASETS, pad_to_64
 
-ROOT = '/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/dff_and_mff'
+ROOT = os.environ.get('STACKMFF_BENCH_ROOT', 'data/benchmarks')
 
 
 from stackmff_v3.model_io import build  # noqa: E402  (any architecture, from the run's args)
@@ -30,16 +31,17 @@ def fuse(P, st, mode, regression):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--abl_dir', required=True); ap.add_argument('--out', required=True)
+    ap.add_argument('--bench_root', default=ROOT, help='<bench_root>/<Dataset>/{image stack,AiF}')
     ap.add_argument('--runs', nargs='*')
     ap.add_argument('--sigma', type=float, default=0.0, help='Gaussian smoothing of the probabilities for weighted fusion')
     ap.add_argument('--perm_seed', type=int, default=-1, help='>=0: shuffle the layers of every stack with this seed')
     a = ap.parse_args()
-    dev = torch.device('cuda:0')
+    dev = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     data = {}
     for ds in DEFAULT_DATASETS:
-        gts = index_gt(os.path.join(ROOT, ds, 'AiF'))
+        gts = index_gt(os.path.join(a.bench_root, ds, 'AiF'))
         data[ds] = [(np.stack([read_gray(p) for p in paths]), read_gray(gts[n]))
-                    for n, paths in list_stacks(os.path.join(ROOT, ds, 'image stack')) if n in gts]
+                    for n, paths in list_stacks(os.path.join(a.bench_root, ds, 'image stack')) if n in gts]
         if a.perm_seed >= 0:
             rng = np.random.default_rng(a.perm_seed)
             data[ds] = [(st[rng.permutation(len(st))], gt) for st, gt in data[ds]]

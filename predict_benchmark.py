@@ -1,23 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-Benchmark inference on the dff_and_mff test sets.
+Benchmark inference with hard selection on grey images (the per-epoch monitoring protocol of train.py).
 
 Protocol:
-  * input_mode='pad' (StackMFF-V3, native full resolution): the stack is
-    reflect-padded (bottom/right) to a multiple of 64 for the forward pass and the
-    focus map is cropped back. No resizing.
-  * input_mode='resize' (StackMFF-V4 only): the original V4 test protocol. V4 does
-    not give size-consistent outputs for arbitrary sizes, so the stack is bilinearly
-    resized to a multiple of 64 (same rule as V4 predict_datasets.py) and the focus
-    map is nearest-resized back to H x W.
-  * hard fusion: fused = gather(stack, argmax layer) on the uint8 gray stack;
-  * gray: cv2 BGR->GRAY for both stacks and ground truth;
+  * the stack is reflect-padded (bottom/right) to a multiple of 64 for the forward pass and the
+    focus map is cropped back. No resizing (input_mode='pad'; 'resize' is the protocol of the
+    earlier StackMFF V4 code and is kept for reference only).
+  * hard fusion: fused = gather(stack, argmax image) on the uint8 grey stack;
+  * grey: cv2 BGR->GRAY for both stacks and ground truth;
   * PSNR (data_range=255) and SSIM (skimage defaults, data_range=255) per image.
+The numbers of the paper are computed from the colour results with evaluation/run_eval.py instead.
 
 Ground truth: <test_root>/<dataset>/AiF/<stack name>.(png|jpg|...).
 Stacks: <test_root>/<dataset>/image stack/<stack name>/*.(png|jpg|jpeg).
 
 run_benchmark() is imported by train.py for per-epoch monitoring.
+
+  python predict_benchmark.py --test_root <benchmarks> --out_dir bench_out [--ckpt weights.pth | --run_dir R --ckpt epoch_2.pth]
 """
 import argparse
 import csv
@@ -94,24 +93,6 @@ def resize_dims_v4(H, W):
     if nw % 64 != 0:
         nw = ((nw - 1) // 64 + 1) * 64
     return nh, nw
-
-
-def load_model(arch, ckpt, device, args):
-    if arch == 'v3':
-        from stackmff_v3.network import StackMFFV3
-        model = StackMFFV3(C1=args.C1, C2=args.C2, rounds=tuple(args.rounds), window=args.window,
-                           mlp_ratio=args.mlp_ratio, inter_pool=args.inter_pool)
-    elif arch == 'v4':
-        import importlib
-        sys.path.insert(0, args.v4_dir)
-        mod = importlib.import_module(args.v4_module)
-        model = mod.StackMFF_V4(num_cycles=1)
-    else:
-        raise ValueError(arch)
-    sd = torch.load(ckpt, map_location='cpu')
-    sd = {(k[len('module.'):] if k.startswith('module.') else k): v for k, v in sd.items()}
-    model.load_state_dict(sd, strict=True)
-    return model.to(device).eval()
 
 
 @torch.no_grad()
@@ -199,25 +180,15 @@ def run_benchmark(model, test_root, datasets, device, save_root=None, log=print,
 
 def parse_args():
     p = argparse.ArgumentParser()
-    p.add_argument('--arch', choices=['v3', 'v4'], default='v3')
-    p.add_argument('--ckpt', required=True)
-    p.add_argument('--test_root', default='/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/dff_and_mff')
+    p.add_argument('--ckpt', default='', help='checkpoint (default: weights/stackmff_v3_final.pth); with --run_dir a '
+                                              'file name in <run_dir>/model_save')
+    p.add_argument('--run_dir', default='', help='rebuild the architecture from this training run')
+    p.add_argument('--test_root', default=os.environ.get('STACKMFF_BENCH_ROOT', 'data/benchmarks'))
     p.add_argument('--datasets', nargs='+', default=DEFAULT_DATASETS)
     p.add_argument('--out_dir', required=True)
     p.add_argument('--save_images', action='store_true')
     p.add_argument('--limit', type=int, default=None, help='max stacks per dataset (debug)')
-    p.add_argument('--device', default='cuda:0')
-    p.add_argument('--v4_dir', default='/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/project_image_stack_fusion/StackMFFV4')
-    p.add_argument('--v4_module', default='network_v3_attention',
-                   help="V4 module under v4_dir, e.g. ablation_models.network_spatial_pool_ratio_0_0625")
-    p.add_argument('--C1', type=int, default=32)
-    p.add_argument('--C2', type=int, default=64)
-    p.add_argument('--rounds', type=int, nargs=3, default=[1, 2, 1])
-    p.add_argument('--window', type=int, default=8)
-    p.add_argument('--mlp_ratio', type=float, default=2.0)
-    p.add_argument('--inter_pool', type=int, default=1)
-    p.add_argument('--input_mode', choices=['auto', 'pad', 'resize'], default='auto',
-                   help="auto: pad for v3, resize (original V4 protocol) for v4")
+    p.add_argument('--device', default='cuda:0' if torch.cuda.is_available() else 'cpu')
     return p.parse_args()
 
 
@@ -225,20 +196,21 @@ def main():
     args = parse_args()
     device = torch.device(args.device)
     os.makedirs(args.out_dir, exist_ok=True)
-    model = load_model(args.arch, args.ckpt, device, args)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from stackmff_v3.model_io import DEFAULT_WEIGHTS, load
+    ckpt = args.ckpt or DEFAULT_WEIGHTS
+    model = load(args.run_dir, ckpt, device)
     save_root = os.path.join(args.out_dir, 'fused_gray') if args.save_images else None
-    input_mode = args.input_mode if args.input_mode != 'auto' else ('pad' if args.arch == 'v3' else 'resize')
-    print(f'arch={args.arch} input_mode={input_mode} ckpt={args.ckpt}', flush=True)
+    print(f'ckpt={ckpt} run_dir={args.run_dir or "-"}', flush=True)
     summary, rows = run_benchmark(model, args.test_root, args.datasets, device,
-                                  save_root=save_root, limit=args.limit, input_mode=input_mode)
+                                  save_root=save_root, limit=args.limit, input_mode='pad')
     with open(os.path.join(args.out_dir, 'per_image.csv'), 'w', newline='') as f:
         if rows:
             wr = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
             wr.writeheader()
             wr.writerows(rows)
     with open(os.path.join(args.out_dir, 'summary.json'), 'w') as f:
-        json.dump({'ckpt': args.ckpt, 'arch': args.arch, 'input_mode': input_mode,
-                   'summary': summary}, f, indent=2)
+        json.dump({'ckpt': ckpt, 'run_dir': args.run_dir, 'input_mode': 'pad', 'summary': summary}, f, indent=2)
 
 
 if __name__ == '__main__':

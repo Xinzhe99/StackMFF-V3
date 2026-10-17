@@ -1,0 +1,11 @@
+{
+  "gt_root": "/path/to/benchmarks",
+  "gt_subdir": "AiF",
+  "stack_root": "/path/to/benchmarks",
+  "results_roots": ["/path/to/results"],
+  "out_dir": "eval_out",
+  "datasets": ["Mobile Depth", "Middlebury", "FlyingThings3D", "Road-MF"],
+  "methods": ["Ours_soft", "Ours_hard"],
+  "aligned_methods": [],
+  "overrides": {}
+}

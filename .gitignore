@@ -1,19 +1,23 @@
 # Python
 __pycache__/
 *.py[cod]
-# Checkpoints and weights
+.pytest_cache/
+# Checkpoints and weights (released as GitHub Release assets)
+weights/
 checkpoints/
 *.pth
 *.pt
 *.ckpt
-# Experiment outputs
+# Data, experiment outputs, evaluation outputs
+data/
 outputs/
 runs/
 results/
-# Data caches
+eval_out/
 cache/
 cache*/
 *.npz
+evaluation/xval/cases/
 # Environment
 .venv/
 venv/

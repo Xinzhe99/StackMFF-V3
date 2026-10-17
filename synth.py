@@ -81,7 +81,7 @@ def _kernel(r, disk, device):
 
 @torch.no_grad()
 def synth_batch(xp, N, smin=0.4, smax=1.6, p_disk=0.5, rmax=20.0, gain=0.03, noise=0.01, return_aif=False,
-                p_hdr=0.0, slog=False, fix_small=False, far_large=None, disp=False, p_linear=0.0, ljit=0.0, qbins=False):
+                p_hdr=0.0, slog=False, fix_small=False, far_large=None, disp=False, p_linear=0.0, ljit=0.0, qbins=False, cont=False, ordered=False, pblur=0.0, sharpen=0.0):
     """xp: [B,2,S,S] (AiF 0..255, depth 0..255) on GPU -> stack [B,N,S,S] in [0,1], label [B,S,S] long.
     Per sample: all N blur levels in one convolution (kernels zero-padded to a common size), layers gathered."""
     B, _, S, _ = xp.shape
@@ -144,11 +144,28 @@ def synth_batch(xp, N, smin=0.4, smax=1.6, p_disk=0.5, rmax=20.0, gain=0.03, noi
             Bd = Bd.clamp(0, 1) ** (1 / 2.2)
         if hdr:
             aif_t[b, 0] = Bd[0]
-        dist = (q[b][None] - lev).abs()                                               # N(layers),S,S
-        layers = torch.gather(Bd, 0, dist)
+        if cont:   # continuous depth: radius s*|z - i| with the unquantized level z (focal planes at level centres)
+            dd = ((dep[b] * N / 256.0 - 0.5).clamp(0, N - 1)[None] - lev).abs()        # N(layers),S,S
+            d0 = dd.floor().long().clamp_(max=N - 1)
+            f = dd - d0
+            layers = torch.gather(Bd, 0, d0) * (1 - f) + torch.gather(Bd, 0, (d0 + 1).clamp(max=N - 1)) * f
+        else:
+            dist = (q[b][None] - lev).abs()                                           # N(layers),S,S
+            layers = torch.gather(Bd, 0, dist)
+        if sharpen > 0:   # ISP-like unsharp masking, same amount for all layers of a sample (after the optics)
+            a_ = random.uniform(0, sharpen)
+            if a_ > 0.01:
+                bl = F.avg_pool2d(F.pad(layers[None], (1, 1, 1, 1), mode='replicate'), 3, stride=1)[0]
+                layers = layers + a_ * (layers - bl)
+        if pblur > 0:   # capture-to-capture sharpness variation (registration resampling, ISP): Gaussian sigma ~ U[0, pblur] per image
+            sg = (torch.rand(N, device=dev) * pblur).clamp_min(1e-3)
+            tt = torch.arange(-2, 3, device=dev, dtype=torch.float32)
+            k1 = torch.exp(-tt[None] ** 2 / (2 * sg[:, None] ** 2)); k1 = k1 / k1.sum(1, keepdim=True)
+            layers = F.conv2d(F.pad(layers[None], (2, 2, 0, 0), mode='replicate'), k1.view(N, 1, 1, 5), groups=N)
+            layers = F.conv2d(F.pad(layers, (0, 0, 2, 2), mode='replicate'), k1.view(N, 1, 5, 1), groups=N)[0]
         g = 1 + (torch.rand(N, 1, 1, device=dev) * 2 - 1) * gain
         layers = (layers * g + torch.randn_like(layers) * random.uniform(0, noise)).clamp_(0, 1)
-        perm = torch.randperm(N, device=dev)                                          # level i -> position perm[i]
+        perm = torch.arange(N, device=dev) if ordered else torch.randperm(N, device=dev)   # level i -> position perm[i]
         out[b, perm] = layers
         lab[b] = perm[q[b]]
     if return_aif:
@@ -232,3 +249,28 @@ def jitter_layers(st, max_shift=0.75, max_scale=0.004):
     grid = F.affine_grid(theta, (B * N, 1, S, S), align_corners=False)
     out = F.grid_sample(st.reshape(B * N, 1, S, S), grid, mode='bilinear', padding_mode='border', align_corners=False)
     return out.reshape(B, N, S, S)
+
+
+@torch.no_grad()
+def contrast_weight(x, sigma=0.0, floor=0.0, cap=4.0, gamma=1.0):
+    """Per-pixel stack contrast (max - min over the N images), optionally Gaussian-smoothed, raised to gamma,
+    normalised to mean 1 per stack, plus a floor, clipped to cap. x: [B,N,H,W] -> [B,H,W]. Defaults = original weight."""
+    spread = (x.amax(1) - x.amin(1)).float()[:, None]
+    if sigma > 0:
+        r = int(3 * sigma + 0.5)
+        t = torch.arange(-r, r + 1, device=x.device, dtype=torch.float32)
+        k = torch.exp(-t ** 2 / (2 * sigma * sigma)); k = k / k.sum()
+        spread = F.conv2d(F.pad(spread, (r, r, 0, 0), mode='replicate'), k.view(1, 1, 1, -1))
+        spread = F.conv2d(F.pad(spread, (0, 0, r, r), mode='replicate'), k.view(1, 1, -1, 1))
+    sp = spread.clamp_min(0) ** gamma
+    w = sp / (sp.mean(dim=(2, 3), keepdim=True) + 1e-3)
+    return (floor + w).clamp(0, cap)[:, 0]
+
+
+@torch.no_grad()
+def intensity_dist(x, y):
+    """d[b,n,p] = |image_n - image_label| after removing the per-image gain and a 3x3 box filter. -> [B,N,H,W]"""
+    xs = F.avg_pool2d(F.pad(x, (1, 1, 1, 1), mode='replicate'), 3, stride=1)
+    xs = xs / (xs.mean(dim=(2, 3), keepdim=True) + 1e-3)
+    xl = torch.gather(xs, 1, y.unsqueeze(1))
+    return (xs - xl).abs()

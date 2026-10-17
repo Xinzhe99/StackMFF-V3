@@ -4,9 +4,9 @@ For each dataset and metric (default SSIM and PSNR):
   * Friedman test over all methods with complete per-image results, average ranks (1 = best);
   * Nemenyi critical difference at alpha = 0.05 (Demsar 2006);
   * Wilcoxon signed-rank test (two-sided) of REF against every other method, Holm correction across methods.
-Writes stats.md and stats.csv.
+Writes stats.md and stats.csv next to per_image.csv (the output folder of run_eval.py).
 
-  python stats.py --ref "StackMFF V3 (new)"      (default ref: StackMFF V4, as a placeholder)
+  python stats.py --dir <out_dir of run_eval.py> --ref "Ours" [--metrics SSIM PSNR VIF] [--exclude A B]
 """
 import argparse, csv, math, os
 from collections import defaultdict
@@ -21,6 +21,14 @@ Q05 = {2: 1.960, 3: 2.343, 4: 2.569, 5: 2.728, 6: 2.850, 7: 2.949, 8: 3.031, 9: 
        23: 3.616, 24: 3.637, 25: 3.658, 26: 3.678, 27: 3.696, 28: 3.714, 29: 3.732, 30: 3.749}
 
 
+def q_nemenyi(k):
+    """Table value for k <= 30; beyond, the studentized range quantile / sqrt(2) (agrees with the table to 1e-3)."""
+    if k in Q05:
+        return Q05[k]
+    from scipy.stats import studentized_range
+    return studentized_range.ppf(0.95, k, 1e6) / math.sqrt(2)
+
+
 def holm(p):
     order = np.argsort(p); m = len(p); adj = np.empty(m); run = 0.0
     for i, j in enumerate(order):
@@ -30,13 +38,13 @@ def holm(p):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--ref', default='StackMFF V4')
+    ap.add_argument('--dir', default=os.environ.get('STACKMFF_EVAL_OUT', 'eval_out'), help='folder with per_image.csv')
+    ap.add_argument('--ref', required=True, help='reference method (folder name)')
     ap.add_argument('--metrics', nargs='+', default=['SSIM', 'PSNR'])
-    ap.add_argument('--exclude', nargs='*', default=['StackMFF V4', 'StackMFF', 'Ours_H_soft', 'Ours_H_hard'],
-                    help='methods not shown in the paper (old trunks, superseded result files, non-selected runs)')
+    ap.add_argument('--exclude', nargs='*', default=[], help='methods to leave out of the comparison')
     a = ap.parse_args()
     data = defaultdict(dict)  # (ds, metric) -> method -> {scene: value}
-    for r in csv.DictReader(open(os.path.join(HERE, 'per_image.csv'))):
+    for r in csv.DictReader(open(os.path.join(a.dir, 'per_image.csv'))):
         if r['primary'] != 'True' or r['method'] in a.exclude:
             continue
         for k in a.metrics:
@@ -54,7 +62,7 @@ def main():
             ranks = np.array([st.rankdata(-row) for row in X])
             avg = ranks.mean(0)
             fr = st.friedmanchisquare(*X.T) if kk >= 3 else None
-            cd = Q05.get(kk, float('nan')) * math.sqrt(kk * (kk + 1) / (6.0 * n))
+            cd = q_nemenyi(kk) * math.sqrt(kk * (kk + 1) / (6.0 * n))
             L.append(f'## {ds} / {k}: n={n} images, k={kk} methods, Friedman p={fr.pvalue:.2e}, Nemenyi CD={cd:.2f}')
             L.append('')
             L.append('| method | mean | avg rank | Wilcoxon p (vs ref, Holm) | ref better on |')
@@ -81,8 +89,8 @@ def main():
                              'wilcoxon_holm_p_vs_ref': adj.get(m, ''), 'ref_better_frac': better.get(m, ''),
                              'friedman_p': fr.pvalue, 'nemenyi_cd': cd, 'n': n, 'k': kk})
             L.append('')
-    open(os.path.join(HERE, 'stats.md'), 'w').write('\n'.join(L) + '\n')
-    with open(os.path.join(HERE, 'stats.csv'), 'w', newline='') as f:
+    open(os.path.join(a.dir, 'stats.md'), 'w').write('\n'.join(L) + '\n')
+    with open(os.path.join(a.dir, 'stats.csv'), 'w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0])); w.writeheader(); [w.writerow(r) for r in rows]
     print('written stats.md')
 

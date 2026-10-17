@@ -1,88 +1,123 @@
 # -*- coding: utf-8 -*-
-"""Unit tests for StackMFFV3: shapes, permutation equivariance, training-step memory."""
+"""Unit tests for the final StackMFF V3 model: shapes, probabilities, permutation equivariance of the logits and order
+invariance of the fused images (hard and weighted fusion with two-scale inference and smoothing), parameter count,
+and (CUDA only) one training step in bf16 autocast. Random weights unless the released weights are present.
+
+  python tests/test_network.py        (or: python -m pytest tests)
+Runs on the CPU when no GPU is available (smaller inputs).
+"""
+import os
 import sys
-import time
+
 import torch
 import torch.nn.functional as F
 
-import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from stackmff_v3.network import StackMFFV3
+from stackmff_v3.model_io import DEFAULT_WEIGHTS, FINAL_ARGS, build, load_checkpoint  # noqa: E402
+from stackmff_v3.network import smooth_probs  # noqa: E402
 
 torch.backends.cuda.matmul.allow_tf32 = False
 torch.backends.cudnn.allow_tf32 = False
-torch.manual_seed(0)
-dev = torch.device('cuda:0')
-model = StackMFFV3().to(dev)
-fails = []
+DEV = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+SIZES = [(256, 256), (360, 640)] if DEV.type == 'cuda' else [(128, 128), (90, 150)]
+NS = [2, 7, 24] if DEV.type == 'cuda' else [2, 7, 13]
 
-print('=== (a) shapes ===')
-for N in [2, 7, 24]:
-    for (H, W) in [(256, 256), (360, 640)]:
-        x = torch.rand(2, N, H, W, device=dev)
-        model.train()
-        with torch.no_grad():
-            lg = model(x)
-        model.eval()
-        with torch.no_grad():
-            fused, focus = model(x)
-            fs, probs = model.fuse(x, 'soft')[0], model.forward_probs(x)
-        ok = (lg.shape == (2, N, H, W) and fused.shape == (2, 1, H, W) and focus.shape == (2, H, W)
-              and focus.dtype == torch.long and fs.shape == (2, 1, H, W)
-              and torch.allclose(probs.sum(1), torch.ones_like(probs[:, 0]), atol=1e-5))
-        print(f'N={N:2d} HxW={H}x{W}: logits{tuple(lg.shape)} fused{tuple(fused.shape)} '
-              f'focus{tuple(focus.shape)} soft{tuple(fs.shape)} -> {"PASS" if ok else "FAIL"}')
-        if not ok:
-            fails.append(f'shape N={N} {H}x{W}')
-        # hard fusion must equal gather from input
-        g = torch.gather(x, 1, focus.unsqueeze(1))
-        if not torch.equal(g, fused):
-            fails.append(f'hard gather mismatch N={N} {H}x{W}')
 
-print('=== (b) permutation equivariance over N (eval mode, fp32) ===')
-model.eval()
-for N in [2, 7, 24]:
-    for (H, W) in [(256, 256), (360, 640)]:
-        x = torch.rand(1, N, H, W, device=dev)
-        perm = torch.randperm(N, device=dev)
-        with torch.no_grad():
-            l1 = model.forward_logits(x)
-            l2 = model.forward_logits(x[:, perm])
-        err = (l2 - l1[:, perm]).abs().max().item()
-        scale = l1.abs().max().item()
-        ok = err < 1e-4
-        print(f'N={N:2d} HxW={H}x{W}: max|logits(x[perm]) - logits(x)[perm]| = {err:.3e} '
-              f'(logit scale {scale:.3f}) -> {"PASS" if ok else "FAIL"}')
-        if not ok:
-            fails.append(f'equivariance N={N} {H}x{W} err={err}')
+def make_model():
+    torch.manual_seed(0)
+    if os.path.exists(DEFAULT_WEIGHTS):
+        return load_checkpoint(DEFAULT_WEIGHTS, DEV)
+    return build(FINAL_ARGS).to(DEV).eval()
 
-print('=== (d) training-step peak GPU memory: batch 8, N=24, 256x256, bf16 autocast ===')
-model.train()
-opt = torch.optim.AdamW(model.parameters(), lr=1e-4)
-x = torch.rand(8, 24, 256, 256, device=dev)
-y = torch.randint(0, 24, (8, 256, 256), device=dev)
-torch.cuda.synchronize(); torch.cuda.empty_cache(); torch.cuda.reset_peak_memory_stats()
-base = torch.cuda.memory_allocated()
-times = []
-for it in range(4):
-    t0 = time.time()
+
+def test_param_count():
+    m = build(FINAL_ARGS)
+    n = sum(p.numel() for p in m.parameters())
+    assert n == 156172, n
+    assert m.single_scale and not m.fine_head and m.cur_K == 1 and tuple(m.ms_scales) == (1.0, 0.75)
+
+
+def test_shapes_and_probs():
+    m = make_model()
+    for N in NS:
+        for H, W in SIZES:
+            x = torch.rand(2, N, H, W, device=DEV)
+            with torch.no_grad():
+                lg = m.forward_logits(x)
+                fused, focus = m(x)
+                soft = m.fuse(x, 'soft')[0]
+                P = m.forward_probs(x, sigma=0.5)
+            assert lg.shape == (2, N, H, W) and fused.shape == (2, 1, H, W) and focus.shape == (2, H, W)
+            assert focus.dtype == torch.long and soft.shape == (2, 1, H, W) and P.shape == (2, N, H, W)
+            assert torch.allclose(P.sum(1), torch.ones_like(P[:, 0]), atol=1e-5)
+            assert torch.equal(torch.gather(x, 1, focus.unsqueeze(1)), fused)        # hard fusion copies inputs
+            assert (soft >= x.amin(1, keepdim=True) - 1e-6).all() and (soft <= x.amax(1, keepdim=True) + 1e-6).all()
+
+
+def test_equivariance_and_order_invariance():
+    """Exact in float64 (up to rounding); in float32 the deviations are rounding errors of the attention sums."""
+    m = make_model()
+    g = torch.Generator().manual_seed(1)
+    worst32 = worst64 = 0.0
+    for N in NS:
+        for H, W in SIZES:
+            x = torch.rand(1, N, H, W, generator=g).to(DEV)
+            perm = torch.randperm(N, generator=g).to(DEV)
+            with torch.no_grad():
+                l1, l2 = m.forward_logits(x), m.forward_logits(x[:, perm])
+                P1, P2 = m.forward_probs(x), m.forward_probs(x[:, perm])            # two scales (1, 0.75)
+                s1 = (smooth_probs(P1, 0.5) * x).sum(1)
+                s2 = (smooth_probs(P2, 0.5) * x[:, perm]).sum(1)
+            err = (l2 - l1[:, perm]).abs().max().item() / max(1.0, l1.abs().max().item())   # relative to the logit scale
+            worst32 = max(worst32, err)
+            assert err < 1e-4, (N, H, W, err)
+            assert (P2 - P1[:, perm]).abs().max().item() < 1e-4
+            assert (s2 - s1).abs().max().item() < 1e-4                                # weighted fusion: order-free
+            h1 = torch.gather(x, 1, P1.argmax(1, keepdim=True))
+            h2 = torch.gather(x[:, perm], 1, P2.argmax(1, keepdim=True))
+            assert (h1 != h2).float().mean().item() < 1e-3                            # hard selection (near-ties aside)
+    m64 = m.double()
+    for N in NS:
+        x = torch.rand(1, N, *SIZES[0], generator=g, dtype=torch.float64).to(DEV)
+        perm = torch.randperm(N, generator=g).to(DEV)
+        with torch.no_grad():
+            l1, l2 = m64.forward_logits(x), m64.forward_logits(x[:, perm])
+        worst64 = max(worst64, (l2 - l1[:, perm]).abs().max().item())
+    assert worst64 < 1e-9, worst64
+    print(f'max deviation of logits(x[perm]) from logits(x)[perm]: float32 {worst32:.1e} (relative), '
+          f'float64 {worst64:.1e}')
+
+
+def test_train_step():
+    if DEV.type != 'cuda':
+        print('skipped (no GPU)')
+        return
+    m = build(FINAL_ARGS).to(DEV).train()
+    opt = torch.optim.AdamW(m.parameters(), lr=1e-4)
+    x = torch.rand(8, 24, 256, 256, device=DEV)
+    y = torch.randint(0, 24, (8, 256, 256), device=DEV)
+    torch.cuda.reset_peak_memory_stats()
     with torch.autocast('cuda', dtype=torch.bfloat16):
-        logits = model(x)
-        loss = F.cross_entropy(logits.float(), y)
+        logits = m(x)
+    loss = F.cross_entropy(logits.float(), y)
     opt.zero_grad(set_to_none=True)
     loss.backward()
-    torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
     opt.step()
-    torch.cuda.synchronize()
-    times.append(time.time() - t0)
-peak = torch.cuda.max_memory_allocated()
-rel_grad = model.stage1[0].intra_a.rel_pos_bias_table.grad
-ok = torch.isfinite(loss).item() and rel_grad is not None and torch.isfinite(rel_grad).all().item()
-print(f'loss={loss.item():.4f} finite grads incl. rel-pos table={ok}')
-print(f'base allocated={base/2**30:.3f} GiB, peak allocated={peak/2**30:.3f} GiB, '
-      f'step time (last 3 avg, incl. first warm-up excluded)={sum(times[1:])/3:.3f} s')
-if not ok:
-    fails.append('grad check')
+    g = m.u4a.intra_a.rel_pos_bias_table.grad
+    assert torch.isfinite(loss).item() and g is not None and torch.isfinite(g).all().item()
+    print(f'train step OK, peak memory {torch.cuda.max_memory_allocated() / 2 ** 30:.2f} GiB (batch 8, N=24, 256x256)')
 
-print('=== SUMMARY ===')
-print('ALL PASS' if not fails else f'FAILURES: {fails}')
+
+if __name__ == '__main__':
+    torch.set_num_threads(min(4, torch.get_num_threads()))
+    print(f'device {DEV}, weights {"released" if os.path.exists(DEFAULT_WEIGHTS) else "random"}')
+    fails = []
+    for name, fn in [(k, v) for k, v in list(globals().items()) if k.startswith('test_')]:
+        try:
+            fn()
+            print(f'{name}: PASS')
+        except AssertionError as e:
+            fails.append(name)
+            print(f'{name}: FAIL {e}')
+    print('ALL PASS' if not fails else f'FAILURES: {fails}')
+    sys.exit(1 if fails else 0)

@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 """Cache (grey AiF, depth) pairs of the training sources, resized as a whole to 320x320 (like the original
 whole-image resize policy), for on-the-fly stack synthesis during training.
-  python make_cache_aif.py --out cache_aif320 --workers 24
+  python tools/make_cache_aif.py --data_root <stackmffv3_training_datasets> --out data/cache_aif320 --workers 24
+Input: <data_root>/<ds>/<TR|TE>/AiF/<name>.* and <data_root>/<ds>/<TR|TE>/depth/<name>.png (8-bit depth).
 """
 import argparse, os, glob
 from multiprocessing import Pool
 import cv2, numpy as np
 
-ROOT = '/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/stackmffv3_training_datasets'
+ROOT = os.environ.get('STACKMFF_TRAIN_ROOT', 'data/stackmffv3_training_datasets')
 S = 320
 
 
@@ -26,14 +27,15 @@ def job(a):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--out', required=True); ap.add_argument('--workers', type=int, default=24)
+    ap.add_argument('--data_root', default=ROOT)
     a = ap.parse_args()
     jobs = []
     for ds in ['NYU-V2', 'DUTS', 'DIODE', 'Cityscapes', 'ADE']:
         for sp in ['TR', 'TE']:
             od = os.path.join(a.out, ds, sp); os.makedirs(od, exist_ok=True)
-            for f in glob.glob(os.path.join(ROOT, ds, sp, 'AiF', '*')):
+            for f in glob.glob(os.path.join(a.data_root, ds, sp, 'AiF', '*')):
                 n = os.path.splitext(os.path.basename(f))[0]
-                dp = os.path.join(ROOT, ds, sp, 'depth', n + '.png')
+                dp = os.path.join(a.data_root, ds, sp, 'depth', n + '.png')
                 if os.path.exists(dp):
                     jobs.append((f, dp, os.path.join(od, n + '.npz')))
     print('jobs', len(jobs), flush=True)

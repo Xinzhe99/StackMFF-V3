@@ -2,17 +2,18 @@
 """Effect of spatially smoothing the layer probabilities before weighted fusion (Gaussian, sigma in pixels,
 applied to each P_n then renormalised). Benchmarks: old convention as eval_epochs.py. Also writes the colour
 fusion of a few real stacks for visual inspection.
-  python eval_smooth.py --ckpt ... --sigmas 0 1 2 4 --out smooth.csv --real_root real_eval/eval_subsets --real_ids WBC/w00163
+  python tools/eval_smooth.py --sigmas 0 0.5 1 2 --out smooth.csv --bench_root <benchmarks>        # released weights
+  python tools/eval_smooth.py --run_dir runs/final --ckpt epoch_2.pth --sigmas 0 0.5 1 --out smooth.csv --bench_root <benchmarks>
 """
 import argparse, csv, os, sys
 import cv2, numpy as np, torch
 import torch.nn.functional as F
 from skimage.metrics import structural_similarity, peak_signal_noise_ratio
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from stackmff_v3.network import StackMFFV3
+from stackmff_v3.model_io import DEFAULT_WEIGHTS, load
 from predict_benchmark import list_stacks, index_gt, read_gray, DEFAULT_DATASETS, pad_to_64
 
-ROOT = '/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/dff_and_mff'
+ROOT = os.environ.get('STACKMFF_BENCH_ROOT', 'data/benchmarks')
 
 
 def gauss(P, s):
@@ -28,18 +29,19 @@ def gauss(P, s):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--ckpt', required=True); ap.add_argument('--out', required=True)
+    ap.add_argument('--ckpt', default=DEFAULT_WEIGHTS); ap.add_argument('--out', required=True)
+    ap.add_argument('--bench_root', default=ROOT, help='<bench_root>/<Dataset>/{image stack,AiF}')
     ap.add_argument('--sigmas', type=float, nargs='+', default=[0, 1, 2, 4])
     ap.add_argument('--real_root'); ap.add_argument('--real_ids', nargs='*', default=[])
+    ap.add_argument('--run_dir', default='')
     a = ap.parse_args()
-    dev = torch.device('cuda:0')
-    m = StackMFFV3(C1=48, C2=96, heads=(3, 6), inter_pool=2).to(dev).eval()
-    sd = torch.load(a.ckpt, map_location='cpu'); m.load_state_dict(sd.get('model', sd))
+    dev = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    m = load(a.run_dir, a.ckpt, dev)
     rows = []
     acc = {s: {ds: [[], []] for ds in DEFAULT_DATASETS} for s in a.sigmas}
     for ds in DEFAULT_DATASETS:
-        gts = index_gt(os.path.join(ROOT, ds, 'AiF'))
-        for n, paths in list_stacks(os.path.join(ROOT, ds, 'image stack')):
+        gts = index_gt(os.path.join(a.bench_root, ds, 'AiF'))
+        for n, paths in list_stacks(os.path.join(a.bench_root, ds, 'image stack')):
             if n not in gts:
                 continue
             st = np.stack([read_gray(p) for p in paths]).astype(np.float32); gt = read_gray(gts[n])
