@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="StackMFF">
+  <title>StackMFF</title>
+  <rect width="128" height="128" rx="28" fill="#FFFFFF" stroke="#244A68" stroke-width="4"/>
+  <g stroke-linejoin="round">
+    <path d="M26 40 h76 a6 6 0 0 1 0 12 h-76 a6 6 0 0 1 0 -12 z" fill="#244A68" opacity="0.30"/>
+    <path d="M22 58 h84 a6 6 0 0 1 0 12 h-84 a6 6 0 0 1 0 -12 z" fill="#244A68"/>
+    <path d="M26 76 h76 a6 6 0 0 1 0 12 h-76 a6 6 0 0 1 0 -12 z" fill="#244A68" opacity="0.30"/>
+  </g>
+  <circle cx="64" cy="64" r="23" fill="none" stroke="#B23A48" stroke-width="3.5"/>
+  <circle cx="64" cy="64" r="6.5" fill="#B23A48"/>
+</svg>

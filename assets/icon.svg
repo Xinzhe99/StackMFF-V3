@@ -1,14 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 160" width="180" height="160" role="img" aria-label="StackMFF V3">
-  <title>StackMFF V3</title>
-  <path d="M58.00,68.00 L142.00,68.00 L168.00,14.00 L84.00,14.00 Z" fill="#DBE9F2" stroke="#244A68" stroke-opacity="0.75" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M47.00,89.00 L131.00,89.00 L157.00,35.00 L73.00,35.00 Z" fill="#DBE9F2" stroke="#244A68" stroke-opacity="0.75" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M36.00,110.00 L120.00,110.00 L146.00,56.00 L62.00,56.00 Z" fill="#ECD5DD" stroke="#B23A48" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M25.00,131.00 L109.00,131.00 L135.00,77.00 L51.00,77.00 Z" fill="#DBE9F2" stroke="#244A68" stroke-opacity="0.75" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M14.00,152.00 L98.00,152.00 L124.00,98.00 L40.00,98.00 Z" fill="#DBE9F2" stroke="#244A68" stroke-opacity="0.75" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M88.82,121.10 L146.02,11.90" stroke="#244A68" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
-  <circle cx="95.42" cy="108.50" r="3.2" fill="#FFFFFF" stroke="#244A68" stroke-width="1.6"/>
-  <circle cx="106.42" cy="87.50" r="3.2" fill="#FFFFFF" stroke="#244A68" stroke-width="1.6"/>
-  <path d="M109.28,72.00 L120.28,72.00 L125.57,61.00 L114.57,61.00 Z" fill="#B23A48"/>
-  <circle cx="128.42" cy="45.50" r="3.2" fill="#FFFFFF" stroke="#244A68" stroke-width="1.6"/>
-  <circle cx="139.42" cy="24.50" r="3.2" fill="#FFFFFF" stroke="#244A68" stroke-width="1.6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="StackMFF">
+  <title>StackMFF</title>
+  <rect width="128" height="128" rx="28" fill="#244A68"/>
+  <!-- three focal planes: the middle one is the plane that is in focus (rose) -->
+  <g stroke-linejoin="round">
+    <path d="M26 40 h76 a6 6 0 0 1 0 12 h-76 a6 6 0 0 1 0 -12 z" fill="#DBE9F2" opacity="0.55"/>
+    <path d="M22 58 h84 a6 6 0 0 1 0 12 h-84 a6 6 0 0 1 0 -12 z" fill="#FFFFFF"/>
+    <path d="M26 76 h76 a6 6 0 0 1 0 12 h-76 a6 6 0 0 1 0 -12 z" fill="#DBE9F2" opacity="0.55"/>
+  </g>
+  <!-- the fused pixel: one focus decision taken through the stack -->
+  <circle cx="64" cy="64" r="23" fill="none" stroke="#B23A48" stroke-width="3.5"/>
+  <circle cx="64" cy="64" r="6.5" fill="#B23A48"/>
 </svg>
