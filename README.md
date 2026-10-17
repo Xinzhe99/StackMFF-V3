@@ -23,7 +23,8 @@ Official PyTorch implementation of *StackMFF V3: Modernizing Multi-Focus Image S
 ## News
 
 - **2026.10**: Code, pretrained weights and the evaluation toolkit of StackMFF V3 are released. The paper (*StackMFF V3: Modernizing Multi-Focus Image Stack Fusion*) accompanies this release.
-- **Coming soon**: fused results of all four benchmarks as release assets, and StackMFF V3 in [OpenFocus](https://github.com/Xinzhe99/OpenFocus).
+- **2026.10**: Fused results of all four benchmarks are released as `stackmff_v3_fused_results.tar` (412 PNGs) in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0).
+- **Coming soon**: StackMFF V3 in [OpenFocus](https://github.com/Xinzhe99/OpenFocus).
 - This repository replaces the earlier StackMFF V3 and StackMFF V4 code bases, now archived as [StackMFF-V3-legacy](https://github.com/Xinzhe99/StackMFF-V3-legacy) and [StackMFF-V4-legacy](https://github.com/Xinzhe99/StackMFF-V4-legacy).
 
 <div align="center">
@@ -274,7 +275,7 @@ The entry below will be updated with the final bibliographic data once the paper
 ```bibtex
 @article{xie2026stackmffv3,
   title   = {StackMFF V3: Modernizing Multi-Focus Image Stack Fusion},
-  author  = {Xie, Xinzhe and Guo, Buyu and Li, Bolin and He, Shuangyan and Gu, Yanzhen and Jiang, Qingyan and Liu, Tao and Li, Peiliang},
+  author  = {Xie, Xinzhe and Guo, Buyu and Li, Bolin and He, Shuangyan and Gu, Yanzhen and Jiang, Qingyan and Li, Peiliang},
   note    = {preprint / under review},
   year    = {2026}
 }
