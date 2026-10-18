@@ -1,0 +1,85 @@
+=== StackMFF-V3 training 2026-10-17 12:03:49 ===
+args: {"out_dir": "/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/v3merge_work/runs/final_s1nh", "datasets_root": "/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/stackmffv3_training_datasets", "train_datasets": ["NYU-V2", "DUTS", "DIODE", "Cityscapes", "ADE"], "val_datasets": ["NYU-V2", "DUTS", "DIODE", "Cityscapes", "ADE"], "subset_fraction_train": 1.0, "subset_fraction_val": 0.05, "val_seed": 0, "training_image_size": 256, "batch_size": 8, "num_epochs": 6, "lr": 0.0005, "min_lr": 1e-06, "weight_decay": 0.05, "warmup_epochs": 1.0, "grad_clip": 1.0, "num_workers": 10, "val_workers": 4, "seed": 0, "C1": 48, "C2": 96, "rounds": [1, 2, 1], "window": 8, "mlp_ratio": 2.0, "inter_pool": 2, "bench_root": "/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/datasets/dff_and_mff", "bench_datasets": ["Mobile Depth", "FlyingThings3D", "Middlebury", "Road-MF"], "no_bench": false, "resume": false, "cache_root": "/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/v3merge_work/cache256", "scale_aug": 1.0, "heads": [3, 6], "intra": "attn", "layer_pos": false, "loss": "ce", "arch": "loop", "kmax": 1, "k_eval": 1, "share_fine": false, "single_scale": true, "margin": 0.0, "synth_root": "/media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/v3merge_work/cache_aif320", "synth_smin": 0.4, "synth_smax": 1.6, "synth_pdisk": 0.5, "synth_occ": false, "synth_zoom": false, "synth_jitter": false, "synth_hdr": 0.5, "synth_slog": false, "synth_fix_small": false, "synth_disp": false, "synth_nmax": 24, "ema": 0.999, "fine_head": false, "rec_w": 0.0, "synth_plin": 0.0, "synth_ljit": 0.0, "synth_cont": 0, "synth_ordered": 0, "train_raw": 0, "subset_seed": -1, "synth_pblur": 0.0, "synth_qbins": 0, "w_sigma": 0.0, "w_floor": 0.0, "w_cap": 4.0, "w_gamma": 1.0, "soft_tau": 0.0, "lam_exp": 0.0, "sharpen": 0.0, "w_spread": 1, "label_smooth": 0.0, "log_every": 1000, "dry_run_steps": 0}
+world size 2
+val NYU-V2: 5 stacks
+val DUTS: 249 stacks
+val DIODE: 38 stacks
+val Cityscapes: 76 stacks
+val ADE: 100 stacks
+train stacks 60288 | steps/epoch per GPU 3773 | total steps 22638 | global batch 16
+model params 156172 (0.156 M)
+  ep 0 it 1000/3773 loss 0.6496 avg 1.5431 lr 1.33e-04 5.42 it/s data_wait 0.000s/it
+  ep 0 it 2000/3773 loss 0.8930 avg 1.0968 lr 2.65e-04 4.29 it/s data_wait 0.000s/it
+  ep 0 it 3000/3773 loss 0.4301 avg 0.9067 lr 3.98e-04 3.98 it/s data_wait 0.000s/it
+[epoch 0] train_loss 0.8192 | val CE 0.6125 acc 0.8245 | NYU-V2 0.8580 DUTS 0.8529 DIODE 0.7612 Cityscapes 0.7797 ADE 0.8103 | train 15.2 min
+[bench] Mobile Depth    n=  11 PSNR=39.046 SSIM=0.9804 sec/stack=0.068 missing_gt=0 size_mismatch=0
+[bench] FlyingThings3D  n= 100 PSNR=33.782 SSIM=0.9644 sec/stack=0.079 missing_gt=0 size_mismatch=0
+[bench] Middlebury      n=  15 PSNR=32.633 SSIM=0.9550 sec/stack=0.052 missing_gt=0 size_mismatch=0
+[bench] Road-MF         n=  80 PSNR=38.751 SSIM=0.9938 sec/stack=0.083 missing_gt=0 size_mismatch=0
+[bench] ALL n=206 mean-of-datasets PSNR=36.053 SSIM=0.9734
+  bench mean SSIM 0.97341 PSNR 36.053 | Mobile Depth: 0.9804/39.05 FlyingThings3D: 0.9644/33.78 Middlebury: 0.9550/32.63 Road-MF: 0.9938/38.75
+  new best_bench.pth (epoch 0)
+  bench took 0.9 min
+[epoch 0] done in 16.2 min | best val acc 0.8245 @ epoch 0
+  ep 1 it 1000/3773 loss 0.2858 avg 0.4091 lr 4.97e-04 5.49 it/s data_wait 0.000s/it
+  ep 1 it 2000/3773 loss 0.3223 avg 0.3820 lr 4.86e-04 5.45 it/s data_wait 0.000s/it
+  ep 1 it 3000/3773 loss 0.1671 avg 0.3629 lr 4.70e-04 5.45 it/s data_wait 0.000s/it
+[epoch 1] train_loss 0.3502 | val CE 0.4010 acc 0.8730 | NYU-V2 0.8953 DUTS 0.9100 DIODE 0.8019 Cityscapes 0.8074 ADE 0.8566 | train 11.5 min
+[bench] Mobile Depth    n=  11 PSNR=38.138 SSIM=0.9762 sec/stack=0.065 missing_gt=0 size_mismatch=0
+[bench] FlyingThings3D  n= 100 PSNR=34.371 SSIM=0.9658 sec/stack=0.079 missing_gt=0 size_mismatch=0
+[bench] Middlebury      n=  15 PSNR=33.315 SSIM=0.9576 sec/stack=0.051 missing_gt=0 size_mismatch=0
+[bench] Road-MF         n=  80 PSNR=43.546 SSIM=0.9977 sec/stack=0.122 missing_gt=0 size_mismatch=0
+[bench] ALL n=206 mean-of-datasets PSNR=37.342 SSIM=0.9743
+  bench mean SSIM 0.97431 PSNR 37.342 | Mobile Depth: 0.9762/38.14 FlyingThings3D: 0.9658/34.37 Middlebury: 0.9576/33.31 Road-MF: 0.9977/43.55
+  new best_bench.pth (epoch 1)
+  bench took 0.9 min
+[epoch 1] done in 12.5 min | best val acc 0.8730 @ epoch 1
+  ep 2 it 1000/3773 loss 0.1704 avg 0.2939 lr 4.25e-04 4.03 it/s data_wait 0.000s/it
+  ep 2 it 2000/3773 loss 0.0880 avg 0.2853 lr 3.93e-04 4.03 it/s data_wait 0.000s/it
+  ep 2 it 3000/3773 loss 0.0252 avg 0.2799 lr 3.57e-04 4.02 it/s data_wait 0.000s/it
+[epoch 2] train_loss 0.2751 | val CE 0.3782 acc 0.8783 | NYU-V2 0.8992 DUTS 0.9179 DIODE 0.8021 Cityscapes 0.8071 ADE 0.8619 | train 15.3 min
+[bench] Mobile Depth    n=  11 PSNR=37.883 SSIM=0.9739 sec/stack=0.065 missing_gt=0 size_mismatch=0
+[bench] FlyingThings3D  n= 100 PSNR=34.602 SSIM=0.9665 sec/stack=0.079 missing_gt=0 size_mismatch=0
+[bench] Middlebury      n=  15 PSNR=33.464 SSIM=0.9580 sec/stack=0.051 missing_gt=0 size_mismatch=0
+[bench] Road-MF         n=  80 PSNR=46.533 SSIM=0.9985 sec/stack=0.083 missing_gt=0 size_mismatch=0
+[bench] ALL n=206 mean-of-datasets PSNR=38.121 SSIM=0.9742
+  bench mean SSIM 0.97423 PSNR 38.121 | Mobile Depth: 0.9739/37.88 FlyingThings3D: 0.9665/34.60 Middlebury: 0.9580/33.46 Road-MF: 0.9985/46.53
+  bench took 0.9 min
+[epoch 2] done in 16.2 min | best val acc 0.8783 @ epoch 2
+  ep 3 it 1000/3773 loss 0.3372 avg 0.2452 lr 2.87e-04 5.32 it/s data_wait 0.000s/it
+  ep 3 it 2000/3773 loss 0.2839 avg 0.2425 lr 2.46e-04 5.26 it/s data_wait 0.000s/it
+  ep 3 it 3000/3773 loss 0.2055 avg 0.2365 lr 2.05e-04 5.31 it/s data_wait 0.000s/it
+[epoch 3] train_loss 0.2322 | val CE 0.3924 acc 0.8684 | NYU-V2 0.9004 DUTS 0.9213 DIODE 0.7825 Cityscapes 0.7663 ADE 0.8452 | train 11.7 min
+[bench] Mobile Depth    n=  11 PSNR=37.633 SSIM=0.9713 sec/stack=0.065 missing_gt=0 size_mismatch=0
+[bench] FlyingThings3D  n= 100 PSNR=34.770 SSIM=0.9669 sec/stack=0.079 missing_gt=0 size_mismatch=0
+[bench] Middlebury      n=  15 PSNR=33.530 SSIM=0.9582 sec/stack=0.051 missing_gt=0 size_mismatch=0
+[bench] Road-MF         n=  80 PSNR=47.445 SSIM=0.9986 sec/stack=0.083 missing_gt=0 size_mismatch=0
+[bench] ALL n=206 mean-of-datasets PSNR=38.345 SSIM=0.9738
+  bench mean SSIM 0.97376 PSNR 38.345 | Mobile Depth: 0.9713/37.63 FlyingThings3D: 0.9669/34.77 Middlebury: 0.9582/33.53 Road-MF: 0.9986/47.45
+  bench took 0.9 min
+[epoch 3] done in 12.7 min | best val acc 0.8783 @ epoch 2
+  ep 4 it 1000/3773 loss 0.1011 avg 0.2157 lr 1.35e-04 5.47 it/s data_wait 0.000s/it
+  ep 4 it 2000/3773 loss 0.1958 avg 0.2110 lr 1.00e-04 5.46 it/s data_wait 0.000s/it
+  ep 4 it 3000/3773 loss 0.2521 avg 0.2088 lr 6.92e-05 5.45 it/s data_wait 0.000s/it
+[epoch 4] train_loss 0.2069 | val CE 0.4081 acc 0.8563 | NYU-V2 0.8962 DUTS 0.9221 DIODE 0.7463 Cityscapes 0.7299 ADE 0.8284 | train 11.5 min
+[bench] Mobile Depth    n=  11 PSNR=37.577 SSIM=0.9707 sec/stack=0.065 missing_gt=0 size_mismatch=0
+[bench] FlyingThings3D  n= 100 PSNR=34.819 SSIM=0.9669 sec/stack=0.079 missing_gt=0 size_mismatch=0
+[bench] Middlebury      n=  15 PSNR=33.563 SSIM=0.9582 sec/stack=0.051 missing_gt=0 size_mismatch=0
+[bench] Road-MF         n=  80 PSNR=47.766 SSIM=0.9987 sec/stack=0.083 missing_gt=0 size_mismatch=0
+[bench] ALL n=206 mean-of-datasets PSNR=38.431 SSIM=0.9736
+  bench mean SSIM 0.97362 PSNR 38.431 | Mobile Depth: 0.9707/37.58 FlyingThings3D: 0.9669/34.82 Middlebury: 0.9582/33.56 Road-MF: 0.9987/47.77
+  bench took 0.9 min
+[epoch 4] done in 12.5 min | best val acc 0.8783 @ epoch 2
+  ep 5 it 1000/3773 loss 0.1485 avg 0.2053 lr 2.72e-05 5.45 it/s data_wait 0.000s/it
+  ep 5 it 2000/3773 loss 0.1102 avg 0.2005 lr 1.18e-05 5.48 it/s data_wait 0.000s/it
+  ep 5 it 3000/3773 loss 0.1377 avg 0.1993 lr 3.07e-06 5.47 it/s data_wait 0.000s/it
+[epoch 5] train_loss 0.1987 | val CE 0.4171 acc 0.8510 | NYU-V2 0.8973 DUTS 0.9213 DIODE 0.7317 Cityscapes 0.7145 ADE 0.8225 | train 11.5 min
+[bench] Mobile Depth    n=  11 PSNR=37.540 SSIM=0.9703 sec/stack=0.065 missing_gt=0 size_mismatch=0
+[bench] FlyingThings3D  n= 100 PSNR=34.853 SSIM=0.9669 sec/stack=0.079 missing_gt=0 size_mismatch=0
+[bench] Middlebury      n=  15 PSNR=33.593 SSIM=0.9583 sec/stack=0.051 missing_gt=0 size_mismatch=0
+[bench] Road-MF         n=  80 PSNR=47.862 SSIM=0.9987 sec/stack=0.083 missing_gt=0 size_mismatch=0
+[bench] ALL n=206 mean-of-datasets PSNR=38.462 SSIM=0.9736
+  bench mean SSIM 0.97356 PSNR 38.462 | Mobile Depth: 0.9703/37.54 FlyingThings3D: 0.9669/34.85 Middlebury: 0.9583/33.59 Road-MF: 0.9987/47.86
+  bench took 0.8 min
+[epoch 5] done in 12.4 min | best val acc 0.8783 @ epoch 2
+=== finished. best epoch 2 (val acc 0.8783) -> /media/user/68fdd01e-c642-4deb-9661-23b76592afb1/xxz/v3merge_work/runs/final_s1nh/model_save/best_val.pth

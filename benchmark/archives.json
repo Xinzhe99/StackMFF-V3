@@ -1,0 +1,269 @@
+{
+  "snapshot": "2026-10-18",
+  "data_release": "https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0",
+  "archives": [
+    {
+      "name": "comparison_spatial_outputs.tar",
+      "size": 735088640,
+      "sha256": "a1e8f0febe9934d25c256c5e457f89380d578d8138dacb5ed0725b329682d6e8",
+      "images": 1236,
+      "parts": [
+        {
+          "name": "comparison_spatial_outputs.tar.part001",
+          "size": 134217728,
+          "sha256": "4bf95d659a32f5e231701c2378636be76e41bdc25a18579efe50b9ce0695bebc",
+          "id": 653772760,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_spatial_outputs.tar.part001"
+        },
+        {
+          "name": "comparison_spatial_outputs.tar.part002",
+          "size": 134217728,
+          "sha256": "7814f0a03680aa5735d2b09293312c5ca62fd9309c7b1ccbd8725c62054abd52",
+          "id": 653774782,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_spatial_outputs.tar.part002"
+        },
+        {
+          "name": "comparison_spatial_outputs.tar.part003",
+          "size": 134217728,
+          "sha256": "2318a35482fe0555b35e58800d0d5c2f4ac5399098f85ba90f02ca61b6057d27",
+          "id": 653777097,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_spatial_outputs.tar.part003"
+        },
+        {
+          "name": "comparison_spatial_outputs.tar.part004",
+          "size": 134217728,
+          "sha256": "79b1ab115bb4da1fe6198666e5db7fc522937b331a8418b3a0ffc057992328e5",
+          "id": 653780749,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_spatial_outputs.tar.part004"
+        },
+        {
+          "name": "comparison_spatial_outputs.tar.part005",
+          "size": 134217728,
+          "sha256": "760e8820d7f68d8ccea3236b5aa6ff093ddb6f65084199ce4af7e7079edf40fb",
+          "id": 653782941,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_spatial_outputs.tar.part005"
+        },
+        {
+          "name": "comparison_spatial_outputs.tar.part006",
+          "size": 64000000,
+          "sha256": "5b4fac45cde246d3aeb19d7266b49e9d9e84cd511678d8a58538b5176197c075",
+          "id": 653785200,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_spatial_outputs.tar.part006"
+        }
+      ],
+      "group": "spatial"
+    },
+    {
+      "name": "comparison_transform_outputs.tar",
+      "size": 64512000,
+      "sha256": "2cdf740225b5bdd274cfbf86fa15bda34324d4138dc740b51328b6906ce13691",
+      "images": 1030,
+      "download": {
+        "name": "comparison_transform_outputs.tar",
+        "size": 64512000,
+        "sha256": "2cdf740225b5bdd274cfbf86fa15bda34324d4138dc740b51328b6906ce13691",
+        "id": 653724240,
+        "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_transform_outputs.tar"
+      },
+      "group": "transform"
+    },
+    {
+      "name": "comparison_pairwise_outputs.tar",
+      "size": 1657128960,
+      "sha256": "ac9397d7483b017bb940c117b15e5a032fc5f94e0bb8bbaeb3387d1845f5f1c6",
+      "images": 2936,
+      "parts": [
+        {
+          "name": "comparison_pairwise_outputs.tar.part001",
+          "size": 134217728,
+          "sha256": "da2acedde7fa33275f0ee43b435db0dcaa0f899de679b2424e007eb6edf0a946",
+          "id": 653776057,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part001"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part002",
+          "size": 134217728,
+          "sha256": "e72c08574f6a1d03f4f5162a65faff4a3c6404bf467db164ca4811c4ecd342d6",
+          "id": 653776704,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part002"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part003",
+          "size": 134217728,
+          "sha256": "218e7cfa0bc71071b662885074101f050b898c198138c01ee3bc403a5b15a8cb",
+          "id": 653777282,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part003"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part004",
+          "size": 134217728,
+          "sha256": "a6f9830f176bb8ae5cec9892e5288ef549c4513400fb20fcf58a8c437dcb0d88",
+          "id": 653777958,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part004"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part005",
+          "size": 134217728,
+          "sha256": "fa72657e4676220580d2d30d6227b1837bbcb1c630f0d59415bd4766cf00fe1e",
+          "id": 653778913,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part005"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part006",
+          "size": 134217728,
+          "sha256": "59940fd2e841eaa01305403b1a9165ce3d18b22d8114f0c9021b1c2e08d518e6",
+          "id": 653779447,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part006"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part007",
+          "size": 134217728,
+          "sha256": "9b947f1a60d98360e8c94646b659a1e2ad2f899d749b8ad18ad4998353f0f41e",
+          "id": 653788748,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part007"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part008",
+          "size": 134217728,
+          "sha256": "e9fb9a2dcdb4864c5f9241475b969f06445546a82ee05e22bcc10b22870edfe1",
+          "id": 653789319,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part008"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part009",
+          "size": 134217728,
+          "sha256": "40f5f810f8482abe0655ad316b231888f4399285d768bd1507e52ae81cb7c74b",
+          "id": 653790093,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part009"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part010",
+          "size": 134217728,
+          "sha256": "8477652889d96a3836c13424ea5c8c2f923f3337dc5b03cf96beafbce23a436c",
+          "id": 653790881,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part010"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part011",
+          "size": 134217728,
+          "sha256": "757af460b23ed227f9006034ca2037ef0cc81aeb928cc4da9d13b94b461a339f",
+          "id": 653791618,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part011"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part012",
+          "size": 134217728,
+          "sha256": "7282c8d18463e7e90876e7b49844db0ed3e202a87ec04b237f56691c2cc26fd2",
+          "id": 653792338,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part012"
+        },
+        {
+          "name": "comparison_pairwise_outputs.tar.part013",
+          "size": 46516224,
+          "sha256": "add17556867a5bf4660530d63ecdfb5acebd30b4ba268c034a70f8b432413de1",
+          "id": 653792734,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_pairwise_outputs.tar.part013"
+        }
+      ],
+      "group": "pairwise"
+    },
+    {
+      "name": "comparison_commercial_outputs.tar",
+      "size": 209100800,
+      "sha256": "b7457c1a2b3430615c1016c5d5708a5fe8ce4b9061f8b7c2a9127a2d07042b29",
+      "images": 1030,
+      "download": {
+        "name": "comparison_commercial_outputs.tar",
+        "size": 209100800,
+        "sha256": "b7457c1a2b3430615c1016c5d5708a5fe8ce4b9061f8b7c2a9127a2d07042b29",
+        "id": 653731513,
+        "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_commercial_outputs.tar"
+      },
+      "group": "commercial"
+    },
+    {
+      "name": "comparison_native_outputs.tar",
+      "size": 421713920,
+      "sha256": "0b8876accf0e95d6da2fddf14661083b8d00db0536bc3ff018341f29d4c3d669",
+      "images": 618,
+      "parts": [
+        {
+          "name": "comparison_native_outputs.tar.part001",
+          "size": 134217728,
+          "sha256": "7598079483e4f5f69d0602bf4fd90b660f5918530d0974cb38d95996e3801e4b",
+          "id": 653773642,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_native_outputs.tar.part001"
+        },
+        {
+          "name": "comparison_native_outputs.tar.part002",
+          "size": 134217728,
+          "sha256": "dfcb1c27ae2682fdddae924bf3515568ea65c155d6950f492483acec32b0b71d",
+          "id": 653774228,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_native_outputs.tar.part002"
+        },
+        {
+          "name": "comparison_native_outputs.tar.part003",
+          "size": 134217728,
+          "sha256": "5eaab6d80a51df29d35be682ed598739d0ce7e93611bc68934fd3f9e19ee1d27",
+          "id": 653775286,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_native_outputs.tar.part003"
+        },
+        {
+          "name": "comparison_native_outputs.tar.part004",
+          "size": 19060736,
+          "sha256": "6d83a153d5e72fa87d2f065eb8f569cf4da66db32f85f8c64792c34d84524b9d",
+          "id": 653775804,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_native_outputs.tar.part004"
+        }
+      ],
+      "group": "native"
+    },
+    {
+      "name": "comparison_real_registered_fixed_outputs.tar",
+      "size": 346234880,
+      "sha256": "3b5d6d2f6b8735bd5b3c49cef21c9752ca16902afd81b6601d95af87f11e49eb",
+      "images": 2170,
+      "parts": [
+        {
+          "name": "comparison_real_registered_fixed_outputs.tar.part001",
+          "size": 134217728,
+          "sha256": "235b86df18eced376524b4aed2bc93e5302afdd408a687a50e8d01cedec53c0d",
+          "id": 653786766,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_real_registered_fixed_outputs.tar.part001"
+        },
+        {
+          "name": "comparison_real_registered_fixed_outputs.tar.part002",
+          "size": 134217728,
+          "sha256": "9ffd58eef3983c1a4c62331fc46c918cdd815c642b50f436ad66c583612243fd",
+          "id": 653790115,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_real_registered_fixed_outputs.tar.part002"
+        },
+        {
+          "name": "comparison_real_registered_fixed_outputs.tar.part003",
+          "size": 77799424,
+          "sha256": "8a0026ae4cf9d2af3dbc04735d1938581eacb7eea58690714f1c7cb3aa61e743",
+          "id": 653792824,
+          "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_real_registered_fixed_outputs.tar.part003"
+        }
+      ],
+      "group": "real_registered_fixed"
+    },
+    {
+      "group": "ours",
+      "name": "stackmff_v3_fused_results.tar",
+      "size": 285911040,
+      "sha256": "c6acad39c3f3e937075c25356b4d49fb2f88ab3fbc4429c4caf8aa6bfbd76e49",
+      "images": 412,
+      "extract_prefix": "results",
+      "download": {
+        "name": "stackmff_v3_fused_results.tar",
+        "size": 285911040,
+        "sha256": "c6acad39c3f3e937075c25356b4d49fb2f88ab3fbc4429c4caf8aa6bfbd76e49",
+        "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/stackmff_v3_fused_results.tar",
+        "id": 651083875
+      }
+    }
+  ],
+  "benchmark_images": 7262,
+  "real_images": 2170
+}

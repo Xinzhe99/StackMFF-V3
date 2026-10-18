@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\caption{Reference-guided nearest-observation selection. The oracle copies the input value closest to the reference at each pixel. It maximizes PSNR among pixel-wise selection rules, but its SSIM is descriptive; it is not an upper bound for convex mixtures. It is computed on the gray images with the SSIM and PSNR of the main tables. Benchmarks: mean over all scenes; below, the Middlebury scenes discussed in Section~5 of the main paper. Best other: the highest SSIM among all other evaluated methods.}
+\label{tab:supp_oracle}
+\begin{tabular}{llccccc}
+\toprule
+ & & \multicolumn{2}{c}{Oracle} & \multicolumn{2}{c}{Ours (weighted)} & Best other \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-7}
+Benchmark & Scene & SSIM & PSNR & SSIM & PSNR & SSIM \\
+\midrule
+Mobile Depth & all (11) & 1.000 & $\infty$ & 0.985 & 40.2 & 0.983 \\
+Middlebury & all (15) & 0.976 & 38.0 & 0.962 & 34.3 & 0.956 \\
+FlyingThings3D & all (100) & 0.982 & 38.4 & 0.972 & 35.4 & 0.968 \\
+Road-MF & all (80) & 1.000 & 54.6 & 0.998 & 44.5 & 0.992 \\
+\midrule
+Middlebury & Jadeplant & 0.824 & 25.9 & 0.757 & 24.7 & 0.750 \\
+Middlebury & Vintage & 0.915 & 26.6 & 0.881 & 25.3 & 0.879 \\
+Middlebury & Pipes & 0.988 & 35.8 & 0.971 & 31.5 & 0.956 \\
+\bottomrule
+\end{tabular}
+\end{table}

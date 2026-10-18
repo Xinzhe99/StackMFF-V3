@@ -23,7 +23,7 @@ Official PyTorch implementation of *StackMFF V3: Modernizing Multi-Focus Image S
 ## News
 
 - **2026.10**: Code, pretrained weights and the evaluation toolkit of StackMFF V3 are released. The paper (*StackMFF V3: Modernizing Multi-Focus Image Stack Fusion*) accompanies this release.
-- **2026.10**: Fused results of all four benchmarks are released as `stackmff_v3_fused_results.tar` (412 PNGs) in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0).
+- **2026.10**: All **7,262 evaluated benchmark outputs** (including 412 of ours) and **2,170 registered real-stack outputs** are archived with SHA-256 manifests. See the [archive index and downloader](benchmark/README.md). Data assets remain in the v1.0 release; audited code is versioned separately.
 - **Coming soon**: StackMFF V3 in [OpenFocus](https://github.com/Xinzhe99/OpenFocus).
 - This repository replaces the earlier StackMFF V3 and StackMFF V4 code bases, preserved as historical code in [StackMFF-V3-legacy](https://github.com/Xinzhe99/StackMFF-V3-legacy) and [StackMFF-V4-legacy](https://github.com/Xinzhe99/StackMFF-V4-legacy).
 
@@ -207,11 +207,11 @@ python tools/run_ours_roots.py --root /path/to/benchmarks --out results/Ours_sof
 python tools/run_ours_roots.py --root /path/to/benchmarks --out results/Ours_hard --fusion hard   # hard selection
 ```
 
-`tools/run_ours_roots.py` fuses any folder tree `<root>/<dataset>/image stack/<scene>/` and was also used for the robustness variants (shuffled, incomplete and redundant stacks) and the real-data experiments. The fused images of our model (weighted and hard selection) on all four benchmarks are released as `stackmff_v3_fused_results.tar` (412 PNGs) in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0); the full-reference and no-reference scores for these outputs can be recomputed with `evaluation/run_eval.py`. Recomputing baseline, real-stack, robustness and ablation tables additionally requires their corresponding result images; those comparison archives are being prepared for release.
+`tools/run_ours_roots.py` fuses any folder tree `<root>/<dataset>/image stack/<scene>/` and was also used for the robustness variants (shuffled, incomplete and redundant stacks) and the real-data experiments. The fused images of our model (weighted and hard selection) on all four benchmarks are released as `stackmff_v3_fused_results.tar` (412 PNGs) in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0); the full-reference and no-reference scores for these outputs can be recomputed with `evaluation/run_eval.py`. All 7,262 evaluated benchmark outputs and 2,170 registered real-stack outputs are published in the [archive index](benchmark/archives.json). Use `python tools/download_results.py --list` to inspect groups and download selected groups with SHA-256 verification. The [reproduction bundle](reproduction/README.md) provides the numerical source records and generators for the paper tables, including robustness and ablations; fused images for every training/perturbation variant are not part of the image archives.
 
 ### 4. Evaluation
 
-`evaluation/` is the toolkit used for all numbers of the paper: SSIM (Gaussian 11x11 and 7x7), PSNR, VIF, MI, NMI against the reference, and Q<sup>AB/F</sup> and MEF-SSIM against the source stack, with optional homography alignment for results that are cropped or rescaled. All metrics were cross-checked against the reference MATLAB implementations (`evaluation/xval/`, `evaluation/validate.py`). To evaluate a folder of results `<results>/<method>/<dataset>/<scene>.png`:
+`evaluation/` computes the primary reference-based and stack-based metrics in the paper: SSIM (Gaussian 11x11 and 7x7), PSNR, VIF, MI, NMI against the reference, and Q<sup>AB/F</sup> and MEF-SSIM against the source stack, with optional homography alignment for results that are cropped or rescaled. All metrics were cross-checked against the reference MATLAB implementations (`evaluation/xval/`, `evaluation/validate.py`). To evaluate a folder of results `<results>/<method>/<dataset>/<scene>.png`:
 
 ```bash
 python evaluation/run_eval.py run --gt_root /path/to/benchmarks --gt_subdir AiF --stack_root /path/to/benchmarks \

@@ -1,0 +1,67 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{0.76}
+\setlength{\tabcolsep}{3.2pt}
+\setlength{\aboverulesep}{0.2ex}
+\setlength{\belowrulesep}{0.2ex}
+\setlength{\abovecaptionskip}{1pt}
+\setlength{\belowcaptionskip}{2pt}
+\caption{Full-reference comparison on the four benchmarks (unified evaluation, BT.601 luma, full image). Full method references and deployment details are given in the supplementary material. Best and second-best values are highlighted in pink and blue. Pairwise methods fuse the stack iteratively in focal order (numeric order of the file names); --: not evaluated (ReDiffuse and ZMFF, Section~\ref{sec:baselines}). VIF and NMI are in the supplementary material.}
+\label{tab:main_fr}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+Method & \multicolumn{2}{c}{MD} & \multicolumn{2}{c}{Mid.} & \multicolumn{2}{c}{FT3D} & \multicolumn{2}{c}{Road-MF} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+ & SSIM & PSNR & SSIM & PSNR & SSIM & PSNR & SSIM & PSNR \\
+\midrule
+\multicolumn{9}{l}{\textit{Spatial domain}} \\
+GFF & \second{0.9829} & \second{39.50} & 0.9557 & 32.94 & 0.9682 & 34.44 & 0.9921 & 38.58 \\
+IFM & 0.8671 & 26.67 & 0.8510 & 23.86 & 0.8888 & 24.37 & 0.9232 & 26.55 \\
+QB & 0.9752 & 38.01 & 0.9360 & 30.99 & 0.9626 & 33.59 & 0.9914 & 37.91 \\
+BFMF & 0.9638 & 35.67 & 0.9432 & 31.76 & 0.9496 & 32.08 & 0.9736 & 34.36 \\
+GFDF & 0.9819 & 39.49 & 0.9557 & 32.89 & 0.9681 & 34.33 & 0.9905 & 37.82 \\
+MGFF & 0.5279 & 15.13 & 0.7063 & 19.92 & 0.6915 & 20.44 & 0.7094 & 20.23 \\
+\midrule
+\multicolumn{9}{l}{\textit{Transform domain}} \\
+CVT & 0.9364 & 32.67 & 0.8878 & 29.23 & 0.9183 & 29.30 & 0.9726 & 34.32 \\
+DWT & 0.9113 & 30.86 & 0.8523 & 28.18 & 0.8903 & 29.27 & 0.9178 & 29.62 \\
+DCT & 0.9115 & 27.63 & 0.8668 & 25.42 & 0.9035 & 27.85 & 0.9436 & 26.63 \\
+DTCWT & 0.9402 & 32.81 & 0.8914 & 29.26 & 0.9214 & 29.32 & 0.9772 & 34.69 \\
+NSCT & 0.9332 & 32.21 & 0.8835 & 29.06 & 0.9143 & 29.21 & 0.9756 & 34.81 \\
+\midrule
+\multicolumn{9}{l}{\textit{Pairwise, adapted to stacks}} \\
+IFCNN (MAX) & 0.7776 & 24.90 & 0.8842 & 27.92 & 0.8791 & 27.73 & 0.8951 & 27.70 \\
+U2Fusion & 0.7841 & 21.09 & 0.7742 & 20.82 & 0.7748 & 22.64 & 0.7689 & 19.92 \\
+SDNet & 0.7852 & 23.95 & 0.8226 & 25.13 & 0.7855 & 24.95 & 0.8442 & 26.15 \\
+MFF-GAN & 0.2925 & 13.39 & 0.5402 & 19.53 & 0.5252 & 21.98 & 0.4565 & 17.67 \\
+SwinFusion & 0.8738 & 25.27 & 0.7826 & 25.44 & 0.7501 & 25.30 & 0.7918 & 23.96 \\
+MUFusion & 0.4703 & 18.73 & 0.5816 & 19.78 & 0.4721 & 19.62 & 0.6423 & 19.04 \\
+SwinMFF & 0.3440 & 10.87 & 0.4221 & 11.86 & 0.3262 & 12.30 & 0.4965 & 13.50 \\
+DDBFusion & 0.8342 & 26.35 & 0.7236 & 23.73 & 0.7115 & 22.71 & 0.7564 & 23.14 \\
+CCSR-Net & 0.8480 & 28.29 & 0.7309 & 24.16 & 0.7077 & 23.96 & 0.8337 & 25.98 \\
+MCCSR-Net & 0.8753 & 28.60 & 0.8237 & 26.30 & 0.7776 & 25.33 & 0.8529 & 27.31 \\
+DeFusion & 0.8481 & 27.33 & 0.7174 & 24.02 & 0.7139 & 24.18 & 0.7309 & 23.93 \\
+MFIF-GAN & 0.9507 & 34.54 & 0.9448 & 31.50 & 0.9603 & 32.79 & 0.9802 & 34.20 \\
+GIFNet & 0.3381 & 9.71 & 0.4531 & 11.35 & 0.3560 & 10.09 & 0.5423 & 11.60 \\
+CSNet & 0.9355 & 33.62 & 0.9430 & 31.82 & 0.9620 & 33.47 & 0.9850 & 36.17 \\
+ReDiffuse & 0.8935 & 25.24 & 0.9232 & 27.22 & -- & -- & -- & -- \\
+ZMFF & 0.9183 & 29.19 & 0.8567 & 25.28 & -- & -- & -- & -- \\
+\midrule
+\multicolumn{9}{l}{\textit{Commercial software}} \\
+Helicon Focus (A) & 0.9592 & 33.97 & 0.9197 & 30.14 & 0.9299 & 31.46 & 0.9416 & 31.16 \\
+Helicon Focus (B) & 0.9528 & 34.48 & 0.9277 & 30.68 & 0.9275 & 31.31 & 0.9523 & 32.27 \\
+Helicon Focus (C) & 0.9471 & 32.80 & 0.9248 & 30.86 & 0.9270 & 31.64 & 0.9505 & 32.32 \\
+Zerene (DMap) & 0.9382 & 33.58 & 0.9048 & 30.45 & 0.9144 & 30.85 & 0.9668 & 33.85 \\
+Zerene (PMax) & 0.9267 & 31.43 & 0.9055 & 30.52 & 0.9160 & 31.45 & 0.9794 & 35.78 \\
+\midrule
+\multicolumn{9}{l}{\textit{Native stack}} \\
+StackMFF & 0.9470 & 32.13 & 0.9336 & 30.90 & 0.9568 & 32.99 & 0.9715 & 33.19 \\
+StackMFF V2 & 0.9510 & 35.21 & 0.9453 & 32.18 & 0.9531 & 32.75 & 0.9811 & 36.27 \\
+VAEEDOF & 0.8694 & 28.28 & 0.8313 & 27.03 & 0.8782 & 29.29 & 0.8439 & 26.20 \\
+Ours (hard selection) & 0.9769 & 38.36 & \second{0.9595} & \second{33.59} & \second{0.9692} & \second{34.79} & \best{0.9984} & \best{46.12} \\
+Ours (weighted) & \best{0.9855} & \best{40.16} & \best{0.9622} & \best{34.28} & \best{0.9722} & \best{35.35} & \second{0.9979} & \second{44.53} \\
+\bottomrule
+\end{tabular}}
+\end{table*}

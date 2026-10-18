@@ -9,7 +9,16 @@ This directory records the exact paper subset: **32 baseline families / 35 setti
 
 ## Image archives
 
-The existing [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0) contains our 412 fused PNGs and the checkpoint. The complete comparison archives are being assembled and verified; they are not yet claimed as publicly available here. Canonical archive paths and SHA256 checksums will be added after upload verification. Original inputs/references and third-party model weights are not included.
+The [v1.0 data release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0) contains **all 7,262 benchmark outputs** and **2,170 registered real-stack outputs**, alongside the checkpoint. [archives.json](archives.json) records complete-archive SHA-256 values and, for large archives, verified 128 MiB part hashes. [image_manifest.csv](image_manifest.csv) and [real_image_manifest.csv](real_image_manifest.csv) identify every published image. Original inputs/references and third-party model weights are not included. Data conditions are in [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
+
+From the repository root:
+
+```bash
+python tools/download_results.py --list
+python tools/download_results.py --help
+```
+
+Select only the groups needed for a comparison. The downloader resumes interrupted transfers, verifies parts and the assembled archive, and checks extraction paths. The [table reproduction bundle](../reproduction/README.md) also contains the numerical inputs and generators for robustness and ablations; images from every perturbation/training variant are outside the image-archive scope.
 
 ## Protocol
 

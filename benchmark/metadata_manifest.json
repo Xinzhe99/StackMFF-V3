@@ -1,5 +1,20 @@
 [
   {
+    "path": "archives.json",
+    "bytes": 12219,
+    "sha256": "b0063223f19cabd4adf0bebbde4631ebafbf5e64e3bf29282d781c7354faa5db"
+  },
+  {
+    "path": "auxiliary/color_per_image.csv",
+    "bytes": 427218,
+    "sha256": "50e91a50745ecb4b9b6af36398e30e24c2c4fdaf3d65a640d7632216b414c426"
+  },
+  {
+    "path": "auxiliary/color_summary.csv",
+    "bytes": 7976,
+    "sha256": "cbf8cceffa9d062966a5f3722fa0e7bf0d1f48bb198f3010086dfa8b8bdb7ad0"
+  },
+  {
     "path": "auxiliary/confidence_analysis.json",
     "bytes": 757,
     "sha256": "5fadbe7c85deacf7b9f8143f3b68fd5955633d4b330823b6ec661fb649337d86"
@@ -51,13 +66,13 @@
   },
   {
     "path": "auxiliary/robustness_summary.csv",
-    "bytes": 66181,
-    "sha256": "13a633393c946dafda7cfeeeda66fd418c14b9ba8c039af35997c2aa3c164983"
+    "bytes": 70963,
+    "sha256": "2c44a5e8dff93e0e43ea93d382a8ebb522135b6908d822a3d5420c69b72fc19a"
   },
   {
     "path": "baseline_protocols.tex",
-    "bytes": 7858,
-    "sha256": "1afd75ed5c11d9b612f69e7bc1a82e50940af540bf2334696e5dada8c3a63df9"
+    "bytes": 8018,
+    "sha256": "1a9b2a1c8d2ef9c7aad3714a750f62103be854774b1bce321f73e48a8f2bf4b1"
   },
   {
     "path": "baseline_references.bib",
@@ -68,6 +83,11 @@
     "path": "config_paper.json",
     "bytes": 1229,
     "sha256": "acd55faa6ca11f76aa9972866759debdfbd2631ed701554eb9be541178b0a3d5"
+  },
+  {
+    "path": "image_manifest.csv",
+    "bytes": 1083036,
+    "sha256": "a6fb5bc9c1110b65b4a4b1d6e9eba8eebd38c45ea186cb0ae41539f3f6da5ae7"
   },
   {
     "path": "methods.json",
@@ -81,8 +101,13 @@
   },
   {
     "path": "README.md",
-    "bytes": 4807,
-    "sha256": "16c31ab70e6c63fa1a2b8d5c9d1b59361d01153ccf749432f86b92d488856294"
+    "bytes": 5546,
+    "sha256": "8ecc7cb3af501960a563487c7bfca75b2416172436102b63d41a529ddff8873c"
+  },
+  {
+    "path": "real_image_manifest.csv",
+    "bytes": 350089,
+    "sha256": "7a9cb6e4815b8ff3f857208d3aea1be662a761bd6173650f32654f94960d178c"
   },
   {
     "path": "stats.csv",

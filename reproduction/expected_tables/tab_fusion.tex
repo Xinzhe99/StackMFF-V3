@@ -1,0 +1,18 @@
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\caption{Fusion strategies applied to the same trained model (SSIM / PSNR; gray images, SSIM with the default $7\times7$ window, as in training monitoring). Best and second-best per column in pink and blue.}
+\label{tab:fusion}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+Fusion & MD & Mid. & FT3D & Road-MF & Mean \\
+\midrule
+Hard selection & 0.9775 / 38.36 & 0.9586 / 33.59 & 0.9674 / 34.79 & \best{0.9984} / \best{46.13} & 0.9755 / 38.22 \\
+Weighted, no smoothing & 0.9856 / 40.00 & 0.9610 / 34.22 & 0.9701 / 35.30 & \second{0.9983} / \second{45.59} & 0.9787 / \best{38.78} \\
+Weighted, $\sigma=0.5$ (default) & \second{0.9861} / \second{40.19} & \best{0.9612} / \second{34.28} & \second{0.9703} / \second{35.35} & 0.9979 / 44.53 & \best{0.9789} / \second{38.59} \\
+Weighted, $\sigma=1$ & \best{0.9866} / \best{40.43} & \second{0.9611} / \best{34.29} & \best{0.9705} / \best{35.37} & 0.9970 / 42.38 & \second{0.9788} / 38.12 \\
+\bottomrule
+\end{tabular}}
+\end{table}

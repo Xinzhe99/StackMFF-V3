@@ -1,2 +1,3 @@
 # Preserve exact published record bytes so SHA256 manifests survive checkout/download.
 benchmark/** -text
+reproduction/** -text

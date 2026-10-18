@@ -15,6 +15,14 @@ The archives contain fused outputs produced for the research comparison. The sou
 
 The code license is not a warranty that the image data are licensed for a proposed commercial application. Original dataset rights remain with their owners.
 
+## Real optical stacks
+
+- **CCCID:** Onishi et al., F1000Research 2026, DOI [10.12688/f1000research.179164.1](https://doi.org/10.12688/f1000research.179164.1). The evaluated files are from [Zenodo record 18904734, version 1.0.0](https://zenodo.org/records/18904734), whose record metadata specifies **CC BY-NC 4.0**. Retain creator attribution, identify registration/fusion as modifications, and observe the noncommercial condition. A newer data version does not silently replace this pinned cohort.
+- **WBC:** Park et al., Scientific Data 2024, DOI [10.1038/s41597-024-03938-1](https://doi.org/10.1038/s41597-024-03938-1). The [data record, Figshare 26781052 v1](https://doi.org/10.6084/m9.figshare.26781052.v1), specifies **CC0**. The data license is distinct from the article's publication license.
+- **Camera bursts:** Araujo, Ponce and Mairal, [*Towards Real-World Focus Stacking with Deep Learning*](https://arxiv.org/abs/2311.17846), with data linked from their [official repository](https://github.com/araujoalexandre/FocusStackingDataset). Its README does not state a separate data-redistribution license. We retain that source attribution and do not offer the image-derived research results as unrestricted MIT assets; obtain appropriate permission from the original creators for additional redistribution or uses outside inspecting this research. Original camera bursts are not included in our archives.
+
+All real-stack result images are derived from the selected source stacks by shared ECC registration followed by the named fusion method. They are not new raw acquisitions or all-in-focus ground truth. Label/split records refer to the public image identifiers; they are not patient-level validation claims.
+
 ## Implementation and metric sources
 
 - Intra-image window attention follows [Swin Transformer](https://github.com/microsoft/Swin-Transformer), MIT license, Copyright (c) 2021 Microsoft. The network here is adapted for variable-length focal stacks and cross-image attention.

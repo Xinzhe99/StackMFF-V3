@@ -1,0 +1,23 @@
+| dataset | method | n | Q^{X/F} | MEF-SSIM |
+|---|---|---|---|---|
+| CCCID | Ours | 100 | 0.4861 | 0.9264 |
+| CCCID | Ours_hard | 100 | 0.4844 | 0.9048 |
+| CCCID | StackMFF_V2 | 100 | 0.4713 | 0.9026 |
+| CCCID | StackMFF_V1 | 100 | 0.4759 | 0.9291 |
+| CCCID | CSNet | 100 | 0.4899 | 0.9116 |
+| CCCID | MFIF-GAN | 100 | 0.4814 | 0.9002 |
+| CCCID | DeFusion | 100 | 0.4853 | 0.9104 |
+| WBC | Ours | 200 | 0.4948 | 0.7189 |
+| WBC | Ours_hard | 200 | 0.4770 | 0.6433 |
+| WBC | StackMFF_V2 | 200 | 0.4845 | 0.6828 |
+| WBC | StackMFF_V1 | 200 | 0.5004 | 0.7383 |
+| WBC | CSNet | 200 | 0.4773 | 0.6981 |
+| WBC | MFIF-GAN | 200 | 0.4662 | 0.5749 |
+| WBC | DeFusion | 200 | 0.5090 | 0.7660 |
+| Araujo | Ours | 10 | 0.3409 | 0.9091 |
+| Araujo | Ours_hard | 10 | 0.3403 | 0.8943 |
+| Araujo | StackMFF_V2 | 10 | 0.3488 | 0.9021 |
+| Araujo | StackMFF_V1 | 10 | 0.3219 | 0.8834 |
+| Araujo | CSNet | 10 | 0.3417 | 0.8940 |
+| Araujo | MFIF-GAN | 10 | 0.3446 | 0.8786 |
+| Araujo | DeFusion | 10 | 0.2330 | 0.7053 |

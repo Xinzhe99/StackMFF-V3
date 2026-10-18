@@ -14,6 +14,7 @@ outputs/
 runs/
 results/
 eval_out/
+download_cache/
 cache/
 cache*/
 *.npz
@@ -24,3 +25,8 @@ venv/
 .env
 .vscode/
 .idea/
+
+# Small, explicitly exported table inputs are intentional publication records.
+!reproduction/**
+reproduction/**/__pycache__/
+reproduction/**/*.py[cod]
