@@ -21,8 +21,8 @@
   },
   {
     "path": "expected_tables/tab_main_fr.tex",
-    "bytes": 5197,
-    "sha256": "6f9ce83716453b66db3ea151c8172eab7231148357a5b686372f8fefabf4d952"
+    "bytes": 5005,
+    "sha256": "e2fdaaeb32532b573dc5e00df1c57d865761eadd323f4b463306d51c310e9259"
   },
   {
     "path": "expected_tables/tab_main_nr.tex",
@@ -42,7 +42,7 @@
   {
     "path": "expected_tables/tab_roadmap.tex",
     "bytes": 2881,
-    "sha256": "71f10f947570ff7378e18a14d77f984e3801862dd4901c44f8cee6b0517e4ad5"
+    "sha256": "231415e7d3e51690fbcfc01c1a8952d4f8d320c9aeb58d22cd67fedb21d21c33"
   },
   {
     "path": "expected_tables/tab_robust.tex",
@@ -132,12 +132,12 @@
   {
     "path": "work/figures/out/tab_roadmap_regen.tex",
     "bytes": 2877,
-    "sha256": "0d1e8edb7d2895200629876c1936ddb6e9571f00ec23e9bce9c5e577e2bdc901"
+    "sha256": "3d164c0c876a47387afd51c94d4f56b1ea7b1763e96823eb3cdcd7676c19e1d9"
   },
   {
     "path": "work/figures/src/make_roadmap.py",
     "bytes": 11841,
-    "sha256": "afe54e1a03ec459cac2c11035326f7522422b37dc5a338d08aaaef5e6d86dea4"
+    "sha256": "7781f8451d95041f62e9902ad6a043149cbf892af1f26a4b154aaa2d9528f875"
   },
   {
     "path": "work/new_model/final_epochs.csv",
@@ -311,8 +311,8 @@
   },
   {
     "path": "work/paper/tables/make_tables.py",
-    "bytes": 11644,
-    "sha256": "e60205bacd4be52e49df83b0d50592e82c04fffda598456c7898dcee41596585"
+    "bytes": 11436,
+    "sha256": "0b7bcffb077e51da0ab8b5dec5236fd6f41f2e973f54a92cc25cf42c0ec077f4"
   },
   {
     "path": "work/paper/tables/tab_ablation.tex",
@@ -336,8 +336,8 @@
   },
   {
     "path": "work/paper/tables/tab_main_fr.tex",
-    "bytes": 5197,
-    "sha256": "6f9ce83716453b66db3ea151c8172eab7231148357a5b686372f8fefabf4d952"
+    "bytes": 5005,
+    "sha256": "e2fdaaeb32532b573dc5e00df1c57d865761eadd323f4b463306d51c310e9259"
   },
   {
     "path": "work/paper/tables/tab_main_nr.tex",
@@ -357,7 +357,7 @@
   {
     "path": "work/paper/tables/tab_roadmap.tex",
     "bytes": 2877,
-    "sha256": "0d1e8edb7d2895200629876c1936ddb6e9571f00ec23e9bce9c5e577e2bdc901"
+    "sha256": "3d164c0c876a47387afd51c94d4f56b1ea7b1763e96823eb3cdcd7676c19e1d9"
   },
   {
     "path": "work/paper/tables/tab_robust.tex",

@@ -148,10 +148,9 @@ def _table(v, metrics, caption, label, font='\\scriptsize', all_ds=None, venue=F
 
 if __name__ == '__main__':
     v = load()
-    CAP = ('Full-reference comparison on the four benchmarks (unified evaluation, BT.601 luma, full image). '
-           'Full method references and deployment details are given in the supplementary material. Best and second-best values are highlighted in pink and blue. '
-           'Pairwise methods fuse the stack iteratively in focal order (numeric order of the file names); --: not '
-           'evaluated (ReDiffuse and ZMFF, Section~\\ref{sec:baselines}). VIF and NMI are in the supplementary material.')
+    CAP = ('Full-reference results (BT.601 luma, full image). Best/second best: pink/blue. '
+           'Pairwise methods use numeric focal order. --: not evaluated (ZMFF/ReDiffuse cover MD and Middlebury only). '
+           'Deployment details and additional metrics are in the supplementary material.')
     open(os.path.join(HERE, 'tab_main_fr.tex'), 'w').write(table(
         v, ['SSIM', 'PSNR'], CAP, 'tab:main_fr', font='\\footnotesize', stretch='0.76', rules=True, citations=True))
     open(os.path.join(HERE, 'tab_supp_vif_nmi.tex'), 'w').write(table(
