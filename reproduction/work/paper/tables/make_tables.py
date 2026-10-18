@@ -153,7 +153,7 @@ if __name__ == '__main__':
            'Pairwise methods fuse the stack iteratively in focal order (numeric order of the file names); --: not '
            'evaluated (ReDiffuse and ZMFF, Section~\\ref{sec:baselines}). VIF and NMI are in the supplementary material.')
     open(os.path.join(HERE, 'tab_main_fr.tex'), 'w').write(table(
-        v, ['SSIM', 'PSNR'], CAP, 'tab:main_fr', font='\\footnotesize', stretch='0.76', rules=True, citations=False))
+        v, ['SSIM', 'PSNR'], CAP, 'tab:main_fr', font='\\footnotesize', stretch='0.76', rules=True, citations=True))
     open(os.path.join(HERE, 'tab_supp_vif_nmi.tex'), 'w').write(table(
         v, ['VIF', 'NMI'],
         'VIF and NMI for the same runs as Table~1 of the main paper. Best and second-best values are '

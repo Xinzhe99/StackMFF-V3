@@ -1,8 +1,8 @@
 [
   {
     "path": "expected_tables/tab_ablation.tex",
-    "bytes": 2068,
-    "sha256": "8f0ffe406524e3df0c06d37d7c7d31eb6cddcd06ed2160428a2eb5c853c0ab25"
+    "bytes": 2084,
+    "sha256": "0664e18f38189fe561c1708ef6ff907d83d7ea2191b47815940751c2440b8445"
   },
   {
     "path": "expected_tables/tab_fusion.tex",
@@ -21,8 +21,8 @@
   },
   {
     "path": "expected_tables/tab_main_fr.tex",
-    "bytes": 4515,
-    "sha256": "d61efbaf6cecc137640c5a9b778e77c867525dfc945724e576b4e195829aa063"
+    "bytes": 5197,
+    "sha256": "6f9ce83716453b66db3ea151c8172eab7231148357a5b686372f8fefabf4d952"
   },
   {
     "path": "expected_tables/tab_main_nr.tex",
@@ -41,8 +41,8 @@
   },
   {
     "path": "expected_tables/tab_roadmap.tex",
-    "bytes": 2892,
-    "sha256": "158d423934a5eb52eac79c74e5eb325abcfff4ec179fb62834a78942fc9b3b1e"
+    "bytes": 2881,
+    "sha256": "71f10f947570ff7378e18a14d77f984e3801862dd4901c44f8cee6b0517e4ad5"
   },
   {
     "path": "expected_tables/tab_robust.tex",
@@ -131,13 +131,13 @@
   },
   {
     "path": "work/figures/out/tab_roadmap_regen.tex",
-    "bytes": 2888,
-    "sha256": "caf03637e55bcea22c430c6141d8caf322dee8f3a617142ef2f0d76f2410d88f"
+    "bytes": 2877,
+    "sha256": "0d1e8edb7d2895200629876c1936ddb6e9571f00ec23e9bce9c5e577e2bdc901"
   },
   {
     "path": "work/figures/src/make_roadmap.py",
-    "bytes": 11676,
-    "sha256": "fdf20f97256224891a3faacb767cddc1501d75c7f91d451f2cee25112f05b075"
+    "bytes": 11841,
+    "sha256": "afe54e1a03ec459cac2c11035326f7522422b37dc5a338d08aaaef5e6d86dea4"
   },
   {
     "path": "work/new_model/final_epochs.csv",
@@ -311,8 +311,8 @@
   },
   {
     "path": "work/paper/tables/make_tables.py",
-    "bytes": 11645,
-    "sha256": "542e10ac6006dac8de2bbba186b8b2548f642fffee38960255106396094b5b19"
+    "bytes": 11644,
+    "sha256": "e60205bacd4be52e49df83b0d50592e82c04fffda598456c7898dcee41596585"
   },
   {
     "path": "work/paper/tables/tab_ablation.tex",
@@ -336,8 +336,8 @@
   },
   {
     "path": "work/paper/tables/tab_main_fr.tex",
-    "bytes": 4515,
-    "sha256": "d61efbaf6cecc137640c5a9b778e77c867525dfc945724e576b4e195829aa063"
+    "bytes": 5197,
+    "sha256": "6f9ce83716453b66db3ea151c8172eab7231148357a5b686372f8fefabf4d952"
   },
   {
     "path": "work/paper/tables/tab_main_nr.tex",
@@ -356,8 +356,8 @@
   },
   {
     "path": "work/paper/tables/tab_roadmap.tex",
-    "bytes": 2888,
-    "sha256": "caf03637e55bcea22c430c6141d8caf322dee8f3a617142ef2f0d76f2410d88f"
+    "bytes": 2877,
+    "sha256": "0d1e8edb7d2895200629876c1936ddb6e9571f00ec23e9bce9c5e577e2bdc901"
   },
   {
     "path": "work/paper/tables/tab_robust.tex",
