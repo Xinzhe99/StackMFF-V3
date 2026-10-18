@@ -12,7 +12,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1%2B-EE4C2C.svg?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Weights](https://img.shields.io/badge/Weights-v1.0-244A68.svg)](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0)
-[![GitHub stars](https://img.shields.io/github/stars/Xinzhe99/StackMFF-V3?style=social)](https://github.com/Xinzhe99/StackMFF-V3/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/Xinzhe99/StackMFF-V3?cacheSeconds=3600&style=social)](https://github.com/Xinzhe99/StackMFF-V3/stargazers)
 
 Official PyTorch implementation of *StackMFF V3: Modernizing Multi-Focus Image Stack Fusion*.
 
