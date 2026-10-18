@@ -1,0 +1,29 @@
+{
+  "npz_sha256": "70a08d51442d6c0ca514d259ea9fc640cbc075c4d571b41a5b48d17cb9799f7c",
+  "rows": [
+    {
+      "dataset": "FlyingThings3D",
+      "scene": "0000000",
+      "rho": 0.3883569472288172,
+      "low_confidence_fraction": 0.03021797839506173
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Jadeplant",
+      "rho": -0.1131688711276713,
+      "low_confidence_fraction": 0.13359977772553377
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "keyboard",
+      "rho": 0.23797208096155945,
+      "low_confidence_fraction": 0.5393663194444445
+    },
+    {
+      "dataset": "Road-MF",
+      "scene": "1",
+      "rho": 0.32871337957695257,
+      "low_confidence_fraction": 0.033666666666666664
+    }
+  ]
+}

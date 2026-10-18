@@ -14,7 +14,7 @@ import torch.nn.functional as F
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from stackmff_v3.model_io import DEFAULT_WEIGHTS, FINAL_ARGS, build, load_checkpoint  # noqa: E402
-from stackmff_v3.network import smooth_probs  # noqa: E402
+from stackmff_v3.network import StackMFFV3, smooth_probs  # noqa: E402
 
 torch.backends.cuda.matmul.allow_tf32 = False
 torch.backends.cudnn.allow_tf32 = False
@@ -106,6 +106,38 @@ def test_train_step():
     g = m.u4a.intra_a.rel_pos_bias_table.grad
     assert torch.isfinite(loss).item() and g is not None and torch.isfinite(g).all().item()
     print(f'train step OK, peak memory {torch.cuda.max_memory_allocated() / 2 ** 30:.2f} GiB (batch 8, N=24, 256x256)')
+
+
+def test_single_nonunit_inference_scale():
+    class Probe:
+        ms_scales = (0.75,)
+        forward_probs = StackMFFV3.forward_probs
+
+        def forward_logits(self, x):
+            return 3 * x
+
+    x = torch.arange(2 * 16 * 20, dtype=torch.float32).reshape(1, 2, 16, 20) / 640
+    actual = Probe().forward_probs(x)
+    small = F.interpolate(x, scale_factor=0.75, mode='bilinear', align_corners=False, antialias=True)
+    expected = F.interpolate(torch.softmax(3 * small, dim=1), size=x.shape[-2:], mode='bilinear', align_corners=False)
+    torch.testing.assert_close(actual, expected, rtol=0, atol=0)
+
+
+def test_reject_invalid_inference_scales():
+    class Probe:
+        forward_probs = StackMFFV3.forward_probs
+
+        def forward_logits(self, x):
+            return x
+
+    probe = Probe()
+    for scales in [(), (0,), (-1,), (float('nan'),), (float('inf'),), (1, 1)]:
+        probe.ms_scales = scales
+        try:
+            probe.forward_probs(torch.zeros(1, 2, 8, 8))
+        except ValueError:
+            continue
+        raise AssertionError(f'invalid inference scales accepted: {scales}')
 
 
 if __name__ == '__main__':

@@ -63,7 +63,19 @@ def work_scene(args):
     ds, key, gtfile = args
     scene = os.path.splitext(gtfile)[0]
     t0 = time.time()
-    todo = [m for m in C.METHODS if not os.path.exists(cache_file(m, ds, scene))]
+    todo = []
+    for method in C.METHODS:
+        if not C.supports(method, ds):
+            continue
+        path = cache_file(method, ds, scene)
+        try:
+            with open(path) as f:
+                cached = json.load(f)
+            valid = 'raw' in cached and 'error' not in cached
+        except (OSError, ValueError):
+            valid = False
+        if not valid:
+            todo.append(method)
     if not todo:
         return (ds, scene, 0, 0.0, 'cached')
     msgs = []
@@ -145,7 +157,10 @@ def load_records():
         for f in files:
             if f.endswith('.json'):
                 with open(os.path.join(root, f)) as fh:
-                    recs.append(json.load(fh))
+                    record = json.load(fh)
+                    if (record.get('method') in C.METHODS and record.get('dataset') in C.DATASETS
+                            and C.supports(record['method'], record['dataset'])):
+                        recs.append(record)
     return recs
 
 

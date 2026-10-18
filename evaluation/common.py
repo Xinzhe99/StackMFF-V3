@@ -28,12 +28,13 @@ EVAL = os.path.abspath('eval_out')
 METHODS = []
 COMMERCIAL = set()
 OVERRIDE = {}
+METHOD_DATASETS = {}
 IMG_EXT = ('.png', '.jpg', '.jpeg', '.bmp', '.tif', '.tiff')
 
 
 def configure(cfg=None, **kw):
     """cfg: dict or path of a JSON file; keyword arguments override it (None values are ignored)."""
-    global DATASETS, GTDIR, GT_SUB, STK, RES_ROOTS, RES, EVAL, METHODS, COMMERCIAL, OVERRIDE
+    global DATASETS, GTDIR, GT_SUB, STK, RES_ROOTS, RES, EVAL, METHODS, COMMERCIAL, OVERRIDE, METHOD_DATASETS
     if isinstance(cfg, str):
         with open(cfg) as f:
             cfg = json.load(f)
@@ -50,7 +51,13 @@ def configure(cfg=None, **kw):
     COMMERCIAL = set(c.get('aligned_methods', COMMERCIAL))
     OVERRIDE = {tuple(k.split('|', 1)): v for k, v in c.get('overrides', {}).items()} if 'overrides' in c else OVERRIDE
     METHODS = list(c.get('methods') or METHODS or _discover_methods())
+    METHOD_DATASETS = {m: set(ds) for m, ds in c.get('method_datasets', {}).items()}
     return c
+
+
+def supports(method, dataset):
+    """Explicit partial coverage is skipped; unexpected missing files remain errors."""
+    return method not in METHOD_DATASETS or dataset in METHOD_DATASETS[method]
 
 
 def _discover_methods():

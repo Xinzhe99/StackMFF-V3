@@ -1,13 +1,2 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="StackMFF">
-  <title>StackMFF</title>
-  <rect width="128" height="128" rx="28" fill="#244A68"/>
-  <!-- three focal planes: the middle one is the plane that is in focus (rose) -->
-  <g stroke-linejoin="round">
-    <path d="M26 40 h76 a6 6 0 0 1 0 12 h-76 a6 6 0 0 1 0 -12 z" fill="#DBE9F2" opacity="0.55"/>
-    <path d="M22 58 h84 a6 6 0 0 1 0 12 h-84 a6 6 0 0 1 0 -12 z" fill="#FFFFFF"/>
-    <path d="M26 76 h76 a6 6 0 0 1 0 12 h-76 a6 6 0 0 1 0 -12 z" fill="#DBE9F2" opacity="0.55"/>
-  </g>
-  <!-- the fused pixel: one focus decision taken through the stack -->
-  <circle cx="64" cy="64" r="23" fill="none" stroke="#B23A48" stroke-width="3.5"/>
-  <circle cx="64" cy="64" r="6.5" fill="#B23A48"/>
-</svg>
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="StackMFF focal-stack fusion"><title>StackMFF</title><desc>Three focal planes in pale blue, pale rose and white, with one shared focus sample.</desc><g><rect x="2" y="2" width="124" height="124" rx="28" fill="#28343D" /><path d="M22 78 64 56 106 78 64 100Z" fill="#DBE9F2" stroke="#DBE9F2" stroke-width="0" stroke-linejoin="round" /><path d="M22 62 64 40 106 62 64 84Z" fill="#ECD5DD" stroke="#ECD5DD" stroke-width="0" stroke-linejoin="round" /><path d="M22 46 64 24 106 46 64 68Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0" stroke-linejoin="round" /><path d="M49 46 64 38 79 46 64 54Z" fill="#28343D" /></g></svg>

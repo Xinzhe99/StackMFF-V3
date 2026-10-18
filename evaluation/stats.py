@@ -1,6 +1,6 @@
 """Statistical comparison from per_image.csv (primary variant only).
 
-For each dataset and metric (default SSIM and PSNR):
+For each dataset and metric (default SSIM, PSNR, VIF and NMI):
   * Friedman test over all methods with complete per-image results, average ranks (1 = best);
   * Nemenyi critical difference at alpha = 0.05 (Demsar 2006);
   * Wilcoxon signed-rank test (two-sided) of REF against every other method, Holm correction across methods.
@@ -40,7 +40,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--dir', default=os.environ.get('STACKMFF_EVAL_OUT', 'eval_out'), help='folder with per_image.csv')
     ap.add_argument('--ref', required=True, help='reference method (folder name)')
-    ap.add_argument('--metrics', nargs='+', default=['SSIM', 'PSNR'])
+    ap.add_argument('--metrics', nargs='+', default=['SSIM', 'PSNR', 'VIF', 'NMI'])
     ap.add_argument('--exclude', nargs='*', default=[], help='methods to leave out of the comparison')
     a = ap.parse_args()
     data = defaultdict(dict)  # (ds, metric) -> method -> {scene: value}

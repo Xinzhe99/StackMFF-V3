@@ -403,8 +403,10 @@ class StackMFFV3(nn.Module):
         Gaussian of that standard deviation (pixels) and renormalised, which removes the 4x4 block structure of the
         pixel-shuffle head; the operation acts on every layer alike, so equivariance is preserved."""
         P = torch.softmax(self.forward_logits(x).float(), dim=1)
-        scales = getattr(self, 'ms_scales', (1.0,))
-        if len(scales) > 1:   # multi-scale inference: average of the probabilities at several input scales
+        scales = tuple(float(s) for s in getattr(self, 'ms_scales', (1.0,)))
+        if not scales or len(set(scales)) != len(scales) or any(not (0 < s < float('inf')) for s in scales):
+            raise ValueError('inference scales must be nonempty, distinct, positive and finite')
+        if scales != (1.0,):   # also honor a single non-unit inference scale
             H, W = x.shape[-2:]
             acc = P if 1.0 in scales else torch.zeros_like(P)
             for s_ in scales:

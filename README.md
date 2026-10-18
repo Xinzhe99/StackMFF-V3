@@ -25,18 +25,18 @@ Official PyTorch implementation of *StackMFF V3: Modernizing Multi-Focus Image S
 - **2026.10**: Code, pretrained weights and the evaluation toolkit of StackMFF V3 are released. The paper (*StackMFF V3: Modernizing Multi-Focus Image Stack Fusion*) accompanies this release.
 - **2026.10**: Fused results of all four benchmarks are released as `stackmff_v3_fused_results.tar` (412 PNGs) in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0).
 - **Coming soon**: StackMFF V3 in [OpenFocus](https://github.com/Xinzhe99/OpenFocus).
-- This repository replaces the earlier StackMFF V3 and StackMFF V4 code bases, now archived as [StackMFF-V3-legacy](https://github.com/Xinzhe99/StackMFF-V3-legacy) and [StackMFF-V4-legacy](https://github.com/Xinzhe99/StackMFF-V4-legacy).
+- This repository replaces the earlier StackMFF V3 and StackMFF V4 code bases, preserved as historical code in [StackMFF-V3-legacy](https://github.com/Xinzhe99/StackMFF-V3-legacy) and [StackMFF-V4-legacy](https://github.com/Xinzhe99/StackMFF-V4-legacy).
 
 <div align="center">
 <img src="assets/fig_order.png" width="900" alt="Failure modes of earlier stack fusion methods and our result on a shuffled stack">
 </div>
 
-*Failure modes of earlier learning-based stack fusion on Middlebury Adirondack (15 images). (a) A pairwise network applied image by image (DeFusion) accumulates blur. (b) Regressing the output intensities (StackMFF) produces values that no image recorded. (c) Regressing a focal index along the ordered stack (StackMFF V2) fails on a shuffled stack. (d) StackMFF V3 selects observed values per pixel; its result on the shuffled stack equals that on the ordered stack. Bottom: absolute error with respect to the reference; SSIM / PSNR of the full image.*
+*Failure modes of earlier learning-based stack fusion on Middlebury Adirondack (15 images). (a) A pairwise network applied image by image (DeFusion) accumulates blur. (b) Regressing the output intensities (StackMFF) produces values that no image recorded. (c) Regressing a focal index along the ordered stack (StackMFF V2) fails on a shuffled stack. (d) StackMFF V3 selects observed values per pixel; its output is invariant to shuffling up to floating-point error (near-tied hard decisions can differ). Bottom: absolute error with respect to the reference; SSIM / PSNR of the full image.*
 
 ## Highlights
 
 - **Fusion as classification.** For every pixel, the network predicts a probability distribution over the N input images. The fused value is the probability-weighted combination of the values observed at that pixel (default) or, with hard selection, the value of the most probable image. The output never leaves the range of the observations.
-- **Any number of images, any order.** Cross-image attention has no positional encoding along the image axis, and every other operation acts on each image separately, so the network accepts any N and its output does not depend on the order of the images.
+- **Any number of images, any order.** Cross-image attention has no positional encoding along the image axis, and the remaining image-axis operations are symmetric or shared across images. One trained network handles variable stack lengths, and weighted fusion is order-invariant up to floating-point error; near-tied hard decisions can differ.
 - **Small and fast.** 0.156 M parameters; 3.03 GFLOPs for two 256x256 images with the default two-scale inference (1.94 GFLOPs with one scale); 0.16 s per Mobile Depth stack (12 to 33 images) on an RTX A6000.
 - **Training data and loss.** Stacks are synthesized on the fly at the training resolution from all-in-focus images with depth (including saturated highlights), and a contrast-weighted cross-entropy concentrates the training signal on pixels where the choice of the image changes the fused value.
 - **Re-evaluated benchmark.** On Mobile Depth, Middlebury, FlyingThings3D and Road-MF, the model has the highest SSIM and PSNR among the re-evaluated methods (one toolkit for all methods, cross-checked against MATLAB reference implementations).
@@ -68,10 +68,12 @@ Each image of the stack is embedded separately into tokens at 1/4 resolution (4x
 
 ## Results
 
-Full-reference comparison on the four benchmarks (unified evaluation: BT.601 luma, full image, Gaussian SSIM). The table lists the strongest methods of each group; the paper reports all re-evaluated methods together with VIF, NMI, no-reference metrics and statistical tests. Pairwise methods fuse the stack image by image in focal order. Best values in **bold**.
+Full-reference comparison on the four benchmarks (unified evaluation: BT.601 luma, full image, Gaussian SSIM). This selected comparison includes the strongest spatial baselines and earlier StackMFF models. The [complete tables and per-image records](benchmark/README.md) cover all 32 baseline families (35 settings) plus our two outputs; ZMFF and ReDiffuse currently cover Mobile Depth and Middlebury only. VIF, NMI, no-reference metrics and statistical tests are also provided. Pairwise methods fuse the stack image by image in focal order. Best values in **bold**.
 
 | Method | Type | MD SSIM | MD PSNR | Mid. SSIM | Mid. PSNR | FT3D SSIM | FT3D PSNR | Road-MF SSIM | Road-MF PSNR |
 |---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| GFF | spatial domain | 0.9829 | 39.50 | 0.9557 | 32.94 | 0.9682 | 34.44 | 0.9921 | 38.58 |
+| GFDF | spatial domain | 0.9819 | 39.49 | 0.9557 | 32.89 | 0.9681 | 34.33 | 0.9905 | 37.82 |
 | DTCWT | transform domain | 0.9402 | 32.81 | 0.8914 | 29.26 | 0.9214 | 29.32 | 0.9772 | 34.69 |
 | MFIF-GAN | pairwise, adapted | 0.9507 | 34.54 | 0.9448 | 31.50 | 0.9603 | 32.79 | 0.9802 | 34.20 |
 | CSNet | pairwise, adapted | 0.9355 | 33.62 | 0.9430 | 31.82 | 0.9620 | 33.47 | 0.9850 | 36.17 |
@@ -129,16 +131,16 @@ The weights are downloaded to `weights/stackmff_v3_final.pth` on first use. `fus
 | `--index_map` | | also save the index of the most probable image per pixel (0-based, natural order of the file names) |
 | `--threads` | PyTorch default | CPU threads |
 
-Images of a different size are resized to the first image; the stack must be registered (for hand-held bursts, align the images first, for example with [OpenFocus](https://github.com/Xinzhe99/OpenFocus)). To fuse many stacks at once, use `tools/run_ours_roots.py` (see below).
+A stack must use one dtype throughout (all 8-bit or all 16-bit); grayscale inputs are loaded into three channels, and the saved fusion is three-channel. Images of a different size are resized to the first image; the stack must be registered (for hand-held bursts, align the images first, for example with [OpenFocus](https://github.com/Xinzhe99/OpenFocus)). To fuse many stacks at once, use `tools/run_ours_roots.py` (see below).
 
-In Python:
+In Python (pass `scales=(1, 0.75)` explicitly to `load_checkpoint` to fix the paper configuration; otherwise the Python API also honors `MS_SCALES`):
 
 ```python
 import torch
 from fuse import read_stack, probabilities, fuse
 from stackmff_v3.model_io import load_checkpoint
 
-model = load_checkpoint('weights/stackmff_v3_final.pth', 'cuda' if torch.cuda.is_available() else 'cpu')
+model = load_checkpoint('weights/stackmff_v3_final.pth', 'cuda' if torch.cuda.is_available() else 'cpu', scales=(1, 0.75))
 imgs = read_stack(['img_01.png', 'img_02.png', 'img_03.png'])        # list of HxWx3 BGR arrays (OpenCV)
 P = probabilities(model, imgs, next(model.parameters()).device, sigma=0.5)   # [N, H, W], sums to 1 over N
 fused = fuse(P, imgs, hard=False)                                     # HxWx3, same dtype as the input
@@ -150,7 +152,7 @@ fused = fuse(P, imgs, hard=False)                                     # HxWx3, s
 |---|---|---|---|
 | [stackmff_v3_final.pth](https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/stackmff_v3_final.pth) | final model of the paper (EMA weights after the third of six epochs); architecture arguments included | 0.66 MB | `39b2ea3738e8fea1676c379238d6be81a87988fc9952dbd6ac3825d5d7249f46` |
 
-The checkpoint is a dictionary `{'model': state_dict, 'args': architecture}` (fp32, no optimizer state) and is loaded with `stackmff_v3.model_io.load_checkpoint`. Running `fuse.py` with these weights on the CPU reproduces the paper's fused images exactly or within one grey level at a few pixels (GPU vs. CPU rounding).
+The checkpoint is a dictionary `{'model': state_dict, 'args': architecture}` (fp32, no optimizer state) and is loaded with `stackmff_v3.model_io.load_checkpoint`. Running `fuse.py` with these weights reproduces the reported configuration. Floating-point differences can affect a few rounded weighted values or change hard selection at near-tied probabilities; the archived outputs are the canonical inputs for recomputing the reported metrics.
 
 ## Reproducing the paper
 
@@ -205,7 +207,7 @@ python tools/run_ours_roots.py --root /path/to/benchmarks --out results/Ours_sof
 python tools/run_ours_roots.py --root /path/to/benchmarks --out results/Ours_hard --fusion hard   # hard selection
 ```
 
-`tools/run_ours_roots.py` fuses any folder tree `<root>/<dataset>/image stack/<scene>/` and was also used for the robustness variants (shuffled, incomplete and redundant stacks) and the real-data experiments. The fused images of our model (weighted and hard selection) on all four benchmarks are released as `stackmff_v3_fused_results.tar` (412 PNGs) in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0); every number in the paper can be recomputed from them with `evaluation/run_eval.py`.
+`tools/run_ours_roots.py` fuses any folder tree `<root>/<dataset>/image stack/<scene>/` and was also used for the robustness variants (shuffled, incomplete and redundant stacks) and the real-data experiments. The fused images of our model (weighted and hard selection) on all four benchmarks are released as `stackmff_v3_fused_results.tar` (412 PNGs) in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0); the full-reference and no-reference scores for these outputs can be recomputed with `evaluation/run_eval.py`. Recomputing baseline, real-stack, robustness and ablation tables additionally requires their corresponding result images; those comparison archives are being prepared for release.
 
 ### 4. Evaluation
 
@@ -276,7 +278,7 @@ The entry below will be updated with the final bibliographic data once the paper
 @article{xie2026stackmffv3,
   title   = {StackMFF V3: Modernizing Multi-Focus Image Stack Fusion},
   author  = {Xie, Xinzhe and Guo, Buyu and Li, Bolin and He, Shuangyan and Gu, Yanzhen and Jiang, Qingyan and Li, Peiliang},
-  note    = {preprint / under review},
+  note    = {Manuscript in preparation},
   year    = {2026}
 }
 ```
@@ -286,7 +288,7 @@ Earlier work of the series:
 ```bibtex
 @article{xie2025stackmff,
   title     = {StackMFF: end-to-end multi-focus image stack fusion network},
-  author    = {Xie, Xinzhe and Qingyan, Jiang and Chen, Dong and Guo, Buyu and Li, Peiliang and Zhou, Sangjun},
+  author    = {Xie, Xinzhe and Jiang, Qingyan and Chen, Dong and Guo, Buyu and Li, Peiliang and Zhou, Sangjun},
   journal   = {Applied Intelligence},
   volume    = {55},
   number    = {6},
@@ -308,7 +310,7 @@ Earlier work of the series:
 
 ## License
 
-This project is released under the [MIT License](LICENSE). The datasets used for training and evaluation are subject to their own licenses.
+Our code is released under the [MIT License](LICENSE). Benchmark images, fused outputs and third-party components retain the rights and conditions of their underlying sources; they are not relicensed as MIT. See [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ## Acknowledgements
 

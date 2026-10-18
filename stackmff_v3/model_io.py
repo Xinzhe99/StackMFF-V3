@@ -11,7 +11,7 @@ import torch
 from stackmff_v3.network import StackMFFV3, StackMFFLoop
 
 # Final configuration (paper): StackMFFLoop with two attention units at 1/4 resolution (single_scale), linear head,
-# C=48, 3 heads, window 8, cross-image attention on 2x2-pooled tokens (inter_pool=2), one pass (k_eval=1).
+# C=48, 3 heads in both active 1/4-resolution units (the unused 1/8 stage has 6), window 8, cross-image attention on 2x2-pooled tokens (inter_pool=2), one pass (k_eval=1).
 FINAL_ARGS = {'arch': 'loop', 'C1': 48, 'C2': 96, 'heads': [3, 6], 'window': 8, 'mlp_ratio': 2.0, 'inter_pool': 2,
               'kmax': 1, 'k_eval': 1, 'share_fine': False, 'intra': 'attn', 'layer_pos': False, 'loss': 'ce',
               'single_scale': True, 'fine_head': False}
