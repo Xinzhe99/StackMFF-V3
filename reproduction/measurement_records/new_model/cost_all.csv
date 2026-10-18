@@ -1,0 +1,13 @@
+﻿方法,参数量 (M),thop MACs (G),完整 GFLOPs,每对评估次数,环境,备注
+GIFNet,0.8228,48.2463,103.0714,1 (每对),nb_gifnet,灰度 Y 通道网络；颜色 (YCbCr 规则) 在网络外；参数为 TwoBranchesFusionNet 全部模块
+DeFusion,7.8745,15.2649,30.1028,1 (每对),xxz,RGB 输入；官方封装对输入做 16px 反射填充 (有效 288^2，约多 27%)
+CSNet,1.8933,10.8511,25.3176,1 (每对),xxz,RGB 输入；similarity_selection 为非网络的块距离选择
+MFIF-GAN,13.7009,346.515,588.4785,1 (每对),xxz,RGB 输入；后处理 (去小目标) 为非网络操作
+VAEEDOF (N=2),35.2228,137.6534,275.5527,1 次 predict / 512px 块,nb_vaeedof,256 图经 pad_grid 填充到 512 块：实际每对 550.61 GMACs / 1105.29 GFLOPs；predict 内部固定补足 7 个图像槽位
+VAEEDOF (N=7),35.2228,137.6534,275.5527,1 次 predict / 512px 块,nb_vaeedof,N<=7 时与 N=2 计算量相同 (补足到 7 槽)；输入 21 通道
+ReDiffuse,7.5544,0.0011,110.2285,2000 (T=2000 UNet 调用/每对),nb_rediffuse,"Y 通道 DDPM；thop 漏计 B_Conv.pyc 中的自定义卷积，应以 GFLOPs 为准；每对约 220,457 GFLOPs"
+ZMFF,4.6662,55.822,110.3412,1300 (迭代/每对),nb_zmff,"零样本逐图优化：一次迭代 = netx + 2 个 netm 的前向 (不含反向)；每对约 143,446 GFLOPs (仅前向)；参数为每对新建网络"
+StackMFF V2,0.0515,2.7508,5.5006,1 (每个 2 层堆栈),xxz,原生堆栈方法；thop 与旧表 2.75 G 一致
+StackMFF V4,0.9384,0.4439,0.8472,1 (每个 2 层堆栈),xxz,旧表 thop 为 0.51 G，本次为 0.44 G，差异未追查
+"新模型 A (C1=32, C2=64)",0.3596,1.1445,2.6466,1 (每个 2 层堆栈),xxz,forward_logits；thop 不计注意力矩阵乘，GFLOPs 含
+"新模型 H (C1=48, C2=96, heads=(3,6), inter_pool=2)",0.7975,1.6271,3.8048,1 (每个 2 层堆栈),xxz,forward_logits；同上

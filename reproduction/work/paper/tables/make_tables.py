@@ -79,19 +79,19 @@ def load():
 
 
 def table(v, metrics, caption, label, dsets=None, font='\\scriptsize', venue=False,
-          env='table*', stretch=None, rules=False, citations=True):
+          env='table', stretch=None, rules=False, citations=True, method_subset=None, placement='htbp'):
     global DATASETS
     full = DATASETS
     if dsets is not None:
         DATASETS = [d for d in DATASETS if d[0] in dsets]
     try:
-        return _table(v, metrics, caption, label, font, full, venue, env, stretch, rules, citations)
+        return _table(v, metrics, caption, label, font, full, venue, env, stretch, rules, citations, method_subset, placement)
     finally:
         DATASETS = full
 
 
 def _table(v, metrics, caption, label, font='\\scriptsize', all_ds=None, venue=False,
-           env='table*', stretch=None, rules=False, citations=True):
+           env='table', stretch=None, rules=False, citations=True, method_subset=None, placement='htbp'):
     present = [(g, [m for m in ms if any((m, d, metrics[0]) in v for d, _ in (all_ds or DATASETS))]) for g, ms in GROUPS]
     rows = [m for _, ms in present for m in ms]
     rank = {}
@@ -103,7 +103,7 @@ def _table(v, metrics, caption, label, font='\\scriptsize', all_ds=None, venue=F
                 rank[(m, d, k)] = vals.index(x) + 1 if x is not None and x in vals else None
     ncol = len(DATASETS) * len(metrics)
     ven = 1 if venue else 0
-    L = [f'\\begin{{{env}}}[t]', '\\centering', font,
+    L = [f'\\begin{{{env}}}[{placement}]', '\\centering', font,
          '\\renewcommand{\\arraystretch}{%s}' % (stretch or ('0.78' if venue else '0.94')),
          '\\setlength{\\tabcolsep}{3.2pt}']
     if rules or venue:
@@ -124,6 +124,8 @@ def _table(v, metrics, caption, label, font='\\scriptsize', all_ds=None, venue=F
         L.append(' '.join(f'\\cmidrule(lr){{{2 + i * len(metrics)}-{1 + (i + 1) * len(metrics)}}}' for i in range(len(DATASETS))))
     L.append(' & ' + ('& ' if venue else '') + ' & '.join(HEAD[k] for _ in DATASETS for k in metrics) + ' \\\\')
     for g, ms in present:
+        if method_subset is not None:
+            ms = [m for m in ms if m in method_subset]
         if not ms:
             continue
         L.append('\\midrule')
@@ -148,14 +150,25 @@ def _table(v, metrics, caption, label, font='\\scriptsize', all_ds=None, venue=F
 
 if __name__ == '__main__':
     v = load()
-    CAP = ('Full-reference results (BT.601 luma, full image). Best/second best: pink/blue. '
-           'Pairwise methods use numeric focal order. --: not evaluated (ZMFF/ReDiffuse cover MD and Middlebury only). '
-           'Deployment details and additional metrics are in the supplementary material.')
+    own = {'Ours_final_hard', OURS_NAME}
+    classical = set(GROUPS[0][1] + GROUPS[1][1] + GROUPS[3][1]) | own
+    learned = set(GROUPS[2][1] + GROUPS[4][1])
+    CAP = ('Full-reference results: classical methods and commercial software (BT.601 luma, full image). '
+           'Pink/blue mark the best/second-best across this table and Table~\\ref{tab:main_learned}. '
+           'Both read-outs of our model are repeated for comparison. Iterative methods use numeric focal order.')
     open(os.path.join(HERE, 'tab_main_fr.tex'), 'w').write(table(
-        v, ['SSIM', 'PSNR'], CAP, 'tab:main_fr', font='\\footnotesize', stretch='0.76', rules=True, citations=True))
+        v, ['SSIM', 'PSNR'], CAP, 'tab:main_fr', font='\\footnotesize', stretch='0.90', rules=True,
+        citations=True, method_subset=classical, placement='htb'))
+    open(os.path.join(HERE, 'tab_main_learned.tex'), 'w').write(table(
+        v, ['SSIM', 'PSNR'],
+        'Full-reference results: adapted pairwise and native learned methods. Pink/blue use the joint ranking '
+        'with Table~\\ref{tab:main_fr}. --: not evaluated (ZMFF/ReDiffuse cover MD and Middlebury only). '
+        'Inputs, luma conversion and focal order follow Table~\\ref{tab:main_fr}.',
+        'tab:main_learned', font='\\footnotesize', stretch='0.90', rules=True,
+        citations=True, method_subset=learned, placement='htb'))
     open(os.path.join(HERE, 'tab_supp_vif_nmi.tex'), 'w').write(table(
         v, ['VIF', 'NMI'],
-        'VIF and NMI for the same runs as Table~1 of the main paper. Best and second-best values are '
+        'VIF and NMI for the same runs as Tables~1 and~2 of the main paper. Best and second-best values are '
         'highlighted in pink and blue; --: not evaluated.', 'tab:supp_vif_nmi', font='\\footnotesize',
         stretch='0.74', rules=True))
     open(os.path.join(HERE, 'tab_main_nr.tex'), 'w').write(table(

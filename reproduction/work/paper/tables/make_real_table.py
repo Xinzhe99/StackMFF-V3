@@ -9,7 +9,7 @@ for l in open(f'{W}/real_eval/real_summary_reg.md'):
     c = [x.strip() for x in l.strip().strip('|').split('|')]
     if len(c) == 5 and c[0] in dict(DS):
         v[(c[0], c[1])] = (float(c[3]), float(c[4]))
-L = [r'\begin{table}[!htbp]', r'\centering', r'\scriptsize', r'\setlength{\tabcolsep}{3pt}',
+L = [r'\begin{table}[htb]', r'\centering', r'\scriptsize', r'\setlength{\tabcolsep}{3pt}',
      r'\caption{No-reference evaluation on real focal stacks ($Q^{\mathbf{X}/F}$ / MEF-SSIM, higher is better; best and second-best highlighted in pink and blue). Number of stacks in parentheses.}',
      r'\label{tab:real}', r'\begin{tabular}{l' + 'c' * len(DS) + '}', r'\toprule',
      'Method & ' + ' & '.join(d for _, d in DS) + r' \\', r'\midrule']

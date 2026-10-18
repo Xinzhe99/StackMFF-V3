@@ -1,0 +1,24 @@
+\begin{table}[htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Exploratory downstream probe on registered focal stacks. Frozen ImageNet ResNet18 features and a class-balanced linear classifier; three outer folds repeated with five seeds, with regularization selected inside each training fold. Each entry is the mean $\pm$ standard deviation of five repeat-level scores, each pooled over all out-of-fold predictions. This spread describes split sensitivity, not a confidence interval for new patients or slides.}
+\label{tab:downstream}
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{CCCID ($n=100$)} & \multicolumn{2}{c}{WBC ($n=200$)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Method & Accuracy & Macro-F1 & Accuracy & Macro-F1 \\
+\midrule
+Ours (weighted) & $0.406 \pm 0.027$ & $0.350 \pm 0.023$ & $0.327 \pm 0.028$ & $0.142 \pm 0.031$ \\
+Ours (hard selection) & $0.392 \pm 0.025$ & $0.340 \pm 0.032$ & $0.339 \pm 0.028$ & $0.130 \pm 0.023$ \\
+StackMFF & $0.426 \pm 0.026$ & $0.374 \pm 0.037$ & $0.347 \pm 0.035$ & $0.131 \pm 0.021$ \\
+StackMFF V2 & $0.434 \pm 0.030$ & $0.386 \pm 0.045$ & $0.344 \pm 0.030$ & $0.152 \pm 0.028$ \\
+CSNet & $0.390 \pm 0.007$ & $0.334 \pm 0.006$ & $0.295 \pm 0.039$ & $0.122 \pm 0.020$ \\
+DeFusion & $0.370 \pm 0.025$ & $0.328 \pm 0.027$ & $0.354 \pm 0.044$ & $0.156 \pm 0.019$ \\
+MFIF-GAN & $0.410 \pm 0.031$ & $0.355 \pm 0.030$ & $0.348 \pm 0.051$ & $0.141 \pm 0.030$ \\
+Middle plane & $0.448 \pm 0.030$ & $0.389 \pm 0.032$ & $0.324 \pm 0.014$ & $0.134 \pm 0.017$ \\
+Stack mean & $0.376 \pm 0.037$ & $0.326 \pm 0.033$ & $0.316 \pm 0.012$ & $0.136 \pm 0.015$ \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,93 +1,148 @@
 [
   {
     "path": "expected_tables/tab_ablation.tex",
-    "bytes": 2084,
-    "sha256": "0664e18f38189fe561c1708ef6ff907d83d7ea2191b47815940751c2440b8445"
+    "bytes": 2082,
+    "sha256": "4d49060e32d674c77a3eaffa930e24b0cd0a6906cf871e3f6296ddcecf2f1f77"
   },
   {
     "path": "expected_tables/tab_fusion.tex",
-    "bytes": 1060,
-    "sha256": "00dff7645c1fefb1634944ca298c50e391872f50927b46a0d9dd8630e774f59f"
+    "bytes": 1077,
+    "sha256": "7ab1f602bc3a6718c04aa2a54d2c74e5a273fccf69a7494ab5dc12c9be181bb6"
   },
   {
     "path": "expected_tables/tab_label.tex",
-    "bytes": 803,
-    "sha256": "1a10df8385a539cdeaefaa01fb96d0a9df48267cb3350edc8e05f084b89d362d"
+    "bytes": 817,
+    "sha256": "c304101d76ef3f9d2422aa8657dd3dc511b5ced3fcfb61c550756a475d836ac8"
   },
   {
     "path": "expected_tables/tab_lfsf.tex",
-    "bytes": 1233,
-    "sha256": "ff05f0fb49cbde6d8c00085a2b5dbf971c06227dc7337dc349d39bbd1900db4a"
+    "bytes": 1252,
+    "sha256": "3d9d501f2ac29500337b20cdbc68e248ede89c42563a00c904665d7e3c2957cb"
   },
   {
     "path": "expected_tables/tab_main_fr.tex",
-    "bytes": 5005,
-    "sha256": "e2fdaaeb32532b573dc5e00df1c57d865761eadd323f4b463306d51c310e9259"
+    "bytes": 3023,
+    "sha256": "d04218155d89da25eb266c877701db3cd4c8a221bf9523dd609c384d55b4f113"
+  },
+  {
+    "path": "expected_tables/tab_main_learned.tex",
+    "bytes": 3274,
+    "sha256": "fdb0d72fbfacb3e46f3beaa05e824bbfc04f6d477117143a440c2b2f2ea0abac"
   },
   {
     "path": "expected_tables/tab_main_nr.tex",
-    "bytes": 5045,
-    "sha256": "e4ad75501d5a4e0d355dfde1a251341d1ffab2738d50068a193326a056bd5abc"
+    "bytes": 5048,
+    "sha256": "d4d9e5ce1ccba3f741807a0d2b5a26da12956b795b106f58aa6f45d306f41d71"
   },
   {
     "path": "expected_tables/tab_range.tex",
-    "bytes": 737,
-    "sha256": "f4d40e20d79b2aec05587c789685c62413843989da79dc585543dc23587aff17"
+    "bytes": 740,
+    "sha256": "f4399d66c16585cdab5c18ed0cfe012b800804d8e76c70ded14f7da534a712f3"
   },
   {
     "path": "expected_tables/tab_real.tex",
-    "bytes": 965,
-    "sha256": "ff3be850bdbd9f7c3666f08e2c1325337a1494ce8faf15df89c0eb21316b3bc5"
+    "bytes": 963,
+    "sha256": "84229857ddcc5759ed497bd674c8c30037bf6e6548fb2a206599c1d602be5402"
   },
   {
     "path": "expected_tables/tab_roadmap.tex",
-    "bytes": 2881,
-    "sha256": "231415e7d3e51690fbcfc01c1a8952d4f8d320c9aeb58d22cd67fedb21d21c33"
+    "bytes": 2899,
+    "sha256": "e826c2ff37977cdc10e4e42c3caeca5d44f88f158a9c0c2aa23ca6e1b33ab65d"
   },
   {
     "path": "expected_tables/tab_robust.tex",
-    "bytes": 1707,
-    "sha256": "273133b0b0da285e020c413c818f0c4a69621bb72293837cf17b494cb1aeb848"
+    "bytes": 1732,
+    "sha256": "eea7f213d069f0ed910c81972c2b7632f5cad71d3076e1e70b5a3821bb224a14"
   },
   {
     "path": "expected_tables/tab_supp_color.tex",
-    "bytes": 3611,
-    "sha256": "1064523e8241603f81751d548ade93447a5b7ed8950b08852a280239dd17fdfd"
+    "bytes": 3666,
+    "sha256": "e38b4e9d2daa05e9a93122ddea8dcbb6fccce1f3e1a3c4cc953c0d493a88a9e3"
   },
   {
     "path": "expected_tables/tab_supp_epochs.tex",
-    "bytes": 1178,
-    "sha256": "c5ff8f20e2948c93f61d22444c3989095d2da124e47ddc6185d30e09b51ce51d"
+    "bytes": 1195,
+    "sha256": "d8316f6df258a9d45533d7d4f9afce65b0ca1cc0d9cce32adcbdae711cf16852"
   },
   {
     "path": "expected_tables/tab_supp_extra.tex",
-    "bytes": 5058,
-    "sha256": "8445db4b8adb1acbc12563507a909603bf6b49c013c6a61fe35e1a8e12d205b4"
+    "bytes": 5059,
+    "sha256": "23658f4caa7b8d5384bc4b44e4a9d6698554e3aec6e496cc64f552a0ac304aae"
   },
   {
     "path": "expected_tables/tab_supp_oracle.tex",
-    "bytes": 1334,
-    "sha256": "c97d316540be72ce7b165b35076a79735f09beeca5293274b84c7eef6dba71b5"
+    "bytes": 1356,
+    "sha256": "dcfe5b4f46a9dadede5f265483ce625fda45f495b4642435c889deb8242d53f1"
   },
   {
     "path": "expected_tables/tab_supp_robust_psnr.tex",
-    "bytes": 1717,
-    "sha256": "6955fd279fb5c9182abfe1e5e4b4c32c24b66808d3062c23dffd537bf29911ec"
+    "bytes": 1742,
+    "sha256": "823c92f3f188d0b2a4f9cb758e47452e39cfa5c17ddf1f54d65779caecbc59a0"
   },
   {
     "path": "expected_tables/tab_supp_stats.tex",
-    "bytes": 2078,
-    "sha256": "46c893e4e1dd89eea8b8cc41f739784202347a6fef79eecc91f2e225dc065b63"
+    "bytes": 2106,
+    "sha256": "89614b52470d7e3f514ff7b9e293961fa537a5ea13fcfdc30c9d91e3dc7f846f"
   },
   {
     "path": "expected_tables/tab_supp_vif_nmi.tex",
-    "bytes": 5025,
-    "sha256": "e4819d3215b0b6c3651ac4284391caebd7fe21024fbe3a129fb24b20f975cab7"
+    "bytes": 5033,
+    "sha256": "86da9d53e454bd1b6dda837dd7ab5c93bc228cae386b28c55abe1c86fb209b81"
+  },
+  {
+    "path": "manual_tables/tab_deploy.tex",
+    "bytes": 1964,
+    "sha256": "d00dc4354d022ed405cf4613665cc69c95e9fb8a61faca6c0a3900f62a7bd48c"
+  },
+  {
+    "path": "manual_tables/tab_deploy_handling.tex",
+    "bytes": 2685,
+    "sha256": "3229c66bd90d500dca1a0fea8ca339c38debb333fd921a322e5f7579d24380ed"
+  },
+  {
+    "path": "manual_tables/tab_downstream.tex",
+    "bytes": 1679,
+    "sha256": "af5a7ae57650821ac2d46bc377e077ff469e44712412517bbdbbddcf75988689"
+  },
+  {
+    "path": "manual_tables/tab_efficiency.tex",
+    "bytes": 3115,
+    "sha256": "714158b2ab63ba12ec63ce6a36f48f880505be60aac6066a79217215c5d89c97"
+  },
+  {
+    "path": "manual_tables/tab_supp_blurscale.tex",
+    "bytes": 1073,
+    "sha256": "0734385e37601e032fa70855cee38841de1be35efa74e94ad4c29c1ba3d477e6"
+  },
+  {
+    "path": "manual_tables/tab_supp_mfifb.tex",
+    "bytes": 875,
+    "sha256": "1ebca78038b45cbeb2d3d803fa4bf928d95be68ba8aff35c896cd88f477ecfd1"
+  },
+  {
+    "path": "measurement_records/downstream/registered_fixed/publication_summary.csv",
+    "bytes": 2368,
+    "sha256": "40b726c619f74ed2bccb60e56a87e3d86d4fcb7af621a3bd855a840677798721"
+  },
+  {
+    "path": "measurement_records/new_model/cost/gflops_all.csv",
+    "bytes": 3803,
+    "sha256": "a0285352b998a1be6e189febdc37c7db775b14efe458a4bec8b852da81afb88f"
+  },
+  {
+    "path": "measurement_records/new_model/cost_all.csv",
+    "bytes": 1851,
+    "sha256": "8128e1de32025d60f409a19b202aa1c597be531036ddca852a0363e92872266b"
+  },
+  {
+    "path": "measurement_records/timing/timing.csv",
+    "bytes": 4448,
+    "sha256": "2a9a66d8599d93f73fe5930f36b273eeeb40481c55eaa43eb27fb27cc5d2f71e"
   },
   {
     "path": "README.md",
-    "bytes": 1816,
-    "sha256": "9ffa47f48b0c726599c2ccd9e1483abd47dbd9e08033379dc33969580eed3da3"
+    "bytes": 2241,
+    "sha256": "76f1498e3130997878eccff9f673652b7ac4ea712c2553dec20ceef444a3cd64"
   },
   {
     "path": "work/eval/color/color_summary.csv",
@@ -131,13 +186,13 @@
   },
   {
     "path": "work/figures/out/tab_roadmap_regen.tex",
-    "bytes": 2877,
-    "sha256": "3d164c0c876a47387afd51c94d4f56b1ea7b1763e96823eb3cdcd7676c19e1d9"
+    "bytes": 2899,
+    "sha256": "e826c2ff37977cdc10e4e42c3caeca5d44f88f158a9c0c2aa23ca6e1b33ab65d"
   },
   {
     "path": "work/figures/src/make_roadmap.py",
-    "bytes": 11841,
-    "sha256": "7781f8451d95041f62e9902ad6a043149cbf892af1f26a4b154aaa2d9528f875"
+    "bytes": 11863,
+    "sha256": "ef8a244a81078adf27d714bf9be45537f2995b3c10f69abd7d56dd1b685acfe8"
   },
   {
     "path": "work/new_model/final_epochs.csv",
@@ -266,8 +321,8 @@
   },
   {
     "path": "work/paper/tables/make_label_table.py",
-    "bytes": 1541,
-    "sha256": "78321f7375db9d17ad376e14a9604b5d47c2d2091a72024aefe93d5e119f810e"
+    "bytes": 1556,
+    "sha256": "03adaf874f0310b4090ea4e3efe1b2d34d9c30729f2654b4fb7c8da7cb23d71b"
   },
   {
     "path": "work/paper/tables/make_lfsf_table.py",
@@ -291,8 +346,8 @@
   },
   {
     "path": "work/paper/tables/make_real_table.py",
-    "bytes": 1783,
-    "sha256": "02eb04c4d8071cd5b761b537b30f91e486b505771fd3e7b96c995dbc3cad8ae1"
+    "bytes": 1808,
+    "sha256": "42d199cac2ab4e9b5cf73b3515295f4cc50f3f3b23846a000f0409831043afb9"
   },
   {
     "path": "work/paper/tables/make_roadmap_table.py",
@@ -311,8 +366,8 @@
   },
   {
     "path": "work/paper/tables/make_tables.py",
-    "bytes": 11436,
-    "sha256": "0b7bcffb077e51da0ab8b5dec5236fd6f41f2e973f54a92cc25cf42c0ec077f4"
+    "bytes": 12433,
+    "sha256": "73dad4bcab6f2165967512f979ffa3a5b48e3ef17122790ad1c1ba0e8b3a494a"
   },
   {
     "path": "work/paper/tables/tab_ablation.tex",
@@ -336,13 +391,18 @@
   },
   {
     "path": "work/paper/tables/tab_main_fr.tex",
-    "bytes": 5005,
-    "sha256": "e2fdaaeb32532b573dc5e00df1c57d865761eadd323f4b463306d51c310e9259"
+    "bytes": 3023,
+    "sha256": "d04218155d89da25eb266c877701db3cd4c8a221bf9523dd609c384d55b4f113"
+  },
+  {
+    "path": "work/paper/tables/tab_main_learned.tex",
+    "bytes": 3274,
+    "sha256": "fdb0d72fbfacb3e46f3beaa05e824bbfc04f6d477117143a440c2b2f2ea0abac"
   },
   {
     "path": "work/paper/tables/tab_main_nr.tex",
-    "bytes": 5045,
-    "sha256": "e4ad75501d5a4e0d355dfde1a251341d1ffab2738d50068a193326a056bd5abc"
+    "bytes": 5048,
+    "sha256": "d4d9e5ce1ccba3f741807a0d2b5a26da12956b795b106f58aa6f45d306f41d71"
   },
   {
     "path": "work/paper/tables/tab_range.tex",
@@ -351,13 +411,13 @@
   },
   {
     "path": "work/paper/tables/tab_real.tex",
-    "bytes": 965,
-    "sha256": "ff3be850bdbd9f7c3666f08e2c1325337a1494ce8faf15df89c0eb21316b3bc5"
+    "bytes": 963,
+    "sha256": "84229857ddcc5759ed497bd674c8c30037bf6e6548fb2a206599c1d602be5402"
   },
   {
     "path": "work/paper/tables/tab_roadmap.tex",
-    "bytes": 2877,
-    "sha256": "3d164c0c876a47387afd51c94d4f56b1ea7b1763e96823eb3cdcd7676c19e1d9"
+    "bytes": 2899,
+    "sha256": "e826c2ff37977cdc10e4e42c3caeca5d44f88f158a9c0c2aa23ca6e1b33ab65d"
   },
   {
     "path": "work/paper/tables/tab_robust.tex",
@@ -376,8 +436,8 @@
   },
   {
     "path": "work/paper/tables/tab_supp_extra.tex",
-    "bytes": 5058,
-    "sha256": "8445db4b8adb1acbc12563507a909603bf6b49c013c6a61fe35e1a8e12d205b4"
+    "bytes": 5059,
+    "sha256": "23658f4caa7b8d5384bc4b44e4a9d6698554e3aec6e496cc64f552a0ac304aae"
   },
   {
     "path": "work/paper/tables/tab_supp_oracle.tex",
@@ -396,8 +456,8 @@
   },
   {
     "path": "work/paper/tables/tab_supp_vif_nmi.tex",
-    "bytes": 5025,
-    "sha256": "e4819d3215b0b6c3651ac4284391caebd7fe21024fbe3a129fb24b20f975cab7"
+    "bytes": 5033,
+    "sha256": "86da9d53e454bd1b6dda837dd7ab5c93bc228cae386b28c55abe1c86fb209b81"
   },
   {
     "path": "work/real_eval/range_per_image.csv",

@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\caption{Deployment of the new comparison methods (part 2): colour handling, input size and the order of the stack. Colour and resolution follow each method's official multi-focus demonstration; the stack protocol is how a two-image method is applied to an $N$-image stack.}
+\label{tab:deploy_handling}
+\scriptsize
+\renewcommand{\arraystretch}{0.60}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{2pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.9cm}>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{3.8cm}@{}}
+\toprule
+Method & Color handling & Resolution handling & Stack protocol \\
+\midrule
+GIFNet \cite{cheng2025gifnet} & Y channel fused by the network; Cb/Cr weighted by $|C-128|$ (official rule); repository YCbCr matrices & Padding inside the network; output size asserted equal to input & Iterative pairwise in natural file order ($N-1$ calls); 8-bit intermediate result \\
+DeFusion \cite{liang2022defusion} & RGB directly (3-channel network) & Reflect padding of 16 px, output cropped & Iterative pairwise in natural file order; 8-bit intermediate result \\
+CSNet \cite{csnet2026} & RGB directly (\texttt{in\_channels=3}) & No padding; network accepts all sizes used (out of memory at width $\geq$1920 on 48 GB) & Iterative pairwise in natural file order; 8-bit intermediate result \\
+MFIF-GAN \cite{wang2021mfifgan} & RGB directly; per-channel encoder with features averaged over R, G, B & Reflect padding (bottom and right) to a multiple of 4; decision map cropped & Iterative pairwise in natural file order; $F=AM+B(1-M)$ with $M$ the decision map thresholded at 0.5 after small-object removal \\
+VAEEDOF \cite{vaeedof2025} & RGB; channels are images $\times$ RGB in stack order & 512 px patches, overlap 128, batch 16; reflect padding to fit the grid, cropped & $N\leq7$: one native pass. $N>7$: chained groups of 7 images (see supplementary text) \\
+ReDiffuse \cite{rediffuse2026} & Y channel through the DDPM sampler; Cb/Cr weighted by the official rule ($\tau=128$) & Reflect padding to a multiple of 8, cropped & Iterative pairwise in natural file order; 2000 sampler steps per pair; output Y uses per-image min-max stretch (see text) \\
+ZMFF \cite{hu2023zmff} & Y channel fused; chroma taken from the first image of the pair & n/a & Iterative pairwise in natural file order; fused Y quantized to 8 bit after each pair \\
+FILM \cite{zhao2024film} & n/a & Network hard-codes $288\times384$ feature maps & Not runnable: needs per-pair text features that the repository and our datasets do not provide \\
+\bottomrule
+\end{tabular}
+\end{table}

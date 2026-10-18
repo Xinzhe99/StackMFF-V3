@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Blur of the original StackMFF synthesis after resizing to the training resolution. The original synthesis blurs depth level $\Delta$ with a Gaussian of standard deviation $0.3\Delta+0.5$ pixels at the native resolution of the source image; the table gives the resulting standard deviation after resizing the median-size image of each source to $256\times256$ (horizontal / vertical), and the number of training stacks. Median sizes from 200 random training images per source.}
+\label{tab:blurscale}
+\begin{tabular}{lcccc}
+\toprule
+Source & Median size & $\sigma$ at $\Delta=1$ (px) & $\sigma$ at $\Delta=5$ (px) & Stacks \\
+\midrule
+NYU Depth V2 & $620\times460$ & 0.33 / 0.45 & 0.83 / 1.11 & 1{,}349 \\
+DUTS & $400\times300$ & 0.51 / 0.68 & 1.28 / 1.71 & 10{,}296 \\
+DIODE & $1024\times768$ & 0.20 / 0.27 & 0.50 / 0.67 & 25{,}458 \\
+Cityscapes & $2048\times1024$ & 0.10 / 0.20 & 0.25 / 0.50 & 2{,}975 \\
+ADE20K & $600\times480$ & 0.34 / 0.43 & 0.85 / 1.07 & 20{,}210 \\
+\bottomrule
+\end{tabular}
+\end{table}
