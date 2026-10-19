@@ -67,11 +67,27 @@ def main():
             rng = f'{min(g["mean"] for g in got):.4f}--{max(g["mean"] for g in got):.4f}'
         else:
             rng = ''
-        d = '' if lab.startswith('Final') else ('0.0000' if abs(m['mean'] - ref) < 5e-5 else f'${m["mean"] - ref:+.4f}$')
+        from decimal import Decimal
+        delta = Decimal(f'{m["mean"]:.4f}') - Decimal(f'{ref:.4f}')
+        d = '' if lab.startswith('Final') else ('0.0000' if not delta else f'${delta:+.4f}$')
         L.append(f'{lab}{sup} & {gfl:.2f} & ' + ' & '.join(f'{m[x]:.4f}' for x, _ in DS) + f' & {m["mean"]:.4f} & {m["psnr"]:.2f} & {d} \\\\')
     L += [r'\bottomrule', r'\end{tabular}', r'\end{table}']
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tab_ablation.tex')
-    open(out, 'w').write('\n'.join(L) + '\n'); print('\n'.join(L[9:]))
+    folder = os.path.dirname(os.path.abspath(__file__))
+    full = [line.replace(r'\label{tab:ablation}', r'\label{tab:ablation_full}') for line in L]
+    full = [line.replace('difference of the mean SSIM to the reference',
+                        'difference of displayed four-decimal mean SSIM from the reference') for line in full]
+    open(os.path.join(folder, 'tab_ablation_full.tex'), 'w').write('\n'.join(full)+'\n')
+    compact=[]
+    for line in L:
+        if ' & ' in line:
+            cells=line.split(' & ')
+            line=' & '.join([cells[0],cells[1],*cells[6:]])
+        line=line.replace(r'\begin{tabular}{lcccccccc}',r'\begin{tabular}{lcccc}')
+        line=line.replace('difference of the mean SSIM to the reference',
+                          'difference of displayed four-decimal mean SSIM from the reference')
+        compact.append(line)
+    open(os.path.join(folder,'tab_ablation.tex'),'w').write('\n'.join(compact)+'\n')
+    print('written compact and per-benchmark ablation tables')
 
 
 if __name__ == '__main__':

@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Fused values outside a common input envelope on the real stacks (percentage of color-channel values; tolerance 2 gray levels). The envelope includes both Pillow and OpenCV decodings of the registered files, so JPEG decoder differences are not counted as fusion errors.}
+\label{tab:range}
+\begin{tabular}{lccc}
+\toprule
+Method & CCCID (100) & WBC (200) & Camera bursts (10) \\
+\midrule
+Ours (weighted) & 0.00 & 0.00 & 0.00 \\
+Ours (hard sel.) & 0.00 & 0.00 & 0.00 \\
+StackMFF V2 & 0.00 & 0.00 & 0.00 \\
+StackMFF & 2.72 & 0.79 & 1.33 \\
+CSNet & 0.00 & 0.00 & 0.00 \\
+MFIF-GAN & 0.00 & 0.00 & 0.00 \\
+DeFusion & 3.14 & 1.49 & 0.99 \\
+\bottomrule
+\end{tabular}
+\end{table}

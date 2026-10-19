@@ -1,0 +1,67 @@
+\begin{table}[htbp]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{0.74}
+\setlength{\tabcolsep}{3.2pt}
+\setlength{\aboverulesep}{0.2ex}
+\setlength{\belowrulesep}{0.2ex}
+\setlength{\abovecaptionskip}{1pt}
+\setlength{\belowcaptionskip}{2pt}
+\caption{VIF and NMI for the same runs as Tables~1 and~2 of the main paper. Best and second-best values are highlighted in pink and blue; --: not evaluated.}
+\label{tab:supp_vif_nmi}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+Method & \multicolumn{2}{c}{MD} & \multicolumn{2}{c}{Mid.} & \multicolumn{2}{c}{FT3D} & \multicolumn{2}{c}{Road-MF} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+ & VIF & NMI & VIF & NMI & VIF & NMI & VIF & NMI \\
+\midrule
+\multicolumn{9}{l}{\textit{Spatial domain}} \\
+GFF~\cite{li2013image} & 0.8267 & 0.6320 & 0.7426 & 0.6274 & 0.7620 & 0.6139 & 0.8666 & 0.7830 \\
+IFM~\cite{li2013matting} & 0.5870 & 0.5073 & 0.4938 & 0.3973 & 0.5443 & 0.3919 & 0.6640 & 0.5921 \\
+QB~\cite{bai2015quadtree} & 0.8203 & \second{0.7104} & 0.6720 & 0.5991 & 0.7439 & 0.6320 & 0.8745 & 0.8667 \\
+BFMF~\cite{zhang2017boundary} & 0.7750 & 0.6379 & 0.6989 & 0.6057 & 0.7159 & 0.6079 & 0.7900 & 0.7581 \\
+GFDF~\cite{qiu2019guided} & \best{0.8515} & 0.7015 & 0.7487 & 0.6546 & \second{0.7718} & 0.6447 & 0.8722 & 0.8372 \\
+MGFF~\cite{bavirisetti2019multiscale} & 0.3563 & 0.1897 & 0.3209 & 0.2503 & 0.2321 & 0.2080 & 0.3278 & 0.2899 \\
+\midrule
+\multicolumn{9}{l}{\textit{Transform domain}} \\
+CVT~\cite{guo2012multifocus} & 0.6170 & 0.4582 & 0.4908 & 0.4037 & 0.4582 & 0.3603 & 0.6863 & 0.5468 \\
+DWT~\cite{li1995multisensor} & 0.5513 & 0.4328 & 0.4320 & 0.3878 & 0.4144 & 0.3690 & 0.5196 & 0.4834 \\
+DCT~\cite{HAGHIGHAT2011789} & 0.6743 & 0.5016 & 0.5716 & 0.4519 & 0.5960 & 0.4669 & 0.8072 & 0.6587 \\
+DTCWT~\cite{lewis2007pixel} & 0.6253 & 0.4666 & 0.4988 & 0.4118 & 0.4656 & 0.3702 & 0.7073 & 0.5656 \\
+NSCT~\cite{yang2007image} & 0.6138 & 0.4582 & 0.4818 & 0.4124 & 0.4491 & 0.3765 & 0.6988 & 0.5641 \\
+\midrule
+\multicolumn{9}{l}{\textit{Pairwise, adapted to stacks}} \\
+IFCNN (MAX)~\cite{zhang2020ifcnn} & 0.4528 & 0.3317 & 0.4882 & 0.3987 & 0.3677 & 0.3486 & 0.4711 & 0.4341 \\
+U2Fusion~\cite{xu2020u2fusion} & 0.3592 & 0.2936 & 0.3093 & 0.3267 & 0.2064 & 0.2917 & 0.2803 & 0.3766 \\
+SDNet~\cite{zhang2021sdnet} & 0.3904 & 0.3368 & 0.3362 & 0.3364 & 0.1948 & 0.2845 & 0.3482 & 0.4078 \\
+MFF-GAN~\cite{zhang2021mff} & 0.1402 & 0.1395 & 0.2144 & 0.2163 & 0.1475 & 0.1890 & 0.1782 & 0.2208 \\
+SwinFusion~\cite{ma2022swinfusion} & 0.5231 & 0.3933 & 0.3384 & 0.3442 & 0.1978 & 0.2879 & 0.3248 & 0.3926 \\
+MUFusion~\cite{cheng2023mufusion} & 0.2735 & 0.2182 & 0.2677 & 0.2429 & 0.1937 & 0.1873 & 0.2584 & 0.3186 \\
+SwinMFF~\cite{xie2024swinmff} & 0.1891 & 0.1908 & 0.2429 & 0.2184 & 0.3061 & 0.1916 & 0.2568 & 0.2665 \\
+DDBFusion~\cite{zhang2025ddbfusion} & 0.4618 & 0.3854 & 0.2762 & 0.3100 & 0.1575 & 0.2583 & 0.2806 & 0.3604 \\
+CCSR-Net~\cite{ZHENG2025102974} & 0.4738 & 0.4254 & 0.2950 & 0.3420 & 0.1511 & 0.2691 & 0.4562 & 0.5270 \\
+MCCSR-Net~\cite{ZHENG2025102974} & 0.6018 & 0.5277 & 0.4537 & 0.4504 & 0.2892 & 0.3505 & 0.5167 & 0.5665 \\
+DeFusion~\cite{liang2022defusion} & 0.4737 & 0.4102 & 0.2637 & 0.3212 & 0.1459 & 0.2674 & 0.2508 & 0.3790 \\
+MFIF-GAN~\cite{wang2021mfifgan} & 0.6790 & 0.5652 & 0.6772 & 0.6002 & 0.7255 & 0.6153 & 0.8006 & 0.7890 \\
+GIFNet~\cite{cheng2025gifnet} & 0.1202 & 0.1606 & 0.1363 & 0.1995 & 0.1005 & 0.1688 & 0.1215 & 0.2613 \\
+CSNet~\cite{csnet2026} & 0.7096 & 0.5819 & 0.6719 & 0.5795 & 0.7384 & 0.6240 & 0.8318 & 0.8310 \\
+ReDiffuse~\cite{rediffuse2026} & 0.6155 & 0.4460 & 0.6498 & 0.4623 & -- & -- & -- & -- \\
+ZMFF~\cite{hu2023zmff} & 0.5924 & 0.4413 & 0.4483 & 0.3700 & -- & -- & -- & -- \\
+\midrule
+\multicolumn{9}{l}{\textit{Commercial software}} \\
+Helicon Focus (A) & 0.6794 & 0.5145 & 0.5677 & 0.4779 & 0.5496 & 0.4750 & 0.5834 & 0.5472 \\
+Helicon Focus (B) & 0.7113 & 0.5332 & 0.5967 & 0.4987 & 0.5561 & 0.4810 & 0.6347 & 0.5810 \\
+Helicon Focus (C) & 0.6377 & 0.4758 & 0.5718 & 0.4673 & 0.5319 & 0.4523 & 0.6031 & 0.5351 \\
+Zerene (DMap) & 0.6280 & 0.4809 & 0.5314 & 0.4502 & 0.5019 & 0.4523 & 0.6969 & 0.5829 \\
+Zerene (PMax) & 0.6023 & 0.4383 & 0.5267 & 0.4300 & 0.5013 & 0.4288 & 0.7468 & 0.5830 \\
+\midrule
+\multicolumn{9}{l}{\textit{Native stack}} \\
+StackMFF~\cite{xie2025stackmff} & 0.6179 & 0.4919 & 0.6104 & 0.5035 & 0.6708 & 0.5383 & 0.6908 & 0.5817 \\
+StackMFF V2~\cite{xie2025stackmffv2} & 0.6702 & 0.5436 & 0.6892 & 0.6038 & 0.6970 & 0.5940 & 0.8068 & 0.7978 \\
+VAEEDOF~\cite{vaeedof2025} & 0.4879 & 0.3857 & 0.4218 & 0.3565 & 0.4231 & 0.3699 & 0.4221 & 0.3846 \\
+Ours (hard selection) & 0.8151 & \best{0.7164} & \second{0.7522} & \best{0.6768} & 0.7705 & \second{0.6567} & \best{0.9390} & \best{0.8978} \\
+Ours (weighted) & \second{0.8413} & 0.6694 & \best{0.7677} & \second{0.6746} & \best{0.7811} & \best{0.6578} & \second{0.9286} & \second{0.8830} \\
+\bottomrule
+\end{tabular}}
+\end{table}

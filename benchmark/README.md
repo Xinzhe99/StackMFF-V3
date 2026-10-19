@@ -1,11 +1,14 @@
 # Recomputing the reported comparisons
 
-This directory records the exact paper subset: **32 baseline families / 35 settings, plus our two fusion rules**. MD has 11 stacks, Middlebury 15, FlyingThings3D 100 and Road-MF 80. ZMFF and ReDiffuse currently cover MD and Middlebury only: this is 7,262 primary result images across 144 method/dataset cells. Missing coverage is explicit; partial results from the ongoing runs are not mixed into this snapshot.
+The **current complete cohort** contains **30 baseline families / 33 settings, plus two proposed read-outs**: 35 methods/settings on all 206 scenes (7,210 primary images, 140 method/dataset cells).
 
-- [Complete SSIM/PSNR table](TABLES.md), [all metric means and ranks](summary.csv), [per-image metrics](per_image.csv), [method identifiers](methods.json).
-- [Statistical comparisons](stats.md): two-sided Wilcoxon signed-rank tests against `Ours_final_soft`, Holm correction within each dataset/metric family; Friedman ranks and Nemenyi critical differences. Direction and non-significant comparisons matter. The 0.66 dB MD mean margin over GFF is not statistically significant.
-- [Baseline protocols](baseline_protocols.tex): evaluated source references, runtime accommodations, pairwise ordering and method-specific details, as included in the manuscript supplement.
-- `auxiliary/`: corrected real-stack metrics, decoder sensitivity, registration matrices, robustness scores, and the exploratory downstream probe's OOF predictions, splits and repeat-level statistics. Downstream results do not establish an advantage of the proposed model.
+- [Current SSIM/PSNR table](current/TABLES.md), [metric means and cohort-specific ranks](current/summary.csv), [per-scene records](current/per_image.csv), [method identifiers and venues](current/methods.json).
+- [Current statistical comparisons](current/stats.md): paired Wilcoxon tests with Holm correction, Friedman ranks and Nemenyi critical differences. The Mobile Depth PSNR margin over GFF is not statistically significant.
+- [Baseline protocols](baseline_protocols.tex) document the source implementations, stack adaptations and runtime accommodations.
+- `auxiliary/` retains corrected real-stack metrics, registration matrices, range checks, robustness records and exploratory downstream results. The downstream probe does not establish an advantage of the proposed model.
+
+The original [37-row table](TABLES.md), `summary.csv`, `per_image.csv` and `stats.*` remain as the **historical archive**. It includes 52 partial ZMFF/ReDiffuse outputs on Mobile Depth and Middlebury in addition to the 7,210 complete-cohort images. These partial methods are excluded from the current comparison until all four cohorts are complete. Archive image manifests and hashes are unchanged.
+
 
 ## Image archives
 
@@ -28,7 +31,7 @@ Pairwise methods fuse in natural numeric focal order. Helicon's cropped/rescaled
 
 The checkpoint, smoothing and inference scales were selected using these four public benchmarks. These results therefore do not constitute an independently held-out estimate of model-selection generalization.
 
-`config_paper.json` explicitly declares the two partial-coverage methods. The runner skips only those unreported cells; an absent image in an expected cell is still an error. Failed cached records are retried, and summaries ignore obsolete methods outside the selected configuration. Use a fresh output directory when changing result images, metric code or library versions: successful cache entries are reused within a run and are not automatically invalidated by changes to source files.
+`config_paper.json` selects the 35 complete-cohort settings. `config_archive.json` retains the historical partial-coverage configuration. In either configuration, an absent image in an expected cell is still an error. Failed cached records are retried, and summaries ignore obsolete methods outside the selected configuration. Use a fresh output directory when changing result images, metric code or library versions: successful cache entries are reused within a run and are not automatically invalidated by changes to source files.
 
 ## Run
 
@@ -42,4 +45,4 @@ python evaluation/run_eval.py summarize --config benchmark/config_paper.json --o
 python evaluation/stats.py --dir eval_out --ref Ours_final_soft
 ```
 
-The frozen records in this folder are supplied so every mean and statistical comparison can be examined without rerunning an image metric. Exact last digits may depend on the library versions; archive image hashes identify the actual evaluated files. `summary.csv` ranks are recalculated over the paper's method subset, rather than obsolete experimental variants.
+The frozen records in this folder are supplied so every mean and statistical comparison can be examined without rerunning an image metric. Exact last digits may depend on the library versions; archive image hashes identify the actual evaluated files. `current/summary.csv` ranks are recalculated over the current 35-row cohort. Rebuild it from the immutable historical measurements with `python tools/build_current_benchmark.py`, then run `python evaluation/stats.py --dir benchmark/current --ref Ours_final_soft`.

@@ -38,8 +38,6 @@
     "MFIF-GAN",
     "GIFNet",
     "CSNet",
-    "ReDiffuse",
-    "ZMFF",
     "Helicon Focus 8 - A",
     "Helicon Focus 8 - B",
     "Helicon Focus 8 - C",
@@ -57,14 +55,5 @@
     "Helicon Focus 8 - C"
   ],
   "overrides": {},
-  "method_datasets": {
-    "ZMFF": [
-      "Mobile Depth",
-      "Middlebury"
-    ],
-    "ReDiffuse": [
-      "Mobile Depth",
-      "Middlebury"
-    ]
-  }
+  "method_datasets": {}
 }

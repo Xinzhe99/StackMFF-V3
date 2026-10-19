@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Effective Gaussian blur after native-resolution synthesis and resizing to $256\times256$. Entries are horizontal / vertical standard deviations for median source dimensions, estimated from 200 training images per source. Native blur uses $\sigma=0.3\Delta+0.5$ for nonzero depth-level distance $\Delta$.}
+\label{tab:blurscale}
+\begin{tabular}{lcccc}
+\toprule
+Source & Median size & $\sigma$ at $\Delta=1$ (px) & $\sigma$ at $\Delta=5$ (px) & Stacks \\
+\midrule
+NYU Depth V2 & $620\times460$ & 0.33 / 0.45 & 0.83 / 1.11 & 1{,}349 \\
+DUTS & $400\times300$ & 0.51 / 0.68 & 1.28 / 1.71 & 10{,}296 \\
+DIODE & $1024\times768$ & 0.20 / 0.27 & 0.50 / 0.67 & 25{,}458 \\
+Cityscapes & $2048\times1024$ & 0.10 / 0.20 & 0.25 / 0.50 & 2{,}975 \\
+ADE20K & $600\times480$ & 0.34 / 0.43 & 0.85 / 1.07 & 20{,}210 \\
+\bottomrule
+\end{tabular}
+\end{table}

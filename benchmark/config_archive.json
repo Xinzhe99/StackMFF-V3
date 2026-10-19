@@ -1,0 +1,70 @@
+{
+  "gt_root": "benchmarks",
+  "gt_subdir": "AiF",
+  "stack_root": "benchmarks",
+  "results_roots": [
+    "results"
+  ],
+  "out_dir": "eval_out",
+  "datasets": [
+    "Mobile Depth",
+    "Middlebury",
+    "FlyingThings3D",
+    "Road-MF"
+  ],
+  "methods": [
+    "GFF",
+    "IFM",
+    "QB",
+    "BFMF",
+    "GFDF",
+    "MGFF",
+    "CVT",
+    "DWT",
+    "DCT",
+    "DTCWT",
+    "NSCT",
+    "IFCNN-MAX",
+    "U2Fusion",
+    "SDNet",
+    "MFF-GAN",
+    "SwinFusion",
+    "MUFusion",
+    "SwinMFF",
+    "DDBFusion",
+    "CCSR-Net",
+    "MCCSR-Net",
+    "DeFusion",
+    "MFIF-GAN",
+    "GIFNet",
+    "CSNet",
+    "ReDiffuse",
+    "ZMFF",
+    "Helicon Focus 8 - A",
+    "Helicon Focus 8 - B",
+    "Helicon Focus 8 - C",
+    "Zerene Stacker - DMap",
+    "Zerene Stacker - PMax",
+    "StackMFF_release",
+    "StackMFF V2",
+    "VAEEDOF",
+    "Ours_final_hard",
+    "Ours_final_soft"
+  ],
+  "aligned_methods": [
+    "Helicon Focus 8 - A",
+    "Helicon Focus 8 - B",
+    "Helicon Focus 8 - C"
+  ],
+  "overrides": {},
+  "method_datasets": {
+    "ZMFF": [
+      "Mobile Depth",
+      "Middlebury"
+    ],
+    "ReDiffuse": [
+      "Mobile Depth",
+      "Middlebury"
+    ]
+  }
+}

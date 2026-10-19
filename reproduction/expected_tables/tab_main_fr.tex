@@ -1,13 +1,13 @@
-\begin{table}[htb]
+\begin{table}[!t]
 \centering
 \footnotesize
-\renewcommand{\arraystretch}{0.90}
+\renewcommand{\arraystretch}{0.79}
 \setlength{\tabcolsep}{3.2pt}
 \setlength{\aboverulesep}{0.2ex}
 \setlength{\belowrulesep}{0.2ex}
 \setlength{\abovecaptionskip}{1pt}
 \setlength{\belowcaptionskip}{2pt}
-\caption{Full-reference results: classical methods and commercial software (BT.601 luma, full image). Pink/blue mark the best/second-best across this table and Table~\ref{tab:main_learned}. Both read-outs of our model are repeated for comparison. Iterative methods use numeric focal order.}
+\caption{Full-reference results (BT.601 luma; PSNR in dB). Pink/blue indicate the best/second-best unrounded means.}
 \label{tab:main_fr}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lcccccccc}
@@ -17,19 +17,35 @@ Method & \multicolumn{2}{c}{MD} & \multicolumn{2}{c}{Mid.} & \multicolumn{2}{c}{
  & SSIM & PSNR & SSIM & PSNR & SSIM & PSNR & SSIM & PSNR \\
 \midrule
 \multicolumn{9}{l}{\textit{Spatial domain}} \\
-GFF~\cite{li2013image} & \second{0.9829} & \second{39.50} & 0.9557 & 32.94 & 0.9682 & 34.44 & 0.9921 & 38.58 \\
-IFM~\cite{li2013matting} & 0.8671 & 26.67 & 0.8510 & 23.86 & 0.8888 & 24.37 & 0.9232 & 26.55 \\
-QB~\cite{bai2015quadtree} & 0.9752 & 38.01 & 0.9360 & 30.99 & 0.9626 & 33.59 & 0.9914 & 37.91 \\
-BFMF~\cite{zhang2017boundary} & 0.9638 & 35.67 & 0.9432 & 31.76 & 0.9496 & 32.08 & 0.9736 & 34.36 \\
-GFDF~\cite{qiu2019guided} & 0.9819 & 39.49 & 0.9557 & 32.89 & 0.9681 & 34.33 & 0.9905 & 37.82 \\
-MGFF~\cite{bavirisetti2019multiscale} & 0.5279 & 15.13 & 0.7063 & 19.92 & 0.6915 & 20.44 & 0.7094 & 20.23 \\
+GFF (TIP)~\cite{li2013image} & \second{0.9829} & \second{39.50} & 0.9557 & 32.94 & 0.9682 & 34.44 & 0.9921 & 38.58 \\
+IFM (Inf.\ Fusion)~\cite{li2013matting} & 0.8671 & 26.67 & 0.8510 & 23.86 & 0.8888 & 24.37 & 0.9232 & 26.55 \\
+QB (Inf.\ Fusion)~\cite{bai2015quadtree} & 0.9752 & 38.01 & 0.9360 & 30.99 & 0.9626 & 33.59 & 0.9914 & 37.91 \\
+BFMF (Inf.\ Fusion)~\cite{zhang2017boundary} & 0.9638 & 35.67 & 0.9432 & 31.76 & 0.9496 & 32.08 & 0.9736 & 34.36 \\
+GFDF (SPIC)~\cite{qiu2019guided} & 0.9819 & 39.49 & 0.9557 & 32.89 & 0.9681 & 34.33 & 0.9905 & 37.82 \\
+MGFF (CSSP)~\cite{bavirisetti2019multiscale} & 0.5279 & 15.13 & 0.7063 & 19.92 & 0.6915 & 20.44 & 0.7094 & 20.23 \\
 \midrule
 \multicolumn{9}{l}{\textit{Transform domain}} \\
-CVT~\cite{guo2012multifocus} & 0.9364 & 32.67 & 0.8878 & 29.23 & 0.9183 & 29.30 & 0.9726 & 34.32 \\
-DWT~\cite{li1995multisensor} & 0.9113 & 30.86 & 0.8523 & 28.18 & 0.8903 & 29.27 & 0.9178 & 29.62 \\
-DCT~\cite{HAGHIGHAT2011789} & 0.9115 & 27.63 & 0.8668 & 25.42 & 0.9035 & 27.85 & 0.9436 & 26.63 \\
-DTCWT~\cite{lewis2007pixel} & 0.9402 & 32.81 & 0.8914 & 29.26 & 0.9214 & 29.32 & 0.9772 & 34.69 \\
-NSCT~\cite{yang2007image} & 0.9332 & 32.21 & 0.8835 & 29.06 & 0.9143 & 29.21 & 0.9756 & 34.81 \\
+CVT (Opt.\ Express)~\cite{guo2012multifocus} & 0.9364 & 32.67 & 0.8878 & 29.23 & 0.9183 & 29.30 & 0.9726 & 34.32 \\
+DWT (GMIP)~\cite{li1995multisensor} & 0.9113 & 30.86 & 0.8523 & 28.18 & 0.8903 & 29.27 & 0.9178 & 29.62 \\
+DCT (CEE)~\cite{HAGHIGHAT2011789} & 0.9115 & 27.63 & 0.8668 & 25.42 & 0.9035 & 27.85 & 0.9436 & 26.63 \\
+DTCWT (Inf.\ Fusion)~\cite{lewis2007pixel} & 0.9402 & 32.81 & 0.8914 & 29.26 & 0.9214 & 29.32 & 0.9772 & 34.69 \\
+NSCT (ICIG)~\cite{yang2007image} & 0.9332 & 32.21 & 0.8835 & 29.06 & 0.9143 & 29.21 & 0.9756 & 34.81 \\
+\midrule
+\multicolumn{9}{l}{\textit{Pairwise, adapted to stacks}} \\
+IFCNN (MAX) (Inf.\ Fusion)~\cite{zhang2020ifcnn} & 0.7776 & 24.90 & 0.8842 & 27.92 & 0.8791 & 27.73 & 0.8951 & 27.70 \\
+U2Fusion (TPAMI)~\cite{xu2020u2fusion} & 0.7841 & 21.09 & 0.7742 & 20.82 & 0.7748 & 22.64 & 0.7689 & 19.92 \\
+SDNet (IJCV)~\cite{zhang2021sdnet} & 0.7852 & 23.95 & 0.8226 & 25.13 & 0.7855 & 24.95 & 0.8442 & 26.15 \\
+MFF-GAN (Inf.\ Fusion)~\cite{zhang2021mff} & 0.2925 & 13.39 & 0.5402 & 19.53 & 0.5252 & 21.98 & 0.4565 & 17.67 \\
+SwinFusion (JAS)~\cite{ma2022swinfusion} & 0.8738 & 25.27 & 0.7826 & 25.44 & 0.7501 & 25.30 & 0.7918 & 23.96 \\
+MUFusion (Inf.\ Fusion)~\cite{cheng2023mufusion} & 0.4703 & 18.73 & 0.5816 & 19.78 & 0.4721 & 19.62 & 0.6423 & 19.04 \\
+SwinMFF (Vis.\ Comput.)~\cite{xie2024swinmff} & 0.3440 & 10.87 & 0.4221 & 11.86 & 0.3262 & 12.30 & 0.4965 & 13.50 \\
+DDBFusion (Inf.\ Fusion)~\cite{zhang2025ddbfusion} & 0.8342 & 26.35 & 0.7236 & 23.73 & 0.7115 & 22.71 & 0.7564 & 23.14 \\
+CCSR-Net (Inf.\ Fusion)~\cite{ZHENG2025102974} & 0.8480 & 28.29 & 0.7309 & 24.16 & 0.7077 & 23.96 & 0.8337 & 25.98 \\
+MCCSR-Net (Inf.\ Fusion)~\cite{ZHENG2025102974} & 0.8753 & 28.60 & 0.8237 & 26.30 & 0.7776 & 25.33 & 0.8529 & 27.31 \\
+DeFusion (ECCV)~\cite{liang2022defusion} & 0.8481 & 27.33 & 0.7174 & 24.02 & 0.7139 & 24.18 & 0.7309 & 23.93 \\
+MFIF-GAN (SPIC)~\cite{wang2021mfifgan} & 0.9507 & 34.54 & 0.9448 & 31.50 & 0.9603 & 32.79 & 0.9802 & 34.20 \\
+GIFNet (CVPR)~\cite{cheng2025gifnet} & 0.3381 & 9.71 & 0.4531 & 11.35 & 0.3560 & 10.09 & 0.5423 & 11.60 \\
+CSNet (arXiv)~\cite{csnet2026} & 0.9355 & 33.62 & 0.9430 & 31.82 & 0.9620 & 33.47 & 0.9850 & 36.17 \\
 \midrule
 \multicolumn{9}{l}{\textit{Commercial software}} \\
 Helicon Focus (A) & 0.9592 & 33.97 & 0.9197 & 30.14 & 0.9299 & 31.46 & 0.9416 & 31.16 \\
@@ -39,6 +55,9 @@ Zerene (DMap) & 0.9382 & 33.58 & 0.9048 & 30.45 & 0.9144 & 30.85 & 0.9668 & 33.8
 Zerene (PMax) & 0.9267 & 31.43 & 0.9055 & 30.52 & 0.9160 & 31.45 & 0.9794 & 35.78 \\
 \midrule
 \multicolumn{9}{l}{\textit{Native stack}} \\
+StackMFF (Appl.\ Intell.)~\cite{xie2025stackmff} & 0.9470 & 32.13 & 0.9336 & 30.90 & 0.9568 & 32.99 & 0.9715 & 33.19 \\
+StackMFF V2 (EAAI)~\cite{xie2025stackmffv2} & 0.9510 & 35.21 & 0.9453 & 32.18 & 0.9531 & 32.75 & 0.9811 & 36.27 \\
+VAEEDOF (arXiv)~\cite{vaeedof2025} & 0.8694 & 28.28 & 0.8313 & 27.03 & 0.8782 & 29.29 & 0.8439 & 26.20 \\
 Ours (hard selection) & 0.9769 & 38.36 & \second{0.9595} & \second{33.59} & \second{0.9692} & \second{34.79} & \best{0.9984} & \best{46.12} \\
 Ours (weighted) & \best{0.9855} & \best{40.16} & \best{0.9622} & \best{34.28} & \best{0.9722} & \best{35.35} & \second{0.9979} & \second{44.53} \\
 \bottomrule

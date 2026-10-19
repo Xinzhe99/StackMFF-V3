@@ -1,17 +1,19 @@
 \begin{table}[htbp]
 \centering
 \footnotesize
-\setlength{\tabcolsep}{3pt}
-\caption{Comparison with LFSF \cite{li2026lfsf}, for which no code is available, using the values reported by its authors on the same benchmarks (BT.601 luma, full image). Each cell is SSIM / PSNR (dB). The reported values come from a different evaluation pipeline and are not re-evaluated; the choice of pipeline alone can move the PSNR by a few tenths of a dB (Section~4.3 of the main paper). $^{\ast}$Reported values. LFSF weights the observed values with a softmax over the stack; LFSF-RF refines its output with a rectified-flow model and therefore synthesizes intensities. Highest value of each quantity in bold.}
+\setlength{\tabcolsep}{2.7pt}
+\caption{Published-score comparison with LFSF \cite{li2026lfsf}. Each cell is SSIM / PSNR (dB); $^\ast$ denotes reported values from a different pipeline, not re-evaluated outputs. LFSF-RF applies generative refinement. Highest values are bold; differences are not a controlled implementation comparison.}
 \label{tab:lfsf}
+\begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{lcccc}
 \toprule
 Method & MD & Mid. & FT3D & Road-MF \\
 \midrule
-LFSF & 0.9799 / 38.86 & 0.9546 / 32.81 & 0.9663 / 34.07 & 0.9925 / 38.26 \\
-LFSF-RF & 0.9766 / 36.29 & 0.9617 / \textbf{34.68} & 0.9712 / \textbf{35.43} & 0.9981 / \textbf{46.91} \\
+LFSF$^\ast$ (Neurocomput.)~\cite{li2026lfsf} & 0.9799 / 38.86 & 0.9546 / 32.81 & 0.9663 / 34.07 & 0.9925 / 38.26 \\
+LFSF-RF$^\ast$ (Neurocomput.)~\cite{li2026lfsf} & 0.9766 / 36.29 & 0.9617 / \textbf{34.68} & 0.9712 / \textbf{35.43} & 0.9981 / \textbf{46.91} \\
 Ours (weighted) & \textbf{0.9855} / \textbf{40.16} & \textbf{0.9622} / 34.28 & \textbf{0.9722} / 35.35 & 0.9979 / 44.53 \\
 Ours (hard selection) & 0.9769 / 38.36 & 0.9595 / 33.59 & 0.9692 / 34.79 & \textbf{0.9984} / 46.12 \\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \end{table}

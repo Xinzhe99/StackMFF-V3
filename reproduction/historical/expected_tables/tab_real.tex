@@ -1,0 +1,20 @@
+\begin{table}[htb]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{No-reference evaluation on real focal stacks ($Q^{\mathbf{X}/F}$ / MEF-SSIM, higher is better; best and second-best highlighted in pink and blue). Number of stacks in parentheses.}
+\label{tab:real}
+\begin{tabular}{lccc}
+\toprule
+Method & CCCID (100) & WBC (200) & Camera bursts (10) \\
+\midrule
+Ours (weighted) & \second{0.486} / \second{0.926} & 0.495 / 0.719 & 0.341 / \best{0.909} \\
+Ours (hard sel.) & 0.484 / 0.905 & 0.477 / 0.643 & 0.340 / 0.894 \\
+StackMFF V2 & 0.471 / 0.903 & 0.484 / 0.683 & \best{0.349} / \second{0.902} \\
+StackMFF & 0.476 / \best{0.929} & \second{0.500} / \second{0.738} & 0.322 / 0.883 \\
+CSNet & \best{0.490} / 0.912 & 0.477 / 0.698 & 0.342 / 0.894 \\
+MFIF-GAN & 0.481 / 0.900 & 0.466 / 0.575 & \second{0.345} / 0.879 \\
+DeFusion & 0.485 / 0.910 & \best{0.509} / \best{0.766} & 0.233 / 0.705 \\
+\bottomrule
+\end{tabular}
+\end{table}

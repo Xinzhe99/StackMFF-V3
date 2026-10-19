@@ -1,0 +1,46 @@
+\begin{table}[htb]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{0.90}
+\setlength{\tabcolsep}{3.2pt}
+\setlength{\aboverulesep}{0.2ex}
+\setlength{\belowrulesep}{0.2ex}
+\setlength{\abovecaptionskip}{1pt}
+\setlength{\belowcaptionskip}{2pt}
+\caption{Full-reference results: classical methods and commercial software (BT.601 luma, full image). Pink/blue mark the best/second-best across this table and Table~\ref{tab:main_learned}. Both read-outs of our model are repeated for comparison. Iterative methods use numeric focal order.}
+\label{tab:main_fr}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+Method & \multicolumn{2}{c}{MD} & \multicolumn{2}{c}{Mid.} & \multicolumn{2}{c}{FT3D} & \multicolumn{2}{c}{Road-MF} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+ & SSIM & PSNR & SSIM & PSNR & SSIM & PSNR & SSIM & PSNR \\
+\midrule
+\multicolumn{9}{l}{\textit{Spatial domain}} \\
+GFF~\cite{li2013image} & \second{0.9829} & \second{39.50} & 0.9557 & 32.94 & 0.9682 & 34.44 & 0.9921 & 38.58 \\
+IFM~\cite{li2013matting} & 0.8671 & 26.67 & 0.8510 & 23.86 & 0.8888 & 24.37 & 0.9232 & 26.55 \\
+QB~\cite{bai2015quadtree} & 0.9752 & 38.01 & 0.9360 & 30.99 & 0.9626 & 33.59 & 0.9914 & 37.91 \\
+BFMF~\cite{zhang2017boundary} & 0.9638 & 35.67 & 0.9432 & 31.76 & 0.9496 & 32.08 & 0.9736 & 34.36 \\
+GFDF~\cite{qiu2019guided} & 0.9819 & 39.49 & 0.9557 & 32.89 & 0.9681 & 34.33 & 0.9905 & 37.82 \\
+MGFF~\cite{bavirisetti2019multiscale} & 0.5279 & 15.13 & 0.7063 & 19.92 & 0.6915 & 20.44 & 0.7094 & 20.23 \\
+\midrule
+\multicolumn{9}{l}{\textit{Transform domain}} \\
+CVT~\cite{guo2012multifocus} & 0.9364 & 32.67 & 0.8878 & 29.23 & 0.9183 & 29.30 & 0.9726 & 34.32 \\
+DWT~\cite{li1995multisensor} & 0.9113 & 30.86 & 0.8523 & 28.18 & 0.8903 & 29.27 & 0.9178 & 29.62 \\
+DCT~\cite{HAGHIGHAT2011789} & 0.9115 & 27.63 & 0.8668 & 25.42 & 0.9035 & 27.85 & 0.9436 & 26.63 \\
+DTCWT~\cite{lewis2007pixel} & 0.9402 & 32.81 & 0.8914 & 29.26 & 0.9214 & 29.32 & 0.9772 & 34.69 \\
+NSCT~\cite{yang2007image} & 0.9332 & 32.21 & 0.8835 & 29.06 & 0.9143 & 29.21 & 0.9756 & 34.81 \\
+\midrule
+\multicolumn{9}{l}{\textit{Commercial software}} \\
+Helicon Focus (A) & 0.9592 & 33.97 & 0.9197 & 30.14 & 0.9299 & 31.46 & 0.9416 & 31.16 \\
+Helicon Focus (B) & 0.9528 & 34.48 & 0.9277 & 30.68 & 0.9275 & 31.31 & 0.9523 & 32.27 \\
+Helicon Focus (C) & 0.9471 & 32.80 & 0.9248 & 30.86 & 0.9270 & 31.64 & 0.9505 & 32.32 \\
+Zerene (DMap) & 0.9382 & 33.58 & 0.9048 & 30.45 & 0.9144 & 30.85 & 0.9668 & 33.85 \\
+Zerene (PMax) & 0.9267 & 31.43 & 0.9055 & 30.52 & 0.9160 & 31.45 & 0.9794 & 35.78 \\
+\midrule
+\multicolumn{9}{l}{\textit{Native stack}} \\
+Ours (hard selection) & 0.9769 & 38.36 & \second{0.9595} & \second{33.59} & \second{0.9692} & \second{34.79} & \best{0.9984} & \best{46.12} \\
+Ours (weighted) & \best{0.9855} & \best{40.16} & \best{0.9622} & \best{34.28} & \best{0.9722} & \best{35.35} & \second{0.9979} & \second{44.53} \\
+\bottomrule
+\end{tabular}}
+\end{table}

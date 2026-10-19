@@ -8,7 +8,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "TIP"
   },
   {
     "id": "IFM",
@@ -19,7 +20,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Inf. Fusion"
   },
   {
     "id": "QB",
@@ -30,7 +32,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Inf. Fusion"
   },
   {
     "id": "BFMF",
@@ -41,7 +44,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Inf. Fusion"
   },
   {
     "id": "GFDF",
@@ -52,7 +56,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "SPIC"
   },
   {
     "id": "MGFF",
@@ -63,7 +68,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "CSSP"
   },
   {
     "id": "CVT",
@@ -74,7 +80,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Opt. Express"
   },
   {
     "id": "DWT",
@@ -85,7 +92,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "GMIP"
   },
   {
     "id": "DCT",
@@ -96,7 +104,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "CEE"
   },
   {
     "id": "DTCWT",
@@ -107,7 +116,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Inf. Fusion"
   },
   {
     "id": "NSCT",
@@ -118,7 +128,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "ICIG"
   },
   {
     "id": "IFCNN-MAX",
@@ -129,7 +140,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Inf. Fusion"
   },
   {
     "id": "U2Fusion",
@@ -140,7 +152,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "TPAMI"
   },
   {
     "id": "SDNet",
@@ -151,7 +164,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "IJCV"
   },
   {
     "id": "MFF-GAN",
@@ -162,7 +176,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Inf. Fusion"
   },
   {
     "id": "SwinFusion",
@@ -173,7 +188,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "JAS"
   },
   {
     "id": "MUFusion",
@@ -184,7 +200,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Inf. Fusion"
   },
   {
     "id": "SwinMFF",
@@ -195,7 +212,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Vis. Comput."
   },
   {
     "id": "DDBFusion",
@@ -206,7 +224,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Inf. Fusion"
   },
   {
     "id": "CCSR-Net",
@@ -217,7 +236,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Inf. Fusion"
   },
   {
     "id": "MCCSR-Net",
@@ -228,7 +248,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Inf. Fusion"
   },
   {
     "id": "DeFusion",
@@ -239,7 +260,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "ECCV"
   },
   {
     "id": "MFIF-GAN",
@@ -250,7 +272,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "SPIC"
   },
   {
     "id": "GIFNet",
@@ -261,7 +284,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "CVPR"
   },
   {
     "id": "CSNet",
@@ -272,7 +296,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "arXiv"
   },
   {
     "id": "ReDiffuse",
@@ -281,7 +306,8 @@
     "datasets": [
       "Mobile Depth",
       "Middlebury"
-    ]
+    ],
+    "venue": "arXiv"
   },
   {
     "id": "ZMFF",
@@ -290,7 +316,8 @@
     "datasets": [
       "Mobile Depth",
       "Middlebury"
-    ]
+    ],
+    "venue": "Inf. Fusion"
   },
   {
     "id": "Helicon Focus 8 - A",
@@ -356,7 +383,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "Appl. Intell."
   },
   {
     "id": "StackMFF V2",
@@ -367,7 +395,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "EAAI"
   },
   {
     "id": "VAEEDOF",
@@ -378,7 +407,8 @@
       "Middlebury",
       "FlyingThings3D",
       "Road-MF"
-    ]
+    ],
+    "venue": "arXiv"
   },
   {
     "id": "Ours_final_hard",

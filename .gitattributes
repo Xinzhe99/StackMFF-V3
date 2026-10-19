@@ -1,3 +1,3 @@
 # Preserve exact published record bytes so SHA256 manifests survive checkout/download.
-benchmark/** -text
-reproduction/** -text
+benchmark/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+reproduction/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

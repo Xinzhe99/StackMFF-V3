@@ -1,0 +1,16 @@
+\begin{table}[htb]
+\centering
+\scriptsize
+\caption{Focus-label accuracy on the rendered benchmarks. The reference label of a pixel is the input image closest to the reference (mean absolute difference over the color channels); only decisive pixels are counted, where the second-closest image is at least 5 gray levels further away (fraction of the pixels in the last row). The label of a method is the input image closest to its result. Exact agreement / agreement within one image (\%).}
+\label{tab:label}
+\begin{tabular}{lccc}
+\toprule
+Method & Middlebury & FlyingThings3D & Road-MF \\
+\midrule
+Ours (hard sel.) & 89.9 / 94.2 & 88.5 / 94.2 & 98.3 / 99.5 \\
+StackMFF V2 & 35.8 / 73.7 & 47.5 / 83.5 & 74.2 / 96.1 \\
+\midrule
+Decisive pixels & 3.8 & 2.1 & 15.9 \\
+\bottomrule
+\end{tabular}
+\end{table}

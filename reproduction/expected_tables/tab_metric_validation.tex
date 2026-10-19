@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering\small
+\caption{Largest absolute difference between the reference implementations and the evaluation toolkit over 16 cases.}
+\label{tab:xval}
+\begin{tabular}{lcc}
+\toprule
+Metric & MATLAB R2022b vs.\ toolkit & MATLAB vs.\ Octave \\
+\midrule
+SSIM & 4.186e-14 & 4.408e-14 \\
+PSNR & 4.974e-14 & 0.000e+00 \\
+VIF & 7.216e-14 & 4.921e-13 \\
+MI & 7.105e-15 & 1.021e-14 \\
+NMI & 6.661e-16 & 9.992e-16 \\
+$Q^{AB/F}$ ($N=2$, crop) & 7.772e-16 & 2.109e-15 \\
+MEF-SSIM (crop) & 2.087e-14 & 1.499e-14 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,21 +1,21 @@
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
 \scriptsize
 \setlength{\tabcolsep}{3pt}
-\caption{Statistical comparison over the scenes of each benchmark (37 entries on Mobile Depth and Middlebury, 35 on the other two). Friedman test over all entries, Nemenyi critical difference (CD, $\alpha=0.05$) of the average ranks, average rank of our model, the best-ranked competing entry, the number of entries whose average rank is within the CD of ours (including our hard-selection variant). With so many entries and only 11 or 15 scenes, the Nemenyi test is conservative on Mobile Depth and Middlebury; the paired Wilcoxon tests in the main text are the more sensitive comparison.}
+\caption{Scene-wise statistical comparison of 35 entries on each benchmark. Friedman tests assess overall differences; CD is the Nemenyi critical difference at $\alpha=0.05$. Rank (ours) refers to weighted fusion. Within CD counts other entries, including hard selection, whose mean rank differs by no more than the CD.}
 \label{tab:stats}
 \begin{tabular}{llcccccc}
 \toprule
-Benchmark & Metric & $n$ & Friedman $p$ & CD & Rank (ours) & Next best (rank) & Within CD \\
+Benchmark & Metric & $n$ & Friedman $p$ & CD & Rank (ours) & Best external (rank) & Within CD \\
 \midrule
-Mobile Depth & SSIM & 11 & $7.2\times10^{-58}$ & 17.8 & 1.27 & GFF (2.27) & 17 \\
-Mobile Depth & PSNR & 11 & $2.6\times10^{-58}$ & 17.8 & 1.82 & GFDF (2.45) & 18 \\
-Mobile Depth & VIF & 11 & $4.4\times10^{-57}$ & 17.8 & 2.18 & GFDF (1.27) & 20 \\
-Mobile Depth & NMI & 11 & $1.1\times10^{-58}$ & 17.8 & 3.91 & QB (2.36) & 20 \\
-Middlebury & SSIM & 15 & $5.2\times10^{-82}$ & 15.2 & 1.00 & GFDF (3.40) & 13 \\
-Middlebury & PSNR & 15 & $6.6\times10^{-80}$ & 15.2 & 1.00 & GFDF (4.27) & 16 \\
-Middlebury & VIF & 15 & $1.4\times10^{-82}$ & 15.2 & 1.00 & GFDF (2.93) & 14 \\
-Middlebury & NMI & 15 & $4.3\times10^{-85}$ & 15.2 & 1.80 & GFDF (3.07) & 16 \\
+Mobile Depth & SSIM & 11 & $2.0\times10^{-55}$ & 16.7 & 1.27 & GFF (2.27) & 17 \\
+Mobile Depth & PSNR & 11 & $1.9\times10^{-55}$ & 16.7 & 1.82 & GFDF (2.45) & 18 \\
+Mobile Depth & VIF & 11 & $8.9\times10^{-55}$ & 16.7 & 2.18 & GFDF (1.27) & 19 \\
+Mobile Depth & NMI & 11 & $7.3\times10^{-56}$ & 16.7 & 3.91 & QB (2.36) & 19 \\
+Middlebury & SSIM & 15 & $3.7\times10^{-78}$ & 14.3 & 1.00 & GFDF (3.33) & 12 \\
+Middlebury & PSNR & 15 & $7.8\times10^{-77}$ & 14.3 & 1.00 & GFDF (4.20) & 16 \\
+Middlebury & VIF & 15 & $7.8\times10^{-78}$ & 14.3 & 1.00 & GFDF (2.93) & 13 \\
+Middlebury & NMI & 15 & $8.8\times10^{-81}$ & 14.3 & 1.80 & GFDF (3.07) & 14 \\
 FlyingThings3D & SSIM & 100 & $<10^{-300}$ & 5.5 & 1.01 & GFDF (3.24) & 5 \\
 FlyingThings3D & PSNR & 100 & $<10^{-300}$ & 5.5 & 1.09 & GFF (3.88) & 4 \\
 FlyingThings3D & VIF & 100 & $<10^{-300}$ & 5.5 & 1.03 & GFDF (2.49) & 5 \\

@@ -1,19 +1,16 @@
 \begin{table}[htbp]
-\caption{Deployment of the new comparison methods (part 1): official code and weights used, model size and runtime. Runs use inference or the prescribed test-time optimization, on an RTX A6000; runtime is the mean GPU time per Mobile Depth stack under the protocol of the efficiency comparison of the main paper (idle GPU, fp32, excluding model loading and file I/O; for ReDiffuse and ZMFF the time of one pairwise call). FILM could not be run; see the text.}
+\caption{Code and weights for the additional neural baselines. Runtime and model size are reported in the main-paper efficiency table.}
 \label{tab:deploy}
 \footnotesize
-\begin{tabular}{@{}p{1.9cm}p{1.3cm}p{1.2cm}p{3.7cm}p{1.3cm}p{1.5cm}@{}}
+\begin{tabular}{@{}p{1.9cm}p{1.3cm}p{1.4cm}p{3.5cm}p{1.3cm}p{1.5cm}@{}}
 \toprule
 Method & Type & Code version & Weights & Params (M) & Runtime (s) \\
 \midrule
-GIFNet \cite{cheng2025gifnet} & Pairwise & \texttt{e9c83a6} & Official; \texttt{model/Final.model} shipped in the repository & 0.82 & 2.93 \\
-DeFusion \cite{liang2022defusion} & Pairwise & \texttt{9e7a09a} & Official; checkpoint from the README link & 7.87 & 1.44 \\
-CSNet \cite{csnet2026} & Pairwise & \texttt{1a494f9} & Official; \texttt{checkpoint/\allowbreak checkpoint.pth} shipped in the repository & 1.89 & 0.86 \\
-MFIF-GAN \cite{wang2021mfifgan} & Pairwise & \texttt{160ee49} & Official; generator \texttt{110000-G.ckpt} shipped in the repository (discriminator unused) & 13.70 & 4.06 \\
-VAEEDOF \cite{vaeedof2025} & Native stack & \texttt{78cf9ba} & Official; HF \texttt{MalumaDev/VAEAEDOF}, variant \texttt{VAEEDOF\_DISC}; base tiny VAE \texttt{taesd3} & 35.22 & 0.90 \\
-ReDiffuse \cite{rediffuse2026} & Pairwise, diffusion & \texttt{336b985} & Official; \texttt{weights/model.pt} shipped in the repository & 7.55 & $\approx$55 per pair \\
-ZMFF \cite{hu2023zmff} & Pairwise, zero-shot & \texttt{337013c} & None; per-pair optimization (1300 iterations, Adam, seed 17) & 4.67 per pair & $\approx$107 per pair \\
-FILM \cite{zhao2024film} & Pairwise & \texttt{26a2f01} & Upstream \texttt{models/MFF.pth}; not used & n/a & n/a \\
+GIFNet (CVPR)~\cite{cheng2025gifnet} & Pairwise & \texttt{e9c83a6} & Official; \texttt{model/Final.model} shipped in the repository & 0.82 & 2.93 \\
+DeFusion (ECCV)~\cite{liang2022defusion} & Pairwise & \texttt{9e7a09a} & Official; checkpoint from the README link & 7.87 & 1.44 \\
+CSNet (arXiv)~\cite{csnet2026} & Pairwise & \texttt{1a494f9} & Official; \texttt{checkpoint/\allowbreak checkpoint.pth} shipped in the repository & 1.89 & 0.86 \\
+MFIF-GAN (SPIC)~\cite{wang2021mfifgan} & Pairwise & \texttt{160ee49} & Official; generator \texttt{110000-G.ckpt} shipped in the repository (discriminator unused) & 13.70 & 4.06 \\
+VAEEDOF (arXiv)~\cite{vaeedof2025} & Native stack & \texttt{78cf9ba} & Official; HF \texttt{MalumaDev/VAEAEDOF}, variant \texttt{VAEEDOF\_DISC}; base tiny VAE \texttt{taesd3} & 35.22 & 0.90 \\
 \bottomrule
 \end{tabular}
 \end{table}

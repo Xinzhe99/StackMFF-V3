@@ -1,8 +1,33 @@
 [
   {
     "path": "expected_tables/tab_ablation.tex",
-    "bytes": 2082,
-    "sha256": "4d49060e32d674c77a3eaffa930e24b0cd0a6906cf871e3f6296ddcecf2f1f77"
+    "bytes": 1175,
+    "sha256": "eba652c5d7c2d4ac1b0488771efc7e7eaf4f6601e7291f0231c44e25cced17ed"
+  },
+  {
+    "path": "expected_tables/tab_ablation_full.tex",
+    "bytes": 1579,
+    "sha256": "54ff1c008e528a56bd0f1eccaa351266273c745d302e2d89b7e4255a0501146a"
+  },
+  {
+    "path": "expected_tables/tab_deploy.tex",
+    "bytes": 1204,
+    "sha256": "3403efc116acbd35322bc4d155725144e193286c79f5125dfcac59d5599c2b4a"
+  },
+  {
+    "path": "expected_tables/tab_deploy_handling.tex",
+    "bytes": 1924,
+    "sha256": "2df24f3cc1c78b65431a2866dd6fc4452e41c3cd9e858fe205531495d15faa84"
+  },
+  {
+    "path": "expected_tables/tab_downstream.tex",
+    "bytes": 1814,
+    "sha256": "a98d28c7f1eb0bf70744f2db902f28258cdb57bc82b20dfdae82b4b4469f7e12"
+  },
+  {
+    "path": "expected_tables/tab_efficiency.tex",
+    "bytes": 2729,
+    "sha256": "82558efa335d6177f7be0986bd14986628373d9a7617b838657158410bea3de3"
   },
   {
     "path": "expected_tables/tab_fusion.tex",
@@ -11,113 +36,213 @@
   },
   {
     "path": "expected_tables/tab_label.tex",
+    "bytes": 657,
+    "sha256": "b549dd85c1886b6fcd13f304d767f2bec9d08df9a1fd3c684de35776ec62aa2d"
+  },
+  {
+    "path": "expected_tables/tab_lfsf.tex",
+    "bytes": 1059,
+    "sha256": "58523cc73cf6d8dc6398ea8773fe57375a3a91cc7ec6912b65ac9d592c9c9fad"
+  },
+  {
+    "path": "expected_tables/tab_main_fr.tex",
+    "bytes": 4917,
+    "sha256": "46e3465ee85f627b1c25dc658e9f22976f517126661531500898de4b8316eb40"
+  },
+  {
+    "path": "expected_tables/tab_main_nr.tex",
+    "bytes": 5190,
+    "sha256": "db5b68ebd5245b9ce6b5a9cf5daaf618a36a87b597e769d3e1f6d0856a63037d"
+  },
+  {
+    "path": "expected_tables/tab_metric_validation.tex",
+    "bytes": 560,
+    "sha256": "dbf1c30dd0a0abf1ff45419a0bc8255d7a33a6f7483b3cee9fe9768214d044fb"
+  },
+  {
+    "path": "expected_tables/tab_range.tex",
+    "bytes": 880,
+    "sha256": "950998b6f494cbe6160ae3e88c75ca35afb86cb302e6cd8dab8b47cd0a6c0b32"
+  },
+  {
+    "path": "expected_tables/tab_real.tex",
+    "bytes": 1102,
+    "sha256": "e93038214ea28b922d6853ac39a85275b77d2aa8f7b610c3d0b9e61f7c22449b"
+  },
+  {
+    "path": "expected_tables/tab_roadmap.tex",
+    "bytes": 1945,
+    "sha256": "4bdc9194aa20859742bf7a23046277a69b8448f6466277f5a0b5eb9f1403ebea"
+  },
+  {
+    "path": "expected_tables/tab_robust.tex",
+    "bytes": 1706,
+    "sha256": "c24393b5a2d013ee9d1cf33295eddabbe8f23684f70c343aced6db327feb3a82"
+  },
+  {
+    "path": "expected_tables/tab_supp_blurscale.tex",
+    "bytes": 884,
+    "sha256": "8dbc643444ed9c3eca3d57da1054f82bef0182aa42c2492b6c1342e866019f53"
+  },
+  {
+    "path": "expected_tables/tab_supp_color.tex",
+    "bytes": 4362,
+    "sha256": "43f10a087b1f20386971273ac1d41bc240ac4d89e45bdf4cf91f8b0644bd58bf"
+  },
+  {
+    "path": "expected_tables/tab_supp_epochs.tex",
+    "bytes": 1070,
+    "sha256": "3041de972a8c9132ee7342a3cb45c5f3261d6b7dce9017bc6f4698ca3e97859b"
+  },
+  {
+    "path": "expected_tables/tab_supp_extra.tex",
+    "bytes": 5007,
+    "sha256": "c5e7ce92d258d4c6c59479b8ef3ee7279d471195182f1fb40e4f7e3912a8ae46"
+  },
+  {
+    "path": "expected_tables/tab_supp_mfifb.tex",
+    "bytes": 921,
+    "sha256": "ff80b469006b73fb0328e7040aa43d7aa4c779108365d4349dd592ce57910f91"
+  },
+  {
+    "path": "expected_tables/tab_supp_oracle.tex",
+    "bytes": 1029,
+    "sha256": "b153bdad09d12a39b92951a194a87da6c8ba3bfbb6884517fcaf516be2fdbb16"
+  },
+  {
+    "path": "expected_tables/tab_supp_robust_psnr.tex",
+    "bytes": 1591,
+    "sha256": "a00e10cf3ee0958ec7ee196f29dbc101bb5e70a7c92872f335bc6a4c0131e8a8"
+  },
+  {
+    "path": "expected_tables/tab_supp_stats.tex",
+    "bytes": 1808,
+    "sha256": "e378ebe6d3926ae93ea2a3089a222da05d2f1a51d7127dc8abb9d19bc65169c9"
+  },
+  {
+    "path": "expected_tables/tab_supp_vif_nmi.tex",
+    "bytes": 5054,
+    "sha256": "d4ed64929f03dab630777a9491e8175fcbfe47a9f8811f21f3ce52fb00e6829e"
+  },
+  {
+    "path": "historical/expected_tables/tab_ablation.tex",
+    "bytes": 2082,
+    "sha256": "4d49060e32d674c77a3eaffa930e24b0cd0a6906cf871e3f6296ddcecf2f1f77"
+  },
+  {
+    "path": "historical/expected_tables/tab_fusion.tex",
+    "bytes": 1077,
+    "sha256": "7ab1f602bc3a6718c04aa2a54d2c74e5a273fccf69a7494ab5dc12c9be181bb6"
+  },
+  {
+    "path": "historical/expected_tables/tab_label.tex",
     "bytes": 817,
     "sha256": "c304101d76ef3f9d2422aa8657dd3dc511b5ced3fcfb61c550756a475d836ac8"
   },
   {
-    "path": "expected_tables/tab_lfsf.tex",
+    "path": "historical/expected_tables/tab_lfsf.tex",
     "bytes": 1252,
     "sha256": "3d9d501f2ac29500337b20cdbc68e248ede89c42563a00c904665d7e3c2957cb"
   },
   {
-    "path": "expected_tables/tab_main_fr.tex",
+    "path": "historical/expected_tables/tab_main_fr.tex",
     "bytes": 3023,
     "sha256": "d04218155d89da25eb266c877701db3cd4c8a221bf9523dd609c384d55b4f113"
   },
   {
-    "path": "expected_tables/tab_main_learned.tex",
+    "path": "historical/expected_tables/tab_main_learned.tex",
     "bytes": 3274,
     "sha256": "fdb0d72fbfacb3e46f3beaa05e824bbfc04f6d477117143a440c2b2f2ea0abac"
   },
   {
-    "path": "expected_tables/tab_main_nr.tex",
+    "path": "historical/expected_tables/tab_main_nr.tex",
     "bytes": 5048,
     "sha256": "d4d9e5ce1ccba3f741807a0d2b5a26da12956b795b106f58aa6f45d306f41d71"
   },
   {
-    "path": "expected_tables/tab_range.tex",
+    "path": "historical/expected_tables/tab_range.tex",
     "bytes": 740,
     "sha256": "f4399d66c16585cdab5c18ed0cfe012b800804d8e76c70ded14f7da534a712f3"
   },
   {
-    "path": "expected_tables/tab_real.tex",
+    "path": "historical/expected_tables/tab_real.tex",
     "bytes": 963,
     "sha256": "84229857ddcc5759ed497bd674c8c30037bf6e6548fb2a206599c1d602be5402"
   },
   {
-    "path": "expected_tables/tab_roadmap.tex",
+    "path": "historical/expected_tables/tab_roadmap.tex",
     "bytes": 2899,
     "sha256": "e826c2ff37977cdc10e4e42c3caeca5d44f88f158a9c0c2aa23ca6e1b33ab65d"
   },
   {
-    "path": "expected_tables/tab_robust.tex",
+    "path": "historical/expected_tables/tab_robust.tex",
     "bytes": 1732,
     "sha256": "eea7f213d069f0ed910c81972c2b7632f5cad71d3076e1e70b5a3821bb224a14"
   },
   {
-    "path": "expected_tables/tab_supp_color.tex",
+    "path": "historical/expected_tables/tab_supp_color.tex",
     "bytes": 3666,
     "sha256": "e38b4e9d2daa05e9a93122ddea8dcbb6fccce1f3e1a3c4cc953c0d493a88a9e3"
   },
   {
-    "path": "expected_tables/tab_supp_epochs.tex",
+    "path": "historical/expected_tables/tab_supp_epochs.tex",
     "bytes": 1195,
     "sha256": "d8316f6df258a9d45533d7d4f9afce65b0ca1cc0d9cce32adcbdae711cf16852"
   },
   {
-    "path": "expected_tables/tab_supp_extra.tex",
+    "path": "historical/expected_tables/tab_supp_extra.tex",
     "bytes": 5059,
     "sha256": "23658f4caa7b8d5384bc4b44e4a9d6698554e3aec6e496cc64f552a0ac304aae"
   },
   {
-    "path": "expected_tables/tab_supp_oracle.tex",
+    "path": "historical/expected_tables/tab_supp_oracle.tex",
     "bytes": 1356,
     "sha256": "dcfe5b4f46a9dadede5f265483ce625fda45f495b4642435c889deb8242d53f1"
   },
   {
-    "path": "expected_tables/tab_supp_robust_psnr.tex",
+    "path": "historical/expected_tables/tab_supp_robust_psnr.tex",
     "bytes": 1742,
     "sha256": "823c92f3f188d0b2a4f9cb758e47452e39cfa5c17ddf1f54d65779caecbc59a0"
   },
   {
-    "path": "expected_tables/tab_supp_stats.tex",
+    "path": "historical/expected_tables/tab_supp_stats.tex",
     "bytes": 2106,
     "sha256": "89614b52470d7e3f514ff7b9e293961fa537a5ea13fcfdc30c9d91e3dc7f846f"
   },
   {
-    "path": "expected_tables/tab_supp_vif_nmi.tex",
+    "path": "historical/expected_tables/tab_supp_vif_nmi.tex",
     "bytes": 5033,
     "sha256": "86da9d53e454bd1b6dda837dd7ab5c93bc228cae386b28c55abe1c86fb209b81"
   },
   {
     "path": "manual_tables/tab_deploy.tex",
-    "bytes": 1964,
-    "sha256": "d00dc4354d022ed405cf4613665cc69c95e9fb8a61faca6c0a3900f62a7bd48c"
+    "bytes": 1204,
+    "sha256": "3403efc116acbd35322bc4d155725144e193286c79f5125dfcac59d5599c2b4a"
   },
   {
     "path": "manual_tables/tab_deploy_handling.tex",
-    "bytes": 2685,
-    "sha256": "3229c66bd90d500dca1a0fea8ca339c38debb333fd921a322e5f7579d24380ed"
+    "bytes": 1924,
+    "sha256": "2df24f3cc1c78b65431a2866dd6fc4452e41c3cd9e858fe205531495d15faa84"
   },
   {
     "path": "manual_tables/tab_downstream.tex",
-    "bytes": 1679,
-    "sha256": "af5a7ae57650821ac2d46bc377e077ff469e44712412517bbdbbddcf75988689"
+    "bytes": 1814,
+    "sha256": "a98d28c7f1eb0bf70744f2db902f28258cdb57bc82b20dfdae82b4b4469f7e12"
   },
   {
     "path": "manual_tables/tab_efficiency.tex",
-    "bytes": 3115,
-    "sha256": "714158b2ab63ba12ec63ce6a36f48f880505be60aac6066a79217215c5d89c97"
+    "bytes": 2729,
+    "sha256": "82558efa335d6177f7be0986bd14986628373d9a7617b838657158410bea3de3"
   },
   {
     "path": "manual_tables/tab_supp_blurscale.tex",
-    "bytes": 1073,
-    "sha256": "0734385e37601e032fa70855cee38841de1be35efa74e94ad4c29c1ba3d477e6"
+    "bytes": 884,
+    "sha256": "8dbc643444ed9c3eca3d57da1054f82bef0182aa42c2492b6c1342e866019f53"
   },
   {
     "path": "manual_tables/tab_supp_mfifb.tex",
-    "bytes": 875,
-    "sha256": "1ebca78038b45cbeb2d3d803fa4bf928d95be68ba8aff35c896cd88f477ecfd1"
+    "bytes": 921,
+    "sha256": "ff80b469006b73fb0328e7040aa43d7aa4c779108365d4349dd592ce57910f91"
   },
   {
     "path": "measurement_records/downstream/registered_fixed/publication_summary.csv",
@@ -141,8 +266,13 @@
   },
   {
     "path": "README.md",
-    "bytes": 2241,
-    "sha256": "76f1498e3130997878eccff9f673652b7ac4ea712c2553dec20ceef444a3cd64"
+    "bytes": 1957,
+    "sha256": "e4dccb46c27e3cee966dd45f9dc8e020f6738f608914a71d40914f718211eb05"
+  },
+  {
+    "path": "rebuild_tables.py",
+    "bytes": 2576,
+    "sha256": "8ff1029c1d1b8bdfd802897a11b07412f35e5a1122cb445f0c97d093459f53ca"
   },
   {
     "path": "work/eval/color/color_summary.csv",
@@ -171,8 +301,8 @@
   },
   {
     "path": "work/eval/stats.md",
-    "bytes": 31504,
-    "sha256": "286eaa8920ea872bd04cd38c31844ea689492e1bdcb72347906bc0c52f4d4648"
+    "bytes": 30098,
+    "sha256": "21b16d21819265ba466a9dcaa32bc65c60809c53c7d90a8ab1c2f6f7c503aab0"
   },
   {
     "path": "work/eval/summary.csv",
@@ -191,8 +321,8 @@
   },
   {
     "path": "work/figures/src/make_roadmap.py",
-    "bytes": 11863,
-    "sha256": "ef8a244a81078adf27d714bf9be45537f2995b3c10f69abd7d56dd1b685acfe8"
+    "bytes": 12168,
+    "sha256": "bbf4662a0a385fb01f7b03ae32066192a518e81995dfd2ed537edbefdb6fe735"
   },
   {
     "path": "work/new_model/final_epochs.csv",
@@ -305,6 +435,11 @@
     "sha256": "f65c96b751eb0b4357c39482b8bcb426d8d48504b6a63acbd367a53dccb53d19"
   },
   {
+    "path": "work/paper/tables/add_method_venues.py",
+    "bytes": 2096,
+    "sha256": "badb16b43f62a936e67f5cd7211bf74b3938bc67b5a557360e8e3b3134dec6cc"
+  },
+  {
     "path": "work/paper/tables/make_color_table.py",
     "bytes": 4198,
     "sha256": "31ea58628d22e9a3badfc35e85e448680aee90c74000ea9a3b5e7b31a1b3db43"
@@ -331,8 +466,8 @@
   },
   {
     "path": "work/paper/tables/make_loo_table.py",
-    "bytes": 4919,
-    "sha256": "10887fbec8f54119e1622613885eb5d99e581aa410fb6887edcd6d5541af78bd"
+    "bytes": 5768,
+    "sha256": "fbdf043ae68946871e4fa6f2195bff628069e0546c5d278d4cc3dd60b98fd8c0"
   },
   {
     "path": "work/paper/tables/make_oracle_table.py",
@@ -366,8 +501,8 @@
   },
   {
     "path": "work/paper/tables/make_tables.py",
-    "bytes": 12433,
-    "sha256": "73dad4bcab6f2165967512f979ffa3a5b48e3ef17122790ad1c1ba0e8b3a494a"
+    "bytes": 11350,
+    "sha256": "2988385e83dcda616125e7467c637206f4afd8a85c159685733e1ac795fc7125"
   },
   {
     "path": "work/paper/tables/tab_ablation.tex",

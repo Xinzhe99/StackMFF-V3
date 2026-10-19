@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\caption{Code and weights for the additional neural baselines. Runtime and model size are reported in the main-paper efficiency table.}
+\label{tab:deploy}
+\footnotesize
+\begin{tabular}{@{}p{1.9cm}p{1.3cm}p{1.4cm}p{3.5cm}p{1.3cm}p{1.5cm}@{}}
+\toprule
+Method & Type & Code version & Weights & Params (M) & Runtime (s) \\
+\midrule
+GIFNet (CVPR)~\cite{cheng2025gifnet} & Pairwise & \texttt{e9c83a6} & Official; \texttt{model/Final.model} shipped in the repository & 0.82 & 2.93 \\
+DeFusion (ECCV)~\cite{liang2022defusion} & Pairwise & \texttt{9e7a09a} & Official; checkpoint from the README link & 7.87 & 1.44 \\
+CSNet (arXiv)~\cite{csnet2026} & Pairwise & \texttt{1a494f9} & Official; \texttt{checkpoint/\allowbreak checkpoint.pth} shipped in the repository & 1.89 & 0.86 \\
+MFIF-GAN (SPIC)~\cite{wang2021mfifgan} & Pairwise & \texttt{160ee49} & Official; generator \texttt{110000-G.ckpt} shipped in the repository (discriminator unused) & 13.70 & 4.06 \\
+VAEEDOF (arXiv)~\cite{vaeedof2025} & Native stack & \texttt{78cf9ba} & Official; HF \texttt{MalumaDev/VAEAEDOF}, variant \texttt{VAEEDOF\_DISC}; base tiny VAE \texttt{taesd3} & 35.22 & 0.90 \\
+\bottomrule
+\end{tabular}
+\end{table}

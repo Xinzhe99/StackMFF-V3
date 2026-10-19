@@ -4,6 +4,7 @@ inference up to the last step). Reads the eval_ablation summaries collected in w
   ../out/fig_roadmap.pdf (+ _preview.png) and paper/tables/tab_roadmap.tex
   python make_roadmap.py"""
 import csv, os
+from decimal import Decimal
 from pathlib import Path
 import numpy as np
 import matplotlib
@@ -57,6 +58,15 @@ def best(rows, run, fusion):
     return {'epoch': b['epoch'], 'mean': float(b['mean_SSIM']), 'psnr': float(b['mean_PSNR']), **{d: float(b[f'{d}_SSIM']) for d in DS}}
 
 
+def displayed_change(current, previous):
+    """Make the annotation equal the difference of the printed four-place means.
+
+    Full-precision values still determine bar geometry and seed-spread coloring.
+    The figure/table captions explicitly distinguish this display convention.
+    """
+    return Decimal(f'{current:.4f}') - Decimal(f'{previous:.4f}')
+
+
 def main():
     rows = {k: rows_of(p) for k, p in FILES.items()}
     shuf = {k: rows_of(p) for k, p in SHUF.items()}
@@ -85,13 +95,14 @@ def main():
 
     # table
     L = [r'\begin{table}[htbp]', r'\centering', r'\scriptsize', r'\setlength{\tabcolsep}{3pt}',
-         r'\caption{From a StackMFF V2-style network to ours, one cumulative change per row. Every row is trained with the same short protocol (35\% of the training pairs, three epochs, no weight averaging; rows marked $^{3}$ are means over three seeds) and evaluated at the epoch with the highest mean SSIM; up to the last change, inference uses a single scale. Hard selection (Eq.~\eqref{eq:hard}) is used until the weighted fusion is introduced, then weighted fusion with $\sigma=1$, the default when these variants were trained. MD: SSIM on Mobile Depth, the only benchmark with optical blur; per-benchmark scores of the short-protocol reference configuration are in main-paper Table~5. SSIM: SSIM$_7$, mean over the four benchmarks ($7\times7$ window, as in training monitoring, so the values differ slightly from main-paper Table~1). GFLOPs for a stack of two $256\times256$ images. $\Delta$: change of the mean SSIM with respect to the previous row; the seed-to-seed standard deviation of this protocol is about $3\times10^{-4}$, so changes of at most $5\times10^{-4}$ (gray) are within noise. Shuffled: change of the mean SSIM when the images of every stack are randomly permuted ($0$: below $5\times10^{-5}$). The last row is the final model, trained on all pairs for six epochs. $^{a}$Index regression, convolutional intra-image block, $1/4$ resolution only, original synthesis in focal order.}',
+         r'\caption{From a StackMFF V2-style network to ours, one cumulative change per row. Every row is trained with the same short protocol (35\% of the training pairs, three epochs, no weight averaging; rows marked $^{3}$ are means over three seeds) and evaluated at the epoch with the highest mean SSIM; up to the last change, inference uses a single scale. Hard selection (Eq.~\eqref{eq:hard}) is used until the weighted fusion is introduced, then weighted fusion with $\sigma=1$, the default when these variants were trained. MD: SSIM on Mobile Depth, the only benchmark with optical blur; per-benchmark component-removal scores are reported separately. SSIM: SSIM$_7$, mean over the four benchmarks ($7\times7$ window, as in training monitoring, so the values differ slightly from main-paper Table~1). GFLOPs for a stack of two $256\times256$ images. $\Delta$: difference between adjacent displayed four-decimal mean SSIM scores; the seed-to-seed standard deviation of this protocol is about $3\times10^{-4}$, so changes of at most $5\times10^{-4}$ (gray) are within noise. Shuffled: change of the mean SSIM when the images of every stack are randomly permuted ($0$: below $5\times10^{-5}$). The last row is the final model, trained on all pairs for six epochs. $^{a}$Index regression, convolutional intra-image block, $1/4$ resolution only, original synthesis in focal order.}',
          r'\label{tab:roadmap}', r'\begin{tabular}{lcccccc}', r'\toprule',
          r'Change & GFLOPs & MD & SSIM & PSNR & $\Delta$ & Shuffled \\', r'\midrule']
     prev, grp = None, None
     for s, v in res:
         d = '' if prev is None else v['mean'] - prev
-        ds = '' if prev is None else (f'{d:+.4f}' if abs(d) >= NOISE else rf'\textcolor{{gray}}{{{d:+.4f}}}')
+        shown = None if prev is None else displayed_change(v['mean'], prev)
+        ds = '' if prev is None else (f'{shown:+.4f}' if abs(d) >= NOISE else rf'\textcolor{{gray}}{{{shown:+.4f}}}')
         if s[1] != grp:
             L.append(rf'\multicolumn{{7}}{{l}}{{\textit{{{s[1]}}}}} \\')
         grp = s[1]
@@ -137,7 +148,7 @@ def main():
             else:
                 ax.plot([prev, prev], [y[i] - 0.3, y[i] + 0.3], color=SOFT, lw=1.6, solid_capstyle='butt')
             tc = DRED if last else (MID if gain else MUTED)
-            txt = '' if last else f'{d:+.4f}'
+            txt = '' if last else f'{displayed_change(vals[i], prev):+.4f}'
         ax.text(vals[i] + 0.00008, y[i], f'{vals[i]:.4f}', va='center', fontsize=6.6,
                 color=DRED if last else INK, fontweight='bold' if last else 'normal')
         if txt:

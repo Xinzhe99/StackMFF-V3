@@ -1,7 +1,7 @@
 \begin{table}[htbp]
 \centering
 \small
-\caption{Blur of the original StackMFF synthesis after resizing to the training resolution. The original synthesis blurs depth level $\Delta$ with a Gaussian of standard deviation $0.3\Delta+0.5$ pixels at the native resolution of the source image; the table gives the resulting standard deviation after resizing the median-size image of each source to $256\times256$ (horizontal / vertical), and the number of training stacks. Median sizes from 200 random training images per source.}
+\caption{Effective Gaussian blur after native-resolution synthesis and resizing to $256\times256$. Entries are horizontal / vertical standard deviations for median source dimensions, estimated from 200 training images per source. Native blur uses $\sigma=0.3\Delta+0.5$ for nonzero depth-level distance $\Delta$.}
 \label{tab:blurscale}
 \begin{tabular}{lcccc}
 \toprule

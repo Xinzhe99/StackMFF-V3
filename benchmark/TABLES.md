@@ -1,4 +1,6 @@
-# Complete benchmark comparison
+# Historical benchmark comparison
+
+For the current complete 35-row cohort, see [current/TABLES.md](current/TABLES.md). This historical snapshot is preserved for traceability.
 
 32 baseline families (35 settings), plus our two outputs. SSIM uses the primary Gaussian convention; PSNR is in dB. Full images, BT.601 luma. ZMFF and ReDiffuse cover only MD/Middlebury in this snapshot.
 

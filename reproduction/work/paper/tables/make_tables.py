@@ -1,11 +1,11 @@
 """LaTeX tables for the paper from work/eval/summary.csv (unified evaluation).
 
-Rows are grouped (transform domain / adapted pairwise / native stack / commercial). In every column the best
-value is bold and the second-best underlined, over all rows. Old StackMFF V3/V4 trunks are not shown
+Rows are grouped (spatial / transform / adapted pairwise / native stack / commercial). In every column the best
+value has a pink background and the second-best a blue background, over all rows. Old StackMFF V3/V4 trunks are not shown
 (paper requirement). 'Ours' is read from the summary under OURS_NAME once the new model has been evaluated.
 
-  python make_tables.py            -> tab_main_fr.tex (SSIM, PSNR, VIF, NMI per benchmark)
-                                      tab_main_nr.tex (Q^{X/F}, MEF-SSIM per benchmark)
+  python make_tables.py            -> tab_main_fr.tex (unified SSIM/PSNR comparison)
+                                     tab_supp_vif_nmi.tex, tab_supp_extra.tex, tab_main_nr.tex
 """
 import csv, os
 from collections import defaultdict
@@ -19,7 +19,7 @@ GROUPS = [
     ('Transform domain', ['CVT', 'DWT', 'DCT', 'DTCWT', 'NSCT']),
     ('Pairwise, adapted to stacks', ['IFCNN-MAX', 'U2Fusion', 'SDNet', 'MFF-GAN', 'SwinFusion', 'MUFusion', 'SwinMFF',
                                      'DDBFusion', 'CCSR-Net', 'MCCSR-Net', 'DeFusion', 'MFIF-GAN', 'GIFNet', 'CSNet',
-                                     'ReDiffuse', 'ZMFF']),
+           ]),
     ('Commercial software', ['Helicon Focus 8 - A', 'Helicon Focus 8 - B', 'Helicon Focus 8 - C',
                              'Zerene Stacker - DMap', 'Zerene Stacker - PMax']),
     ('Native stack', ['StackMFF_release', 'StackMFF V2', 'VAEEDOF', 'Ours_final_hard', OURS_NAME]),
@@ -131,7 +131,7 @@ def _table(v, metrics, caption, label, font='\\scriptsize', all_ds=None, venue=F
         L.append('\\midrule')
         L.append(f'\\multicolumn{{{ncol + 1 + ven}}}{{l}}{{\\textit{{{g}}}}} \\\\')
         for m in ms:
-            name = DISPLAY.get(m, m) + ('' if venue or not citations else (f'~\\cite{{{CITE[m]}}}' if m in CITE else ''))
+            name = DISPLAY.get(m, m) + ('' if venue or not citations else (' (' + VENUE[m].split(r'~\cite')[0] + ')' + f'~\\cite{{{CITE[m]}}}' if m in CITE else ''))
             vcell = (VENUE[m] + ' & ') if venue else ''
             cells = []
             for d, _ in DATASETS:
@@ -150,34 +150,23 @@ def _table(v, metrics, caption, label, font='\\scriptsize', all_ds=None, venue=F
 
 if __name__ == '__main__':
     v = load()
-    own = {'Ours_final_hard', OURS_NAME}
-    classical = set(GROUPS[0][1] + GROUPS[1][1] + GROUPS[3][1]) | own
-    learned = set(GROUPS[2][1] + GROUPS[4][1])
-    CAP = ('Full-reference results: classical methods and commercial software (BT.601 luma, full image). '
-           'Pink/blue mark the best/second-best across this table and Table~\\ref{tab:main_learned}. '
-           'Both read-outs of our model are repeated for comparison. Iterative methods use numeric focal order.')
+    # The 2026-10-19 manuscript uses 33 baseline settings and two read-outs.
+    # Add deferred methods only after all four benchmark cohorts are complete.
+    CAP = ('Full-reference results (BT.601 luma; PSNR in dB). '
+           'Pink/blue indicate the best/second-best unrounded means.')
     open(os.path.join(HERE, 'tab_main_fr.tex'), 'w').write(table(
-        v, ['SSIM', 'PSNR'], CAP, 'tab:main_fr', font='\\footnotesize', stretch='0.90', rules=True,
-        citations=True, method_subset=classical, placement='htb'))
-    open(os.path.join(HERE, 'tab_main_learned.tex'), 'w').write(table(
-        v, ['SSIM', 'PSNR'],
-        'Full-reference results: adapted pairwise and native learned methods. Pink/blue use the joint ranking '
-        'with Table~\\ref{tab:main_fr}. --: not evaluated (ZMFF/ReDiffuse cover MD and Middlebury only). '
-        'Inputs, luma conversion and focal order follow Table~\\ref{tab:main_fr}.',
-        'tab:main_learned', font='\\footnotesize', stretch='0.90', rules=True,
-        citations=True, method_subset=learned, placement='htb'))
+        v, ['SSIM', 'PSNR'], CAP, 'tab:main_fr', font='\\footnotesize', stretch='0.79', rules=True,
+        citations=True, placement='!t'))
     open(os.path.join(HERE, 'tab_supp_vif_nmi.tex'), 'w').write(table(
         v, ['VIF', 'NMI'],
-        'VIF and NMI for the same runs as Tables~1 and~2 of the main paper. Best and second-best values are '
-        'highlighted in pink and blue; --: not evaluated.', 'tab:supp_vif_nmi', font='\\footnotesize',
-        stretch='0.74', rules=True))
+        'VIF and NMI on the outputs of main-paper Table~1. Pink/blue indicate the best/second-best unrounded means.',
+        'tab:supp_vif_nmi', font='\\footnotesize', stretch='0.90', rules=True, placement='H'))
     open(os.path.join(HERE, 'tab_main_nr.tex'), 'w').write(table(
         v, ['Qabf_N', 'MEF_SSIM'],
-        'No-reference fusion metrics computed against the input stack. Full method references are listed with the supplementary deployment protocol. Best and second-best unrounded means are highlighted in pink and blue. --: not evaluated.',
-        'tab:main_nr', env='table'))
+        'Source-based fusion metrics on the four reference benchmarks. Scores compare each output with its input stack. Pink/blue indicate the best/second-best unrounded means.',
+        'tab:main_nr', font='\\footnotesize', stretch='0.90', rules=True, placement='H'))
     open(os.path.join(HERE, 'tab_supp_extra.tex'), 'w').write(table(
         v, ['SSIM_sk7', 'MI'],
-        'Additional metrics. SSIM$_{7}$: SSIM with the default settings of scikit-image ($7\\times7$ uniform window), '
-        'the convention of earlier StackMFF tables; MI: mutual information with the reference (bits). Best and second-best values are highlighted in pink and blue, respectively. --: not evaluated.',
-        'tab:supp_extra', font='\\footnotesize', stretch='0.66', rules=True))
+        'Additional reference metrics on the same outputs as main-paper Table~1. SSIM$_7$ uses a uniform $7\\times7$ window; MI is in bits. Pink/blue indicate the best/second-best values.',
+        'tab:supp_extra', font='\\footnotesize', stretch='0.90', rules=True, placement='H'))
     print('written', os.listdir(HERE))

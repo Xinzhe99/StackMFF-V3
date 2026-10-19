@@ -14,7 +14,7 @@
 [![Weights](https://img.shields.io/badge/Weights-v1.0-244A68.svg)](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0)
 [![GitHub stars](https://img.shields.io/github/stars/Xinzhe99/StackMFF-V3?cacheSeconds=3600&style=social)](https://github.com/Xinzhe99/StackMFF-V3/stargazers)
 
-Official PyTorch implementation of *StackMFF V3: Modernizing Multi-Focus Image Stack Fusion*.
+Official PyTorch implementation of *StackMFF V3: Order-Invariant Focus Stacking via Pixel-Wise Source Classification*.
 
 [Quick start](#quick-start) | [Weights](#pretrained-weights) | [Results](#results) | [Reproducing the paper](#reproducing-the-paper) | [StackMFF series](#related-projects) | [Citation](#citation)
 
@@ -22,7 +22,7 @@ Official PyTorch implementation of *StackMFF V3: Modernizing Multi-Focus Image S
 
 ## News
 
-- **2026.10**: Code, pretrained weights and the evaluation toolkit of StackMFF V3 are released. The manuscript (*StackMFF V3: Modernizing Multi-Focus Image Stack Fusion*) is being prepared for submission.
+- **2026.10**: Code, pretrained weights and the evaluation toolkit of StackMFF V3 are released. The manuscript (*StackMFF V3: Order-Invariant Focus Stacking via Pixel-Wise Source Classification*) is being prepared for submission.
 - **2026.10**: All **7,262 evaluated benchmark outputs** (including 412 of ours) and **2,170 registered real-stack outputs** are archived with SHA-256 manifests. See the [archive index and downloader](benchmark/README.md). Data assets remain in the v1.0 release; audited code is versioned separately.
 - **Coming soon**: StackMFF V3 in [OpenFocus](https://github.com/Xinzhe99/OpenFocus).
 - This repository develops the deterministic fusion formulation of earlier StackMFF V3/V4 studies; historical materials remain in [StackMFF-V3-legacy](https://github.com/Xinzhe99/StackMFF-V3-legacy) and [StackMFF-V4-legacy](https://github.com/Xinzhe99/StackMFF-V4-legacy).
@@ -39,7 +39,7 @@ Official PyTorch implementation of *StackMFF V3: Modernizing Multi-Focus Image S
 - **Any number of images, any order.** Cross-image attention has no positional encoding along the image axis, and the remaining image-axis operations are symmetric or shared across images. One trained network handles variable stack lengths, and weighted fusion is order-invariant up to floating-point error; near-tied hard decisions can differ.
 - **Small and fast.** 0.156 M parameters; 3.03 GFLOPs for two 256x256 images with the default two-scale inference (1.94 GFLOPs with one scale); 0.16 s per Mobile Depth stack (12 to 33 images) on an RTX A6000.
 - **Training data and loss.** Stacks are synthesized on the fly at the training resolution from all-in-focus images with depth (including saturated highlights), and a contrast-weighted cross-entropy concentrates the training signal on pixels where the choice of the image changes the fused value.
-- **Re-evaluated benchmark.** On Mobile Depth, Middlebury, FlyingThings3D and Road-MF, the model has the highest SSIM and PSNR among the re-evaluated methods (one toolkit for all methods, cross-checked against MATLAB reference implementations).
+- **Re-evaluated benchmark.** Weighted fusion has the highest mean SSIM and PSNR on Mobile Depth, Middlebury and FlyingThings3D; hard selection leads on Road-MF. The Mobile Depth PSNR margin over GFF is not statistically significant after correction.
 
 ## Method
 
@@ -62,13 +62,13 @@ Each image of the stack is embedded separately into tokens at 1/4 resolution (4x
 <img src="assets/fig_roadmap.png" width="760" alt="Roadmap from a StackMFF V2-style network to StackMFF V3">
 </div>
 
-*Mean SSIM over the four benchmarks along the roadmap from a StackMFF V2-style network to the final model, one cumulative change per row, with the cost of each configuration (GFLOPs for two 256x256 images). Blue: a gain above the seed variation of the short training protocol; light blue: a change within it; red: full training of the final model.*
+*Mean SSIM over the four benchmarks along the roadmap from a StackMFF V2-style network to the final model, one cumulative change per row, with the cost of each configuration (GFLOPs for two 256x256 images). Blue: a gain above the seed variation of the short training protocol; light blue: a change within it; red: full training of the final model. Displayed Δ values subtract adjacent four-decimal means; bar lengths use unrounded scores.*
 
 </details>
 
 ## Results
 
-Full-reference comparison on the four benchmarks (unified evaluation: BT.601 luma, full image, Gaussian SSIM). This selected comparison includes the strongest spatial baselines and earlier StackMFF models. The [complete tables and per-image records](benchmark/README.md) cover all 32 baseline families (35 settings) plus our two outputs; ZMFF and ReDiffuse currently cover Mobile Depth and Middlebury only. VIF, NMI, no-reference metrics and statistical tests are also provided. Pairwise methods fuse the stack image by image in focal order. Best values in **bold**.
+Full-reference comparison on the four benchmarks (unified evaluation: BT.601 luma, full image, Gaussian SSIM). This selected comparison includes the strongest spatial baselines and earlier StackMFF models. The [complete tables and per-image records](benchmark/README.md) cover the current complete cohort of 30 baseline families (33 settings) plus our two outputs. The historical archive also preserves partial ZMFF and ReDiffuse results, which are excluded from this current comparison. VIF, NMI, no-reference metrics and statistical tests are also provided. Pairwise methods fuse the stack image by image in focal order. Best values in **bold**.
 
 | Method | Type | MD SSIM | MD PSNR | Mid. SSIM | Mid. PSNR | FT3D SSIM | FT3D PSNR | Road-MF SSIM | Road-MF PSNR |
 |---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -84,7 +84,7 @@ Full-reference comparison on the four benchmarks (unified evaluation: BT.601 lum
 | **StackMFF V3** (hard selection) | native stack | 0.9769 | 38.36 | 0.9595 | 33.59 | 0.9692 | 34.79 | **0.9984** | **46.12** |
 | **StackMFF V3** (weighted, default) | native stack | **0.9855** | **40.16** | **0.9622** | **34.28** | **0.9722** | **35.35** | 0.9979 | 44.53 |
 
-MD: Mobile Depth (11 stacks), Mid.: Middlebury (15), FT3D: FlyingThings3D (100), Road-MF (80). Following the protocol of the earlier StackMFF papers, the checkpoint, the smoothing sigma and the second inference scale were selected on these benchmarks; over the last four epochs and sigma in {0, 0.5, 1}, the mean SSIM (7x7 window) varies only between 0.9784 and 0.9789 (see the paper).
+MD: Mobile Depth (11 stacks), Mid.: Middlebury (15), FT3D: FlyingThings3D (100), Road-MF (80). The checkpoint, smoothing sigma and inference scales were selected on these benchmarks, so these scores are not an independently held-out estimate of model-selection generalization. In the sensitivity records, over the last four epochs and sigma in {0, 0.5, 1}, the mean SSIM (7x7 window) varies only between 0.9784 and 0.9789 (see the paper).
 
 **Efficiency** (one fusion call on two 256x256 images; time: mean GPU time per Mobile Depth stack, 12 to 33 images, one RTX A6000, excluding disk I/O and model loading; pairwise methods are applied iteratively):
 
@@ -106,7 +106,7 @@ conda create -n stackmffv3 python=3.10 -y && conda activate stackmffv3
 pip install -r requirements.txt          # inference only: pip install torch numpy opencv-python
 ```
 
-Install PyTorch for your CUDA version from [pytorch.org](https://pytorch.org/get-started/locally/) if the default wheel does not match. Training used Python 3.8, PyTorch 2.1.2 and CUDA 12.1; `fuse.py` was also tested with PyTorch 2.14 on the CPU (`requirements.txt` lists all tested versions).
+Install PyTorch for your CUDA version from [pytorch.org](https://pytorch.org/get-started/locally/) if the default wheel does not match. Training used Python 3.8, PyTorch 2.1.2 and CUDA 12.1; `fuse.py` was also tested with PyTorch 2.14.1 on the CPU (`requirements.txt` lists all tested versions).
 
 ## Quick start
 
@@ -126,14 +126,14 @@ The weights are downloaded to `weights/stackmff_v3_final.pth` on first use. `fus
 | `--hard` | off | hard selection (argmax) instead of the weighted fusion |
 | `--weights` | `weights/stackmff_v3_final.pth` | checkpoint |
 | `--device` | `auto` | `cpu`, `cuda`, `cuda:1`, ... |
-| `--sigma` | `0.5` | Gaussian smoothing (pixels) of the probabilities for the weighted fusion |
+| `--sigma` | `0.5` | Gaussian smoothing (pixels) of weighted-fusion probabilities; ignored by `--hard` |
 | `--scales` | `1,0.75` | input scales whose probabilities are averaged (`1`: one pass, about 40% faster) |
 | `--index_map` | | also save the index of the most probable image per pixel (0-based, natural order of the file names) |
 | `--threads` | PyTorch default | CPU threads |
 
 A stack must use one dtype throughout (all 8-bit or all 16-bit); grayscale inputs are loaded into three channels, and the saved fusion is three-channel. Images of a different size are resized to the first image; the stack must be registered (for hand-held bursts, align the images first, for example with [OpenFocus](https://github.com/Xinzhe99/OpenFocus)). To fuse many stacks at once, use `tools/run_ours_roots.py` (see below).
 
-In Python (pass `scales=(1, 0.75)` explicitly to `load_checkpoint` to fix the paper configuration; otherwise the Python API also honors `MS_SCALES`):
+In Python (pass `scales=(1, 0.75)` explicitly to `load_checkpoint` to fix the paper configuration; an explicit `scales` argument takes precedence over `MS_SCALES`, whose value is read when the module is imported):
 
 ```python
 import torch
@@ -144,6 +144,10 @@ model = load_checkpoint('weights/stackmff_v3_final.pth', 'cuda' if torch.cuda.is
 imgs = read_stack(['img_01.png', 'img_02.png', 'img_03.png'])        # list of HxWx3 BGR arrays (OpenCV)
 P = probabilities(model, imgs, next(model.parameters()).device, sigma=0.5)   # [N, H, W], sums to 1 over N
 fused = fuse(P, imgs, hard=False)                                     # HxWx3, same dtype as the input
+
+# Hard selection uses the same checkpoint/scales and unsmoothed probabilities.
+P_hard = probabilities(model, imgs, next(model.parameters()).device, sigma=0)
+fused_hard = fuse(P_hard, imgs, hard=True)
 ```
 
 ## Pretrained weights
@@ -276,7 +280,7 @@ The entry below will be updated with the final bibliographic data once the paper
 
 ```bibtex
 @article{xie2026stackmffv3,
-  title   = {StackMFF V3: Modernizing Multi-Focus Image Stack Fusion},
+  title   = {StackMFF V3: Order-Invariant Focus Stacking via Pixel-Wise Source Classification},
   author  = {Xie, Xinzhe and Guo, Buyu and Li, Bolin and He, Shuangyan and Gu, Yanzhen and Jiang, Qingyan and Li, Peiliang},
   note    = {Manuscript in preparation},
   year    = {2026}

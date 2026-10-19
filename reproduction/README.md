@@ -1,19 +1,25 @@
-# Exact table-generation inputs
+# Reproducing the numerical tables
 
-This folder mirrors the small part of the development `work/` tree actually read by the 13 active table generators. The generators and input CSVs are copied without changing experiment values. It includes the final training/validation epoch records, leave-one-out ablation inputs, robustness summaries, oracle results, color fidelity and real-stack evaluations. `expected_tables/` preserves the corresponding 18 current TeX table snapshots.
+The bundle contains numerical inputs and Python producers for benchmark comparisons, ablations, robustness, model-selection sensitivity and real-stack evaluations. Experimental values are preserved. Current formatted table snapshots are in `expected_tables/`; previous snapshots are retained under `historical/`.
 
-The main benchmark records in `../benchmark/` contain only the paper's method subset. Some historical input files here also contain development variants; the generators explicitly select their published rows. Alternate `*_finalws`/Hms checkpoints are not the final model.
+The current unified comparison includes 33 baseline settings and two proposed read-outs. ZMFF and ReDiffuse remain in the historical measurement archives but are excluded from the current complete-cohort table. `../benchmark/current/` provides the corresponding 35-row records and recomputed ranks.
 
-Run each generator from the repository root, for example:
+Run from the repository root:
+
+```bash
+python reproduction/rebuild_tables.py
+```
+
+This runs the 13 numerical producers in a temporary copy, restores citation-backed venue labels and checks metric cells against the current snapshots. Caption wording and page placement are maintained with the manuscript and are not part of a numerical reproduction check. Tables derived directly from timing/deployment/downstream records are provided in `manual_tables/`, with available inputs in `measurement_records/`.
+
+Individual producers remain available, for example:
 
 ```bash
 python reproduction/work/paper/tables/make_tables.py
 python reproduction/work/paper/tables/make_epoch_table.py
-python reproduction/work/paper/tables/make_color_table.py
+python reproduction/work/paper/tables/add_method_venues.py
 ```
 
-Other generators in the same folder create the ablation, fusion, oracle, focus-label, no-reference range and robustness tables. `make_lfsf_table.py` explicitly separates values quoted from other publications from our re-evaluated image results; quoted values are not presented as our reruns.
+Python, NumPy, SciPy and Matplotlib are required. Rebuilding numerical tables requires no GPU, MATLAB or image downloads. Re-running image fusion or training separately requires the source datasets, weights and implementation environments documented in the main README and third-party notices.
 
-Compare the generated table bodies against `expected_tables/`. Minor caption/float-placement differences do not change the data. Python, NumPy, SciPy and Matplotlib are required (Matplotlib is imported by the shared roadmap generator). No MATLAB, GPU or source image downloads are needed to rebuild these tables. This is a table-generation snapshot; rerunning training or baseline image generation additionally requires the datasets, model environments and original implementations described in the paper supplement.
-
-`manual_tables/` preserves the remaining 6 current table sources that are maintained from deployment/measurement records rather than the 13 generators. `measurement_records/` adds the available runtime, FLOP and downstream summaries named by those tables. The split primary tables preserve all 37 unique original rows; only our two read-outs are repeated to make the two comparisons readable, with the same joint ranking.
+Roadmap Δ annotations subtract adjacent displayed four-decimal means so the printed arithmetic is consistent; all underlying values remain unrounded for plotting and seed-variation comparisons. The full-training row is distinct from the short-protocol cumulative study.

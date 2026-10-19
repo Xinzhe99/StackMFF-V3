@@ -1,12 +1,13 @@
 \begin{table}[htbp]
 \centering
 \small
-\setlength{\tabcolsep}{4pt}
-\caption{Robustness to perturbed stacks: PSNR (dB) averaged over the 206 scenes of the four benchmarks, i.e.\ weighted by the size of each benchmark (FlyingThings3D and Road-MF contribute 87\% of the scenes), with three seeds for shuffling; the values therefore differ from the per-benchmark means of the main comparison. Distractors are blurred copies or exact duplicates of random images; $-25\%$/$-50\%$ remove the central images; $n$ images keeps $n$ uniformly spaced images. Best and second-best per row are highlighted in pink and blue.}
+\setlength{\tabcolsep}{3.5pt}
+\caption{PSNR (dB) under the same perturbations and scene weighting as Table~\ref{tab:robust}. Pink/blue: best/second-best per row.}
 \label{tab:robust_psnr}
+\begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{lcccccc}
 \toprule
-Perturbation & Ours & StackMFF V2 & StackMFF & CSNet & MFIF-GAN & DeFusion \\
+Perturbation & Ours & \shortstack{StackMFF V2\\(EAAI)~\cite{xie2025stackmffv2}} & \shortstack{StackMFF\\(Appl. Intell.)~\cite{xie2025stackmff}} & \shortstack{CSNet\\(arXiv)~\cite{csnet2026}} & \shortstack{MFIF-GAN\\(SPIC)~\cite{wang2021mfifgan}} & \shortstack{DeFusion\\(ECCV)~\cite{liang2022defusion}} \\
 \midrule
 Original & \best{39.10} & 34.21 & 32.87 & \second{34.40} & 33.34 & 24.24 \\
 \midrule
@@ -23,4 +24,5 @@ $-$50\% & \best{32.18} & 30.33 & 29.99 & \second{31.06} & 30.81 & 24.44 \\
 2 images & \best{28.30} & 26.49 & 25.43 & 27.84 & \second{28.06} & 25.86 \\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \end{table}
