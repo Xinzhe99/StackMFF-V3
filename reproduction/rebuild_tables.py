@@ -44,7 +44,7 @@ def main():
                     differences=[{'row':i,'generated':a,'expected':b} for i,(a,b) in enumerate(zip(actual,wanted)) if a!=b]
                     raise AssertionError(json.dumps({'table':generated.name,'row_counts':[len(actual),len(wanted)],'differences':differences[:5]}))
                 report.append({'producer':producer.name,'table':generated.name,'status':'metric cells match'})
-        subprocess.run([sys.executable,str(tables/'add_method_venues.py')],cwd=root,check=True)
+        subprocess.run([sys.executable,str(tables/'add_method_venues.py')],cwd=root,check=True,capture_output=True)
     print(json.dumps({'producers':len(producers),'tables':report},indent=2))
 
 if __name__=='__main__':main()

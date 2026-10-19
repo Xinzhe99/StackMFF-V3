@@ -276,8 +276,8 @@
   },
   {
     "path": "rebuild_tables.py",
-    "bytes": 2576,
-    "sha256": "8ff1029c1d1b8bdfd802897a11b07412f35e5a1122cb445f0c97d093459f53ca"
+    "bytes": 2596,
+    "sha256": "c4960cb4d352f923e676d16f1a80b2601356352c97cd53cc9efb61aacd90fc56"
   },
   {
     "path": "work/eval/color/color_summary.csv",
