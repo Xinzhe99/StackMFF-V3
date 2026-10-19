@@ -1,0 +1,28 @@
+{
+  "npz_sha256": "09b8ff511b67fd0e4ce08862cf3b2e2e82fc703ea155311dfc3f5f456d70fce6",
+  "rows": [
+    {
+      "dataset": "Middlebury",
+      "scene": "Motorcycle",
+      "rho": 0.34063454884509237,
+      "low_confidence_fraction": 0.1734998384368288
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "keyboard",
+      "rho": 0.23797208096155945,
+      "low_confidence_fraction": 0.5393663194444445
+    }
+  ],
+  "protocol": {
+    "confidence": "max over smoothed source probabilities",
+    "luma": "Pillow BT.601 of rounded fused RGB",
+    "local_average_window": [
+      15,
+      15
+    ],
+    "flattened_sample_stride": 17,
+    "correlation": "Spearman between locally averaged 1-confidence and absolute luma error",
+    "scope": "Scene-specific association, not uncertainty calibration."
+  }
+}

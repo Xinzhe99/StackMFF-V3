@@ -1,0 +1,230 @@
+{
+  "weights_sha256": "39b2ea3738e8fea1676c379238d6be81a87988fc9952dbd6ac3825d5d7249f46",
+  "scales": [
+    1.0,
+    0.75
+  ],
+  "sigma": 0.5,
+  "device": "cpu",
+  "seconds": 6.410279750823975,
+  "scenes": [
+    {
+      "dataset": "Middlebury",
+      "scene": "Motorcycle",
+      "shape": [
+        15,
+        497,
+        741
+      ],
+      "files": [
+        {
+          "name": "10.0.png",
+          "sha256": "1392e893fdf726aa1d5e2916d45fe5ed9e31f2641bafdef3542855554719276b"
+        },
+        {
+          "name": "13.571428571428571.png",
+          "sha256": "597b740f8441d75327db95b3ca0e2f7407d9a137e23c0f53d046df93d88bb539"
+        },
+        {
+          "name": "17.142857142857142.png",
+          "sha256": "8a86cc8c89d4b2887cd59a08d958bc24b9214eaf8f6920fcdd4db90f898d3127"
+        },
+        {
+          "name": "20.714285714285715.png",
+          "sha256": "8a86cc8c89d4b2887cd59a08d958bc24b9214eaf8f6920fcdd4db90f898d3127"
+        },
+        {
+          "name": "24.285714285714285.png",
+          "sha256": "0fbe0ebb27bf4945475aadd58429161099c9c91fe0fd6ef15875b3749dc06624"
+        },
+        {
+          "name": "27.857142857142858.png",
+          "sha256": "edd7c7571e5e7df4514f5881fc19bf5dc8d498055e45fafd69574d0edba45524"
+        },
+        {
+          "name": "31.42857142857143.png",
+          "sha256": "7a85866384a6c8bd07b9a55e7daf966021fb64487ca734c8fde4c09a173bc449"
+        },
+        {
+          "name": "35.0.png",
+          "sha256": "17e8fcb7ec44ce0f9e1c86ad8a38f9abf56bc5bd26534c797fcd7c18fb0f37af"
+        },
+        {
+          "name": "38.57142857142857.png",
+          "sha256": "437ff1eed1ad1ac8d39d82012e1cd46b2bcd48f700675fd6f7a0b7bb1ecf647e"
+        },
+        {
+          "name": "42.142857142857146.png",
+          "sha256": "a572c50260262296ae8545aaf5b19273a6606c02d4344e0984d0a6a9d6178f49"
+        },
+        {
+          "name": "45.714285714285715.png",
+          "sha256": "a572c50260262296ae8545aaf5b19273a6606c02d4344e0984d0a6a9d6178f49"
+        },
+        {
+          "name": "49.285714285714285.png",
+          "sha256": "3936636b4c5690d447170fc792193fa6af1b789b166f164c9485577e5006306e"
+        },
+        {
+          "name": "52.85714285714286.png",
+          "sha256": "2a5e5a0e2edd8deb620a33783c8e7c56c063a542f9a073223bdd78cb6f217e10"
+        },
+        {
+          "name": "56.42857142857143.png",
+          "sha256": "284572a529fd9a6319a7181de013bb898074382764ffb89a8a9b7124f2dd56bb"
+        },
+        {
+          "name": "60.0.png",
+          "sha256": "4271aee39c79ede4a7e74c79d50400b8b64fea033b7bdd4730788401b3ec51b4"
+        },
+        {
+          "name": "Motorcycle.png",
+          "sha256": "0317b494a1a334117ef6af9376a568495f8ab20d473451b8dbf5c68f8d283056"
+        }
+      ]
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "keyboard",
+      "shape": [
+        32,
+        360,
+        640
+      ],
+      "files": [
+        {
+          "name": "a00.jpg",
+          "sha256": "7543f688960cd77d780cdaf2a61b892abfb9ea531b76700dbeff41c7fa5a2bfa"
+        },
+        {
+          "name": "a01.jpg",
+          "sha256": "3dd59275e58fb4ad105aea41a4f8ccba2f2c0ae478b0fc96b13a4f2c67df6434"
+        },
+        {
+          "name": "a02.jpg",
+          "sha256": "cc84ed297d76d133f70082c6fe30f0184c410b1e4005ddd35b34afef7341df84"
+        },
+        {
+          "name": "a03.jpg",
+          "sha256": "32bfc2878ab154f906436e9288f75824361d4624b1d764a6cef7b2aa60593197"
+        },
+        {
+          "name": "a04.jpg",
+          "sha256": "1d50ba01e4bbb7480236b6ff9446ce99db3f51c7edc2a0a0d89903f78edf29e0"
+        },
+        {
+          "name": "a05.jpg",
+          "sha256": "683363560e003a422b4de7b864a5900d009ec3f46b2151f883d3648bc265e84c"
+        },
+        {
+          "name": "a06.jpg",
+          "sha256": "58fdee406477c578ebcced5e4acb100dc3a654a7ef087e6d0ecf4485e3ec9f85"
+        },
+        {
+          "name": "a07.jpg",
+          "sha256": "92be0779b9a3199d5e29006b04fae5a5fbdda708336f395b8bc58a10318c855d"
+        },
+        {
+          "name": "a08.jpg",
+          "sha256": "654775e312c45b0c6440feb76f2faaedc912d1137693797d0dd75cc88ce9a949"
+        },
+        {
+          "name": "a09.jpg",
+          "sha256": "22bd7f893ead6999476ad36d108571aff74757b85af2e0f3abab9920d6bb7bab"
+        },
+        {
+          "name": "a10.jpg",
+          "sha256": "33d30cc1885614b21492763429385816e163034838157ea29135d8f66ea9f30f"
+        },
+        {
+          "name": "a11.jpg",
+          "sha256": "2119e8e846c05d4e588ac8efef6defc6b32eb5c421466b193227c4725ba27ed8"
+        },
+        {
+          "name": "a12.jpg",
+          "sha256": "e0004d9d09277909c65e39ca3af48992a6a7b408bb2a169de4edb72143bc1092"
+        },
+        {
+          "name": "a13.jpg",
+          "sha256": "124b3e974a2c143b81b7ac94411dc8225c7cb755d8439d9e9425b6917a4da5a3"
+        },
+        {
+          "name": "a14.jpg",
+          "sha256": "b454664778d34237c010c3ab3306be19bebfb784036cb79dfb2bf7f709cc6194"
+        },
+        {
+          "name": "a15.jpg",
+          "sha256": "f60d15c62cc6b834e0f289ace0511362314531217bf1b4be9a2f54d395d4c412"
+        },
+        {
+          "name": "a16.jpg",
+          "sha256": "818978a788584454e0e227c2d9c4df27e1285b1f34f6497aac84ceff8d32f167"
+        },
+        {
+          "name": "a17.jpg",
+          "sha256": "285d29c0029ddcd51e334ac0808b60d5dd1c655e0be06b03dff35bd756015124"
+        },
+        {
+          "name": "a18.jpg",
+          "sha256": "fc10f0dafa2d5955aac5e834032e3c3c70bf8f5194af2860094bad9857d6d881"
+        },
+        {
+          "name": "a19.jpg",
+          "sha256": "a83d310cddf577cac9615750f988538766810438d320bdd772db20e08f005c34"
+        },
+        {
+          "name": "a20.jpg",
+          "sha256": "eb5ea31b85fcbc7f437a527574aea8fcbff706c6e059b23294d4b1da9746fd63"
+        },
+        {
+          "name": "a21.jpg",
+          "sha256": "dae8ce8d4c9d1526e401e86511720b71a4904e2fd31b084db0b635d53f581274"
+        },
+        {
+          "name": "a22.jpg",
+          "sha256": "357ebb35c64b729f70617acaf34af2f845ab5de85051153915afb7878b3760da"
+        },
+        {
+          "name": "a23.jpg",
+          "sha256": "e5972aa6239d49e1453d95c33694aa30e61ea11446022682bafb7ec7fd6a1989"
+        },
+        {
+          "name": "a24.jpg",
+          "sha256": "673d6d2dd3ea2fe4a6fa9dbd1c1cb5996a0a8189e089e8fbe30baf1e9a6efaac"
+        },
+        {
+          "name": "a25.jpg",
+          "sha256": "e161c35bf768a44ab30b010838250beb68e3b1efea4015fc1fa7f22ffc83d204"
+        },
+        {
+          "name": "a26.jpg",
+          "sha256": "0433a1d549c3630428e3b6d212eecf20deb71e6e55e253f0def74cbdc582f256"
+        },
+        {
+          "name": "a27.jpg",
+          "sha256": "03c42edf80fbe7da0dce6c69295d5e674a9cea67ee38183dcfe1a597fe29a140"
+        },
+        {
+          "name": "a28.jpg",
+          "sha256": "587345fe6e2d2e3b625afb9068df1f39f9b454593a53917894ab471a73112e26"
+        },
+        {
+          "name": "a29.jpg",
+          "sha256": "d6e8b3e5c73892dc907c04397cabb33176eeab4a507790a641a03acbbe377a4e"
+        },
+        {
+          "name": "a30.jpg",
+          "sha256": "0a9b557f4a49704f0c8f8f76cea4c0e5e17d793dd644f7250fc6cf64a2f9edb0"
+        },
+        {
+          "name": "a31.jpg",
+          "sha256": "67111b49d4dc83391456f3a423be5e8583910e894a65f9fefbaa5bc033c0114d"
+        },
+        {
+          "name": "keyboard.png",
+          "sha256": "2415be29c799ea3a5aeb59792ce0b0ca4949061c5ea6278d54d6730c54ea04f8"
+        }
+      ]
+    }
+  ]
+}
