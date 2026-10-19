@@ -300,6 +300,18 @@
     "venue": "arXiv"
   },
   {
+    "id": "ReDiffuse",
+    "display": "ReDiffuse",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "arXiv"
+  },
+  {
     "id": "Helicon Focus 8 - A",
     "display": "Helicon Focus (A)",
     "group": "Commercial software",

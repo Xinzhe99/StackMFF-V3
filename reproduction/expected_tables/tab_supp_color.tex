@@ -1,8 +1,9 @@
 \begin{table}[!htbp]
 \centering
 \scriptsize
+\renewcommand{\arraystretch}{0.90}
 \setlength{\tabcolsep}{3pt}
-\caption{Color fidelity: RGB PSNR (dB, higher is better) and mean CIEDE2000 difference ($\Delta E_{00}$, lower is better). Helicon outputs, aligned and evaluated on luma, are omitted. Pink/blue indicate the best/second-best values.}
+\caption{Color fidelity: RGB PSNR (dB, higher is better) and mean CIEDE2000 difference ($\Delta E_{00}$, lower is better). Helicon outputs, aligned and evaluated on luma, are omitted. Pink/blue indicate the best/second-best unrounded values.}
 \label{tab:supp_color}
 \begin{tabular}{lcccccccc}
 \toprule
@@ -40,6 +41,7 @@ DeFusion (ECCV)~\cite{liang2022defusion} & 26.80 & 3.33 & 23.46 & 4.85 & 23.91 &
 MFIF-GAN (SPIC)~\cite{wang2021mfifgan} & 33.85 & 1.62 & 31.25 & 1.56 & 32.57 & 1.27 & 34.12 & 0.61 \\
 GIFNet (CVPR)~\cite{cheng2025gifnet} & 9.75 & 20.57 & 11.34 & 16.09 & 10.09 & 18.59 & 11.68 & 15.06 \\
 CSNet (arXiv)~\cite{csnet2026} & 33.06 & 1.65 & 31.52 & 1.55 & 33.22 & 1.21 & 36.06 & 0.49 \\
+ReDiffuse (arXiv)~\cite{rediffuse2026} & 25.01 & 4.79 & 26.18 & 4.21 & 22.44 & 7.96 & 27.68 & 3.54 \\
 \midrule
 \multicolumn{9}{l}{\textit{Commercial software}} \\
 Zerene (DMap) & 32.83 & 2.15 & 29.16 & 3.08 & 30.32 & 2.67 & 33.63 & 1.33 \\

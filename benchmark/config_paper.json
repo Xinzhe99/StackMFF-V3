@@ -38,6 +38,7 @@
     "MFIF-GAN",
     "GIFNet",
     "CSNet",
+    "ReDiffuse",
     "Helicon Focus 8 - A",
     "Helicon Focus 8 - B",
     "Helicon Focus 8 - C",
@@ -55,5 +56,8 @@
     "Helicon Focus 8 - C"
   ],
   "overrides": {},
-  "method_datasets": {}
+  "method_datasets": {},
+  "measurement_updates": [
+    "updates/2026-10-20-rediffuse"
+  ]
 }

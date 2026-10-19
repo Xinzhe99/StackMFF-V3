@@ -55,8 +55,13 @@ def main():
     for ds in DATASETS:
         for k in a.metrics:
             d = data[(ds, k)]
-            scenes = sorted(set.intersection(*[set(v) for v in d.values()]))
-            ms = [m for m in d if all(s in d[m] for s in scenes)]
+            # Fail rather than shrinking the study to the successful intersection.
+            expected = set(d['CVT']) if 'CVT' in d else set.union(*(set(v) for v in d.values()))
+            sizes = {'Mobile Depth':11,'Middlebury':15,'FlyingThings3D':100,'Road-MF':80}
+            if len(expected)!=sizes[ds] or any(set(v)!=expected for v in d.values()):
+                raise ValueError((ds, k, 'Incomplete method cohort'))
+            scenes = sorted(expected)
+            ms = list(d)
             X = np.array([[d[m][s] for m in ms] for s in scenes])  # n x k
             n, kk = X.shape
             ranks = np.array([st.rankdata(-row) for row in X])
@@ -89,7 +94,7 @@ def main():
                              'wilcoxon_holm_p_vs_ref': adj.get(m, ''), 'ref_better_frac': better.get(m, ''),
                              'friedman_p': fr.pvalue, 'nemenyi_cd': cd, 'n': n, 'k': kk})
             L.append('')
-    open(os.path.join(a.dir, 'stats.md'), 'w').write('\n'.join(L) + '\n')
+    open(os.path.join(a.dir, 'stats.md'), 'w').write('\n'.join(L).rstrip() + '\n')
     with open(os.path.join(a.dir, 'stats.csv'), 'w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0])); w.writeheader(); [w.writerow(r) for r in rows]
     print('written stats.md')

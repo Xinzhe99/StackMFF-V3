@@ -1,0 +1,14 @@
+{
+  "methods": 35,
+  "baseline_families": 30,
+  "baseline_settings": 33,
+  "scenes": 206,
+  "primary_images": 7210,
+  "method_dataset_cells": 140,
+  "deferred_methods": [
+    "ZMFF",
+    "ReDiffuse"
+  ],
+  "measurement_values_changed": false,
+  "ranks_recomputed_for_current_cohort": true
+}

@@ -1,0 +1,415 @@
+[
+  {
+    "id": "GFF",
+    "display": "GFF",
+    "group": "Spatial domain",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "TIP"
+  },
+  {
+    "id": "IFM",
+    "display": "IFM",
+    "group": "Spatial domain",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Inf. Fusion"
+  },
+  {
+    "id": "QB",
+    "display": "QB",
+    "group": "Spatial domain",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Inf. Fusion"
+  },
+  {
+    "id": "BFMF",
+    "display": "BFMF",
+    "group": "Spatial domain",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Inf. Fusion"
+  },
+  {
+    "id": "GFDF",
+    "display": "GFDF",
+    "group": "Spatial domain",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "SPIC"
+  },
+  {
+    "id": "MGFF",
+    "display": "MGFF",
+    "group": "Spatial domain",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "CSSP"
+  },
+  {
+    "id": "CVT",
+    "display": "CVT",
+    "group": "Transform domain",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Opt. Express"
+  },
+  {
+    "id": "DWT",
+    "display": "DWT",
+    "group": "Transform domain",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "GMIP"
+  },
+  {
+    "id": "DCT",
+    "display": "DCT",
+    "group": "Transform domain",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "CEE"
+  },
+  {
+    "id": "DTCWT",
+    "display": "DTCWT",
+    "group": "Transform domain",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Inf. Fusion"
+  },
+  {
+    "id": "NSCT",
+    "display": "NSCT",
+    "group": "Transform domain",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "ICIG"
+  },
+  {
+    "id": "IFCNN-MAX",
+    "display": "IFCNN (MAX)",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Inf. Fusion"
+  },
+  {
+    "id": "U2Fusion",
+    "display": "U2Fusion",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "TPAMI"
+  },
+  {
+    "id": "SDNet",
+    "display": "SDNet",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "IJCV"
+  },
+  {
+    "id": "MFF-GAN",
+    "display": "MFF-GAN",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Inf. Fusion"
+  },
+  {
+    "id": "SwinFusion",
+    "display": "SwinFusion",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "JAS"
+  },
+  {
+    "id": "MUFusion",
+    "display": "MUFusion",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Inf. Fusion"
+  },
+  {
+    "id": "SwinMFF",
+    "display": "SwinMFF",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Vis. Comput."
+  },
+  {
+    "id": "DDBFusion",
+    "display": "DDBFusion",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Inf. Fusion"
+  },
+  {
+    "id": "CCSR-Net",
+    "display": "CCSR-Net",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Inf. Fusion"
+  },
+  {
+    "id": "MCCSR-Net",
+    "display": "MCCSR-Net",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Inf. Fusion"
+  },
+  {
+    "id": "DeFusion",
+    "display": "DeFusion",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "ECCV"
+  },
+  {
+    "id": "MFIF-GAN",
+    "display": "MFIF-GAN",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "SPIC"
+  },
+  {
+    "id": "GIFNet",
+    "display": "GIFNet",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "CVPR"
+  },
+  {
+    "id": "CSNet",
+    "display": "CSNet",
+    "group": "Pairwise, adapted to stacks",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "arXiv"
+  },
+  {
+    "id": "Helicon Focus 8 - A",
+    "display": "Helicon Focus (A)",
+    "group": "Commercial software",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ]
+  },
+  {
+    "id": "Helicon Focus 8 - B",
+    "display": "Helicon Focus (B)",
+    "group": "Commercial software",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ]
+  },
+  {
+    "id": "Helicon Focus 8 - C",
+    "display": "Helicon Focus (C)",
+    "group": "Commercial software",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ]
+  },
+  {
+    "id": "Zerene Stacker - DMap",
+    "display": "Zerene (DMap)",
+    "group": "Commercial software",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ]
+  },
+  {
+    "id": "Zerene Stacker - PMax",
+    "display": "Zerene (PMax)",
+    "group": "Commercial software",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ]
+  },
+  {
+    "id": "StackMFF_release",
+    "display": "StackMFF",
+    "group": "Native stack",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "Appl. Intell."
+  },
+  {
+    "id": "StackMFF V2",
+    "display": "StackMFF V2",
+    "group": "Native stack",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "EAAI"
+  },
+  {
+    "id": "VAEEDOF",
+    "display": "VAEEDOF",
+    "group": "Native stack",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ],
+    "venue": "arXiv"
+  },
+  {
+    "id": "Ours_final_hard",
+    "display": "Ours (hard selection)",
+    "group": "Native stack",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ]
+  },
+  {
+    "id": "Ours_final_soft",
+    "display": "Ours (weighted)",
+    "group": "Native stack",
+    "datasets": [
+      "Mobile Depth",
+      "Middlebury",
+      "FlyingThings3D",
+      "Road-MF"
+    ]
+  }
+]

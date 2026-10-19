@@ -68,7 +68,7 @@ Each image of the stack is embedded separately into tokens at 1/4 resolution (4x
 
 ## Results
 
-Full-reference comparison on the four benchmarks (unified evaluation: BT.601 luma, full image, Gaussian SSIM). This selected comparison includes the strongest spatial baselines and earlier StackMFF models. The [complete tables and per-image records](benchmark/README.md) cover the current complete cohort of 30 baseline families (33 settings) plus our two outputs. The historical archive also preserves partial ZMFF and ReDiffuse results, which are excluded from this current comparison. VIF, NMI, no-reference metrics and statistical tests are also provided. Pairwise methods fuse the stack image by image in focal order. Best values in **bold**.
+Full-reference comparison on the four benchmarks (unified evaluation: BT.601 luma, full image, Gaussian SSIM). This selected comparison includes the strongest spatial baselines and earlier StackMFF models. The [complete tables and per-image records](benchmark/README.md) cover the current complete cohort of 31 baseline families (34 settings) plus our two outputs. ReDiffuse now covers all 206 scenes; its [validated update](benchmark/updates/2026-10-20-rediffuse/README.md) is included. ZMFF remains excluded until its complete cohort is verified. VIF, NMI, no-reference metrics and statistical tests are also provided. Pairwise methods fuse the stack image by image in focal order. Best values in **bold**.
 
 | Method | Type | MD SSIM | MD PSNR | Mid. SSIM | Mid. PSNR | FT3D SSIM | FT3D PSNR | Road-MF SSIM | Road-MF PSNR |
 |---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|

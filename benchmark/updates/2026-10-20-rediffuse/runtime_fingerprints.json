@@ -1,0 +1,116 @@
+{
+  "cohort_A": {
+    "runtime_files": {
+      "Diffusion.py": {
+        "sha256": "ba3cfa4f45419265eee7e72b925552c1e54561fde71fa1355920dcb937fbcb3f",
+        "bytes": 12836
+      },
+      "train.py": {
+        "sha256": "f2cc941a1fbdecfe8aff818dc6b03b4f934551b0caec45d514192d07fb49679e",
+        "bytes": 7004
+      },
+      "utils.py": {
+        "sha256": "714fbf82f430e008d5525b82b1551dedc421dca1bf564f5dffd3dc88450619d8",
+        "bytes": 1355
+      },
+      "my_dataset.py": {
+        "sha256": "9000a3589a4e008b3edc10bcb1c0bb7fe936c8ef90cc7819dc8dbe12d2488144",
+        "bytes": 6521
+      },
+      "run_rediffuse.py": {
+        "sha256": "079de713b00f27e1a7e800a636b1a9d89935e0e10d7b51be7e9ef5154d57cf9a",
+        "bytes": 8013
+      },
+      "main.py": {
+        "sha256": "60bd3edc94f003b86341baeb8eb58c8fdc42f255bb75da5c14ce94c53731e042",
+        "bytes": 5132
+      },
+      "config.json": {
+        "sha256": "9487af8eaa425027d28163afa0be17a1905046192206c9a3e5e9776ccca949fc",
+        "bytes": 1574
+      },
+      "weights/model.pt": {
+        "sha256": "abdc5cc3ef4781909aa5575c0f1507fd4cd43b7451721e910f69046359c50802",
+        "bytes": 30372998
+      },
+      "Condition_Noise_Predictor/B_Conv.pyc": {
+        "sha256": "62fb37e52d4c4638daed9e6b5e4bf7d5cc3f337811159b17b9246ff8d67d5fa1",
+        "bytes": 16015
+      },
+      "Condition_Noise_Predictor/__init__.py": {
+        "sha256": "2c6ed77770719e8704616e6504091cb620895c167daead8656e7287e8160457a",
+        "bytes": 10662
+      },
+      "Condition_Noise_Predictor/e_linear.py": {
+        "sha256": "f4f32e47d31c7ce248b478aafe0c721eca8c5e38398ef5c357d53613ae8f4e04",
+        "bytes": 8242
+      },
+      "Condition_Noise_Predictor/Rot_E_UNet.py": {
+        "sha256": "88ca37982a3ec904e3b12d8e1a00162e2d40c25597f24713b0103ea83a83e710",
+        "bytes": 13418
+      }
+    },
+    "metric_libraries": {
+      "numpy": "1.24.3",
+      "scipy": "1.10.1",
+      "skimage": "0.21.0",
+      "cv2": "4.9.0",
+      "PIL": "10.0.1"
+    }
+  },
+  "cohort_B": {
+    "runtime_files": {
+      "main.py": {
+        "sha256": "60bd3edc94f003b86341baeb8eb58c8fdc42f255bb75da5c14ce94c53731e042",
+        "bytes": 5132
+      },
+      "my_dataset.py": {
+        "sha256": "9000a3589a4e008b3edc10bcb1c0bb7fe936c8ef90cc7819dc8dbe12d2488144",
+        "bytes": 6521
+      },
+      "utils.py": {
+        "sha256": "714fbf82f430e008d5525b82b1551dedc421dca1bf564f5dffd3dc88450619d8",
+        "bytes": 1355
+      },
+      "Diffusion.py": {
+        "sha256": "ba3cfa4f45419265eee7e72b925552c1e54561fde71fa1355920dcb937fbcb3f",
+        "bytes": 12836
+      },
+      "train.py": {
+        "sha256": "f2cc941a1fbdecfe8aff818dc6b03b4f934551b0caec45d514192d07fb49679e",
+        "bytes": 7004
+      },
+      "config.json": {
+        "sha256": "9487af8eaa425027d28163afa0be17a1905046192206c9a3e5e9776ccca949fc",
+        "bytes": 1574
+      },
+      "weights/model.pt": {
+        "sha256": "abdc5cc3ef4781909aa5575c0f1507fd4cd43b7451721e910f69046359c50802",
+        "bytes": 30372998
+      },
+      "Condition_Noise_Predictor/Rot_E_UNet.py": {
+        "sha256": "6913b12c2c2b99c1fd478af1681a1422a77c8f316775d58f5c541a26e7dc57d0",
+        "bytes": 13308
+      },
+      "Condition_Noise_Predictor/B_Conv.pyc": {
+        "sha256": "62fb37e52d4c4638daed9e6b5e4bf7d5cc3f337811159b17b9246ff8d67d5fa1",
+        "bytes": 16015
+      },
+      "Condition_Noise_Predictor/e_linear.py": {
+        "sha256": "f4f32e47d31c7ce248b478aafe0c721eca8c5e38398ef5c357d53613ae8f4e04",
+        "bytes": 8242
+      },
+      "Condition_Noise_Predictor/__init__.py": {
+        "sha256": "2c6ed77770719e8704616e6504091cb620895c167daead8656e7287e8160457a",
+        "bytes": 10662
+      }
+    },
+    "metric_libraries": {
+      "numpy": "1.24.4",
+      "scipy": "1.10.1",
+      "skimage": "0.21.0",
+      "cv2": "5.0.0",
+      "PIL": "10.4.0"
+    }
+  }
+}

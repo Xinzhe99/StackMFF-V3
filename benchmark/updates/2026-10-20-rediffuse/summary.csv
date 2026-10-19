@@ -1,0 +1,33 @@
+method,dataset,variant_used,metric,mean,n_images,rank_in_dataset,n_methods
+ReDiffuse,Mobile Depth,raw,SSIM,0.8934925123683891,11,29,44
+ReDiffuse,Mobile Depth,raw,SSIM_sk7,0.8949199921810229,11,29,44
+ReDiffuse,Mobile Depth,raw,PSNR,25.241606861573977,11,36,44
+ReDiffuse,Mobile Depth,raw,VIF,0.6155006798103367,11,24,44
+ReDiffuse,Mobile Depth,raw,MI,3.321586852680141,11,27,44
+ReDiffuse,Mobile Depth,raw,NMI,0.4460110788687832,11,27,44
+ReDiffuse,Mobile Depth,raw,Qabf_N,0.458115520388491,11,36,44
+ReDiffuse,Mobile Depth,raw,MEF_SSIM,0.9140379479126209,11,29,44
+ReDiffuse,Middlebury,raw,SSIM,0.9231595261665667,15,20,44
+ReDiffuse,Middlebury,raw,SSIM_sk7,0.9213369825849455,15,20,44
+ReDiffuse,Middlebury,raw,PSNR,27.22332238854705,15,28,44
+ReDiffuse,Middlebury,raw,VIF,0.6498066139100894,15,16,44
+ReDiffuse,Middlebury,raw,MI,3.4747511772740136,15,21,44
+ReDiffuse,Middlebury,raw,NMI,0.462289164150473,15,21,44
+ReDiffuse,Middlebury,raw,Qabf_N,0.4514013559994878,15,32,44
+ReDiffuse,Middlebury,raw,MEF_SSIM,0.9189569366455153,15,27,44
+ReDiffuse,FlyingThings3D,raw,SSIM,0.9112402725875032,100,26,43
+ReDiffuse,FlyingThings3D,raw,SSIM_sk7,0.90692081955538,100,26,43
+ReDiffuse,FlyingThings3D,raw,PSNR,22.84024093630357,100,36,43
+ReDiffuse,FlyingThings3D,raw,VIF,0.6545034163465726,100,18,43
+ReDiffuse,FlyingThings3D,raw,MI,3.2395586361695523,100,21,43
+ReDiffuse,FlyingThings3D,raw,NMI,0.45034566216097155,100,23,43
+ReDiffuse,FlyingThings3D,raw,Qabf_N,0.38327580047039145,100,29,43
+ReDiffuse,FlyingThings3D,raw,MEF_SSIM,0.900356140943114,100,30,43
+ReDiffuse,Road-MF,raw,SSIM,0.959587903641256,80,23,43
+ReDiffuse,Road-MF,raw,SSIM_sk7,0.959000228737372,80,23,43
+ReDiffuse,Road-MF,raw,PSNR,27.790780731936714,80,27,43
+ReDiffuse,Road-MF,raw,VIF,0.7473081741324934,80,17,43
+ReDiffuse,Road-MF,raw,MI,4.2635220012822765,80,25,43
+ReDiffuse,Road-MF,raw,NMI,0.5627387661654393,80,26,43
+ReDiffuse,Road-MF,raw,Qabf_N,0.3875687485134441,80,35,43
+ReDiffuse,Road-MF,raw,MEF_SSIM,0.9453825229753008,80,27,43

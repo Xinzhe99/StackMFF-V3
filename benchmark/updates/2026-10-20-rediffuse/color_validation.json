@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "records": 206,
+  "summary": [
+    {
+      "method": "ReDiffuse",
+      "dataset": "Mobile Depth",
+      "n": 11,
+      "PSNR_RGB": 25.013504182603196,
+      "DE2000": 4.790935847189311
+    },
+    {
+      "method": "ReDiffuse",
+      "dataset": "Middlebury",
+      "n": 15,
+      "PSNR_RGB": 26.182713188183456,
+      "DE2000": 4.214634412372019
+    },
+    {
+      "method": "ReDiffuse",
+      "dataset": "FlyingThings3D",
+      "n": 100,
+      "PSNR_RGB": 22.436355054743313,
+      "DE2000": 7.964793635067486
+    },
+    {
+      "method": "ReDiffuse",
+      "dataset": "Road-MF",
+      "n": 80,
+      "PSNR_RGB": 27.67913335784311,
+      "DE2000": 3.5408590993516933
+    }
+  ]
+}

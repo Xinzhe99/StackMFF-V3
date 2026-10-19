@@ -1,0 +1,25 @@
+{
+  "status": "passed_linux_reference_environment",
+  "scene": "Mobile Depth/balls",
+  "remote_vs_original_metric_differences": {
+    "SSIM": 0.0,
+    "SSIM_sk7": 0.0,
+    "PSNR": 0.0,
+    "VIF": 0.0,
+    "MI": 4.440892098500626e-16,
+    "NMI": 5.551115123125783e-17,
+    "Qabf_N": 0.0,
+    "MEF_SSIM": 1.1102230246251565e-16
+  },
+  "windows_vs_original_metric_differences": {
+    "SSIM": 0.0,
+    "SSIM_sk7": 0.0,
+    "PSNR": 0.0,
+    "VIF": 0.0,
+    "MI": 4.440892098500626e-16,
+    "NMI": 5.551115123125783e-17,
+    "Qabf_N": 0.0004142426223456286,
+    "MEF_SSIM": 0.0002535247604218416
+  },
+  "interpretation": "The shared metric source is byte-identical. The original Linux JPEG decoding is retained; the Windows libjpeg-9 source-image decoding produces different source-based metrics and is not used for the new stack rows."
+}

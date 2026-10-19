@@ -1,0 +1,42 @@
+% 17 Oct: MACs column removed; GFLOPs of all baselines measured in work/new_model/cost/gflops_all.csv (flops_torch.py, flops_tf1.py);
+% params corrected for SDNet (fused path), MFF-GAN, SwinFusion, MUFusion, SwinMFF. Previous version: tab_efficiency_pre_gflops.tex.bak.
+% Our rows: work/new_model/cost/{cost_final17,macs_final17}.py and Hainan timing/results/Ours_final_final_s1nh_*.json (17 Oct).
+% Other rows generated from work/new_model/cost_all.csv (new measurements, 2026-10-15) and the StackMFF benchmark table
+% (thop MACs of earlier baselines). Runtimes: work/timing/timing.csv (one idle RTX A6000, 2026-10-15).
+\begin{table}[htb]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{Model size, network cost and inference time. GFLOPs use two $256\times256$ inputs; time is the mean per Mobile Depth stack on an RTX A6000 (fp32). Pink/blue mark the lowest/second-lowest unrounded values; fp16 rows are unranked. $^\ddagger$: ten stacks after warm-up; $^\S$: four required patches. Profiling conventions and excluded CPU operations are specified in the supplement.}
+\label{tab:efficiency}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lccc}
+\toprule
+Method & Params (M) & GFLOPs & Time (s) \\
+\midrule
+IFCNN (Inf.\ Fusion)~\cite{zhang2020ifcnn} & 0.08 & 16.99 & \second{0.14} \\
+U2Fusion (TPAMI)~\cite{xu2020u2fusion} & 0.66 & 86.44 & 0.75$^{\ddagger}$ \\
+SDNet (IJCV)~\cite{zhang2021sdnet} & \second{0.03} & 3.77 & 0.28$^{\ddagger}$ \\
+MFF-GAN (Inf.\ Fusion)~\cite{zhang2021mff} & 0.04 & 5.26 & 0.32$^{\ddagger}$ \\
+SwinFusion (JAS)~\cite{ma2022swinfusion} & 0.97 & 149.37 & 19.44 \\
+MUFusion (Inf.\ Fusion)~\cite{cheng2023mufusion} & 0.55 & 21.89 & 0.63 \\
+SwinMFF (Vis.\ Comput.)~\cite{xie2024swinmff} & 54.15 & 57.86 & 2.98 \\
+DDBFusion (Inf.\ Fusion)~\cite{zhang2025ddbfusion} & 10.92 & 1511.25$^{\S}$ & 15.52 \\
+CCSR-Net (Inf.\ Fusion)~\cite{ZHENG2025102974} & \best{0.02} & 3.17 & 1.55 \\
+MCCSR-Net (Inf.\ Fusion)~\cite{ZHENG2025102974} & 0.04 & 5.14 & 7.68 \\
+DeFusion (ECCV)~\cite{liang2022defusion} & 7.87 & 30.10 & 1.44 \\
+MFIF-GAN (SPIC)~\cite{wang2021mfifgan} & 13.70 & 588.48 & 4.06 \\
+GIFNet (CVPR)~\cite{cheng2025gifnet} & 0.82 & 103.07 & 2.93 \\
+CSNet (arXiv)~\cite{csnet2026} & 1.89 & 25.32 & 0.86 \\
+\midrule
+StackMFF (Appl.\ Intell.)~\cite{xie2025stackmff} & 6.08 & 37.37 & 0.33 \\
+StackMFF V2 (EAAI)~\cite{xie2025stackmffv2} & 0.05 & 5.50 & \best{0.10} \\
+VAEEDOF (arXiv)~\cite{vaeedof2025} & 35.22 & 275.55 & 0.90 \\
+Ours, one inference scale & 0.16 & \best{1.94} & \best{0.10} \\
+\quad + fp16 & 0.16 & 1.94 & 0.05 \\
+Ours, two inference scales (default) & 0.16 & \second{3.03} & 0.16 \\
+\quad + fp16 & 0.16 & 3.03 & 0.08 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Reference-guided source-label consistency. Entries give exact agreement / agreement within one focal plane (\%). Only decisive pixels are counted; their coverage is shown in the last row. Labels are inferred from observed RGB values, as specified in the text.}
+\label{tab:label}
+\begin{tabular}{lccc}
+\toprule
+Method & Middlebury & FlyingThings3D & Road-MF \\
+\midrule
+Ours (hard sel.) & 89.9 / 94.2 & 88.5 / 94.2 & 98.3 / 99.5 \\
+StackMFF V2 (EAAI)~\cite{xie2025stackmffv2} & 35.8 / 73.7 & 47.5 / 83.5 & 74.2 / 96.1 \\
+\midrule
+Decisive pixels & 3.8 & 2.1 & 15.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
