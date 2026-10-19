@@ -152,8 +152,9 @@ if __name__ == '__main__':
     v = load()
     # The 2026-10-19 manuscript uses 33 baseline settings and two read-outs.
     # Add deferred methods only after all four benchmark cohorts are complete.
-    CAP = ('Full-reference results (BT.601 luma; PSNR in dB). '
-           'Pink/blue indicate the best/second-best unrounded means.')
+    CAP = ('Reference-image results, averaged over scenes (BT.601 luma; PSNR in dB; higher is better). '
+           'MD: Mobile Depth; Mid.: Middlebury; FT3D: FlyingThings3D. '
+           'Pink/blue mark the best/second-best unrounded means.')
     open(os.path.join(HERE, 'tab_main_fr.tex'), 'w').write(table(
         v, ['SSIM', 'PSNR'], CAP, 'tab:main_fr', font='\\footnotesize', stretch='0.79', rules=True,
         citations=True, placement='!t'))
