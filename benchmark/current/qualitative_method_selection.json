@@ -1,0 +1,124 @@
+{
+  "selection_metric": "equal-dataset mean Gaussian-window SSIM over the four complete benchmarks; no scene-specific choice",
+  "spatial": "GFF (author-specified)",
+  "selected": {
+    "transform": "DTCWT",
+    "decision_or_source_selection": "MFIF-GAN",
+    "direct_reconstruction": "IFCNN-MAX"
+  },
+  "rankings": {
+    "transform": [
+      {
+        "method": "DTCWT",
+        "mean_SSIM": 0.9325606660718477,
+        "mean_PSNR": 31.52117432482281
+      },
+      {
+        "method": "CVT",
+        "mean_SSIM": 0.9287627999871474,
+        "mean_PSNR": 31.379450786699042
+      },
+      {
+        "method": "NSCT",
+        "mean_SSIM": 0.9266406224477971,
+        "mean_PSNR": 31.324568969725412
+      },
+      {
+        "method": "DCT",
+        "mean_SSIM": 0.9063537659743282,
+        "mean_PSNR": 26.88108841891794
+      },
+      {
+        "method": "DWT",
+        "mean_SSIM": 0.8929019033658485,
+        "mean_PSNR": 29.484659214944166
+      }
+    ],
+    "decision_or_source_selection": [
+      {
+        "method": "MFIF-GAN",
+        "mean_SSIM": 0.9590010379279281,
+        "mean_PSNR": 33.257884367208185
+      },
+      {
+        "method": "CSNet",
+        "mean_SSIM": 0.9563951607545709,
+        "mean_PSNR": 33.76843468741494
+      }
+    ],
+    "direct_reconstruction": [
+      {
+        "method": "IFCNN-MAX",
+        "mean_SSIM": 0.8589927376560814,
+        "mean_PSNR": 27.062866674259965
+      },
+      {
+        "method": "MCCSR-Net",
+        "mean_SSIM": 0.8323758015336582,
+        "mean_PSNR": 26.88519402885267
+      },
+      {
+        "method": "SDNet",
+        "mean_SSIM": 0.8093928305037325,
+        "mean_PSNR": 25.045760944246624
+      },
+      {
+        "method": "SwinFusion",
+        "mean_SSIM": 0.7995741540751746,
+        "mean_PSNR": 24.99373051352024
+      },
+      {
+        "method": "CCSR-Net",
+        "mean_SSIM": 0.780049470253058,
+        "mean_PSNR": 25.59844536264285
+      },
+      {
+        "method": "U2Fusion",
+        "mean_SSIM": 0.7755146559988644,
+        "mean_PSNR": 21.118794723154586
+      },
+      {
+        "method": "DDBFusion",
+        "mean_SSIM": 0.756425139616561,
+        "mean_PSNR": 23.982685607837354
+      },
+      {
+        "method": "DeFusion",
+        "mean_SSIM": 0.7525462017717356,
+        "mean_PSNR": 24.865415522040752
+      },
+      {
+        "method": "MUFusion",
+        "mean_SSIM": 0.5415785252028684,
+        "mean_PSNR": 19.290790220070168
+      },
+      {
+        "method": "MFF-GAN",
+        "mean_SSIM": 0.4535942719918412,
+        "mean_PSNR": 18.145831913447303
+      },
+      {
+        "method": "GIFNet",
+        "mean_SSIM": 0.4223759874529557,
+        "mean_PSNR": 10.686719877788926
+      },
+      {
+        "method": "SwinMFF",
+        "mean_SSIM": 0.39718905504427093,
+        "mean_PSNR": 12.129563113429748
+      }
+    ]
+  },
+  "classification_evidence": {
+    "CSNet": "Official model predicts masks and a reconstructed image, then similarity_selection performs mask/source selection. Grouped with decision/source-selection methods, not pure direct reconstruction.",
+    "MFIF-GAN": "Official generator produces focus maps; thresholding and morphology precede compositing.",
+    "IFCNN-MAX": "Official model returns reconstructed intensity after max pooling source features. Current table reports sequential pairwise adaptation. Its generic implementation can accept multiple inputs; joint IFCNN is not evaluated by the current records."
+  },
+  "sources": [
+    "https://github.com/ZYC-HUST/CSNet",
+    "https://arxiv.org/abs/2608.03252",
+    "https://github.com/uzeful/IFCNN/blob/master/Code/model.py",
+    "https://www.sciencedirect.com/science/article/pii/S0923596521001260"
+  ],
+  "summary_sha256": "714714ebcf02c77fec97f5a2dfbe8806d13520a164702978b6405d6e56143d73"
+}

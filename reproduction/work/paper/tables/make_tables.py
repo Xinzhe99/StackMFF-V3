@@ -168,5 +168,5 @@ if __name__ == '__main__':
     open(os.path.join(HERE, 'tab_supp_extra.tex'), 'w').write(table(
         v, ['SSIM_sk7', 'MI'],
         'Additional reference metrics on the same outputs as main-paper Table~1. SSIM$_7$ uses a uniform $7\\times7$ window; MI is in bits. Pink/blue indicate the best/second-best values.',
-        'tab:supp_extra', font='\\footnotesize', stretch='0.90', rules=True, placement='H'))
+        'tab:supp_extra', font='\\footnotesize', stretch='0.78', rules=True, placement='H'))
     print('written', os.listdir(HERE))

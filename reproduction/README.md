@@ -23,3 +23,5 @@ python reproduction/work/paper/tables/add_method_venues.py
 Python, NumPy, SciPy and Matplotlib are required. Rebuilding numerical tables requires no GPU, MATLAB or image downloads. Re-running image fusion or training separately requires the source datasets, weights and implementation environments documented in the main README and third-party notices.
 
 Roadmap Δ annotations subtract adjacent displayed four-decimal means so the printed arithmetic is consistent; all underlying values remain unrounded for plotting and seed-variation comparisons. The full-training row is distinct from the short-protocol cumulative study.
+
+The complete-cohort scene-difference figure can be regenerated with `python reproduction/work/figures/src/make_scene_gains.py`. It uses the existing unrounded per-scene records and fixes one external comparator per dataset using the highest mean SSIM. Output PDF, PNG and source metadata are written under `reproduction/work/figures/out/`. No images or model inference are required.
