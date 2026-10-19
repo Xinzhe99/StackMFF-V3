@@ -235,6 +235,11 @@
     "sha256": "82558efa335d6177f7be0986bd14986628373d9a7617b838657158410bea3de3"
   },
   {
+    "path": "manual_tables/tab_metric_validation.tex",
+    "bytes": 560,
+    "sha256": "dbf1c30dd0a0abf1ff45419a0bc8255d7a33a6f7483b3cee9fe9768214d044fb"
+  },
+  {
     "path": "manual_tables/tab_supp_blurscale.tex",
     "bytes": 884,
     "sha256": "8dbc643444ed9c3eca3d57da1054f82bef0182aa42c2492b6c1342e866019f53"
