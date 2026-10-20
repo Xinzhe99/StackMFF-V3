@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-20",
+  "method": "ZMFF",
+  "primary_publisher_url": "https://www.sciencedirect.com/science/article/pii/S1566253522002263",
+  "official_repository": "https://github.com/junjun-jiang/ZMFF",
+  "doi": "10.1016/j.inffus.2022.11.014",
+  "journal": "Information Fusion",
+  "volume": "92",
+  "year": 2023,
+  "pages": "127-138",
+  "citation_key": "hu2023zmff",
+  "finding": "Publisher and official repository support the existing Information Fusion reference; the old inventory's venue conflict is resolved. ZMFF is zero-shot optimization with deep image and mask priors, not a diffusion sampler."
+}

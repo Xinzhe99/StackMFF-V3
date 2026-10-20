@@ -1,6 +1,6 @@
 # Current complete-cohort comparison
 
-31 baseline families (34 settings) and two proposed read-outs: 36 rows, each covering all 206 scenes. SSIM uses the Gaussian window; PSNR is in dB. The original measurements are retained, with the independently validated ReDiffuse update applied.
+32 baseline families (35 settings) and two proposed read-outs: 37 rows, each covering all 206 scenes. SSIM uses the Gaussian window; PSNR is in dB. The original measurements are retained, with the independently validated ReDiffuse and ZMFF updates applied.
 
 | Method | Venue | MD SSIM / PSNR | Mid. SSIM / PSNR | FT3D SSIM / PSNR | Road-MF SSIM / PSNR |
 |---|---|---:|---:|---:|---:|
@@ -32,6 +32,7 @@
 | MFIF-GAN | SPIC | 0.9507 / 34.54 | 0.9448 / 31.50 | 0.9603 / 32.79 | 0.9802 / 34.20 |
 | GIFNet | CVPR | 0.3381 / 9.71 | 0.4531 / 11.35 | 0.3560 / 10.09 | 0.5423 / 11.60 |
 | CSNet | arXiv | 0.9355 / 33.62 | 0.9430 / 31.82 | 0.9620 / 33.47 | 0.9850 / 36.17 |
+| ZMFF | Inf. Fusion | 0.9183 / 29.19 | 0.8567 / 25.28 | 0.8666 / 23.24 | 0.8448 / 22.72 |
 | ReDiffuse | arXiv | 0.8935 / 25.24 | 0.9232 / 27.22 | 0.9112 / 22.84 | 0.9596 / 27.79 |
 | **Commercial software** | | | | | |
 | Helicon Focus (A) | — | 0.9592 / 33.97 | 0.9197 / 30.14 | 0.9299 / 31.46 | 0.9416 / 31.16 |

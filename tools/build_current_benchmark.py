@@ -17,7 +17,7 @@ def write(p,fields,rows):
 def main():
     config=json.loads((B/'config_paper.json').read_text())
     methods=config['methods'];allowed=set(methods)
-    assert len(allowed)==36 and 'ReDiffuse' in allowed and 'ZMFF' not in allowed
+    assert len(allowed)==37 and {'ReDiffuse','ZMFF'}<=allowed
     OUT.mkdir(exist_ok=True)
     fields,source=read(B/'per_image.csv')
     updated=set()
@@ -43,7 +43,7 @@ def main():
     assert counts==Counter({(m,d):n for m in methods for d,n in sizes.items()})
     primary=[r for r in rows if r['primary']=='True']
     keys=[(r['method'],r['dataset'],r['scene']) for r in primary]
-    assert len(keys)==len(set(keys))==7416
+    assert len(keys)==len(set(keys))==7622
     for d in sizes:
         expected={r['scene'] for r in primary if r['method']=='CVT' and r['dataset']==d}
         for m in methods:
@@ -75,7 +75,7 @@ def main():
     (OUT/'methods.json').write_text(json.dumps(meta,indent=2)+'\n')
     scores={(r['method'],r['dataset'],r['metric']):float(r['mean']) for r in means}
     lines=['# Current complete-cohort comparison','',
-           '31 baseline families (34 settings) and two proposed read-outs: 36 rows, each covering all 206 scenes. SSIM uses the Gaussian window; PSNR is in dB. The original measurements are retained, with the independently validated ReDiffuse update applied.','',
+           '32 baseline families (35 settings) and two proposed read-outs: 37 rows, each covering all 206 scenes. SSIM uses the Gaussian window; PSNR is in dB. The original measurements are retained, with the independently validated ReDiffuse and ZMFF updates applied.','',
            '| Method | Venue | MD SSIM / PSNR | Mid. SSIM / PSNR | FT3D SSIM / PSNR | Road-MF SSIM / PSNR |',
            '|---|---|---:|---:|---:|---:|']
     group=None
@@ -85,8 +85,8 @@ def main():
         cells=[f"{scores[r['id'],d,'SSIM']:.4f} / {scores[r['id'],d,'PSNR']:.2f}" for d in sizes]
         lines.append('| '+r['display']+' | '+r.get('venue','—')+' | '+' | '.join(cells)+' |')
     (OUT/'TABLES.md').write_text('\n'.join(lines)+'\n',encoding='utf8')
-    report={'methods':36,'baseline_families':31,'baseline_settings':34,'scenes':206,
-            'primary_images':7416,'method_dataset_cells':144,'deferred_methods':['ZMFF'],
+    report={'methods':37,'baseline_families':32,'baseline_settings':35,'scenes':206,
+            'primary_images':7622,'method_dataset_cells':148,'deferred_methods':[],
             'measurement_updates':config.get('measurement_updates', []),
             'historical_measurements_preserved':True,'ranks_recomputed_for_current_cohort':True}
     (OUT/'cohort.json').write_text(json.dumps(report,indent=2)+'\n')

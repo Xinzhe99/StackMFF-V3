@@ -1,0 +1,31 @@
+\begin{table}[htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Cumulative design study under the short protocol. $^3$: three-seed mean. SSIM denotes the four-benchmark mean SSIM$_7$; MD denotes Mobile Depth. GFLOPs use two $256\times256$ inputs. $\Delta$ is the difference between adjacent displayed four-decimal SSIM means; gray changes are within observed seed variation. Shuffled is the SSIM change under random input permutation ($0$: magnitude below $5\times10^{-5}$). $^a$: the controlled index-regression starting architecture described in the text.}
+\label{tab:roadmap}
+\begin{tabular}{lcccccc}
+\toprule
+Change & GFLOPs & MD & SSIM & PSNR & $\Delta$ & Shuffled \\
+\midrule
+\multicolumn{7}{l}{\textit{Start}} \\
+Index-regression baseline$^{a}$ & 2.00 & 0.9674 & 0.9697 & 35.49 &  & -0.0167 \\
+\multicolumn{7}{l}{\textit{Data}} \\
++ on-the-fly synthesis & 2.00 & 0.9776 & 0.9730 & 35.84 & +0.0033 & -0.0335 \\
+\multicolumn{7}{l}{\textit{Formulation}} \\
++ classification (hard sel.)$^{3}$ & 2.00 & 0.9780 & 0.9732 & 36.22 & \textcolor{gray}{+0.0002} & $0$ \\
++ weighted fusion$^{3}$ & 2.00 & 0.9842 & 0.9767 & 37.21 & +0.0035 & $0$ \\
+\multicolumn{7}{l}{\textit{Data}} \\
++ highlight synthesis$^{3}$ & 2.00 & 0.9859 & 0.9770 & 37.32 & \textcolor{gray}{+0.0003} & $0$ \\
+\multicolumn{7}{l}{\textit{Objective}} \\
++ contrast-weighted CE$^{3}$ & 2.00 & 0.9857 & 0.9775 & 37.65 & \textcolor{gray}{+0.0005} & $0$ \\
+\multicolumn{7}{l}{\textit{Architecture}} \\
++ window attention (intra-image)$^{3}$ & 2.86 & 0.9846 & 0.9778 & 37.92 & \textcolor{gray}{+0.0003} & $0$ \\
++ SACA, $r=2$$^{3}$ & 1.94 & 0.9849 & 0.9778 & 37.74 & \textcolor{gray}{+0.0000} & $0$ \\
+\multicolumn{7}{l}{\textit{Inference}} \\
++ two-scale inference$^{3}$ & 3.03 & 0.9868 & 0.9785 & 37.85 & +0.0007 & $0$ \\
+\midrule
+Full training (6 epochs, all pairs) & 3.03 & 0.9861 & \textbf{0.9789} & \textbf{38.59} & & $0$ \\
+\bottomrule
+\end{tabular}
+\end{table}

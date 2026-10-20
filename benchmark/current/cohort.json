@@ -1,15 +1,14 @@
 {
-  "methods": 36,
-  "baseline_families": 31,
-  "baseline_settings": 34,
+  "methods": 37,
+  "baseline_families": 32,
+  "baseline_settings": 35,
   "scenes": 206,
-  "primary_images": 7416,
-  "method_dataset_cells": 144,
-  "deferred_methods": [
-    "ZMFF"
-  ],
+  "primary_images": 7622,
+  "method_dataset_cells": 148,
+  "deferred_methods": [],
   "measurement_updates": [
-    "updates/2026-10-20-rediffuse"
+    "updates/2026-10-20-rediffuse",
+    "updates/2026-10-20-zmff"
   ],
   "historical_measurements_preserved": true,
   "ranks_recomputed_for_current_cohort": true

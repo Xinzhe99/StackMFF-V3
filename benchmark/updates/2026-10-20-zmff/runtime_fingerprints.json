@@ -1,0 +1,146 @@
+{
+  "cohort_A": {
+    "run_zmff.py": {
+      "sha256": "0a1d1988c22bfd38be63d0898a0fb9b720a46aeb26490d2941c26ce92e4a4ebf",
+      "bytes": 8445
+    },
+    "main.py": {
+      "sha256": "3741468db86885929716b2633e619171b317ea317f30c89120448d84a0261781",
+      "bytes": 9330
+    },
+    "util/data_utils.py": {
+      "sha256": "aa82d0f989b87abb2bed246ffc572b02b35cb1f6cc62e273b04e554eaddb187a",
+      "bytes": 743
+    },
+    "util/guided_filter.py": {
+      "sha256": "82c453dda9c6258b9dacc476549afb40edcf21da6bef4be9abcaa3d82461ec99",
+      "bytes": 5928
+    },
+    "util/common_utils.py": {
+      "sha256": "6b2f5d2af6c9b8bb231a8cb970c6784f116a778fad95e6f4f5f79c1153f82d34",
+      "bytes": 10801
+    },
+    "util/logger.py": {
+      "sha256": "1907397f60db9583430221e3992a3889cca0d3eddacd35de245f7e5f22f10eb0",
+      "bytes": 1759
+    },
+    "util/dataset.py": {
+      "sha256": "f7d672c79046493b1f31d735a00dd4acabe163bfee9b4b931314fe22817a1bff",
+      "bytes": 4572
+    },
+    "network/loss.py": {
+      "sha256": "410afb191391549286f316cd6900def65ee35948700282012201f7740ebc4d42",
+      "bytes": 3472
+    },
+    "network/non_local_embedded_gaussian.py": {
+      "sha256": "a35879da06a0d29eeb9bf73d0d4c143876e59c7b8de13e6d2a5fbfc2578409da",
+      "bytes": 4916
+    },
+    "network/non_local_concatenation.py": {
+      "sha256": "41de0e931a3bfec9b7c9a92836eb2a4c9081787e0c6079ca6b6065db074f65a3",
+      "bytes": 5350
+    },
+    "network/skip.py": {
+      "sha256": "b50867f58094f2ec856f0ded0a00fe687fa124fe5c38bdbe2bb363003647f173",
+      "bytes": 9680
+    },
+    "network/downsampler.py": {
+      "sha256": "f37a5a3c9678912752d10d564d83086ac545626dbfb085c1d8f9c5b9e55d3e3b",
+      "bytes": 7813
+    },
+    "network/non_local_dot_product.py": {
+      "sha256": "395d9ad1f26fe8c2829e8cfcb364615b2000bd02e48a7b93cf59a4a28f8aed56",
+      "bytes": 4926
+    },
+    "network/non_local_gaussian.py": {
+      "sha256": "18203060882bc221af7419366234f885b23597552987fd60a3cf32c53a7f3365",
+      "bytes": 4674
+    },
+    "network/common.py": {
+      "sha256": "988f9a6cc6ce6f2c4bf83d43c980fda7caa606c33d251e3c98ad78b4039c0fdd",
+      "bytes": 3588
+    },
+    "network/SSIM.py": {
+      "sha256": "fce3378c77ec6a67c36411fddde4950401a08d84f2adcd3248f6e0c9067dce16",
+      "bytes": 2652
+    },
+    "config/demo_official_synth.yaml": {
+      "sha256": "2ee8ff32eecad0bef4bd7383bbef33d20ee303e0441d8c6f7bdcf546e69b905d",
+      "bytes": 1024
+    },
+    "config/test.yaml": {
+      "sha256": "9246619b396f5c450e4e77dd1ee6aa7cdd07f592daddb41ca2020eef4e271c1b",
+      "bytes": 1014
+    },
+    "config/demo_official_synth2.yaml": {
+      "sha256": "dc7e2524e708d48b65d93a11a606fab0f65275788846bedc38cf0c17b0af0fc3",
+      "bytes": 1026
+    }
+  },
+  "cohort_B": {
+    "main.py": {
+      "sha256": "3741468db86885929716b2633e619171b317ea317f30c89120448d84a0261781",
+      "bytes": 9330
+    },
+    "config/test.yaml": {
+      "sha256": "9246619b396f5c450e4e77dd1ee6aa7cdd07f592daddb41ca2020eef4e271c1b",
+      "bytes": 1014
+    },
+    "network/non_local_dot_product.py": {
+      "sha256": "395d9ad1f26fe8c2829e8cfcb364615b2000bd02e48a7b93cf59a4a28f8aed56",
+      "bytes": 4926
+    },
+    "network/non_local_concatenation.py": {
+      "sha256": "41de0e931a3bfec9b7c9a92836eb2a4c9081787e0c6079ca6b6065db074f65a3",
+      "bytes": 5350
+    },
+    "network/SSIM.py": {
+      "sha256": "fce3378c77ec6a67c36411fddde4950401a08d84f2adcd3248f6e0c9067dce16",
+      "bytes": 2652
+    },
+    "network/loss.py": {
+      "sha256": "1385fb6d81934598fccaeb654087a3ecaa2cd576843cf7c09c84ed41037853a2",
+      "bytes": 3328
+    },
+    "network/non_local_gaussian.py": {
+      "sha256": "18203060882bc221af7419366234f885b23597552987fd60a3cf32c53a7f3365",
+      "bytes": 4674
+    },
+    "network/common.py": {
+      "sha256": "988f9a6cc6ce6f2c4bf83d43c980fda7caa606c33d251e3c98ad78b4039c0fdd",
+      "bytes": 3588
+    },
+    "network/non_local_embedded_gaussian.py": {
+      "sha256": "a35879da06a0d29eeb9bf73d0d4c143876e59c7b8de13e6d2a5fbfc2578409da",
+      "bytes": 4916
+    },
+    "network/skip.py": {
+      "sha256": "b50867f58094f2ec856f0ded0a00fe687fa124fe5c38bdbe2bb363003647f173",
+      "bytes": 9680
+    },
+    "network/downsampler.py": {
+      "sha256": "f37a5a3c9678912752d10d564d83086ac545626dbfb085c1d8f9c5b9e55d3e3b",
+      "bytes": 7813
+    },
+    "util/data_utils.py": {
+      "sha256": "aa82d0f989b87abb2bed246ffc572b02b35cb1f6cc62e273b04e554eaddb187a",
+      "bytes": 743
+    },
+    "util/guided_filter.py": {
+      "sha256": "82c453dda9c6258b9dacc476549afb40edcf21da6bef4be9abcaa3d82461ec99",
+      "bytes": 5928
+    },
+    "util/logger.py": {
+      "sha256": "1907397f60db9583430221e3992a3889cca0d3eddacd35de245f7e5f22f10eb0",
+      "bytes": 1759
+    },
+    "util/common_utils.py": {
+      "sha256": "6b2f5d2af6c9b8bb231a8cb970c6784f116a778fad95e6f4f5f79c1153f82d34",
+      "bytes": 10801
+    },
+    "util/dataset.py": {
+      "sha256": "f7d672c79046493b1f31d735a00dd4acabe163bfee9b4b931314fe22817a1bff",
+      "bytes": 4572
+    }
+  }
+}

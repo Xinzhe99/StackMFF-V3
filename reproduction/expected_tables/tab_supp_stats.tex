@@ -2,28 +2,28 @@
 \centering
 \scriptsize
 \setlength{\tabcolsep}{3pt}
-\caption{Scene-wise statistical comparison of 36 entries on each benchmark. Friedman tests assess overall differences; CD is the Nemenyi critical difference at $\alpha=0.05$. Rank (ours) refers to weighted fusion. Within CD counts other entries, including hard selection, whose mean rank differs by no more than the CD.}
+\caption{Scene-wise statistical comparison of 37 entries on each benchmark. Friedman tests assess overall differences; CD is the Nemenyi critical difference at $\alpha=0.05$. Rank (ours) refers to weighted fusion. Within CD counts other entries, including hard selection, whose mean rank differs by no more than the CD.}
 \label{tab:stats}
 \begin{tabular}{llcccccc}
 \toprule
 Benchmark & Metric & $n$ & Friedman $p$ & CD & Rank (ours) & Best external (rank) & Within CD \\
 \midrule
-Mobile Depth & SSIM & 11 & $2.5\times10^{-56}$ & 17.2 & 1.27 & GFF (2.27) & 17 \\
-Mobile Depth & PSNR & 11 & $6.9\times10^{-57}$ & 17.2 & 1.82 & GFDF (2.45) & 18 \\
-Mobile Depth & VIF & 11 & $9.1\times10^{-56}$ & 17.2 & 2.18 & GFDF (1.27) & 20 \\
-Mobile Depth & NMI & 11 & $3.8\times10^{-57}$ & 17.2 & 3.91 & QB (2.36) & 20 \\
-Middlebury & SSIM & 15 & $7.5\times10^{-80}$ & 14.8 & 1.00 & GFDF (3.40) & 13 \\
-Middlebury & PSNR & 15 & $9.5\times10^{-78}$ & 14.8 & 1.00 & GFDF (4.27) & 16 \\
-Middlebury & VIF & 15 & $2.3\times10^{-80}$ & 14.8 & 1.00 & GFDF (2.93) & 14 \\
-Middlebury & NMI & 15 & $7.3\times10^{-83}$ & 14.8 & 1.80 & GFDF (3.07) & 14 \\
-FlyingThings3D & SSIM & 100 & $<10^{-300}$ & 5.7 & 1.01 & GFDF (3.24) & 5 \\
-FlyingThings3D & PSNR & 100 & $<10^{-300}$ & 5.7 & 1.10 & GFF (3.89) & 4 \\
-FlyingThings3D & VIF & 100 & $<10^{-300}$ & 5.7 & 1.04 & GFDF (2.50) & 5 \\
-FlyingThings3D & NMI & 100 & $<10^{-300}$ & 5.7 & 1.20 & GFDF (3.24) & 5 \\
-Road-MF & SSIM & 80 & $<10^{-300}$ & 6.4 & 2.00 & GFF (3.66) & 5 \\
-Road-MF & PSNR & 80 & $<10^{-300}$ & 6.4 & 2.00 & GFF (3.67) & 6 \\
-Road-MF & VIF & 80 & $<10^{-300}$ & 6.4 & 2.00 & QB (3.74) & 5 \\
-Road-MF & NMI & 80 & $<10^{-300}$ & 6.4 & 2.01 & QB (3.06) & 8 \\
+Mobile Depth & SSIM & 11 & $7.2\times10^{-58}$ & 17.8 & 1.27 & GFF (2.27) & 17 \\
+Mobile Depth & PSNR & 11 & $2.6\times10^{-58}$ & 17.8 & 1.82 & GFDF (2.45) & 18 \\
+Mobile Depth & VIF & 11 & $4.4\times10^{-57}$ & 17.8 & 2.18 & GFDF (1.27) & 20 \\
+Mobile Depth & NMI & 11 & $1.1\times10^{-58}$ & 17.8 & 3.91 & QB (2.36) & 20 \\
+Middlebury & SSIM & 15 & $5.2\times10^{-82}$ & 15.2 & 1.00 & GFDF (3.40) & 13 \\
+Middlebury & PSNR & 15 & $6.6\times10^{-80}$ & 15.2 & 1.00 & GFDF (4.27) & 16 \\
+Middlebury & VIF & 15 & $1.4\times10^{-82}$ & 15.2 & 1.00 & GFDF (2.93) & 14 \\
+Middlebury & NMI & 15 & $4.3\times10^{-85}$ & 15.2 & 1.80 & GFDF (3.07) & 16 \\
+FlyingThings3D & SSIM & 100 & $<10^{-300}$ & 5.9 & 1.01 & GFDF (3.24) & 5 \\
+FlyingThings3D & PSNR & 100 & $<10^{-300}$ & 5.9 & 1.10 & GFF (3.89) & 4 \\
+FlyingThings3D & VIF & 100 & $<10^{-300}$ & 5.9 & 1.04 & GFDF (2.50) & 5 \\
+FlyingThings3D & NMI & 100 & $<10^{-300}$ & 5.9 & 1.20 & GFDF (3.24) & 5 \\
+Road-MF & SSIM & 80 & $<10^{-300}$ & 6.6 & 2.00 & GFF (3.66) & 5 \\
+Road-MF & PSNR & 80 & $<10^{-300}$ & 6.6 & 2.00 & GFF (3.67) & 7 \\
+Road-MF & VIF & 80 & $<10^{-300}$ & 6.6 & 2.00 & QB (3.74) & 7 \\
+Road-MF & NMI & 80 & $<10^{-300}$ & 6.6 & 2.01 & QB (3.06) & 8 \\
 \bottomrule
 \end{tabular}
 \end{table}

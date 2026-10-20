@@ -7,7 +7,7 @@
 \centering
 \footnotesize
 \setlength{\tabcolsep}{3pt}
-\caption{Model size, network cost and inference time. GFLOPs use two $256\times256$ inputs; time is the mean per Mobile Depth stack on an RTX A6000 (fp32). Pink/blue mark the lowest/second-lowest unrounded values; fp16 rows are unranked. $^\ddagger$: ten stacks after warm-up; $^\S$: four required patches. Profiling conventions and excluded CPU operations are specified in the supplement.}
+\caption{Model size, network cost and inference time. GFLOPs use two $256\times256$ inputs; time is the mean per Mobile Depth stack on an RTX A6000 (fp32). Pink/blue mark the lowest/second-lowest unrounded values; fp16 rows are unranked. $^\ddagger$: ten stacks after warm-up; $^\S$: four required patches. Fwd.: forward calls only, a lower bound for ZMFF optimization. Profiling conventions and excluded operations are specified in the supplement.}
 \label{tab:efficiency}
 \begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{lccc}
@@ -28,6 +28,7 @@ DeFusion (ECCV)~\cite{liang2022defusion} & 7.87 & 30.10 & 1.44 \\
 MFIF-GAN (SPIC)~\cite{wang2021mfifgan} & 13.70 & 588.48 & 4.06 \\
 GIFNet (CVPR)~\cite{cheng2025gifnet} & 0.82 & 103.07 & 2.93 \\
 CSNet (arXiv)~\cite{csnet2026} & 1.89 & 25.32 & 0.86 \\
+ZMFF (Inf.\ Fusion)~\cite{hu2023zmff} & 4.67 & $1.43\times10^5$ (fwd.) & --- \\
 ReDiffuse (arXiv)~\cite{rediffuse2026} & 7.55 & $2.20\times10^5$ & --- \\
 \midrule
 StackMFF (Appl.\ Intell.)~\cite{xie2025stackmff} & 6.08 & 37.37 & 0.33 \\

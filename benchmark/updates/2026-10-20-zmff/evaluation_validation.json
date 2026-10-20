@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "expected": 206,
+  "valid": 206,
+  "previous_metric_max_difference": 8.881784197001252e-16,
+  "configuration_bindings": [
+    {
+      "host": "hainan",
+      "uploaded_configuration_sha256": "87a743062b017a92ee8a57e4cb07ebb0913d62dad148dabdf0c110c794ff0da6"
+    },
+    {
+      "host": "zhoushan",
+      "uploaded_configuration_sha256": "c865343111d109b7f2e963809053db54b7d564d7f295f0eafb418ee7b1da2285"
+    }
+  ],
+  "primary_variant": "raw",
+  "summaries": [
+    {
+      "dataset": "Mobile Depth",
+      "n": 11,
+      "median_shift": 0.0,
+      "mean": {
+        "SSIM": 0.9182763470887496,
+        "SSIM_sk7": 0.9202912247582119,
+        "PSNR": 29.18753771801518,
+        "VIF": 0.592419127865768,
+        "MI": 3.267280031671664,
+        "NMI": 0.44131702233090875,
+        "Qabf_N": 0.5404097230349768,
+        "MEF_SSIM": 0.9337849162356169
+      }
+    },
+    {
+      "dataset": "Middlebury",
+      "n": 15,
+      "median_shift": 0.0,
+      "mean": {
+        "SSIM": 0.8566916048460614,
+        "SSIM_sk7": 0.8574216494528611,
+        "PSNR": 25.280702327523844,
+        "VIF": 0.448311599138713,
+        "MI": 2.7644429896954317,
+        "NMI": 0.37002425556322716,
+        "Qabf_N": 0.4717585390225399,
+        "MEF_SSIM": 0.9046928097352184
+      }
+    },
+    {
+      "dataset": "FlyingThings3D",
+      "n": 100,
+      "median_shift": 0.0,
+      "mean": {
+        "SSIM": 0.8665965154499904,
+        "SSIM_sk7": 0.862240427188605,
+        "PSNR": 23.239503503385535,
+        "VIF": 0.4717884721808237,
+        "MI": 2.637759911486711,
+        "NMI": 0.36740255499000907,
+        "Qabf_N": 0.3965579552815673,
+        "MEF_SSIM": 0.8938430785479607
+      }
+    },
+    {
+      "dataset": "Road-MF",
+      "n": 80,
+      "median_shift": 0.0,
+      "mean": {
+        "SSIM": 0.8448186988253067,
+        "SSIM_sk7": 0.8448056628742707,
+        "PSNR": 22.723246384356408,
+        "VIF": 0.42999901197336143,
+        "MI": 2.5645991072008227,
+        "NMI": 0.34040388075238387,
+        "Qabf_N": 0.36711673537608974,
+        "MEF_SSIM": 0.8702970419819378
+      }
+    }
+  ],
+  "metric_source_sha256": "29bc4db0af3248be08e4307a445ea3c013323d7680d982b6fac842e3bc1a6523"
+}

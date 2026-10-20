@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{All epochs of the final run: monitoring SSIM$_7$ / PSNR for weighted fusion with $\sigma=0.5$. $^\dagger$: epoch selected by mean benchmark SSIM; $^\ddagger$: epoch selected by held-out synthetic classification accuracy. Metric and decoding conventions differ from the unified comparison as specified in the text.}
+\label{tab:epochs}
+\scriptsize
+\begin{tabular}{lccccc}
+\toprule
+Epoch & MD & Mid & FT3D & Road-MF & Mean \\
+\midrule
+1 & 0.9871 / 40.77 & 0.9576 / 33.32 & 0.9679 / 34.43 & 0.9941 / 39.52 & 0.9767 / 37.01 \\
+2 & 0.9866 / 40.34 & 0.9608 / 34.13 & 0.9698 / 35.14 & 0.9974 / 43.10 & 0.9786 / 38.18 \\
+3$^{\dagger\ddagger}$ & 0.9861 / 40.19 & 0.9612 / 34.28 & 0.9703 / 35.35 & 0.9979 / 44.53 & 0.9789 / 38.59 \\
+4 & 0.9847 / 39.93 & 0.9614 / 34.37 & 0.9707 / 35.52 & 0.9981 / 44.94 & 0.9787 / 38.69 \\
+5 & 0.9841 / 39.82 & 0.9615 / 34.39 & 0.9707 / 35.56 & 0.9981 / 45.08 & 0.9786 / 38.72 \\
+6 & 0.9838 / 39.77 & 0.9615 / 34.42 & 0.9708 / 35.60 & 0.9981 / 45.13 & 0.9786 / 38.73 \\
+\bottomrule
+\end{tabular}
+\end{table}

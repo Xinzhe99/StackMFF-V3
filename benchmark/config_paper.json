@@ -38,6 +38,7 @@
     "MFIF-GAN",
     "GIFNet",
     "CSNet",
+    "ZMFF",
     "ReDiffuse",
     "Helicon Focus 8 - A",
     "Helicon Focus 8 - B",
@@ -59,10 +60,15 @@
     "ReDiffuse|Mobile Depth": "image_updates/2026-10-20-rediffuse/results/ReDiffuse/Mobile Depth",
     "ReDiffuse|Middlebury": "image_updates/2026-10-20-rediffuse/results/ReDiffuse/Middlebury",
     "ReDiffuse|FlyingThings3D": "image_updates/2026-10-20-rediffuse/results/ReDiffuse/FlyingThings3D",
-    "ReDiffuse|Road-MF": "image_updates/2026-10-20-rediffuse/results/ReDiffuse/Road-MF"
+    "ReDiffuse|Road-MF": "image_updates/2026-10-20-rediffuse/results/ReDiffuse/Road-MF",
+    "ZMFF|Mobile Depth": "image_updates/2026-10-20-zmff/results/ZMFF/Mobile Depth",
+    "ZMFF|Middlebury": "image_updates/2026-10-20-zmff/results/ZMFF/Middlebury",
+    "ZMFF|FlyingThings3D": "image_updates/2026-10-20-zmff/results/ZMFF/FlyingThings3D",
+    "ZMFF|Road-MF": "image_updates/2026-10-20-zmff/results/ZMFF/Road-MF"
   },
   "method_datasets": {},
   "measurement_updates": [
-    "updates/2026-10-20-rediffuse"
+    "updates/2026-10-20-rediffuse",
+    "updates/2026-10-20-zmff"
   ]
 }

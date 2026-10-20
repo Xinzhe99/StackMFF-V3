@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "valid": 206,
+  "source_sha256": "da0cb18a36339cdbc877f86ab7982ee7bf39de99f844dc2b08326f9fdd40ba20",
+  "resized": 0,
+  "summaries": [
+    {
+      "method": "ZMFF",
+      "dataset": "Mobile Depth",
+      "n": 11,
+      "PSNR_RGB": 28.69226609665639,
+      "DE2000": 2.9154600037493066
+    },
+    {
+      "method": "ZMFF",
+      "dataset": "Middlebury",
+      "n": 15,
+      "PSNR_RGB": 24.666951733713386,
+      "DE2000": 4.012591300179938
+    },
+    {
+      "method": "ZMFF",
+      "dataset": "FlyingThings3D",
+      "n": 100,
+      "PSNR_RGB": 22.987528454763517,
+      "DE2000": 4.837671087509398
+    },
+    {
+      "method": "ZMFF",
+      "dataset": "Road-MF",
+      "n": 80,
+      "PSNR_RGB": 22.706887547576574,
+      "DE2000": 4.261618800668447
+    }
+  ]
+}

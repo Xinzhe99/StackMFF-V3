@@ -1,0 +1,1650 @@
+[
+  {
+    "dataset": "Mobile Depth",
+    "scene": "balls",
+    "n_layers": 25,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Mobile Depth",
+    "scene": "bottles",
+    "n_layers": 31,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Mobile Depth",
+    "scene": "bucket",
+    "n_layers": 32,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Mobile Depth",
+    "scene": "fruits",
+    "n_layers": 30,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Mobile Depth",
+    "scene": "keyboard",
+    "n_layers": 32,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Mobile Depth",
+    "scene": "kitchen",
+    "n_layers": 12,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Mobile Depth",
+    "scene": "metals",
+    "n_layers": 33,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Mobile Depth",
+    "scene": "plants",
+    "n_layers": 23,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Mobile Depth",
+    "scene": "telephone",
+    "n_layers": 33,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Mobile Depth",
+    "scene": "window",
+    "n_layers": 27,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Mobile Depth",
+    "scene": "zeromotion",
+    "n_layers": 14,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "Adirondack",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "ArtL",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "Jadeplant",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "Motorcycle",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "MotorcycleE",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "Piano",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "PianoL",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "Pipes",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "Playroom",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "Playtable",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "PlaytableP",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "Recycle",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "Shelves",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "Teddy",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Middlebury",
+    "scene": "Vintage",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000000",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000010",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000020",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000030",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000040",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000050",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000060",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000070",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000080",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000090",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000100",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000110",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000120",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000130",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000140",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000150",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000160",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000170",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000180",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000190",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000200",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000210",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000220",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000230",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000240",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000250",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000260",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000270",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000280",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000290",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000300",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000310",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000320",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000330",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000340",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000350",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000360",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000370",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000380",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000390",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000400",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000410",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000420",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000430",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000440",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000450",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000460",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000470",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000480",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000490",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000500",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000510",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000520",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000530",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000540",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000550",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000560",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000570",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000580",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000590",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000600",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000610",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000620",
+    "n_layers": 15,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000630",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000640",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000650",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000660",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000670",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000680",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000690",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000700",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000710",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000720",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000730",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000740",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000750",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000760",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000770",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000780",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000790",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000800",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000810",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000820",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000830",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000840",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_assist_20261019",
+    "basis": "previously assigned assistance output; not selected by a score"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000850",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000860",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_assist_20261019",
+    "basis": "previously assigned assistance output; not selected by a score"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000870",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000880",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_assist_20261019",
+    "basis": "previously assigned assistance output; not selected by a score"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000890",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000900",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_assist_20261019",
+    "basis": "previously assigned assistance output; not selected by a score"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000910",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000920",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_assist_20261019",
+    "basis": "previously assigned assistance output; not selected by a score"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000930",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000940",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_assist_20261019",
+    "basis": "previously assigned assistance output; not selected by a score"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000950",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000960",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_assist_20261019",
+    "basis": "previously assigned assistance output; not selected by a score"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000970",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000980",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results_assist_20261019",
+    "basis": "previously assigned assistance output; not selected by a score"
+  },
+  {
+    "dataset": "FlyingThings3D",
+    "scene": "0000990",
+    "n_layers": 15,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "1",
+    "n_layers": 24,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "2",
+    "n_layers": 20,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "3",
+    "n_layers": 24,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "4",
+    "n_layers": 24,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "5",
+    "n_layers": 16,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "6",
+    "n_layers": 16,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "7",
+    "n_layers": 16,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "8",
+    "n_layers": 20,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "9",
+    "n_layers": 12,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "10",
+    "n_layers": 12,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "11",
+    "n_layers": 24,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "12",
+    "n_layers": 24,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "13",
+    "n_layers": 24,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "14",
+    "n_layers": 12,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "15",
+    "n_layers": 12,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "16",
+    "n_layers": 24,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "17",
+    "n_layers": 24,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "18",
+    "n_layers": 20,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "19",
+    "n_layers": 24,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "20",
+    "n_layers": 8,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "21",
+    "n_layers": 16,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "22",
+    "n_layers": 20,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "23",
+    "n_layers": 24,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "24",
+    "n_layers": 8,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "25",
+    "n_layers": 20,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "26",
+    "n_layers": 12,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "27",
+    "n_layers": 16,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "28",
+    "n_layers": 8,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "29",
+    "n_layers": 16,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "30",
+    "n_layers": 8,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "31",
+    "n_layers": 16,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "32",
+    "n_layers": 12,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "33",
+    "n_layers": 8,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "34",
+    "n_layers": 8,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "35",
+    "n_layers": 8,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "36",
+    "n_layers": 20,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "37",
+    "n_layers": 12,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "38",
+    "n_layers": 12,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "39",
+    "n_layers": 24,
+    "cohort": "A",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "40",
+    "n_layers": 12,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "41",
+    "n_layers": 12,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "42",
+    "n_layers": 20,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "43",
+    "n_layers": 16,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "44",
+    "n_layers": 12,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "45",
+    "n_layers": 16,
+    "cohort": "A",
+    "source_group": "results",
+    "basis": "guarded active original Hainan Road-MF runner; scene 45 pending"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "46",
+    "n_layers": 12,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "47",
+    "n_layers": 8,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "48",
+    "n_layers": 16,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "49",
+    "n_layers": 20,
+    "cohort": "A",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "50",
+    "n_layers": 24,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "51",
+    "n_layers": 16,
+    "cohort": "A",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "52",
+    "n_layers": 16,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "53",
+    "n_layers": 16,
+    "cohort": "A",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "54",
+    "n_layers": 12,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "55",
+    "n_layers": 8,
+    "cohort": "A",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "56",
+    "n_layers": 8,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "57",
+    "n_layers": 16,
+    "cohort": "A",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "58",
+    "n_layers": 8,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "59",
+    "n_layers": 12,
+    "cohort": "A",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "60",
+    "n_layers": 20,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "61",
+    "n_layers": 20,
+    "cohort": "A",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "62",
+    "n_layers": 20,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "63",
+    "n_layers": 20,
+    "cohort": "A",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "64",
+    "n_layers": 24,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "65",
+    "n_layers": 24,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "66",
+    "n_layers": 24,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "67",
+    "n_layers": 20,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "68",
+    "n_layers": 16,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "69",
+    "n_layers": 8,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "70",
+    "n_layers": 24,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "71",
+    "n_layers": 8,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "72",
+    "n_layers": 20,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "73",
+    "n_layers": 20,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "74",
+    "n_layers": 16,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "75",
+    "n_layers": 24,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "76",
+    "n_layers": 8,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "77",
+    "n_layers": 12,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "78",
+    "n_layers": 16,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "79",
+    "n_layers": 16,
+    "cohort": "B",
+    "source_group": "results_rebalance_20261019",
+    "basis": "registered routing; completed queue owner or guarded original runner"
+  },
+  {
+    "dataset": "Road-MF",
+    "scene": "80",
+    "n_layers": 24,
+    "cohort": "B",
+    "source_group": "results",
+    "basis": "original fixed cohort and parity routing"
+  }
+]

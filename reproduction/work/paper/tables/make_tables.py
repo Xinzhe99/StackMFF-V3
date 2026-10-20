@@ -18,7 +18,7 @@ GROUPS = [
     ('Spatial domain', ['GFF', 'IFM', 'QB', 'BFMF', 'GFDF', 'MGFF']),
     ('Transform domain', ['CVT', 'DWT', 'DCT', 'DTCWT', 'NSCT']),
     ('Pairwise, adapted to stacks', ['IFCNN-MAX', 'U2Fusion', 'SDNet', 'MFF-GAN', 'SwinFusion', 'MUFusion', 'SwinMFF',
-                                     'DDBFusion', 'CCSR-Net', 'MCCSR-Net', 'DeFusion', 'MFIF-GAN', 'GIFNet', 'CSNet', 'ReDiffuse',
+                                     'DDBFusion', 'CCSR-Net', 'MCCSR-Net', 'DeFusion', 'MFIF-GAN', 'GIFNet', 'CSNet', 'ZMFF', 'ReDiffuse',
            ]),
     ('Commercial software', ['Helicon Focus 8 - A', 'Helicon Focus 8 - B', 'Helicon Focus 8 - C',
                              'Zerene Stacker - DMap', 'Zerene Stacker - PMax']),
@@ -150,8 +150,8 @@ def _table(v, metrics, caption, label, font='\\scriptsize', all_ds=None, venue=F
 
 if __name__ == '__main__':
     v = load()
-    # ReDiffuse passed the complete 206-scene gate on 2026-10-20: 34 baselines and two read-outs.
-    # Add deferred methods only after all four benchmark cohorts are complete.
+    # Both ZMFF and ReDiffuse passed the complete 206-scene gate on 2026-10-20.
+    # The current comparison has 35 baseline configurations and two read-outs.
     CAP = ('Reference-image results, averaged over scenes (BT.601 luma; PSNR in dB; higher is better). '
            'MD: Mobile Depth; Mid.: Middlebury; FT3D: FlyingThings3D. '
            'Pink/blue mark the best/second-best unrounded means.')

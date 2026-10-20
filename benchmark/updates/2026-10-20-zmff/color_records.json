@@ -1,0 +1,1444 @@
+[
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000000",
+    "PSNR_RGB": 22.228733393280315,
+    "DeltaE00": 4.979855490625452
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000020",
+    "PSNR_RGB": 22.094479400651128,
+    "DeltaE00": 5.0255428899684995
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000040",
+    "PSNR_RGB": 23.75242948814083,
+    "DeltaE00": 4.072374719912233
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000060",
+    "PSNR_RGB": 18.464633416363032,
+    "DeltaE00": 6.186118821809985
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000080",
+    "PSNR_RGB": 28.980478326500425,
+    "DeltaE00": 3.1751980677426865
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000100",
+    "PSNR_RGB": 22.537737312068966,
+    "DeltaE00": 5.145688165107361
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000120",
+    "PSNR_RGB": 19.51050941632207,
+    "DeltaE00": 5.376880674152903
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000140",
+    "PSNR_RGB": 20.593221736651486,
+    "DeltaE00": 4.181418990594507
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000160",
+    "PSNR_RGB": 28.467716970272544,
+    "DeltaE00": 3.3925271649522815
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000180",
+    "PSNR_RGB": 27.47936196824456,
+    "DeltaE00": 3.134885170971327
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000200",
+    "PSNR_RGB": 21.529434449832877,
+    "DeltaE00": 6.380954629742878
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000220",
+    "PSNR_RGB": 25.002578715293925,
+    "DeltaE00": 4.12181602161931
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000240",
+    "PSNR_RGB": 25.281540230708465,
+    "DeltaE00": 3.7964331647948137
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000260",
+    "PSNR_RGB": 15.775663910415679,
+    "DeltaE00": 9.331759008915974
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000280",
+    "PSNR_RGB": 20.072630895942932,
+    "DeltaE00": 4.93347730129413
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000300",
+    "PSNR_RGB": 21.929720124394862,
+    "DeltaE00": 4.90046235362113
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000320",
+    "PSNR_RGB": 24.317404054992387,
+    "DeltaE00": 4.144650652825721
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000340",
+    "PSNR_RGB": 21.6326580804084,
+    "DeltaE00": 5.412406340632332
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000360",
+    "PSNR_RGB": 16.330835639170044,
+    "DeltaE00": 8.80446729036751
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000380",
+    "PSNR_RGB": 16.849721400495262,
+    "DeltaE00": 9.537987706386541
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000400",
+    "PSNR_RGB": 23.277267542377594,
+    "DeltaE00": 4.306699554331657
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000420",
+    "PSNR_RGB": 22.74044971181229,
+    "DeltaE00": 4.153836793107007
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000440",
+    "PSNR_RGB": 20.577311267137645,
+    "DeltaE00": 5.0059092325026
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000460",
+    "PSNR_RGB": 25.238226517141612,
+    "DeltaE00": 4.115067067722904
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000480",
+    "PSNR_RGB": 21.770485449969947,
+    "DeltaE00": 5.108632611445633
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000500",
+    "PSNR_RGB": 24.81427706308353,
+    "DeltaE00": 3.7249821568287156
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000520",
+    "PSNR_RGB": 22.902206750325306,
+    "DeltaE00": 4.498079119547595
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000540",
+    "PSNR_RGB": 28.722391382269535,
+    "DeltaE00": 3.113477085520588
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000560",
+    "PSNR_RGB": 16.536698178293165,
+    "DeltaE00": 8.778399318490896
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000580",
+    "PSNR_RGB": 20.241101777507737,
+    "DeltaE00": 5.2049618920155805
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000600",
+    "PSNR_RGB": 25.511068459088683,
+    "DeltaE00": 4.234482624871496
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000620",
+    "PSNR_RGB": 23.781166338190257,
+    "DeltaE00": 5.370225183547649
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "1",
+    "PSNR_RGB": 20.842828488642354,
+    "DeltaE00": 5.233231998210304
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "3",
+    "PSNR_RGB": 19.440646128727895,
+    "DeltaE00": 6.544910087810256
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "5",
+    "PSNR_RGB": 22.014429063281487,
+    "DeltaE00": 4.172543255719931
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "7",
+    "PSNR_RGB": 21.066243759002994,
+    "DeltaE00": 4.631340552797883
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "9",
+    "PSNR_RGB": 18.601112956675557,
+    "DeltaE00": 5.602139144980129
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "11",
+    "PSNR_RGB": 20.882888701998127,
+    "DeltaE00": 5.540184489293351
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "13",
+    "PSNR_RGB": 22.57692132859752,
+    "DeltaE00": 4.379431384428068
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "15",
+    "PSNR_RGB": 21.02392729762225,
+    "DeltaE00": 4.007856985647071
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "17",
+    "PSNR_RGB": 20.342498640099564,
+    "DeltaE00": 5.9084215019549156
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "19",
+    "PSNR_RGB": 20.85007958524787,
+    "DeltaE00": 5.799241926271714
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "21",
+    "PSNR_RGB": 18.68370760262167,
+    "DeltaE00": 6.860019145122783
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "23",
+    "PSNR_RGB": 21.76954867648962,
+    "DeltaE00": 5.01912794237447
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "25",
+    "PSNR_RGB": 20.620155667242123,
+    "DeltaE00": 5.854736190008334
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "27",
+    "PSNR_RGB": 24.46430668500924,
+    "DeltaE00": 3.6749698607594508
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "29",
+    "PSNR_RGB": 23.451568435623003,
+    "DeltaE00": 3.6687327910612093
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "31",
+    "PSNR_RGB": 24.556941689748427,
+    "DeltaE00": 3.30510786402281
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "33",
+    "PSNR_RGB": 26.122169426929883,
+    "DeltaE00": 2.5482881755782536
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "35",
+    "PSNR_RGB": 17.20483722875564,
+    "DeltaE00": 6.242371276559624
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "37",
+    "PSNR_RGB": 24.598581473852754,
+    "DeltaE00": 3.3202126826149256
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "39",
+    "PSNR_RGB": 19.692568754801375,
+    "DeltaE00": 6.154980379727812
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "41",
+    "PSNR_RGB": 22.922812377709327,
+    "DeltaE00": 3.6042845350527317
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "43",
+    "PSNR_RGB": 23.375446605501157,
+    "DeltaE00": 3.7968454893262322
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "45",
+    "PSNR_RGB": 24.407932320584557,
+    "DeltaE00": 3.51726956621185
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "49",
+    "PSNR_RGB": 23.33613703880544,
+    "DeltaE00": 4.471620936360929
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "51",
+    "PSNR_RGB": 19.686230083287484,
+    "DeltaE00": 4.933723392292161
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "53",
+    "PSNR_RGB": 25.32547688728542,
+    "DeltaE00": 2.9113254907457953
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "55",
+    "PSNR_RGB": 26.406007518396358,
+    "DeltaE00": 2.74380697920549
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "57",
+    "PSNR_RGB": 23.4534678898002,
+    "DeltaE00": 3.879951390708583
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "59",
+    "PSNR_RGB": 27.602596747187075,
+    "DeltaE00": 2.4173667452231498
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "61",
+    "PSNR_RGB": 24.44871350873354,
+    "DeltaE00": 3.9483330054148387
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "63",
+    "PSNR_RGB": 23.970641601016887,
+    "DeltaE00": 4.1600452612612155
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Mobile Depth",
+    "scene": "balls",
+    "PSNR_RGB": 28.754193937285294,
+    "DeltaE00": 2.9174993470716983
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Mobile Depth",
+    "scene": "bottles",
+    "PSNR_RGB": 25.149458141394643,
+    "DeltaE00": 3.5481470616781485
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Mobile Depth",
+    "scene": "bucket",
+    "PSNR_RGB": 24.60811690538709,
+    "DeltaE00": 4.8487841563236005
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Mobile Depth",
+    "scene": "fruits",
+    "PSNR_RGB": 31.6902936529384,
+    "DeltaE00": 1.887097736699818
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Mobile Depth",
+    "scene": "keyboard",
+    "PSNR_RGB": 28.49614003779816,
+    "DeltaE00": 2.913581211414647
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Mobile Depth",
+    "scene": "kitchen",
+    "PSNR_RGB": 30.4402559934921,
+    "DeltaE00": 2.007255609387016
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Mobile Depth",
+    "scene": "metals",
+    "PSNR_RGB": 29.007230559628397,
+    "DeltaE00": 3.117553054981877
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Mobile Depth",
+    "scene": "plants",
+    "PSNR_RGB": 31.96223661567195,
+    "DeltaE00": 2.134595165113657
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Mobile Depth",
+    "scene": "telephone",
+    "PSNR_RGB": 31.965247607142423,
+    "DeltaE00": 2.5300978232453484
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Mobile Depth",
+    "scene": "window",
+    "PSNR_RGB": 23.82346841760379,
+    "DeltaE00": 3.7452115275991056
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Mobile Depth",
+    "scene": "zeromotion",
+    "PSNR_RGB": 29.71828519487802,
+    "DeltaE00": 2.420237347727455
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "Adirondack",
+    "PSNR_RGB": 21.610012081580624,
+    "DeltaE00": 4.141698739195923
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "ArtL",
+    "PSNR_RGB": 26.696740969152636,
+    "DeltaE00": 4.216818898335043
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "Jadeplant",
+    "PSNR_RGB": 22.28263508523817,
+    "DeltaE00": 5.77206039484117
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "Motorcycle",
+    "PSNR_RGB": 24.190217655729395,
+    "DeltaE00": 4.280502700157889
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "MotorcycleE",
+    "PSNR_RGB": 25.134220651816687,
+    "DeltaE00": 4.063832054186257
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "Piano",
+    "PSNR_RGB": 26.701200774980094,
+    "DeltaE00": 3.2765325442709528
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "PianoL",
+    "PSNR_RGB": 25.756320815271465,
+    "DeltaE00": 3.35057535762848
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "Pipes",
+    "PSNR_RGB": 25.782907178058952,
+    "DeltaE00": 3.8061767087564764
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "Playroom",
+    "PSNR_RGB": 22.711326571656727,
+    "DeltaE00": 5.20942193705685
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "Playtable",
+    "PSNR_RGB": 26.063369318834056,
+    "DeltaE00": 3.537899818862339
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "PlaytableP",
+    "PSNR_RGB": 25.334944398624092,
+    "DeltaE00": 3.641085376259477
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "Recycle",
+    "PSNR_RGB": 25.344362866811366,
+    "DeltaE00": 2.9921003087931606
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "Shelves",
+    "PSNR_RGB": 22.462358530101252,
+    "DeltaE00": 4.149100868557713
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "Teddy",
+    "PSNR_RGB": 26.420036789178816,
+    "DeltaE00": 3.9991960388897168
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Middlebury",
+    "scene": "Vintage",
+    "PSNR_RGB": 23.51362231866647,
+    "DeltaE00": 3.7518677569076337
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000010",
+    "PSNR_RGB": 26.74069165419599,
+    "DeltaE00": 3.331727041386791
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000030",
+    "PSNR_RGB": 20.389212944706244,
+    "DeltaE00": 5.056381455393731
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000050",
+    "PSNR_RGB": 15.461392479434588,
+    "DeltaE00": 9.015774104311426
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000070",
+    "PSNR_RGB": 24.797257888689824,
+    "DeltaE00": 3.78227784967735
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000090",
+    "PSNR_RGB": 21.640899553341892,
+    "DeltaE00": 4.800746254374155
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000110",
+    "PSNR_RGB": 19.24563851421819,
+    "DeltaE00": 6.082318392508804
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000130",
+    "PSNR_RGB": 21.501436358013066,
+    "DeltaE00": 4.698933699065302
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000150",
+    "PSNR_RGB": 20.27242920671241,
+    "DeltaE00": 5.517538343460221
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000170",
+    "PSNR_RGB": 29.146303237081415,
+    "DeltaE00": 3.644370680066149
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000190",
+    "PSNR_RGB": 25.807169533006054,
+    "DeltaE00": 3.5171201074597405
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000210",
+    "PSNR_RGB": 12.588892933503637,
+    "DeltaE00": 13.973688674989601
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000230",
+    "PSNR_RGB": 23.272200299907233,
+    "DeltaE00": 4.3333139609138955
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000250",
+    "PSNR_RGB": 23.55294773359553,
+    "DeltaE00": 4.418324153950286
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000270",
+    "PSNR_RGB": 27.87076991668803,
+    "DeltaE00": 3.222136258051954
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000290",
+    "PSNR_RGB": 25.412122216137107,
+    "DeltaE00": 4.078356061468828
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000310",
+    "PSNR_RGB": 19.781289590332953,
+    "DeltaE00": 6.104097702626738
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000330",
+    "PSNR_RGB": 23.508331550252617,
+    "DeltaE00": 4.503157453495601
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000350",
+    "PSNR_RGB": 24.828826788058752,
+    "DeltaE00": 3.8922286411468914
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000370",
+    "PSNR_RGB": 24.342599253541927,
+    "DeltaE00": 4.194911672447227
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000390",
+    "PSNR_RGB": 26.89263783332549,
+    "DeltaE00": 3.2890881126033205
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000410",
+    "PSNR_RGB": 21.226246257011645,
+    "DeltaE00": 4.213807385608874
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000430",
+    "PSNR_RGB": 24.26525455399064,
+    "DeltaE00": 3.877799569740324
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000450",
+    "PSNR_RGB": 20.63616137980555,
+    "DeltaE00": 4.860323776137996
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000470",
+    "PSNR_RGB": 22.716940442435924,
+    "DeltaE00": 4.583273999960089
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000490",
+    "PSNR_RGB": 24.164198674553525,
+    "DeltaE00": 3.993654757730376
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000510",
+    "PSNR_RGB": 24.20046337455785,
+    "DeltaE00": 3.8880554018419713
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000530",
+    "PSNR_RGB": 22.452131750234336,
+    "DeltaE00": 4.541690221667116
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000550",
+    "PSNR_RGB": 19.263113207556795,
+    "DeltaE00": 4.851722660811786
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000570",
+    "PSNR_RGB": 23.55718292009786,
+    "DeltaE00": 5.726272745179376
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000590",
+    "PSNR_RGB": 27.050841374837155,
+    "DeltaE00": 3.437046025787812
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000610",
+    "PSNR_RGB": 24.432224311676073,
+    "DeltaE00": 3.879271012441069
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000630",
+    "PSNR_RGB": 27.65331337647997,
+    "DeltaE00": 3.245850122494734
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000640",
+    "PSNR_RGB": 22.606172314650333,
+    "DeltaE00": 4.378708515722487
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000650",
+    "PSNR_RGB": 22.769279155861266,
+    "DeltaE00": 4.5989560948656365
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000660",
+    "PSNR_RGB": 21.87516784400703,
+    "DeltaE00": 4.488878897390155
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000670",
+    "PSNR_RGB": 23.059148492085164,
+    "DeltaE00": 4.549539685474768
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000680",
+    "PSNR_RGB": 27.98977938872352,
+    "DeltaE00": 3.2434685128867646
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000690",
+    "PSNR_RGB": 22.06302872023695,
+    "DeltaE00": 4.411846230539744
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000700",
+    "PSNR_RGB": 25.663227139264624,
+    "DeltaE00": 4.053787108718574
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000710",
+    "PSNR_RGB": 14.460052153452118,
+    "DeltaE00": 9.751967192872817
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000720",
+    "PSNR_RGB": 25.919633903323025,
+    "DeltaE00": 3.5385629365341713
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000730",
+    "PSNR_RGB": 20.48253085182712,
+    "DeltaE00": 4.443728208366553
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000740",
+    "PSNR_RGB": 25.333515352713867,
+    "DeltaE00": 3.572281799842046
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000750",
+    "PSNR_RGB": 21.901646247816817,
+    "DeltaE00": 4.728257119254797
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000760",
+    "PSNR_RGB": 20.58249450432232,
+    "DeltaE00": 5.461938283202481
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000770",
+    "PSNR_RGB": 24.24012405743726,
+    "DeltaE00": 4.395256903784869
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000780",
+    "PSNR_RGB": 20.387311493162457,
+    "DeltaE00": 6.2495374120999445
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000790",
+    "PSNR_RGB": 25.28043128468131,
+    "DeltaE00": 4.443028139177008
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000800",
+    "PSNR_RGB": 28.039649579667735,
+    "DeltaE00": 3.8557032329044887
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000810",
+    "PSNR_RGB": 24.675370830000084,
+    "DeltaE00": 3.53427837362667
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000820",
+    "PSNR_RGB": 21.842160434958657,
+    "DeltaE00": 4.5074312246032475
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000830",
+    "PSNR_RGB": 24.56609926570517,
+    "DeltaE00": 3.697688853295321
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000840",
+    "PSNR_RGB": 25.208621769814773,
+    "DeltaE00": 3.58537179786028
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000850",
+    "PSNR_RGB": 21.58745518744037,
+    "DeltaE00": 4.743093311005099
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000860",
+    "PSNR_RGB": 24.34121088260937,
+    "DeltaE00": 3.8476936703111653
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000870",
+    "PSNR_RGB": 25.022199002378287,
+    "DeltaE00": 4.339581387732548
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000880",
+    "PSNR_RGB": 23.913973670731387,
+    "DeltaE00": 3.987446576905891
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000890",
+    "PSNR_RGB": 27.31826064043496,
+    "DeltaE00": 3.209580188205853
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000900",
+    "PSNR_RGB": 18.674421989758514,
+    "DeltaE00": 8.097780367572486
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000910",
+    "PSNR_RGB": 25.16852739462103,
+    "DeltaE00": 3.8549632410880608
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000920",
+    "PSNR_RGB": 15.319951171874093,
+    "DeltaE00": 9.63636412601444
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000930",
+    "PSNR_RGB": 27.509206433612327,
+    "DeltaE00": 3.731083697070249
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000940",
+    "PSNR_RGB": 25.516845787410443,
+    "DeltaE00": 3.8432129539423916
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000950",
+    "PSNR_RGB": 27.190511869643977,
+    "DeltaE00": 3.524227968443409
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000960",
+    "PSNR_RGB": 25.008762094735108,
+    "DeltaE00": 3.903408876359669
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000970",
+    "PSNR_RGB": 25.302937572377708,
+    "DeltaE00": 3.7793359918970317
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000980",
+    "PSNR_RGB": 19.717826459617083,
+    "DeltaE00": 5.868206237011666
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "FlyingThings3D",
+    "scene": "0000990",
+    "PSNR_RGB": 20.600050060067645,
+    "DeltaE00": 5.705998069587643
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "2",
+    "PSNR_RGB": 21.479091901605244,
+    "DeltaE00": 4.913209140823044
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "4",
+    "PSNR_RGB": 19.05664037641326,
+    "DeltaE00": 6.32422637662949
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "6",
+    "PSNR_RGB": 19.950653533108134,
+    "DeltaE00": 5.0208708089947685
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "8",
+    "PSNR_RGB": 22.20074700790019,
+    "DeltaE00": 4.297322762519388
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "10",
+    "PSNR_RGB": 24.81217891261601,
+    "DeltaE00": 3.0586798980123877
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "12",
+    "PSNR_RGB": 19.229832149594028,
+    "DeltaE00": 6.372913294589011
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "14",
+    "PSNR_RGB": 21.39461630249667,
+    "DeltaE00": 4.299552929990937
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "16",
+    "PSNR_RGB": 20.70109889115452,
+    "DeltaE00": 5.747503424169933
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "18",
+    "PSNR_RGB": 20.31717627880264,
+    "DeltaE00": 5.573191156560058
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "20",
+    "PSNR_RGB": 23.264200853609665,
+    "DeltaE00": 3.1255321591630945
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "22",
+    "PSNR_RGB": 20.795406485914015,
+    "DeltaE00": 5.1790560684335984
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "24",
+    "PSNR_RGB": 23.066463336731942,
+    "DeltaE00": 2.945313312542704
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "26",
+    "PSNR_RGB": 18.858232145587905,
+    "DeltaE00": 5.1357156962799255
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "28",
+    "PSNR_RGB": 26.626397220190743,
+    "DeltaE00": 2.5739668533911133
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "30",
+    "PSNR_RGB": 21.416060480697784,
+    "DeltaE00": 3.4698127867222452
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "32",
+    "PSNR_RGB": 25.00715923079016,
+    "DeltaE00": 2.951656851718464
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "34",
+    "PSNR_RGB": 26.412233866494947,
+    "DeltaE00": 2.487697021524688
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "36",
+    "PSNR_RGB": 19.298965297519068,
+    "DeltaE00": 6.800327006498156
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "38",
+    "PSNR_RGB": 27.0147913261821,
+    "DeltaE00": 2.720070623562631
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "40",
+    "PSNR_RGB": 25.13792658900138,
+    "DeltaE00": 3.2091492590978405
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "42",
+    "PSNR_RGB": 23.965715611906568,
+    "DeltaE00": 3.723143833870343
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "44",
+    "PSNR_RGB": 24.533457330581182,
+    "DeltaE00": 3.470348210010013
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "46",
+    "PSNR_RGB": 25.12033844232254,
+    "DeltaE00": 3.1085766395556416
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "47",
+    "PSNR_RGB": 26.724321082678443,
+    "DeltaE00": 2.2444951301060967
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "48",
+    "PSNR_RGB": 23.18075454933013,
+    "DeltaE00": 4.042195750130744
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "50",
+    "PSNR_RGB": 21.34949495416002,
+    "DeltaE00": 5.3340119235119445
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "52",
+    "PSNR_RGB": 22.372146309882638,
+    "DeltaE00": 4.368379859775559
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "54",
+    "PSNR_RGB": 25.938980277187824,
+    "DeltaE00": 2.864397250732188
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "56",
+    "PSNR_RGB": 25.02778390680249,
+    "DeltaE00": 3.0021976731092423
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "58",
+    "PSNR_RGB": 27.20162709302684,
+    "DeltaE00": 2.2461895599076005
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "60",
+    "PSNR_RGB": 22.2920416899057,
+    "DeltaE00": 4.452599147789759
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "62",
+    "PSNR_RGB": 24.335873718307163,
+    "DeltaE00": 3.94517455687705
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "64",
+    "PSNR_RGB": 22.20898167882988,
+    "DeltaE00": 4.429485111759242
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "65",
+    "PSNR_RGB": 21.92251384386205,
+    "DeltaE00": 4.806139702890108
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "66",
+    "PSNR_RGB": 22.272933061701096,
+    "DeltaE00": 4.696177465694884
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "67",
+    "PSNR_RGB": 21.882243032011583,
+    "DeltaE00": 4.799430276277631
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "68",
+    "PSNR_RGB": 17.234539797612133,
+    "DeltaE00": 7.109778276183331
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "69",
+    "PSNR_RGB": 26.721446455798766,
+    "DeltaE00": 2.6827940821039853
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "70",
+    "PSNR_RGB": 20.99631620512964,
+    "DeltaE00": 5.090421642651145
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "71",
+    "PSNR_RGB": 28.157859630932137,
+    "DeltaE00": 2.1067995182890376
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "72",
+    "PSNR_RGB": 23.374016610165445,
+    "DeltaE00": 3.895495249504829
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "73",
+    "PSNR_RGB": 22.125680852507767,
+    "DeltaE00": 4.34968920771736
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "74",
+    "PSNR_RGB": 20.608465532783462,
+    "DeltaE00": 5.226547359595591
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "75",
+    "PSNR_RGB": 22.722440591616344,
+    "DeltaE00": 4.008958439149967
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "76",
+    "PSNR_RGB": 23.43392750588503,
+    "DeltaE00": 3.50031313675864
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "77",
+    "PSNR_RGB": 25.26985927537317,
+    "DeltaE00": 3.1341461275064564
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "78",
+    "PSNR_RGB": 21.499970096819204,
+    "DeltaE00": 4.523106926619977
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "79",
+    "PSNR_RGB": 20.98297077942192,
+    "DeltaE00": 4.52805669595384
+  },
+  {
+    "method": "ZMFF",
+    "dataset": "Road-MF",
+    "scene": "80",
+    "PSNR_RGB": 23.313007533897554,
+    "DeltaE00": 4.1822674414737415
+  }
+]

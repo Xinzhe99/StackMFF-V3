@@ -2,7 +2,7 @@
 
 The bundle contains numerical inputs and Python producers for benchmark comparisons, ablations, robustness, model-selection sensitivity and real-stack evaluations. Experimental values are preserved. Current formatted table snapshots are in `expected_tables/`; previous snapshots are retained under `historical/`.
 
-The current unified comparison includes 34 baseline settings and two proposed read-outs. ReDiffuse is included after independent validation of all 206 scenes; ZMFF remains deferred. Earlier snapshots are preserved. `../benchmark/current/` provides the corresponding 36-row records and recomputed ranks.
+The current unified comparison includes 35 baseline settings and two proposed read-outs. ReDiffuse and ZMFF are included after independent validation of all 206 scenes each. The ZMFF score bundle is complete while its RGB archive transfer continues. Earlier snapshots are preserved. `../benchmark/current/` provides the corresponding 37-row records and recomputed ranks.
 
 Run from the repository root:
 

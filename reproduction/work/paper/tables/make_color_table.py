@@ -13,7 +13,7 @@ GROUPS = [
     ('Pairwise, adapted to stacks', [('IFCNN-MAX', 'IFCNN (MAX)'), ('U2Fusion', 'U2Fusion'), ('SDNet', 'SDNet'), ('MFF-GAN', 'MFF-GAN'),
                                      ('SwinFusion', 'SwinFusion'), ('MUFusion', 'MUFusion'), ('SwinMFF', 'SwinMFF'),
                                      ('DDBFusion', 'DDBFusion'), ('CCSR-Net', 'CCSR-Net'), ('MCCSR-Net', 'MCCSR-Net'),
-                                     ('DeFusion', 'DeFusion'), ('MFIF-GAN', 'MFIF-GAN'), ('GIFNet', 'GIFNet'), ('CSNet', 'CSNet'), ('ReDiffuse', 'ReDiffuse')]),
+                                     ('DeFusion', 'DeFusion'), ('MFIF-GAN', 'MFIF-GAN'), ('GIFNet', 'GIFNet'), ('CSNet', 'CSNet'), ('ZMFF', 'ZMFF'), ('ReDiffuse', 'ReDiffuse')]),
     ('Commercial software', [('Zerene Stacker - DMap', 'Zerene (DMap)'), ('Zerene Stacker - PMax', 'Zerene (PMax)')]),
     ('Native stack', [('StackMFF_release', 'StackMFF'), ('StackMFF V2', 'StackMFF V2'), ('VAEEDOF', 'VAEEDOF'),
                       ('Ours_final_hard', 'Ours (hard selection)'), (None, 'Ours (weighted)')]),

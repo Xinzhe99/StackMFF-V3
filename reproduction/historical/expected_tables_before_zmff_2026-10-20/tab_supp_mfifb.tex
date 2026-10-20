@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\small
+\setlength{\tabcolsep}{6pt}
+\caption{Agreement of our runs of the six classical spatial-domain methods with the results released for the same five Lytro pairs by MFIFB (multi-focus image fusion benchmark). PSNR and SSIM are computed between our fused image and the published one and averaged over the five pairs; the published images are JPEG, so the residual difference is dominated by compression.}
+\label{tab:supp_mfifb}
+\begin{tabular}{lcc}
+\toprule
+Method & PSNR (dB) & SSIM \\
+\midrule
+GFF (TIP)~\cite{li2013image} & 49.54 & 0.9989 \\
+IFM (Inf.\ Fusion)~\cite{li2013matting} & 48.15 & 0.9984 \\
+QB (Inf.\ Fusion)~\cite{bai2015quadtree} & 50.47 & 0.9989 \\
+BFMF (Inf.\ Fusion)~\cite{zhang2017boundary} & 42.68 & 0.9972 \\
+GFDF (SPIC)~\cite{qiu2019guided} & 52.18 & 0.9993 \\
+MGFF (CSSP)~\cite{bavirisetti2019multiscale} & 40.47 & 0.9898 \\
+\bottomrule
+\end{tabular}
+\end{table}

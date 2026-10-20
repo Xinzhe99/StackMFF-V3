@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "previous_scenes": 26,
+  "metrics_per_scene": 8,
+  "maximum_absolute_difference": 8.881784197001252e-16,
+  "metric_source_sha256": "29bc4db0af3248be08e4307a445ea3c013323d7680d982b6fac842e3bc1a6523",
+  "decoding": "Same Linux reference environments as the ReDiffuse update; original 26 decoded grayscale outputs and metrics reproduced."
+}
