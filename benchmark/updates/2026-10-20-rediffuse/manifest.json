@@ -6,7 +6,7 @@
   "expected_scenes": 206,
   "alignment": "none",
   "sampler_steps_per_pair": 2000,
-  "output_archive_status": "transfer_pending",
+  "output_archive_status": "published_verified",
   "files": [
     {
       "path": "color_records.json",
@@ -22,6 +22,21 @@
       "path": "evaluation_validation.json",
       "sha256": "1c2dc7b494040d1d909198b5f05a4cf1a9a73bde697503776e7c7fc079c34ada",
       "bytes": 2192
+    },
+    {
+      "path": "historical_rgb_equivalence.json",
+      "sha256": "94a4b1396a86993ba23635245fc37a6426789ded805b7c7bbda09fcd12efeace",
+      "bytes": 9679
+    },
+    {
+      "path": "image_archive.json",
+      "sha256": "fb4d87fb69ba7f33c3eb1bd5254545e9ae8bee0fbe1dcad46b2558c24f91f4ba",
+      "bytes": 1032
+    },
+    {
+      "path": "image_manifest.json",
+      "sha256": "c8f16b07e22d3c43658efa9ae571f7b4cab7283cb4dfac9c296f7818387d1440",
+      "bytes": 63409
     },
     {
       "path": "input_hashes.json",
@@ -40,8 +55,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "3ef19c1311848d60470a49ae13f6dd09431a64cb1987788234a4c128c8fe6d26",
-      "bytes": 1926
+      "sha256": "f80198f364826be99151220c2bbf8b2ad3f66369f08a75832c7ccca815360f6c",
+      "bytes": 2707
     },
     {
       "path": "records.json",
@@ -58,5 +73,6 @@
       "sha256": "bfcb351206724a0509386012ff7ddbd279fff05ac618b195c563410cbf589ee1",
       "bytes": 2012
     }
-  ]
+  ],
+  "output_archive": "image_archive.json"
 }

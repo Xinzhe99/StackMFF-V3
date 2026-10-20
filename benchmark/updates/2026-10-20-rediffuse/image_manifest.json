@@ -1,0 +1,2680 @@
+[
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000000.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000000",
+    "bytes": 850794,
+    "sha256": "d00b061c7619f5a940a35eca29d5d8cce8235e3cc4ef6f47315f8f2b288e5bec",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000010.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000010",
+    "bytes": 838400,
+    "sha256": "e511ca6cecafef2eca785e2a1d1bf09e0446148f5c499585132b677a5141d185",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000020.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000020",
+    "bytes": 833112,
+    "sha256": "6f376fd375760e9a6cdf4afec5173f5d3379e07207740fbb4ca6fa01aafc50e5",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000030.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000030",
+    "bytes": 811685,
+    "sha256": "321e7db71470a97e55059c217dd3345bb158f294f327273fb6544ac894db3611",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000040.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000040",
+    "bytes": 800545,
+    "sha256": "14b7c0c2fba0458f2255cc4e2a10642ac85580d47b7e03245fc005397a517a91",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000050.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000050",
+    "bytes": 729356,
+    "sha256": "8373f407b0f1b085755a1edbbe8943ee82b994e5f21b9adba90baffc26235a07",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000060.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000060",
+    "bytes": 785571,
+    "sha256": "f597ef7caffd9dd161bde284a6cf1ccbfe2dfdff5ef6229f65d62b1367bb96f8",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000070.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000070",
+    "bytes": 875587,
+    "sha256": "770bc75feea9e7c2a055981e8d4881f88ae40ede542c3ee1d1715b64952531e4",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000080.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000080",
+    "bytes": 848170,
+    "sha256": "ec93064475e877ad02992b673941a06f70e05028ee6f393a0bea2dfe18bd04ac",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000090.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000090",
+    "bytes": 881348,
+    "sha256": "48b9d11b23d92ae9d82d6d0757b2827e70c07d67e4709e0d15d82c45b8720b85",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000100.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000100",
+    "bytes": 809735,
+    "sha256": "5e160dafe2b71fe5913d8e361caf8952827df81f315c3013ff8e869336feaf99",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000110.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000110",
+    "bytes": 796969,
+    "sha256": "1cafacba7e0bfcd0b8768053eaa70b9850e2dcd8c54e3edaef0c523292e7d3c1",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000120.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000120",
+    "bytes": 854141,
+    "sha256": "10744caf0305bacaa09d5484f218a7d1f16b91f720bee1b86355b5e3e1d5621f",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000130.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000130",
+    "bytes": 799469,
+    "sha256": "72de11409ab87ed8ca93bfb686eeb91fd8a538631b90db362cecb7774296af15",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000140.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000140",
+    "bytes": 743446,
+    "sha256": "afca2d3ed3f8daac8c10ebf80544b08281e3e23cc3057fd528c57c69f86826ca",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000150.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000150",
+    "bytes": 819915,
+    "sha256": "993cd215175d5a073169c7793f109f13094ede6e20a2424c65ddbe5193ecc19b",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000160.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000160",
+    "bytes": 959261,
+    "sha256": "0eeb81f19fe841f7fdee01dd8de6f1920860801ac32955a6e3817c072632f256",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000170.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000170",
+    "bytes": 838500,
+    "sha256": "57bd59a17d0f0497cc074bd450e65e1b7eb759f44f3262157aa2816c4e7b6d81",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000180.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000180",
+    "bytes": 863511,
+    "sha256": "a604c1f937c886c979fc87c52a51293406ea8076cfdb03782f3e0e1e16181a8e",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000190.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000190",
+    "bytes": 887315,
+    "sha256": "c99c252aaae081522683b03e231a1e525ae440df7abba89fc0e295753074a592",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000200.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000200",
+    "bytes": 763982,
+    "sha256": "3b9e387db35893a18b33566784645069f217c9191d104243bbd0ffc3f31b3667",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000210.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000210",
+    "bytes": 622908,
+    "sha256": "e916fb2b22a1fdbb74cb2c1a201a2afc4a6a357c0f33aea12ddfe99f2219345f",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000220.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000220",
+    "bytes": 925200,
+    "sha256": "a56e3789a9faabf268f5f46cebadfc88763733e879b2db416754a073e9bbe807",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000230.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000230",
+    "bytes": 893231,
+    "sha256": "a79d05a7086b6389d7e4dc8a609735d8ac73e141289a1a2e8786257962031ed6",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000240.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000240",
+    "bytes": 920721,
+    "sha256": "cf0884ad742649a4e5b995fb00b9ba9022673578a073b473d22450142e6fd058",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000250.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000250",
+    "bytes": 888313,
+    "sha256": "b165347a53b0a9585e6b5fc6adc76ed334088ad4f95045b8cad5247165d01157",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000260.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000260",
+    "bytes": 737022,
+    "sha256": "ccf6c5aeca24bf20e8c7a8ce61ba9dc1149025dbcf4b47a434b589f04312c533",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000270.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000270",
+    "bytes": 844772,
+    "sha256": "ea6d0d56f576fed8a856fd9a52183e49ba36e861276527b0af494b7c8f54cb38",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000280.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000280",
+    "bytes": 809116,
+    "sha256": "1f8de4791a8eeda90466dcfa8dc623782264183d88b21656adb953aeae909719",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000290.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000290",
+    "bytes": 888747,
+    "sha256": "f40c227d094f33c8bd456f30cffa187d8c86a584f6fcddaaca7c5a193d8e0279",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000300.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000300",
+    "bytes": 899190,
+    "sha256": "54dc91fe9072c82cb2803d8ab048fd5c25adc3967050329f7455330c682738fc",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000310.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000310",
+    "bytes": 796145,
+    "sha256": "42621a88b07e7bbf6c28557d699ce0aad8b32358ae8d7ff6aa8cb01729cd7d13",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000320.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000320",
+    "bytes": 864515,
+    "sha256": "89f489894488f706a4cb291961e5efd86ce3b8f2950f7074bbf10730c70bc61e",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000330.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000330",
+    "bytes": 832384,
+    "sha256": "9654e5cbc7d7c0959004bdffaf6e0fac56f20f0c2b553f9a3d9c88d8d329fe60",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000340.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000340",
+    "bytes": 834707,
+    "sha256": "e2a20095e30699927c20421e8adba1a00cc5e37ac336fc58d462f17d68186ddb",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000350.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000350",
+    "bytes": 928841,
+    "sha256": "e89ab35b44f944851bb01056be37db029d452e72143c6dcedaf2c6df5ca1591d",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000360.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000360",
+    "bytes": 767147,
+    "sha256": "913238c06163dbad282608f9f5d1185b67cfa6f31fa303d61467494da46c9640",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000370.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000370",
+    "bytes": 992905,
+    "sha256": "83d46494c59531c7b818b664646f79d15080975666fca3fa7105dbe0000412b1",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000380.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000380",
+    "bytes": 768517,
+    "sha256": "5069c1aad18142326002f1861633005d2759e851cb2b6658455ee7a4bd9044c7",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000390.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000390",
+    "bytes": 923277,
+    "sha256": "f922d71783f5007dbbc4322b7a84aec67962a4e27d95cba417d338fb375a73c6",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000400.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000400",
+    "bytes": 827695,
+    "sha256": "4775f2ee5ff86254335714a5f0ac9de75632b5f7c8b8656595d5b7172358bffd",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000410.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000410",
+    "bytes": 807877,
+    "sha256": "4c32e458870862cabb34480b59d35fcdc48d6e9e0fe356fa5de6ed7fb85574ea",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000420.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000420",
+    "bytes": 843765,
+    "sha256": "5c6e60d99e949208f0aee00314d11d83e6f34512413e46e40cdb2e0337c997c8",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000430.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000430",
+    "bytes": 764954,
+    "sha256": "801dc49c00fbc463c26370930a92cda10889f80a67b63e51d0a4efa4a904acc3",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000440.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000440",
+    "bytes": 781245,
+    "sha256": "4b2dd988fb650ee5553ffe59482127de6ca423a9a6fb3679fac89a3ac3f27b87",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000450.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000450",
+    "bytes": 864139,
+    "sha256": "cf340a0d3b22d4398734d2ee8c6d10fd27f5f70bc07ed5bef2193e365487fdf1",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000460.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000460",
+    "bytes": 844940,
+    "sha256": "68e5f7390f0c503f9a90b2de20ca214e89c61bc838834acf806ca7734bf3da09",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000470.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000470",
+    "bytes": 954744,
+    "sha256": "5587a99013dacb0475a3cf4136eea8f391b032c77de6e48bf871bec24bf5e53f",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000480.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000480",
+    "bytes": 891749,
+    "sha256": "82fceb5c7e59814e123adb5d6201f1f0f7f48b458d1e7a26569a8ece287ef42a",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000490.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000490",
+    "bytes": 815318,
+    "sha256": "20167cfbe4c2e9b73bb4c6c77127e745380648bcf8e8f56e95e525e11ae144ca",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000500.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000500",
+    "bytes": 886277,
+    "sha256": "0567afe43dae234bc2ca695cf58c3bd2418a75dbdbea078425c0151ec6ffdb1b",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000510.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000510",
+    "bytes": 954224,
+    "sha256": "8fb22fcf493cc4a32984ccd421010c7d8ba6b386a03dfecdbe4390d2054002d2",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000520.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000520",
+    "bytes": 841581,
+    "sha256": "ed6f317b5e995dcf976cb21488d104b440600fe5829e50f6d804f3a21e256e30",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000530.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000530",
+    "bytes": 920714,
+    "sha256": "078ace952be2b6f34e2d961ddd0dd654c5c0be4ad971afb72241e7ff18ef00e8",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000540.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000540",
+    "bytes": 821015,
+    "sha256": "b3510c298f1b84871c6369eaeb7b497846bc818ea929747f6a38944e680ab748",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000550.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000550",
+    "bytes": 777077,
+    "sha256": "98e6b6f78d558f3d6a8e20f968861bb5ea6566e9f3bae672a7d263b4206697a0",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000560.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000560",
+    "bytes": 735299,
+    "sha256": "7b70fbe543d1f0eb772b588ee4e10035650e149f1c6f3bab98dbf66798bcd0e5",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000570.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000570",
+    "bytes": 661994,
+    "sha256": "a29f46550c5b4824df71fd37f62593f1d091a34171116575018684e22f7a3274",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000580.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000580",
+    "bytes": 862443,
+    "sha256": "3b687a8c2adae5a99f50a93b6ccb9609f743ec6514d259407504144ebbe6b5d5",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000590.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000590",
+    "bytes": 897590,
+    "sha256": "3f88b77b1880e8e6198683105aab45ec3e563830517040cdd00348f7e4973b1d",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000600.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000600",
+    "bytes": 928752,
+    "sha256": "e0d709e13aa9b783c7cd6e3a06345a9788e13b312437461e4572750fbd45fb3f",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000610.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000610",
+    "bytes": 927723,
+    "sha256": "408cfda2f5e934ee199a7c35c571edaed2d5a68e7b396bc0f12dbe9d4b081d6f",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000620.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000620",
+    "bytes": 868394,
+    "sha256": "ffacd42d507610a068b130d86f88d18071cc66312dab41d2e2e33305e07464f0",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000630.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000630",
+    "bytes": 843287,
+    "sha256": "c87f91f2fbae2eb1d0864e0404b4ffdc487322026c4a997e1eb81feb2e15f5c3",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000640.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000640",
+    "bytes": 943798,
+    "sha256": "ebf65b0afa1110a7d654a664d10bb9ca765821f523f5829f6786931dc633e5aa",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000650.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000650",
+    "bytes": 869904,
+    "sha256": "a961187e19652c3bb6c6ff8d1656db4635b09b441e96267f66faa0b714c8558d",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000660.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000660",
+    "bytes": 861184,
+    "sha256": "d84f5c7bc9580fb2176be29d976a46f67f4e12af58b0ce979110b0b456b53abc",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000670.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000670",
+    "bytes": 810266,
+    "sha256": "8abfdb886ed0b93b3db85ffb15d53c3c45b85949c25dbb8ba220f29a5d2517ba",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000680.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000680",
+    "bytes": 922270,
+    "sha256": "e2e7e5be1a88be14a8b7bce39258f27c6b047a2d4220075158e9cf23ae70e353",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000690.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000690",
+    "bytes": 819135,
+    "sha256": "15758e3268f40f21cc1211b622332ca607b2300227c95c7822b461ceda2940c0",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000700.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000700",
+    "bytes": 855824,
+    "sha256": "e356cfbc903e5ce4c61bd828dc5fca4b9c4c9a2deaab1c4d9e13322804ecd8bf",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000710.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000710",
+    "bytes": 752643,
+    "sha256": "42909d7a87ec368571368121d1c87b7f777ce6f677b02d25098d810c170a74ea",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000720.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000720",
+    "bytes": 899096,
+    "sha256": "2fcd75ab0e1f948b63f21c22e1cbea26587b2987f8befe13dfb35ba33217529a",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000730.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000730",
+    "bytes": 837813,
+    "sha256": "e39ff23320c709024dfaf1d0e267a0d3ebf9b5e4f6b9e394c52f7703c9e5d539",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000740.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000740",
+    "bytes": 866751,
+    "sha256": "9a868ace4aad2c9be8fcc7e4d11b702930597952640cdc6a109ad33e1bde48bd",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000750.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000750",
+    "bytes": 875395,
+    "sha256": "33cc75971a83976fbc02367fa05791de4c66fe960d98bb2fce55d18c9c55c62b",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000760.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000760",
+    "bytes": 851086,
+    "sha256": "12c47ee32619c0fa08f80455311c1564dbb1c9b44ebd55f6cfdd5a0b0a20d4c9",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000770.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000770",
+    "bytes": 933800,
+    "sha256": "a5d7ba3d21540189361b3008d3d96f1d5c0405625b32406da952c381f2a1435e",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000780.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000780",
+    "bytes": 734454,
+    "sha256": "980e5bd81ce17f9cc788326c05dc2397b3959eca8bc4c74210c817452861ad43",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000790.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000790",
+    "bytes": 839627,
+    "sha256": "dad1d149fc26e89b74767d24e790371a6a19241164e43a6f0bf55e5b3c6f07f9",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000800.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000800",
+    "bytes": 931700,
+    "sha256": "16145e6200cc265a28a8bb139625dcbf1b5a11ce57d471893e6efe34a6cca11e",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000810.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000810",
+    "bytes": 883544,
+    "sha256": "330e86c017c29fe6db19a577dac5147acc0de5d6117b353fd107cecd4a101cb5",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000820.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000820",
+    "bytes": 869565,
+    "sha256": "a897dde4f0a9e775b0c5bf123d6e9530d00b77c87e04911ab2376f1be38b1516",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000830.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000830",
+    "bytes": 875801,
+    "sha256": "221018f09d9eecba8c9093f21a0509ff0fb74104b7f40d7f227e99f39991667e",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000840.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000840",
+    "bytes": 863253,
+    "sha256": "ea49b340f3ed097f440141b40c6df830f1709c0e92aa7b3eb000a1f3e6c09a8b",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000850.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000850",
+    "bytes": 870207,
+    "sha256": "1328c4dac148edf4ba47cc418f88b0c1f9fe0619571ef9dfaca253333b317047",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000860.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000860",
+    "bytes": 861933,
+    "sha256": "0eb2d4b5580b923ddfa8e8ae2cdbe7d95f18bbdf34c168a37b952e3325c5f874",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000870.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000870",
+    "bytes": 914643,
+    "sha256": "26d49f3a87fd0bcb053dddd594fa498ecf0aaf6a2d4c1a1da265ddda05044dae",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000880.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000880",
+    "bytes": 853850,
+    "sha256": "3e8980cd5052485c23069ec1aa644e83f5b9056891096b800623d981082e652c",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000890.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000890",
+    "bytes": 932336,
+    "sha256": "c20c3193e4d030f6326b8075bb4740630375599a118726157296299972de0d71",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000900.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000900",
+    "bytes": 721805,
+    "sha256": "e67988ca23cf5e98db944c00e9e8d3e68e0a2887bf99c4a69a855521d1172b89",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000910.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000910",
+    "bytes": 768614,
+    "sha256": "b46d9ac5f1481627ab403ffb966386b113a5b1dd101cd8086fdc9f57d55e474f",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000920.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000920",
+    "bytes": 727577,
+    "sha256": "1b7d3f4ce93c3f44eb97c862887542a1ef99c533412b2b28ab0792269efe3b10",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000930.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000930",
+    "bytes": 865550,
+    "sha256": "1f383d04a3e109e50d76b21afabf4c300d186b1c5ffad7bc36dd5cade50f1d87",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000940.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000940",
+    "bytes": 959787,
+    "sha256": "bb652e1d692b8877245b03c3f7833a2915f2b3e691d0257cd2f5139397d94603",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000950.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000950",
+    "bytes": 917516,
+    "sha256": "788c1ada380f1eb1ef576c6146627752aaa0ae575dccb38784930663006d28e6",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000960.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000960",
+    "bytes": 768744,
+    "sha256": "5a8a1e19332522ebafd34d1273a0c68afb42b9d17e00f3b43e3e9b0251dc7721",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000970.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000970",
+    "bytes": 841118,
+    "sha256": "9722cd5a22abf4ad4cf0e36e093dc47f1c4fd335380aa97a8601ce61ec57759e",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000980.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000980",
+    "bytes": 763867,
+    "sha256": "ec9d9118fdbf7a96505ff3e28a4e6a8b2420af27861d22db3f0f1371870a8b03",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/FlyingThings3D/0000990.png",
+    "method": "ReDiffuse",
+    "dataset": "FlyingThings3D",
+    "scene": "0000990",
+    "bytes": 828058,
+    "sha256": "bd49e976b329044c74c322031dacfd98e469c2e4f7e60d782c8792ca3499ac11",
+    "n_layers": 15,
+    "shape": [
+      540,
+      960
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/Adirondack.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "Adirondack",
+    "bytes": 619550,
+    "sha256": "8feb9f58dd09bb00008d612ca21dddc72f2ab6007e0c0bae43e3cd6b86e3c91f",
+    "n_layers": 15,
+    "shape": [
+      496,
+      718
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/ArtL.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "ArtL",
+    "bytes": 196532,
+    "sha256": "b36b37443e665aedf56d6c853d12dc3186c37ab4aef4ac88dde782c859651ffa",
+    "n_layers": 15,
+    "shape": [
+      277,
+      347
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/Jadeplant.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "Jadeplant",
+    "bytes": 455457,
+    "sha256": "68c336a3a4beed4926cd3e45d5ad4dd9bd156136cd3d0e679987b92c1752eb96",
+    "n_layers": 15,
+    "shape": [
+      497,
+      659
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/Motorcycle.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "Motorcycle",
+    "bytes": 736066,
+    "sha256": "06f8de28a2692c6c292279fecfd50a8be049baae64055da9a67ca71e0ea6553d",
+    "n_layers": 15,
+    "shape": [
+      497,
+      741
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/MotorcycleE.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "MotorcycleE",
+    "bytes": 735914,
+    "sha256": "d4ebfaaf2bab19dec6c93c612e2b250531a57ea7bdab591aec2adadb6080f38c",
+    "n_layers": 15,
+    "shape": [
+      497,
+      741
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/Piano.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "Piano",
+    "bytes": 537748,
+    "sha256": "92e049bdad4aff5765ae8aa40fae5744e728fc1a5a2f7e681ef33dd5ef34c52a",
+    "n_layers": 15,
+    "shape": [
+      481,
+      707
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/PianoL.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "PianoL",
+    "bytes": 537716,
+    "sha256": "33e5bf7bc7de593f9fc4e65fa711b4d3555d6307019e6f0de477cafafb52ea39",
+    "n_layers": 15,
+    "shape": [
+      481,
+      707
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/Pipes.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "Pipes",
+    "bytes": 700434,
+    "sha256": "d67efaa2f86e5fd0d662f6a61228670d1da38c838188167c72031a2ebdda3edb",
+    "n_layers": 15,
+    "shape": [
+      485,
+      735
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/Playroom.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "Playroom",
+    "bytes": 599105,
+    "sha256": "56df0edf0c95a24da6e9dbe70425c14923d46cedbb16ef8492b14f2d5f3e5b45",
+    "n_layers": 15,
+    "shape": [
+      476,
+      699
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/Playtable.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "Playtable",
+    "bytes": 589092,
+    "sha256": "669724b38394f4ec699ca288490c0897581744d9b3a3601766d9b595e356a708",
+    "n_layers": 15,
+    "shape": [
+      463,
+      680
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/PlaytableP.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "PlaytableP",
+    "bytes": 588676,
+    "sha256": "16d224c0e5ff330ea707f924d36b9c33963fdf80e62778ca5deaef83efed0c42",
+    "n_layers": 15,
+    "shape": [
+      462,
+      681
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/Recycle.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "Recycle",
+    "bytes": 558489,
+    "sha256": "8200e6a173c66368b12c5d72025d328b63ce2eda113048870bacd9f883e3ba7e",
+    "n_layers": 15,
+    "shape": [
+      486,
+      720
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/Shelves.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "Shelves",
+    "bytes": 546093,
+    "sha256": "43e4ff017c7ff5e2d282b9e76b61c63ca37d1e0163bff67f2b5e566b24e344fd",
+    "n_layers": 15,
+    "shape": [
+      497,
+      738
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/Teddy.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "Teddy",
+    "bytes": 330598,
+    "sha256": "5a2bdb5defeaca5de7a7ff6cf27ab31659f366cae5e305b2ded7c52bcdc55c92",
+    "n_layers": 15,
+    "shape": [
+      375,
+      450
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Middlebury/Vintage.png",
+    "method": "ReDiffuse",
+    "dataset": "Middlebury",
+    "scene": "Vintage",
+    "bytes": 508608,
+    "sha256": "1210d2f838555074ae19ff9055dc7e4e61d8cb81129604afa183c5747496a920",
+    "n_layers": 15,
+    "shape": [
+      480,
+      722
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Mobile Depth/balls.png",
+    "method": "ReDiffuse",
+    "dataset": "Mobile Depth",
+    "scene": "balls",
+    "bytes": 477151,
+    "sha256": "db8386c68e18c9ecf08a4681ae8cdd64c9c405f1e07cb1992bcd0acda862a204",
+    "n_layers": 25,
+    "shape": [
+      360,
+      640
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Mobile Depth/bottles.png",
+    "method": "ReDiffuse",
+    "dataset": "Mobile Depth",
+    "scene": "bottles",
+    "bytes": 409672,
+    "sha256": "c881d6558a913d9f760d91cf1e8995b5cdb0598e8aff84d56217980d87b99581",
+    "n_layers": 31,
+    "shape": [
+      360,
+      640
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Mobile Depth/bucket.png",
+    "method": "ReDiffuse",
+    "dataset": "Mobile Depth",
+    "scene": "bucket",
+    "bytes": 446018,
+    "sha256": "9d749694af1d2c87263f445feea050042dc76fdb5928f11571151456370723bc",
+    "n_layers": 32,
+    "shape": [
+      360,
+      640
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Mobile Depth/fruits.png",
+    "method": "ReDiffuse",
+    "dataset": "Mobile Depth",
+    "scene": "fruits",
+    "bytes": 381191,
+    "sha256": "db93c2171e13b8a78599907cc41343668855cddeca8253202c8d4ec2f4222845",
+    "n_layers": 30,
+    "shape": [
+      360,
+      640
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Mobile Depth/keyboard.png",
+    "method": "ReDiffuse",
+    "dataset": "Mobile Depth",
+    "scene": "keyboard",
+    "bytes": 389185,
+    "sha256": "ac9b9d4913c5cf0800b7f1670fe676a8c2f76526ca314aa7f576c3897752efcf",
+    "n_layers": 32,
+    "shape": [
+      360,
+      640
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Mobile Depth/kitchen.png",
+    "method": "ReDiffuse",
+    "dataset": "Mobile Depth",
+    "scene": "kitchen",
+    "bytes": 700122,
+    "sha256": "c9fca0f186b33f0a5b643afa2e58eef8386adc04da8ebb85aed48198e8fd7736",
+    "n_layers": 12,
+    "shape": [
+      518,
+      774
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Mobile Depth/metals.png",
+    "method": "ReDiffuse",
+    "dataset": "Mobile Depth",
+    "scene": "metals",
+    "bytes": 466003,
+    "sha256": "40a4fcca97e30c8bc19b26087f4d9ab48d2a3c9546cb1b48baafd924d02aaff3",
+    "n_layers": 33,
+    "shape": [
+      360,
+      640
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Mobile Depth/plants.png",
+    "method": "ReDiffuse",
+    "dataset": "Mobile Depth",
+    "scene": "plants",
+    "bytes": 397885,
+    "sha256": "81a48a721b017a597c6a5f86469698a479d5dad28753c0e01da9a51700dfa102",
+    "n_layers": 23,
+    "shape": [
+      360,
+      640
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Mobile Depth/telephone.png",
+    "method": "ReDiffuse",
+    "dataset": "Mobile Depth",
+    "scene": "telephone",
+    "bytes": 349239,
+    "sha256": "026efa0e8fd38bbae379e0208ed932eae32c70d2892fc7823a7a376d16c08b5e",
+    "n_layers": 33,
+    "shape": [
+      360,
+      640
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Mobile Depth/window.png",
+    "method": "ReDiffuse",
+    "dataset": "Mobile Depth",
+    "scene": "window",
+    "bytes": 395070,
+    "sha256": "a09e6bf6f264c3ee190f044eeede6cb8c3abdb1d9da8b919c0842ebdde3e0ee8",
+    "n_layers": 27,
+    "shape": [
+      360,
+      640
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Mobile Depth/zeromotion.png",
+    "method": "ReDiffuse",
+    "dataset": "Mobile Depth",
+    "scene": "zeromotion",
+    "bytes": 762226,
+    "sha256": "94d59196e3e29b60eba16dce788d9b76f69a2a8e511e5d9e5384b6e49099c3f6",
+    "n_layers": 14,
+    "shape": [
+      518,
+      774
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/1.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "1",
+    "bytes": 808705,
+    "sha256": "c2a65147d89ff13ca0ef9681aad9e1bc546cb41a75ecbd0e8a5b450c124c2c0e",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/10.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "10",
+    "bytes": 819576,
+    "sha256": "a61c149197d5861285bf365f3db1d4964d35434cde9eff7310c6260e47e2015f",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/11.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "11",
+    "bytes": 789767,
+    "sha256": "34120b0fe1954540fb05cc149e71df51bf6c13f5b529675c1d9dc2dedf8057a7",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/12.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "12",
+    "bytes": 836905,
+    "sha256": "03f228d232d19f9b3a8409a38e65c6923bf091aa309fac3829cae4cd89716cd2",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/13.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "13",
+    "bytes": 829302,
+    "sha256": "0fe536821938bc0c23bb455880d21577189e6e873ae001cd9777bb5885e8c0be",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/14.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "14",
+    "bytes": 824776,
+    "sha256": "62ad637f9362c4a585c77a5df63f8ce86ea07d308fd60919e2114e28c487f99a",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/15.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "15",
+    "bytes": 721380,
+    "sha256": "809a438efb6b7576c14f4c3f241d20879a6be63016983839781764e92cc83e49",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/16.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "16",
+    "bytes": 740287,
+    "sha256": "021326ab18e23ba1dc0a7a03e1902916d2dc282aa20cc2c4e9e32801179d2f85",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/17.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "17",
+    "bytes": 876370,
+    "sha256": "47b0a55e6e0b460827afa0164fd2c5c27fedc2426565efea9584d9d60cddba88",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/18.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "18",
+    "bytes": 716376,
+    "sha256": "f53d4671272a3cc66616a3600905545a85b1e2ba7bb8407d4a4d4414f5008d5e",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/19.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "19",
+    "bytes": 814652,
+    "sha256": "3b4c0750752dbd9e35732ec13cd64390f5502976cb746284ad6536ef43df0cf4",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/2.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "2",
+    "bytes": 736128,
+    "sha256": "80026bee4b8921334e1fc926531f0b7998de96a2cda63e6308de21e7768c253a",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/20.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "20",
+    "bytes": 777325,
+    "sha256": "d78c4366ce26f18a3be02cce495af081c63a70a56c496703619bc24dc1d71eb8",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/21.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "21",
+    "bytes": 717162,
+    "sha256": "48cdb7380a2a07c8ffb95f2b6e29cd82e8d93c3426f7d0245bdbec84c780f11a",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/22.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "22",
+    "bytes": 868479,
+    "sha256": "5096926ee3633da5929088fe73a7a0d07cfa1eff739fc81854a0f457693efe30",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/23.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "23",
+    "bytes": 882845,
+    "sha256": "080b2dca6598072c5c26d497f0d5fc9aa2b800ac5d36502159faf5febf6efab3",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/24.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "24",
+    "bytes": 781876,
+    "sha256": "d8d3685a527f6e5ed49755f7f407dbfb6d4f52e88201433b0e656454d1e63deb",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/25.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "25",
+    "bytes": 805776,
+    "sha256": "a8d952cbf45f325220e30ebbc60d7bfd8d9d6169e4a8d2d190cf3c99e2bd44e2",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/26.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "26",
+    "bytes": 614595,
+    "sha256": "e058ad4566e5f61bcf4198e31ecb0fad85aed179f9b5c95138f4ef4ae8447229",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/27.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "27",
+    "bytes": 692197,
+    "sha256": "8bf13ce0d37c6542a28a6712ec1b8c562cfefab4f807262810a7715d152588f7",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/28.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "28",
+    "bytes": 749264,
+    "sha256": "6ccab58a4396ee737f2bce54006627ff42b8984efabab3cd533dfc852aed696b",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/29.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "29",
+    "bytes": 828311,
+    "sha256": "f37c799af722ae2211d2609fe4c66128bb581225442caaa469fab488919e2119",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/3.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "3",
+    "bytes": 681934,
+    "sha256": "c3e32082f088a5181bbe5a5602fc0ab7a9100dabe9f16ada4b59a9bfc0dbf795",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/30.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "30",
+    "bytes": 700049,
+    "sha256": "d18cda294decd8c6de9c1bf39c864e74d10c6ef782f2d691ded506342da28e2c",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/31.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "31",
+    "bytes": 880239,
+    "sha256": "2eebcd8afdf8181e9a0f13db2ab96ea41dfcab10a19f630b3805fb1fbaa5d2e4",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/32.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "32",
+    "bytes": 838570,
+    "sha256": "1f7b5332f600aacdba60dae2c8b1e8b6faa80bc5ff5e008d2eff84227e86b0e5",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/33.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "33",
+    "bytes": 718887,
+    "sha256": "e059cde0105ee446dc207b154ef6db4d37bc069eda003920a36dcb18d11afce8",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/34.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "34",
+    "bytes": 759194,
+    "sha256": "515223f65bab0d779db4385632d06c334d808ebcbcc88c44d7d28c19d8405078",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/35.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "35",
+    "bytes": 651830,
+    "sha256": "b1098c6b5f7b7bac223789d7ff44554cb9f2850b8b529204e3e924101466c28a",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/36.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "36",
+    "bytes": 741091,
+    "sha256": "86f18cc0aadd80112bb722a6e5d76c8ea1bc7cfa917586bd1712bb9cd440f3d9",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/37.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "37",
+    "bytes": 924788,
+    "sha256": "fdbeecd6b39b3988096b0af1e3de9ad743e165997d2ec1505133fabe30c1fd61",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/38.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "38",
+    "bytes": 904041,
+    "sha256": "89427367fda727ce99ed5bea02c3afb2b86ec2bf22e7578af903197e02e923f4",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/39.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "39",
+    "bytes": 834188,
+    "sha256": "4c650bfd4af3baeecd5c92b8df634d2df7203b8550bbcb1c0c6fb6b11fb9feed",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/4.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "4",
+    "bytes": 896074,
+    "sha256": "d0b0a4159fc47c6ac1894b8958fa1a02afb5d57ef0a4299a873da1231419b8e4",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/40.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "40",
+    "bytes": 691419,
+    "sha256": "0a4f634ba10423202cda0a039ebffd05b10fc2e3eb54b2a655c4d8573aeaad67",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/41.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "41",
+    "bytes": 937185,
+    "sha256": "7505401bfe15b35640ef64ae2d9c62074f1ed9e49f92e6837571d3b2208f8d09",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/42.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "42",
+    "bytes": 679217,
+    "sha256": "43660883a3f2eebf90c769bc1bceb781bad30f4424678f1432877995f17844dd",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/43.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "43",
+    "bytes": 887330,
+    "sha256": "b29599d4b5f974f5daa73a4a52ce8d7c8010c91d00fc6f8f9dd2b7c13d107efc",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/44.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "44",
+    "bytes": 808188,
+    "sha256": "17e72c932e5ce1df526e6edd5da5cc6d4c2682f4c988619b4dd0f587322dedbc",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/45.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "45",
+    "bytes": 733413,
+    "sha256": "3324b06e24d8e14ef627472b96de0184d60d49516221c462417724c9dae614f1",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/46.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "46",
+    "bytes": 614993,
+    "sha256": "4bee8b1c7b43ba00b798b082edcec38f4df51270eec6f685dabeaed7e1a28c45",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/47.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "47",
+    "bytes": 604334,
+    "sha256": "7f4ba1fd0333ccd5c628951dc16ded28f208ea5c07c173964ac31497309a7f94",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/48.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "48",
+    "bytes": 848050,
+    "sha256": "cf15ca03457ef0c55702af2811edaaad1ff3878cafbd809c1d7d287908ef11a7",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/49.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "49",
+    "bytes": 763944,
+    "sha256": "9bd74dbec354e6514f251bf21d7219c5010545e1e82e0cbbb6b833d69cd03e21",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/5.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "5",
+    "bytes": 876742,
+    "sha256": "7e3b5a55f56d276becae91692e05903cb5711620b9b926c376fe4a6db7249be8",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/50.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "50",
+    "bytes": 775413,
+    "sha256": "e0e449327a9147b51c697ede2beaebee4191a07a404b642e2d9b840805494ead",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/51.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "51",
+    "bytes": 595445,
+    "sha256": "73c4f0768c676430708b940990fe21e1a804dd6fe042df450b962b654b5ab545",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/52.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "52",
+    "bytes": 915909,
+    "sha256": "1505320a7051c3d6f464bb7418d086ed7cebfe746ef3632fa54d933e80b48e0b",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/53.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "53",
+    "bytes": 644790,
+    "sha256": "67f9383fd794bfc0a11c6df11c126d36b2db8e1dfaca27892b60ed462d137ac5",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/54.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "54",
+    "bytes": 737369,
+    "sha256": "4b63bb57b4db1ddc0c47327fccd19ff66cdf67e186d53bc550d45ee8d9fcc0c6",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/55.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "55",
+    "bytes": 744219,
+    "sha256": "c20c7ba8570558b5579789cc99daddda8a3f7bae06e87b6b19d226d0fcc4da7e",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/56.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "56",
+    "bytes": 748162,
+    "sha256": "640fdb460813b04db9abcfc6a655165963efd054fb8680a2b05c15fad01b3f47",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/57.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "57",
+    "bytes": 722426,
+    "sha256": "4001807081fa6fa8f0e55024a01e5505e0e4b097d9287f879a965cd9a9708ea8",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/58.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "58",
+    "bytes": 791608,
+    "sha256": "90fc9a500317558f45a9f476085dbf304bb477a553db84e7a8f653b1e512fe47",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/59.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "59",
+    "bytes": 734503,
+    "sha256": "231bc531a3d028d96b682765b782efe485b4d6e91115cf53d7fb707fd44fa7d4",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/6.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "6",
+    "bytes": 848575,
+    "sha256": "349d38aa64fbd4a3f09545c6e864916fd6814da63a11a061cafd80dbb01426ac",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/60.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "60",
+    "bytes": 779550,
+    "sha256": "f1d373e41b84ac165c71810f3ce2550ef31bd4cc5f19f2e49adfb8798fe471c4",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/61.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "61",
+    "bytes": 840573,
+    "sha256": "8306982a46c94f700e7904d29af7f6d33f74711b98787926ce57c57a35bae5eb",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/62.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "62",
+    "bytes": 812401,
+    "sha256": "ae1c9a7c168c9fd02af02e3cb7e4b391a25e7fc838b75ec3b8d51b92e145cf8b",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/63.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "63",
+    "bytes": 931016,
+    "sha256": "2bb957479c0d25a2d624de7e3e327d281d3c5fb07399b5ea4e07890ca425de41",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/64.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "64",
+    "bytes": 725036,
+    "sha256": "e5e0d074fb62bb4e06873aac13ce9c1d7a5af74844645f418275f6379ab6392e",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/65.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "65",
+    "bytes": 847890,
+    "sha256": "ebaca5829b9a2e48bb3fc4d9c3cb69833b232073ac603d65f46b3bb2cfd00b69",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/66.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "66",
+    "bytes": 806305,
+    "sha256": "0186d5c6a8523108dc9bf76f8c8da39c4e98ed048b7285903896a5346b4051fc",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/67.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "67",
+    "bytes": 831099,
+    "sha256": "8372625a8da4734b56de9b2b1c95fe986503868ba3b856fcadb344f19febeb49",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/68.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "68",
+    "bytes": 706300,
+    "sha256": "d4c14ff6fd40f489965ee779f2c9c95e47d1257e0f2d9665cc4a4b698aad6b9f",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/69.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "69",
+    "bytes": 760378,
+    "sha256": "222108fbaa505262f049e29c66de3399bb6f676b96b5a8675fd91c14bc375841",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/7.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "7",
+    "bytes": 739991,
+    "sha256": "b9b05eb7dabcfc8b5db4ea01f3fe6b2ad2bd2003def93a86ae4edae540fd325b",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/70.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "70",
+    "bytes": 785629,
+    "sha256": "72325111a06b5c25686b180b657987648c333a66af51f066a1adeb608e3db1d3",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/71.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "71",
+    "bytes": 706417,
+    "sha256": "b21ad037e8a119936aa2ddad6e56fddcbe9d255618eabb6e142691550b7d494d",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/72.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "72",
+    "bytes": 722779,
+    "sha256": "d844c0e18403b4c1fdcbd5bac11a4ffb5ef667bafca6bf6d76e437ff98055e4f",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/73.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "73",
+    "bytes": 778727,
+    "sha256": "29b903b30bc65b89f984cd900605456a1ed35b463b84c83267ba614e0d849407",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/74.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "74",
+    "bytes": 675558,
+    "sha256": "f1bf80286b107de615fbd2b9c75c6a8a2cf1c792a1d9d5e778843f69af5bcf8b",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/75.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "75",
+    "bytes": 746866,
+    "sha256": "444ed26ce14a372b22558e0192fc38a3bf3a1f7e292c55a673889cdd6dfd5547",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/76.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "76",
+    "bytes": 922644,
+    "sha256": "05dabdc093b25f80544fd0c2ea28be28c075668da9723ce2c877c263378a5598",
+    "n_layers": 8,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/77.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "77",
+    "bytes": 702257,
+    "sha256": "81f80e15c64b2d29b0eeb22c2c7f1df18518e33cb2a9220cd9f72b3df84b16ae",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/78.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "78",
+    "bytes": 732403,
+    "sha256": "b82ff6aba749ce25bb0b5c6fd8fcb4a31c9231eb7c8f6ef020ad90b67ca834a3",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/79.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "79",
+    "bytes": 728187,
+    "sha256": "b9828288bfe3d55dcb5642ac75e773847f6aeaa85d1fd300ae1a418f0451fe3d",
+    "n_layers": 16,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/8.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "8",
+    "bytes": 780855,
+    "sha256": "08a4fe5011faf9d28dfd273ed647b29666b2dc11b213636cb9e83a23f6fe8dd8",
+    "n_layers": 20,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/80.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "80",
+    "bytes": 805982,
+    "sha256": "a556949c3bf343ee6ff9c1b42a32aa8f9e73808f8c444d49e31d4bff0c514609",
+    "n_layers": 24,
+    "shape": [
+      600,
+      800
+    ]
+  },
+  {
+    "path": "results/ReDiffuse/Road-MF/9.png",
+    "method": "ReDiffuse",
+    "dataset": "Road-MF",
+    "scene": "9",
+    "bytes": 820462,
+    "sha256": "7d696b54e4223336a68536e0e45e8a61cb786853fa5b6f3c2a9682fb1804e090",
+    "n_layers": 12,
+    "shape": [
+      600,
+      800
+    ]
+  }
+]

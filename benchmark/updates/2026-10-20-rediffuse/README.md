@@ -25,7 +25,4 @@ Metric evaluation retains the original Linux JPEG decoding. A local Windows
 libjpeg-9 cross-check changed source-based scores, so that decoder was not used
 for this update. See metric_crosscheck.json and runtime_fingerprints.json.
 
-The per-scene scores and image hashes are released here. Transfer of the new
-full RGB image archive is still in progress; the v1.0 image release remains the
-historical 26-scene subset for this method. The original inputs and third-party
-weights are not redistributed.
+The complete 206-image RGB archive is now available in the [v1.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_rediffuse_complete_20261020_outputs.tar). Every image was decoded and checked against the frozen input/output evidence and score record; the archive was checked again after packaging. The [image manifest](image_manifest.json) lists all per-file hashes and [archive metadata](image_archive.json) records the download and SHA-256. Download it with `python tools/download_results.py --groups rediffuse_complete_20261020`. The original archive contains 26 grayscale ReDiffuse PNGs. Their decoded grayscale pixels equal those from this RGB update, as checked in [the equivalence record](historical_rgb_equivalence.json); their file hashes differ. The downloader extracts the update under `image_updates/2026-10-20-rediffuse/`, and `benchmark/config_paper.json` selects that complete cohort explicitly. Existing historical files are preserved. Original inputs and third-party weights are not redistributed.

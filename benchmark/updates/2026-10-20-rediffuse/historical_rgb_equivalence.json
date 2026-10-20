@@ -1,0 +1,241 @@
+{
+  "status": "passed",
+  "images": 26,
+  "note": "The historical public archive contains grayscale PNGs, while the full update contains the original RGB results. Decoded evaluation grayscale is exactly equal for all 26 overlapping scenes; file hashes are different. Preserve both byte representations using an isolated extraction prefix.",
+  "records": [
+    {
+      "dataset": "Mobile Depth",
+      "scene": "balls",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "ecff696b1a41c8a623fa436bee42f0858915789ae01d5067b9984e5baa5086ca",
+      "current_sha256": "db8386c68e18c9ecf08a4681ae8cdd64c9c405f1e07cb1992bcd0acda862a204",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "bottles",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "0b2534326052ef28f3b1f8330281e88540ad3ba8470df00742dccb1e5612d248",
+      "current_sha256": "c881d6558a913d9f760d91cf1e8995b5cdb0598e8aff84d56217980d87b99581",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "bucket",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "a016a6e63f7938ed9b8f4095f21bfa898552152c8d4130d190b7d26bf5e49cde",
+      "current_sha256": "9d749694af1d2c87263f445feea050042dc76fdb5928f11571151456370723bc",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "fruits",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "b8969327060e83582fa93fcdf2ca26befd195ab11fae42d91459d9be4ef22038",
+      "current_sha256": "db93c2171e13b8a78599907cc41343668855cddeca8253202c8d4ec2f4222845",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "keyboard",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "8f67936b698e3f610e56aeebb341f381923ecb55641c850bbf6f5f3d0b3b14cc",
+      "current_sha256": "ac9b9d4913c5cf0800b7f1670fe676a8c2f76526ca314aa7f576c3897752efcf",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "kitchen",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "72711d653356c8655a52b2d21724386b9680beb5555fc0d4f422e0c50d1fae44",
+      "current_sha256": "c9fca0f186b33f0a5b643afa2e58eef8386adc04da8ebb85aed48198e8fd7736",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "metals",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "a9ccf19168e26d28779fa82794b2e8c252742c0e927175c38bf93b12b048bd9b",
+      "current_sha256": "40a4fcca97e30c8bc19b26087f4d9ab48d2a3c9546cb1b48baafd924d02aaff3",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "plants",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "106d4275468c352d294dd8ff7866364bba8c907f3cc1ee2aa31bcbf3521c0e29",
+      "current_sha256": "81a48a721b017a597c6a5f86469698a479d5dad28753c0e01da9a51700dfa102",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "telephone",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "78159e433b1f1897a61ac0fbbaca39c982086e41459c14bf4ff6b194f801e82f",
+      "current_sha256": "026efa0e8fd38bbae379e0208ed932eae32c70d2892fc7823a7a376d16c08b5e",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "window",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "89ceef19b9d5e908d894908b4c093c3671a35b26954e73cea4d48ef977c2e00d",
+      "current_sha256": "a09e6bf6f264c3ee190f044eeede6cb8c3abdb1d9da8b919c0842ebdde3e0ee8",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Mobile Depth",
+      "scene": "zeromotion",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "4b535f5322878ce6190a3501f97231329188e0c4d56204007c89b695d6b84f7f",
+      "current_sha256": "94d59196e3e29b60eba16dce788d9b76f69a2a8e511e5d9e5384b6e49099c3f6",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Adirondack",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "27d3493205b6f7c0ced6129184574d6acdd3d8751323228f8aca9130656ec9e8",
+      "current_sha256": "8feb9f58dd09bb00008d612ca21dddc72f2ab6007e0c0bae43e3cd6b86e3c91f",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "ArtL",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "64f14069d8c3d32c3dd86421a72c6f2e155b87d0a0758e7e54fd20ce3571bb47",
+      "current_sha256": "b36b37443e665aedf56d6c853d12dc3186c37ab4aef4ac88dde782c859651ffa",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Jadeplant",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "8c71589ce9fe98952f1369b4caa93796904aa0691e3c292fd36bcef6f24f31db",
+      "current_sha256": "68c336a3a4beed4926cd3e45d5ad4dd9bd156136cd3d0e679987b92c1752eb96",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Motorcycle",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "5ca615bed1f439226ee92a9fd0acedb08d2455b4fda882e3d0146f07ee959044",
+      "current_sha256": "06f8de28a2692c6c292279fecfd50a8be049baae64055da9a67ca71e0ea6553d",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "MotorcycleE",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "3a9cb9f4c93214c5700412681a9448f96f74c5e605dcf4d291d382e1f2b9312a",
+      "current_sha256": "d4ebfaaf2bab19dec6c93c612e2b250531a57ea7bdab591aec2adadb6080f38c",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Piano",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "c4a9cff680c1cea939f3c27ea34747854c462e248f0ca2099b4cf5f6fbc2c4d4",
+      "current_sha256": "92e049bdad4aff5765ae8aa40fae5744e728fc1a5a2f7e681ef33dd5ef34c52a",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "PianoL",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "87d1a8645631709b69ec08c9d23ec990954be0fc0b2330f8da8efdce926e9e21",
+      "current_sha256": "33e5bf7bc7de593f9fc4e65fa711b4d3555d6307019e6f0de477cafafb52ea39",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Pipes",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "6b6beba7bef491c20125a82ca0625be95fb52ca29df965f4a9464f5c597070e1",
+      "current_sha256": "d67efaa2f86e5fd0d662f6a61228670d1da38c838188167c72031a2ebdda3edb",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Playroom",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "0f5e1ab1551d57e8341a88588f29b7d51d94a074644f3759f2b415b70edb819a",
+      "current_sha256": "56df0edf0c95a24da6e9dbe70425c14923d46cedbb16ef8492b14f2d5f3e5b45",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Playtable",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "9908ea6639828a862c1999462350eb4889a9667672ef5f8a026050aaa1ffca10",
+      "current_sha256": "669724b38394f4ec699ca288490c0897581744d9b3a3601766d9b595e356a708",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "PlaytableP",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "f538e46cbc42faa78dee23d0ab73dfac043560dada5e5dfdb09fd06ec8e9baac",
+      "current_sha256": "16d224c0e5ff330ea707f924d36b9c33963fdf80e62778ca5deaef83efed0c42",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Recycle",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "36e5687307dbfdc26e8d3cf9f8c785c4b3edc22bb03461aaae8ff93ecdea0783",
+      "current_sha256": "8200e6a173c66368b12c5d72025d328b63ce2eda113048870bacd9f883e3ba7e",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Shelves",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "57dcfaf502f2a25d89d5163b4bd41d2d49487cfb98ad0ad11675e580f2872b48",
+      "current_sha256": "43e4ff017c7ff5e2d282b9e76b61c63ca37d1e0163bff67f2b5e566b24e344fd",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Teddy",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "2d8331dbc7186f95b14e733791f41073f8cdefaf7950661a4611c9e8036c4749",
+      "current_sha256": "5a2bdb5defeaca5de7a7ff6cf27ab31659f366cae5e305b2ded7c52bcdc55c92",
+      "gray_pixels_equal": true
+    },
+    {
+      "dataset": "Middlebury",
+      "scene": "Vintage",
+      "historical_mode": "L",
+      "current_mode": "RGB",
+      "historical_sha256": "82ceb3478ca8c02653178e6eba07215b9517cfb32eeeb81eb7c71990b3cd5c3f",
+      "current_sha256": "1210d2f838555074ae19ff9055dc7e4e61d8cb81129604afa183c5747496a920",
+      "gray_pixels_equal": true
+    }
+  ]
+}

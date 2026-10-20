@@ -1,5 +1,5 @@
 {
-  "snapshot": "2026-10-18",
+  "snapshot": "2026-10-20",
   "data_release": "https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v1.0",
   "archives": [
     {
@@ -262,8 +262,35 @@
         "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/stackmff_v3_fused_results.tar",
         "id": 651083875
       }
+    },
+    {
+      "name": "comparison_rediffuse_complete_20261020_outputs.tar",
+      "size": 160348160,
+      "sha256": "e40ac2573d265476d3a25f9c2515b5b2efde79497b69f5998baca8664d46085c",
+      "images": 206,
+      "download": {
+        "name": "comparison_rediffuse_complete_20261020_outputs.tar",
+        "size": 160348160,
+        "sha256": "e40ac2573d265476d3a25f9c2515b5b2efde79497b69f5998baca8664d46085c",
+        "id": 657936788,
+        "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_rediffuse_complete_20261020_outputs.tar"
+      },
+      "index_asset": {
+        "name": "comparison_rediffuse_complete_20261020_index.json",
+        "size": 536,
+        "sha256": "6d6e4327d5682f0b04936a7d1cd7a002e147d02c3f6bfd3cd13657741af3fbb8",
+        "id": 657938106,
+        "url": "https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/comparison_rediffuse_complete_20261020_index.json"
+      },
+      "group": "rediffuse_complete_20261020",
+      "extract_prefix": "image_updates/2026-10-20-rediffuse",
+      "image_manifest": "updates/2026-10-20-rediffuse/image_manifest.json"
     }
   ],
-  "benchmark_images": 7262,
-  "real_images": 2170
+  "benchmark_images": 7442,
+  "real_images": 2170,
+  "benchmark_image_records": 7468,
+  "historical_benchmark_images": 7262,
+  "current_complete_cohort_images": 7416,
+  "count_note": "7,442 unique benchmark method/scene entries: 7,416 current complete-cohort images and 26 historical ZMFF images. The 26 original ReDiffuse PNGs are grayscale; their evaluation pixels equal the new RGB files after grayscale conversion. Separate extraction paths preserve both representations and all original archives."
 }
