@@ -16,13 +16,13 @@ stack adapter uses numeric focal order, quantizes luminance between pairs and
 retains the first source's chroma. GPU nondeterminism prevents bitwise agreement
 between repeated official runs; the wrapper follows the original inference
 functions and settings. This limitation is disclosed in the manuscript.
-Outputs are scored without resizing or reference-guided alignment. Shared-GPU
-timings are not reported as comparable idle-GPU runtimes. The reported operation
-count is forward-only and excludes the optimization backward pass.
+Outputs are scored without resizing or reference-guided alignment. The recorded
+runtimes are not comparable, so no inference time is reported. The reported
+operation count is forward-only and excludes the optimization backward pass.
 
-Per-scene metrics and hashes are complete. The separate full RGB image archive
-is still transferring; the historical release contains only 26 ZMFF images.
-The current evaluation config reserves image_updates/2026-10-20-zmff/ for the
-complete RGB cohort, so it cannot silently fall back to those historical files.
-Do not interpret this score release as publication of the full image archive.
+Per-scene metrics and hashes are complete, and the full 206-image RGB archive
+ships in the consolidated release as `stack_outputs_zmff.tar`. The historical
+release contains 26 ZMFF images from an earlier run; the current evaluation config
+reserves image_updates/2026-10-20-zmff/ for the complete cohort, so it cannot
+silently fall back to those historical files.
 Original inputs, references and third-party weights are not redistributed.

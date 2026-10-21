@@ -19,7 +19,7 @@ padding to multiples of eight, official chroma weighting and saved 8-bit color
 intermediates between pairwise steps. Its compiled convolution module is used
 as released; two unavailable unused imports are removed. Repaired runners keep
 the same inference function bodies. Outputs are scored without reference-guided
-alignment. Shared-GPU inference logs are not reported as idle-GPU timings.
+alignment. The recorded runtimes are not comparable, so no inference time is reported.
 
 Metric evaluation retains the original Linux JPEG decoding. A local Windows
 libjpeg-9 cross-check changed source-based scores, so that decoder was not used
