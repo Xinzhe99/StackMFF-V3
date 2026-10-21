@@ -40,6 +40,19 @@ Results live in `../updates/2026-10-20-pair-extension/`.
 
 ## Reproducing the tables
 
+One command reproduces every published table from the released records:
+
+```bash
+python verify_release.py
+```
+
+It checks that the per-image table has exactly `pairs x methods` rows, recomputes
+each dataset mean from those rows, regenerates all six LaTeX tables in a temporary
+directory, and compares them byte for byte with the released copies. Any
+discrepancy is reported by filename. Expected output ends with `REPRODUCED`.
+
+### Manual sequence
+
 The aggregation scripts are paths-relative to the directory holding `scores/`,
 `results/`, `manifest.json` and the summaries. From a checkout where those exist:
 
