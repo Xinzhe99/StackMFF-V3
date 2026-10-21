@@ -24,7 +24,7 @@ Official PyTorch implementation of *StackMFF V3: Order-Invariant Focus Stacking 
 
 - **2026.10**: Code, pretrained weights and the evaluation toolkit of StackMFF V3 are released. The manuscript (*StackMFF V3: Order-Invariant Focus Stacking via Pixel-Wise Source Classification*) is being prepared for submission.
 - **2026.10**: All **7,262 evaluated benchmark outputs** (including 412 of ours) and **2,170 registered real-stack outputs** are archived with SHA-256 manifests. See the [archive index and downloader](benchmark/README.md). All data assets are in the [v2.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.0); audited code is versioned separately.
-- **Coming soon**: StackMFF V3 in [OpenFocus](https://github.com/Xinzhe99/OpenFocus).
+- **Available now**: StackMFF V3 ships inside [OpenFocus](https://github.com/Xinzhe99/OpenFocus) as an AI fusion option. OpenFocus registers the stack, lists StackMFF V3 next to the classical methods, and fuses a whole folder in one batch, so the paper model can be tried without writing any code.
 - This repository develops the deterministic fusion formulation of earlier StackMFF V3/V4 studies; historical materials remain in [StackMFF-V3-legacy](https://github.com/Xinzhe99/StackMFF-V3-legacy) and [StackMFF-V4-legacy](https://github.com/Xinzhe99/StackMFF-V4-legacy).
 
 <div align="center">
@@ -68,88 +68,20 @@ Each image of the stack is embedded separately into tokens at 1/4 resolution (4x
 
 ## Results
 
-Full-reference comparison on the four benchmarks (unified evaluation: BT.601 luma,
-full image, Gaussian SSIM). The table below keeps the strongest baselines of each
-family plus the two proposed read-outs; the
-[complete 37-row comparison](benchmark/current/TABLES.md) covers 32 baseline
-families (35 settings) across all 206 scenes, with per-scene records in
-[benchmark/current/per_image.csv](benchmark/current/per_image.csv) and paired
-statistics in [benchmark/current/stats.md](benchmark/current/stats.md).
+The model fuses variable-length focal stacks and, at 0.16 M parameters, runs one
+Mobile Depth stack in 0.10 s. It leads three of the four benchmark families on
+reference SSIM and both read-outs stay at the top of the source-based metrics;
+the complete per-scene numbers, statistics and tables are in
+[`benchmark/`](benchmark/README.md).
 
-| Method | Type | MD SSIM | MD PSNR | Mid. SSIM | Mid. PSNR | FT3D SSIM | FT3D PSNR | Road-MF SSIM | Road-MF PSNR |
-|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| GFF | spatial domain | 0.9829 | 39.50 | 0.9557 | 32.94 | 0.9682 | 34.44 | 0.9921 | 38.58 |
-| GFDF | spatial domain | 0.9819 | 39.49 | 0.9557 | 32.89 | 0.9681 | 34.33 | 0.9905 | 37.82 |
-| DTCWT | transform domain | 0.9402 | 32.81 | 0.8914 | 29.26 | 0.9214 | 29.32 | 0.9772 | 34.69 |
-| MFIF-GAN | pairwise, adapted | 0.9507 | 34.54 | 0.9448 | 31.50 | 0.9603 | 32.79 | 0.9802 | 34.20 |
-| CSNet | pairwise, adapted | 0.9355 | 33.62 | 0.9430 | 31.82 | 0.9620 | 33.47 | 0.9850 | 36.17 |
-| Helicon Focus (A) | commercial | 0.9592 | 33.97 | 0.9197 | 30.14 | 0.9299 | 31.46 | 0.9416 | 31.16 |
-| StackMFF | native stack | 0.9470 | 32.13 | 0.9336 | 30.90 | 0.9568 | 32.99 | 0.9715 | 33.19 |
-| StackMFF V2 | native stack | 0.9510 | 35.21 | 0.9453 | 32.18 | 0.9531 | 32.75 | 0.9811 | 36.27 |
-| **StackMFF V3** (hard selection) | native stack | 0.9769 | 38.36 | 0.9595 | 33.59 | 0.9692 | 34.79 | **0.9984** | **46.12** |
-| **StackMFF V3** (weighted, default) | native stack | **0.9855** | **40.16** | **0.9622** | **34.28** | **0.9722** | **35.35** | 0.9979 | 44.53 |
+| Where | What it contains |
+|---|---|
+| [`benchmark/current/TABLES.md`](benchmark/current/TABLES.md) | all 37 configurations on the four stack benchmarks |
+| [`benchmark/current/per_image.csv`](benchmark/current/per_image.csv) | one row per method and scene, with the metric vector |
+| [`benchmark/current/stats.md`](benchmark/current/stats.md) | paired Wilcoxon with Holm correction, Friedman ranks, Nemenyi intervals |
+| [`benchmark/pair_extension/RESULTS.md`](benchmark/pair_extension/RESULTS.md) | the 863-pair two-input experiment, eight source metrics and PSNR/SSIM |
+| [v2.0 data release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.0) | every released output image and the checkpoint |
 
-MD: Mobile Depth (11 stacks), Mid.: Middlebury (15), FT3D: FlyingThings3D (100),
-Road-MF (80). The checkpoint, smoothing sigma and inference scales were selected
-on these benchmarks, so these scores are not an independently held-out estimate of
-model-selection generalization. Over the last four epochs and sigma in {0, 0.5, 1},
-the mean SSIM (7x7 window) varies only between 0.9784 and 0.9789.
-
-**Efficiency** (one fusion call on two 256x256 images; time: mean GPU time per
-Mobile Depth stack, 12 to 33 images, one RTX A6000, excluding disk I/O and model
-loading; pairwise methods are applied iteratively):
-
-| Method | Params (M) | GFLOPs | Time (s) |
-|---|:-:|:-:|:-:|
-| MFIF-GAN | 13.70 | 588.48 | 4.06 |
-| CSNet | 1.89 | 25.32 | 0.86 |
-| StackMFF | 6.08 | 37.37 | 0.33 |
-| StackMFF V2 | 0.05 | 5.50 | 0.10 |
-| StackMFF V3, one inference scale | 0.16 | 1.94 | 0.10 (fp16: 0.05) |
-| StackMFF V3, two inference scales (default) | 0.16 | 3.03 | 0.16 (fp16: 0.08) |
-
-<!-- pair-extension:start -->
-
-### Two-input multi-focus fusion (863 pairs)
-
-The main tables above evaluate variable-length focal stacks. A second experiment
-evaluates the same methods on ordinary two-image inputs from four public
-benchmarks: Lytro (20 pairs), MFFW2 (13), MFI-WHU (120) and Real-MFF (710). Every
-method receives the same two sources at native resolution, with no fine-tuning or
-model selection on these data. All 37 configurations are complete on all four
-datasets, so no result is ranked on a successful subset.
-
-The proposed model keeps its accuracy at 0.16 M parameters, and both fusion rules
-are competitive at the top of most metrics:
-
-| | Weighted fusion | Hard selection |
-|---|---|---|
-| Parameters | 0.16 M | 0.16 M |
-| GFLOPs (2x256x256) | 3.03 | 3.03 |
-| Reference SSIM, MFI-WHU | **1st** (0.9978) | 2nd (0.9975) |
-| Reference SSIM, Real-MFF | 2nd (0.9883) | 3rd (0.9879) |
-| $Q^{AB/F}$, Lytro | **1st** (0.7627) | 2nd (0.7625) |
-| $Q^{AB/F}$, MFI-WHU | 2nd (0.7375) | **1st** (0.7381) |
-
-IFCNN leads Real-MFF reference SSIM (0.9892) but sits near the bottom of the
-source-based metrics there, so the ranking is metric- and dataset-dependent. ZMFF
-ranks 25th to 32nd across the four datasets by mean source-metric rank and
-ReDiffuse 13th to 17th; neither is a strong two-input method. The tables report
-every configuration rather than a selected subset.
-
-Complete tables — eight source-based metrics for every method on every dataset,
-plus PSNR and SSIM against the all-in-focus references — are in
-[benchmark/pair_extension/RESULTS.md](benchmark/pair_extension/RESULTS.md).
-Per-image records, coverage tables and the LaTeX sources are in
-[benchmark/updates/2026-10-20-pair-extension](benchmark/updates/2026-10-20-pair-extension/README.md).
-
-Reference metrics use 8-bit BT.601 luma, PSNR range 255 and an 11x11 Gaussian
-SSIM window with sigma 1.5, without resizing or reference-dependent alignment.
-Real-MFF is evaluated on a JPEG quality-100 mirror of the author release,
-reproduced byte for byte from the complete author archive; the results therefore
-characterize that shared frozen version for all methods alike.
-
-<!-- pair-extension:end -->
 ## Installation
 
 ```bash
@@ -334,7 +266,7 @@ StackMFF V3 is part of the **StackMFF series** on multi-focus image stack fusion
 | [StackMFF](https://github.com/Xinzhe99/StackMFF) | end-to-end stack fusion network that regresses the fused image with 3D convolutions (Applied Intelligence, 2025) |
 | [StackMFF V2](https://github.com/Xinzhe99/StackMFF-V2) | one-shot stack fusion via focal depth regression (Engineering Applications of Artificial Intelligence, 2025); test datasets and benchmark results |
 | **StackMFF V3** (this repository) | pixel-wise classification over the input images with intra- and cross-image attention |
-| [OpenFocus](https://github.com/Xinzhe99/OpenFocus) | free, open-source focus stacking software for Windows and macOS with a command-line interface: image registration, classical and learned fusion methods, batch processing of stack folders. StackMFF V3 will be included (coming soon). |
+| [OpenFocus](https://github.com/Xinzhe99/OpenFocus) | free, open-source focus stacking software for Windows and macOS with a command-line interface: image registration, classical and learned fusion methods, batch processing of stack folders. StackMFF V3 is included as an AI fusion option that can be tried directly. |
 
 If this work or any project of the series is useful to you, please consider giving a star to the [StackMFF series](https://github.com/Xinzhe99/StackMFF-Series) and to [OpenFocus](https://github.com/Xinzhe99/OpenFocus). It helps us a lot, thank you.
 

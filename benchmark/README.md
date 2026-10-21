@@ -1,51 +1,94 @@
-# Recomputing the reported comparisons
+# Benchmark data and how to use it
 
-The **current complete cohort** contains **32 baseline families / 35 settings, plus two proposed read-outs**: 37 methods/settings on all 206 scenes (7,622 primary measurements, 148 method/dataset cells).
+This directory holds every number behind the comparisons in the paper, plus the
+images they were computed from. You do not need to re-run anything to check a figure
+or a table: start with the CSV files below.
 
-- [Current SSIM/PSNR table](current/TABLES.md), [metric means and cohort-specific ranks](current/summary.csv), [per-scene records](current/per_image.csv), [method identifiers and venues](current/methods.json).
-- [All-scene SSIM differences](current/scene_ssim_gains.png), with [206 scene records](current/scene_ssim_gains.csv) and [selection/provenance metadata](current/scene_ssim_gains.json). The external comparator is fixed per dataset by its highest unrounded mean SSIM; every scene is included. Weighted fusion improves SSIM on 204 of 206 scenes against these fixed comparators.
-- [Current statistical comparisons](current/stats.md): paired Wilcoxon tests with Holm correction, Friedman ranks and Nemenyi critical differences. The Mobile Depth PSNR margin over GFF is not statistically significant.
-- [Baseline protocols](baseline_protocols.tex) document the source implementations, stack adaptations and runtime accommodations.
-- [Qualitative comparator selection](current/qualitative_method_selection.json) records the equal-dataset mean SSIM ranking for each selected category. The displayed set is GFF, DTCWT, MFIF-GAN, IFCNN (MAX), StackMFF V1/V2 and the proposed weighted output. CSNet has higher mean PSNR than MFIF-GAN; selecting by SSIM does not imply superiority on both metrics. IFCNN here uses the recorded sequential adaptation, although its generic implementation also accepts multiple inputs; a joint variant was not evaluated in these records.
-- `auxiliary/` retains corrected real-stack metrics, registration matrices, range checks, robustness records and exploratory downstream results. The downstream probe does not establish an advantage of the proposed model.
-- The current [confidence diagnostic](auxiliary/confidence_main_analysis.json) uses Motorcycle and keyboard; [export provenance](auxiliary/confidence_main_provenance.json) records the released weights and input/reference hashes. `auxiliary/confidence_analysis.json` retains the previous example set. Export current arrays with `python tools/save_conf.py --scenes "Middlebury/Motorcycle" "Mobile Depth/keyboard" --bench_root /path/to/benchmarks --out conf_maps.npz --device cpu`. The helper preserves float32 confidence and uses luma decoded from the rounded RGB output; these scene-specific correlations do not establish uncertainty calibration.
+## Two experiments
 
-The original [37-row table](TABLES.md), `summary.csv`, `per_image.csv` and `stats.*` remain as the **historical archive**. It includes 52 partial ZMFF/ReDiffuse outputs on Mobile Depth and Middlebury in addition to the 7,210 complete-cohort images. The [ReDiffuse update](updates/2026-10-20-rediffuse/README.md) now provides complete validated scores and hashes for all four cohorts; its complete 206-image RGB archive is now published. The [ZMFF update](updates/2026-10-20-zmff/README.md) also supplies all 206 validated scores and hashes; its full 206-image RGB archive is included in the consolidated release. The original archives and image manifests are retained with their existing hashes.
+The paper reports two separate experiments. They use different inputs and different
+metrics, so their numbers are never mixed.
 
+| | **Image-stack fusion** | **Two-input pair fusion** |
+|---|---|---|
+| Input | a stack of 11–100 images per scene | exactly two images |
+| Scenes | 206 | 863 |
+| Datasets | Mobile Depth, Middlebury, FlyingThings3D, Road-MF | Lytro, MFFW2, MFI-WHU, Real-MFF |
+| Methods | 37 configurations | the same 37 configurations |
+| Metrics | SSIM, PSNR against an all-in-focus reference; VIF, MI, NMI, $\mathrm{Q}^{AB/F}$, MEF-SSIM against the inputs | 8 source-based metrics; PSNR and SSIM where a reference exists |
+| Start here | `current/TABLES.md` | `../pair_extension/RESULTS.md` |
 
-## Image archives
+## The image-stack experiment
 
-The [v2.0 data release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.0) covers **7,442 benchmark method/scene entries** and **2,170 registered real-stack outputs**, alongside the checkpoint. The available image collection contains 7,416 non-ZMFF outputs and 26 historical ZMFF images. The current score cohort is larger: it includes all 206 ZMFF measurements, all of which ship in the consolidated release. The new ReDiffuse archive contains 206 RGB images. Its 26 overlapping historical scenes were originally archived as grayscale PNGs; their decoded evaluation pixels agree exactly. Separate extraction paths preserve both representations. [archives.json](archives.json) records archive SHA-256 values and, for large archives, verified 128 MiB part hashes. [image_manifest.csv](image_manifest.csv) retains the original image inventory; the [ReDiffuse image manifest](updates/2026-10-20-rediffuse/image_manifest.json) identifies the complete update. [real_image_manifest.csv](real_image_manifest.csv) identifies the registered real-stack outputs. Original inputs/references and third-party model weights are not included. Data conditions are in [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
+Everything lives under `current/`.
 
-From the repository root:
+| File | What it is |
+|---|---|
+| `TABLES.md` | the full 37-row comparison, one row per method, four benchmark columns |
+| `per_image.csv` | one row per method and scene: the metric vector for that scene |
+| `summary.csv` | per method and dataset: the mean of each metric and its rank |
+| `stats.md`, `stats.csv` | paired Wilcoxon tests with Holm correction, Friedman ranks, Nemenyi intervals |
+| `methods.json` | method identifiers, display names and publication venues |
+| `scene_ssim_gains.csv` | per-scene SSIM difference against the fixed external comparator |
+| `qualitative_method_selection.json` | which methods appear in the qualitative figures, and the ranking rule that picked them |
+
+A method appears in a summary only when every scene of that dataset is scored, so no
+row is ever ranked on a successful subset. `per_image.csv` uses `primary=True` to mark
+the evaluation the paper reports where a method has more than one legitimate reading
+(Helicon Focus, whose output is cropped and needs alignment).
+
+## The two-input experiment
+
+`../pair_extension/` holds the toolkit and `../pair_extension/RESULTS.md` holds the
+tables. Each of the 31,931 outputs has a record binding three hashes: the input
+files, the metric implementation, and the output bytes. `python
+../pair_extension/verify_release.py` rebuilds every table from those records and
+compares byte for byte; it prints `REPRODUCED` when they agree.
+
+## The images
+
+All released outputs and the checkpoint are in the single
+[v2.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.0).
+`archives.json` lists each archive with its size, SHA-256 and image count, grouped by
+experiment. The release's own `release_index.json` carries the same information.
 
 ```bash
-python tools/download_results.py --list
-python tools/download_results.py --help
+python tools/download_results.py --list                 # show the 18 groups
+python tools/download_results.py --groups ours stackmff # fetch and verify a selection
 ```
 
-Select only the groups needed for a comparison. The downloader resumes interrupted transfers, verifies parts and the assembled archive, and checks extraction paths. The [table reproduction bundle](../reproduction/README.md) also contains the numerical inputs and generators for robustness and ablations; images from every perturbation/training variant are outside the image-archive scope.
+The downloader resumes interrupted transfers and checks every part against the
+recorded hashes before extraction.
 
-## Protocol
+## Reproducing the evaluation
 
-The evaluator loads 8-bit grayscale through Pillow's BT.601 conversion, evaluates the full image, and computes Gaussian-window SSIM, PSNR, VIF, MI and NMI, plus the alternate 7×7 SSIM convention and two stack-based no-reference metrics. The six full-reference columns represent five metric families; two SSIM conventions are retained for comparison with earlier StackMFF tables. Every metric's reference and boundary rules are documented in `evaluation/metrics_lib.py`; MATLAB/Octave cross-validation is in `evaluation/xval/`.
-
-Pairwise methods fuse in natural numeric focal order. Helicon's cropped/rescaled outputs are aligned to the reference using the recorded ORB–RANSAC homography protocol; both raw and aligned rows are retained in `per_image.csv`, and `primary=True` identifies the paper's evaluation. Other comparison images are evaluated without registration to the reference. Real optical stacks use a separate input-only ECC affine registration, shared by all methods; the corrected composition is `W @ T_neighbor`. Their range audit uses a common per-channel envelope over Pillow and OpenCV decodings, tolerance two, with single-decoder sensitivity columns retained.
-
-The checkpoint, smoothing and inference scales were selected using these four public benchmarks. These results therefore do not constitute an independently held-out estimate of model-selection generalization.
-
-`config_paper.json` selects the 37 complete-cohort settings. `config_archive.json` retains the historical partial-coverage configuration. ZMFF has an explicit separate result root: wait for its full RGB release to recompute that row; the 26 historical images are not a substitute. In either configuration, an absent image in an expected cell is still an error. Failed cached records are retried, and summaries ignore obsolete methods outside the selected configuration. Use a fresh output directory when changing result images, metric code or library versions: successful cache entries are reused within a run and are not automatically invalidated by changes to source files.
-
-## Run
-
-Obtain the focal stacks and AiF references from the [StackMFF V2 benchmark](https://github.com/Xinzhe99/StackMFF-V2#-downloads), respecting the original [data conditions](../THIRD_PARTY_NOTICES.md). Extract the verified output archives into this repository, producing `results/<method>/<dataset>/<scene>.<ext>`. Run from the repository root:
+To recompute a metric rather than read a stored value, get the source benchmarks and
+run the evaluator from the repository root:
 
 ```bash
 python evaluation/run_eval.py run --config benchmark/config_paper.json \
   --gt_root /path/to/benchmarks --gt_subdir AiF \
   --stack_root /path/to/benchmarks --out_dir eval_out --workers 2
 python evaluation/run_eval.py summarize --config benchmark/config_paper.json --out_dir eval_out
-python evaluation/stats.py --dir eval_out --ref Ours_final_soft
 ```
 
-The frozen records in this folder are supplied so every mean and statistical comparison can be examined without rerunning an image metric. Exact last digits may depend on the library versions; archive image hashes identify the actual evaluated files. `current/summary.csv` ranks are recalculated over the current 36-row cohort. Rebuild it from the immutable historical measurements plus the validated update bundle with `python tools/build_current_benchmark.py`, then run `python evaluation/stats.py --dir benchmark/current --ref Ours_final_soft`.
+`config_paper.json` selects the 37 complete-cohort configurations;
+`config_archive.json` keeps the older partial-coverage set for provenance. Use a fresh
+`--out_dir` whenever the result images, metric code or library versions change, since
+cached records are reused within a run and are not invalidated automatically.
+
+## Scope and caveats
+
+* The checkpoint, smoothing sigma and inference scales were chosen using these four
+  benchmarks, so the scores are not an independently held-out estimate of
+  generalization.
+* GFF, DTCWT and the other classical baselines run in MATLAB, so their cost is not
+  comparable with the GPU timings; the efficiency table reports GPU methods only and
+  says so.
+* ZMFF is not bit-reproducible on this GPU stack: two runs of one scene with the same
+  seed differ in 63.7% of pixels. Its scores describe the released images.
+* Real-MFF is evaluated on a JPEG quality-100 mirror of the author release, reproduced
+  byte for byte from the author archive; all methods see the same frozen version.
+
+`historical/` keeps earlier snapshots for provenance. Their links point at releases
+that have since been consolidated and should not be used.
