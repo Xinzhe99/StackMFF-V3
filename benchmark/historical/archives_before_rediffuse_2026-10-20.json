@@ -265,5 +265,6 @@
     }
   ],
   "benchmark_images": 7262,
-  "real_images": 2170
+  "real_images": 2170,
+  "_note": "Historical snapshot retained for provenance only. These URLs pointed at releases that have since been consolidated; use ../archives.json, which targets the single v2.0 release."
 }
