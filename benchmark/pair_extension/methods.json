@@ -1,0 +1,228 @@
+{
+ "methods": [
+  {
+   "method": "GFF",
+   "label": "GFF",
+   "venue_citation": "TIP~\\cite{li2013image}",
+   "group": "Spatial domain"
+  },
+  {
+   "method": "IFM",
+   "label": "IFM",
+   "venue_citation": "Inf.\\ Fusion~\\cite{li2013matting}",
+   "group": "Spatial domain"
+  },
+  {
+   "method": "QB",
+   "label": "QB",
+   "venue_citation": "Inf.\\ Fusion~\\cite{bai2015quadtree}",
+   "group": "Spatial domain"
+  },
+  {
+   "method": "BFMF",
+   "label": "BFMF",
+   "venue_citation": "Inf.\\ Fusion~\\cite{zhang2017boundary}",
+   "group": "Spatial domain"
+  },
+  {
+   "method": "GFDF",
+   "label": "GFDF",
+   "venue_citation": "SPIC~\\cite{qiu2019guided}",
+   "group": "Spatial domain"
+  },
+  {
+   "method": "MGFF",
+   "label": "MGFF",
+   "venue_citation": "CSSP~\\cite{bavirisetti2019multiscale}",
+   "group": "Spatial domain"
+  },
+  {
+   "method": "CVT",
+   "label": "CVT",
+   "venue_citation": "Opt.\\ Express~\\cite{guo2012multifocus}",
+   "group": "Transform domain"
+  },
+  {
+   "method": "DWT",
+   "label": "DWT",
+   "venue_citation": "GMIP~\\cite{li1995multisensor}",
+   "group": "Transform domain"
+  },
+  {
+   "method": "DCT",
+   "label": "DCT",
+   "venue_citation": "CEE~\\cite{HAGHIGHAT2011789}",
+   "group": "Transform domain"
+  },
+  {
+   "method": "DTCWT",
+   "label": "DTCWT",
+   "venue_citation": "Inf.\\ Fusion~\\cite{lewis2007pixel}",
+   "group": "Transform domain"
+  },
+  {
+   "method": "NSCT",
+   "label": "NSCT",
+   "venue_citation": "ICIG~\\cite{yang2007image}",
+   "group": "Transform domain"
+  },
+  {
+   "method": "IFCNN",
+   "label": "IFCNN (MAX)",
+   "venue_citation": "Inf.\\ Fusion~\\cite{zhang2020ifcnn}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "U2Fusion",
+   "label": "U2Fusion",
+   "venue_citation": "TPAMI~\\cite{xu2020u2fusion}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "SDNet",
+   "label": "SDNet",
+   "venue_citation": "IJCV~\\cite{zhang2021sdnet}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "MFF-GAN",
+   "label": "MFF-GAN",
+   "venue_citation": "Inf.\\ Fusion~\\cite{zhang2021mff}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "SwinFusion",
+   "label": "SwinFusion",
+   "venue_citation": "JAS~\\cite{ma2022swinfusion}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "MUFusion",
+   "label": "MUFusion",
+   "venue_citation": "Inf.\\ Fusion~\\cite{cheng2023mufusion}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "SwinMFF",
+   "label": "SwinMFF",
+   "venue_citation": "Vis.\\ Comput.~\\cite{xie2024swinmff}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "DDBFusion",
+   "label": "DDBFusion",
+   "venue_citation": "Inf.\\ Fusion~\\cite{zhang2025ddbfusion}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "CCSR-Net",
+   "label": "CCSR-Net",
+   "venue_citation": "Inf.\\ Fusion~\\cite{ZHENG2025102974}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "MCCSR-Net",
+   "label": "MCCSR-Net",
+   "venue_citation": "Inf.\\ Fusion~\\cite{ZHENG2025102974}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "DeFusion",
+   "label": "DeFusion",
+   "venue_citation": "ECCV~\\cite{liang2022defusion}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "MFIF-GAN",
+   "label": "MFIF-GAN",
+   "venue_citation": "SPIC~\\cite{wang2021mfifgan}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "GIFNet",
+   "label": "GIFNet",
+   "venue_citation": "CVPR~\\cite{cheng2025gifnet}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "CSNet",
+   "label": "CSNet",
+   "venue_citation": "arXiv~\\cite{csnet2026}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "ZMFF",
+   "label": "ZMFF",
+   "venue_citation": "Inf.\\ Fusion~\\cite{hu2023zmff}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "ReDiffuse",
+   "label": "ReDiffuse",
+   "venue_citation": "arXiv~\\cite{rediffuse2026}",
+   "group": "Pairwise learning methods"
+  },
+  {
+   "method": "Helicon_A",
+   "label": "Helicon Focus (A)",
+   "venue_citation": "---",
+   "group": "Commercial software"
+  },
+  {
+   "method": "Helicon_B",
+   "label": "Helicon Focus (B)",
+   "venue_citation": "---",
+   "group": "Commercial software"
+  },
+  {
+   "method": "Helicon_C",
+   "label": "Helicon Focus (C)",
+   "venue_citation": "---",
+   "group": "Commercial software"
+  },
+  {
+   "method": "Zerene_DMap",
+   "label": "Zerene (DMap)",
+   "venue_citation": "---",
+   "group": "Commercial software"
+  },
+  {
+   "method": "Zerene_PMax",
+   "label": "Zerene (PMax)",
+   "venue_citation": "---",
+   "group": "Commercial software"
+  },
+  {
+   "method": "StackMFF",
+   "label": "StackMFF",
+   "venue_citation": "Appl.\\ Intell.~\\cite{xie2025stackmff}",
+   "group": "Native stack"
+  },
+  {
+   "method": "StackMFF_V2",
+   "label": "StackMFF V2",
+   "venue_citation": "EAAI~\\cite{xie2025stackmffv2}",
+   "group": "Native stack"
+  },
+  {
+   "method": "VAEEDOF",
+   "label": "VAEEDOF",
+   "venue_citation": "arXiv~\\cite{vaeedof2025}",
+   "group": "Native stack"
+  },
+  {
+   "method": "Ours_hard",
+   "label": "Ours (hard selection)",
+   "venue_citation": "---",
+   "group": "Native stack"
+  },
+  {
+   "method": "Ours_soft",
+   "label": "Ours (weighted)",
+   "venue_citation": "---",
+   "group": "Native stack"
+  }
+ ],
+ "paused": [],
+ "count": 37
+}

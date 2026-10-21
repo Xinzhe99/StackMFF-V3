@@ -1,0 +1,297 @@
+{
+  "generated": "2026-10-19",
+  "scope": "Eight fixed source-based metrics; equivalent compiled FMI and memoized QP; explicitly corrected Qabf equality branches and stable local variances for QY.",
+  "wrapper": "work/pair_eval_2026-10-19/metrics/evaluate_pair_metrics.m",
+  "input_contract": "A,B,F uint8 (RGB or gray), same size. ONE common grayscale conversion: MATLAB rgb2gray (ITU-R BT.601) on uint8, then double, intensity 0..255. This overrides vendor per-channel handling on purpose, per lead instruction.",
+  "vendor_sources": [
+    {
+      "repo": "https://github.com/xingchenzhang/MEFB",
+      "commit": "9e185bf88de280b12a2d9a2ff12d66e40bc1ff91",
+      "fetched": "raw.githubusercontent.com, files copied verbatim to metrics/vendor/MEFB_metrics/",
+      "role": "primary reference distribution (its metrics/ files themselves vendor imageFusionMetrics)"
+    },
+    {
+      "repo": "https://github.com/zhengliu6699/imageFusionMetrics",
+      "commit": "d6f7f1a0c0a13e7d19bc1e8e4d4f3ad51f439273",
+      "fetched": "raw.githubusercontent.com, copied to metrics/vendor/imageFusionMetrics/",
+      "role": "original author code (cross-reference for NMI/Qabf/QCB/QY/QP provenance)"
+    }
+  ],
+  "metrics": [
+    {
+      "name": "NMI",
+      "paper": "Hossny et al., 'Comments on information measure for performance of image fusion', Electron. Lett. 44(18), 2008",
+      "file": "vendor/MEFB_metrics/metricsNMI.m",
+      "origin": "imageFusionMetrics metricMI.m, adapted by MEFB authors",
+      "direction": "higher",
+      "bins": "joint histogram N=256",
+      "deps": "none"
+    },
+    {
+      "name": "FMI_w",
+      "paper": "Haghighat et al. 2011 (FMI), Haghighat & Razian 2014 (Fast-FMI); wavelet 'dmey' feature variant",
+      "file": "vendor/MEFB_metrics/metricsFMI.m (subfunction FMI)",
+      "wrapper": "metricsFMI_wavelet.m: complete vendor file; interface selects wavelet and window 3; all subfunctions retained unchanged.",
+      "direction": "higher",
+      "deps": "Wavelet Toolbox (dwt2 'dmey')",
+      "window": "3 by 3; upstream implementation converts width3 to radius1 internally",
+      "production": "metricsFMI_wavelet_mex.m + fmi_windows_mex.cpp",
+      "validation": "mex_validation.json",
+      "fallback_reference": "metricsFMI_wavelet_vectorized.m (equivalent, slower)"
+    },
+    {
+      "name": "Qabf",
+      "paper": "Xydeas & Petrovic, 'Objective image fusion performance measure', Electron. Lett. 36(4), 2000",
+      "file": "metricsQabf_corrected.m",
+      "origin": "MEFB metricsQabf.m (Richang Hong distribution); not identical to Zheng Liu metricXydeas.m, which uses different constants and aggregation.",
+      "direction": "higher",
+      "note": "Two equality branches corrected: relative gradient strength is1 when input and fused gradients agree, not the unnormalized fused gradient. All methods use this correction; vendor original retained separately. Formula and constants follow Xydeas-Petrovic.",
+      "deps": "none"
+    },
+    {
+      "name": "QP",
+      "paper": "Zhao, Laganiere and Liu, Performance assessment of combinative pixel-level image fusion based on an absolute feature measurement, Int. J. Innov. Comput. Inf. Control3(6A),2007,1433\u20131447",
+      "file": "vendor/MEFB_metrics/metricsQp.m + vendor/MEFB_metrics/myphasecong3.m",
+      "direction": "higher",
+      "deps": "none (FFT-based, self-contained)",
+      "production": "metricsQp_cached.m",
+      "validation": "qp_cache_validation.json"
+    },
+    {
+      "name": "QY",
+      "paper": "Yang et al. SSIM-based fusion metric, as distributed in MEFB/imageFusionMetrics",
+      "file": "vendor/MEFB_metrics/metricsQy.m",
+      "direction": "higher",
+      "deps": "none",
+      "production": "metricsQy_stable.m",
+      "validation": "qy_independent_crosscheck.json",
+      "note": "The upstream code returns Inf on GFF/Lytro3 due to cancellation in local variances. Local variance residuals within64 ulps of the squared mean are zeroed, covariance is restricted to its Cauchy bound, and the author formula and exclusion of zero-joint-source-variance windows are retained. Same repair for every method; all pre-repair scores archived and recomputed."
+    },
+    {
+      "name": "QCB",
+      "paper": "Chen & Blum, 'A new automated quality assessment algorithm for image fusion', Image and Vision Computing 27, 2009",
+      "file": "vendor/MEFB_metrics/metricsQcb.m",
+      "direction": "higher",
+      "deps": "none"
+    },
+    {
+      "name": "QCV",
+      "paper": "Chen & Varshney, 'A human perception inspired quality metric for image fusion based on regional information', Inf. Fusion 8(2), 2007",
+      "file": "vendor/MEFB_metrics/metricsQcv.m",
+      "direction": "LOWER is better",
+      "deps": "none"
+    },
+    {
+      "name": "VIFF",
+      "paper": "Han et al., 'A new image fusion performance metric based on visual information fidelity', Inf. Fusion 14(2), 2013",
+      "file": "vendor/MEFB_metrics/metricsVIF.m",
+      "direction": "higher",
+      "note": "fusion-specific VIFF (source vs fused), NOT ordinary two-image VIF",
+      "deps": "none"
+    }
+  ],
+  "pending": [],
+  "local_code_not_reused": "work/eval/xval/matlab/Qabf.m and work/eval/metrics_lib.py were inspected only; no metric code imported from them.",
+  "file_hashes": {
+    "build_fmi_mex.m": "7c2d59667ebfd64942b0bcc490cb94241b8a59b89d5376bef17bf66233c3e6d4",
+    "diagnose_gff_lytro3.m": "cbff2dc55e2ee4b446a4b70f601c4cb25ae6dce0ffc17a6ebccf3d007a856134",
+    "evaluate_pair_metrics.m": "edab2e4df469e934d143febe62a39879ce057ac59e19ffc9c0bde34afd553344",
+    "fmi_windows_mex.cpp": "0a23d3a2da935d0d1fbdbd9619c78068b0b3d271ea2bdb85bd06cbf529d8afb8",
+    "fmi_windows_mex.mexw64": "0bbfd37b2af92cc1281befedc68d7fc79e4271f4d6c879607d55d4c6a4ac73cf",
+    "metricsFMI_wavelet.m": "9e7883b198d6d4977ce4d42d13ba6fefc54dab637941ee9af116f325e2ebdbe5",
+    "metricsFMI_wavelet_mex.m": "2e501e5461d9335fe7ad1966c314d25d4168ceb9f84fd5707d8345d42eedd8e8",
+    "metricsFMI_wavelet_vectorized.m": "d9412ae88272d9370aab05595f3e09c183e5d815bc02ca14f0bfc9b5d0a4a0f5",
+    "metricsQabf_corrected.m": "3555a77bd287ba05c37b943222a6005b800334fad00f834415b093ca44bf6d94",
+    "metricsQp_cached.m": "735a8c96e6a840a43a849140590f844110befaee3663d440e86eb965263d7f1c",
+    "metricsQy_stable.m": "554ea19ae2edeb8291e6b4660d8eb58f4ed23d828afd668af4394fd2f7d0220b",
+    "run_metric_worker.m": "60eb6b46ca035453af02e08e7c3d723eb39478889d3abae2380b974f4e9d5f59",
+    "smoke_test_evaluate_pair_metrics.m": "8e57b91a8f4b86d182165224f27c69381099837490afe1f0ae0231e35abf7782",
+    "validate_cached_qp.m": "2612790d646f4118005c26275cbd62fb6f69b34b571a42ed5628493e834ee3fd",
+    "validate_mex_fmi.m": "4885057cecf6412c3abf31fbec5eb59b7c404e6f0655326a07ca4fe57731bd0b",
+    "validate_real_case.m": "72feb6df49b4b58ebd130d04761f73830eaae1dae9ae911f87cb517cbb463fd1",
+    "validate_stable_qy.m": "b63c9a5aaf1601a74d822d06c53535614b52f58a48c6179d0946e9fbc75c9452",
+    "validate_vectorized_fmi.m": "a1036b7a0fd37298b2763e43a6ab452fd6f23f70b10c0534f6ea623ff3b66e5a",
+    "vendor/imageFusionMetrics/fusionAssess.m": "c9f8a05ed2ba905655e643080fc245c60fad5f95decfc3b8107843dd08095653",
+    "vendor/imageFusionMetrics/metricChenBlum.m": "cbf417bd43b4ba35018478f4c9f79bd6c75599b6371a3a9c0bae3ca0f44fecaa",
+    "vendor/imageFusionMetrics/metricMI.m": "219d1c6dc1eefa91f5b23f664d1deb75b9de55a98b9dc3097417f056b5650def",
+    "vendor/imageFusionMetrics/metricXydeas.m": "27ada3648b8c1cce5e24ca7215ed562ab579a42b4b282794975ec8c1f4951daa",
+    "vendor/imageFusionMetrics/metricYang.m": "c644bccb8042df116f0c31fa5d206981825db4b3455e5062885af7b81f06cc27",
+    "vendor/imageFusionMetrics/mutual_info.m": "d0cdccfb247afa45882dcb7c9b2d3db6d014ff764cdc2b032a7829ec1ef3e9eb",
+    "vendor/imageFusionMetrics/myphasecong3.m": "3bef2844ea3f51ec6a81ef0367440289ecfe3544ecbb6b5a5f9190d4ca2d228a",
+    "vendor/imageFusionMetrics/normalize1.m": "748f8a3ff96c4099517d0a77d71f496f5120c5522d2956e17db1d06a03e79ad0",
+    "vendor/MEFB_metrics/compute_metrics.m": "d09bab9f392983b3d9468c08bb870d1c0c3ce20c4395246e2adec8ba6f380483",
+    "vendor/MEFB_metrics/metricsFMI.m": "8465764b4bc8f8c18b1f5bfc87954387f4745dac4f169d16c6e89a5ee1828a91",
+    "vendor/MEFB_metrics/metricsNMI.m": "ee07a76e324a9dd3d6e108e22f3539352613e0e5b4fbe092d0c3309a54ba3cd1",
+    "vendor/MEFB_metrics/metricsQabf.m": "81ccc12b9a6b95f8d8e76b14a4671d1c7b72b5013d9b214d693f6ac8b066ee52",
+    "vendor/MEFB_metrics/metricsQcb.m": "d4d273d12571ff7ecada9611bb4a9d1f41f82f9ae5a6485684d2f71a17826b63",
+    "vendor/MEFB_metrics/metricsQcv.m": "c8df055c0c29c78a4338fe437185ee56cb218e1b1776061dc4c16010bc3efbb4",
+    "vendor/MEFB_metrics/metricsQp.m": "962e1079775d41a9516eccc6cdb5f328bd2950a8d32359231643a3643ea927fe",
+    "vendor/MEFB_metrics/metricsQy.m": "7248b955a36a7091944d983b89aa9f2c7e1960e34c23c104ac94288b9829183a",
+    "vendor/MEFB_metrics/metricsVIF.m": "d25d1ac912ab864ad03d110dafc54c3014a0bb559e4f905e23a7396da1e0acb4",
+    "vendor/MEFB_metrics/mutual_info.m": "29d5f560b7d3a8a998e84ac8b64aa5b1a97552c52ee4874f86075fbc4ef90b08",
+    "vendor/MEFB_metrics/myphasecong3.m": "8c3ee79937b4c39d07782937515ddd14e1ec498830092988e3f7603c9a259bcb",
+    "vendor/MEFB_metrics/normalize1.m": "f10d7e093a218a3d213194646a9562c5bb8e1421445f21c16fa9f42a496f6646"
+  },
+  "validation": {
+    "FMI": "9 reference comparisons, including full Lytro/MFI-WHU/RealMFF images; maximum absolute error 0",
+    "QP": "3 full-image exact-equality checks with original implementation; source-feature caching only",
+    "Qabf": "Independent Python/MATLAB cross-check: difference 2.22e-16 on real pair; see qabf_crosscheck.json",
+    "all_eight": "Synthetic64x64 smoke and a full Lytro pair; all finite; see smoke_test_results.csv and validation_real.json",
+    "FMI_compiled": "9 same reference cases; maximum error 2.5424107263916085e-14",
+    "QY_stable": "5 full-image MATLAB vs independent NumPy/SciPy comparisons; maximum error 1.6153745008296028e-13"
+  },
+  "code_files": [
+    {
+      "path": "build_fmi_mex.m",
+      "sha256": "7c2d59667ebfd64942b0bcc490cb94241b8a59b89d5376bef17bf66233c3e6d4"
+    },
+    {
+      "path": "diagnose_gff_lytro3.m",
+      "sha256": "cbff2dc55e2ee4b446a4b70f601c4cb25ae6dce0ffc17a6ebccf3d007a856134"
+    },
+    {
+      "path": "evaluate_pair_metrics.m",
+      "sha256": "edab2e4df469e934d143febe62a39879ce057ac59e19ffc9c0bde34afd553344"
+    },
+    {
+      "path": "fmi_windows_mex.cpp",
+      "sha256": "0a23d3a2da935d0d1fbdbd9619c78068b0b3d271ea2bdb85bd06cbf529d8afb8"
+    },
+    {
+      "path": "fmi_windows_mex.mexw64",
+      "sha256": "0bbfd37b2af92cc1281befedc68d7fc79e4271f4d6c879607d55d4c6a4ac73cf"
+    },
+    {
+      "path": "metricsFMI_wavelet.m",
+      "sha256": "9e7883b198d6d4977ce4d42d13ba6fefc54dab637941ee9af116f325e2ebdbe5"
+    },
+    {
+      "path": "metricsFMI_wavelet_mex.m",
+      "sha256": "2e501e5461d9335fe7ad1966c314d25d4168ceb9f84fd5707d8345d42eedd8e8"
+    },
+    {
+      "path": "metricsFMI_wavelet_vectorized.m",
+      "sha256": "d9412ae88272d9370aab05595f3e09c183e5d815bc02ca14f0bfc9b5d0a4a0f5"
+    },
+    {
+      "path": "metricsQabf_corrected.m",
+      "sha256": "3555a77bd287ba05c37b943222a6005b800334fad00f834415b093ca44bf6d94"
+    },
+    {
+      "path": "metricsQp_cached.m",
+      "sha256": "735a8c96e6a840a43a849140590f844110befaee3663d440e86eb965263d7f1c"
+    },
+    {
+      "path": "metricsQy_stable.m",
+      "sha256": "554ea19ae2edeb8291e6b4660d8eb58f4ed23d828afd668af4394fd2f7d0220b"
+    },
+    {
+      "path": "run_metric_worker.m",
+      "sha256": "60eb6b46ca035453af02e08e7c3d723eb39478889d3abae2380b974f4e9d5f59"
+    },
+    {
+      "path": "smoke_test_evaluate_pair_metrics.m",
+      "sha256": "8e57b91a8f4b86d182165224f27c69381099837490afe1f0ae0231e35abf7782"
+    },
+    {
+      "path": "validate_cached_qp.m",
+      "sha256": "2612790d646f4118005c26275cbd62fb6f69b34b571a42ed5628493e834ee3fd"
+    },
+    {
+      "path": "validate_mex_fmi.m",
+      "sha256": "4885057cecf6412c3abf31fbec5eb59b7c404e6f0655326a07ca4fe57731bd0b"
+    },
+    {
+      "path": "validate_real_case.m",
+      "sha256": "72feb6df49b4b58ebd130d04761f73830eaae1dae9ae911f87cb517cbb463fd1"
+    },
+    {
+      "path": "validate_stable_qy.m",
+      "sha256": "b63c9a5aaf1601a74d822d06c53535614b52f58a48c6179d0946e9fbc75c9452"
+    },
+    {
+      "path": "validate_vectorized_fmi.m",
+      "sha256": "a1036b7a0fd37298b2763e43a6ab452fd6f23f70b10c0534f6ea623ff3b66e5a"
+    },
+    {
+      "path": "vendor/imageFusionMetrics/fusionAssess.m",
+      "sha256": "c9f8a05ed2ba905655e643080fc245c60fad5f95decfc3b8107843dd08095653"
+    },
+    {
+      "path": "vendor/imageFusionMetrics/metricChenBlum.m",
+      "sha256": "cbf417bd43b4ba35018478f4c9f79bd6c75599b6371a3a9c0bae3ca0f44fecaa"
+    },
+    {
+      "path": "vendor/imageFusionMetrics/metricMI.m",
+      "sha256": "219d1c6dc1eefa91f5b23f664d1deb75b9de55a98b9dc3097417f056b5650def"
+    },
+    {
+      "path": "vendor/imageFusionMetrics/metricXydeas.m",
+      "sha256": "27ada3648b8c1cce5e24ca7215ed562ab579a42b4b282794975ec8c1f4951daa"
+    },
+    {
+      "path": "vendor/imageFusionMetrics/metricYang.m",
+      "sha256": "c644bccb8042df116f0c31fa5d206981825db4b3455e5062885af7b81f06cc27"
+    },
+    {
+      "path": "vendor/imageFusionMetrics/mutual_info.m",
+      "sha256": "d0cdccfb247afa45882dcb7c9b2d3db6d014ff764cdc2b032a7829ec1ef3e9eb"
+    },
+    {
+      "path": "vendor/imageFusionMetrics/myphasecong3.m",
+      "sha256": "3bef2844ea3f51ec6a81ef0367440289ecfe3544ecbb6b5a5f9190d4ca2d228a"
+    },
+    {
+      "path": "vendor/imageFusionMetrics/normalize1.m",
+      "sha256": "748f8a3ff96c4099517d0a77d71f496f5120c5522d2956e17db1d06a03e79ad0"
+    },
+    {
+      "path": "vendor/MEFB_metrics/compute_metrics.m",
+      "sha256": "d09bab9f392983b3d9468c08bb870d1c0c3ce20c4395246e2adec8ba6f380483"
+    },
+    {
+      "path": "vendor/MEFB_metrics/metricsFMI.m",
+      "sha256": "8465764b4bc8f8c18b1f5bfc87954387f4745dac4f169d16c6e89a5ee1828a91"
+    },
+    {
+      "path": "vendor/MEFB_metrics/metricsNMI.m",
+      "sha256": "ee07a76e324a9dd3d6e108e22f3539352613e0e5b4fbe092d0c3309a54ba3cd1"
+    },
+    {
+      "path": "vendor/MEFB_metrics/metricsQabf.m",
+      "sha256": "81ccc12b9a6b95f8d8e76b14a4671d1c7b72b5013d9b214d693f6ac8b066ee52"
+    },
+    {
+      "path": "vendor/MEFB_metrics/metricsQcb.m",
+      "sha256": "d4d273d12571ff7ecada9611bb4a9d1f41f82f9ae5a6485684d2f71a17826b63"
+    },
+    {
+      "path": "vendor/MEFB_metrics/metricsQcv.m",
+      "sha256": "c8df055c0c29c78a4338fe437185ee56cb218e1b1776061dc4c16010bc3efbb4"
+    },
+    {
+      "path": "vendor/MEFB_metrics/metricsQp.m",
+      "sha256": "962e1079775d41a9516eccc6cdb5f328bd2950a8d32359231643a3643ea927fe"
+    },
+    {
+      "path": "vendor/MEFB_metrics/metricsQy.m",
+      "sha256": "7248b955a36a7091944d983b89aa9f2c7e1960e34c23c104ac94288b9829183a"
+    },
+    {
+      "path": "vendor/MEFB_metrics/metricsVIF.m",
+      "sha256": "d25d1ac912ab864ad03d110dafc54c3014a0bb559e4f905e23a7396da1e0acb4"
+    },
+    {
+      "path": "vendor/MEFB_metrics/mutual_info.m",
+      "sha256": "29d5f560b7d3a8a998e84ac8b64aa5b1a97552c52ee4874f86075fbc4ef90b08"
+    },
+    {
+      "path": "vendor/MEFB_metrics/myphasecong3.m",
+      "sha256": "8c3ee79937b4c39d07782937515ddd14e1ec498830092988e3f7603c9a259bcb"
+    },
+    {
+      "path": "vendor/MEFB_metrics/normalize1.m",
+      "sha256": "f10d7e093a218a3d213194646a9562c5bb8e1421445f21c16fa9f42a496f6646"
+    }
+  ]
+}

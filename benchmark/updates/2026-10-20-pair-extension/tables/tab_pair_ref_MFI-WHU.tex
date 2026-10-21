@@ -1,0 +1,55 @@
+\begin{table}[!htbp]
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}\renewcommand{\arraystretch}{0.95}
+\caption{Two-input fusion on MFI-WHU (120 pairs) against the per-scene ground truth. PSNR and SSIM are means over the complete dataset at native resolution; pink and blue mark the best and second-best unrounded means.}
+\label{tab:pair_ref_mfiwhu}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+Method & Venue & PSNR $\uparrow$ & SSIM $\uparrow$ \\
+\midrule
+GFF & TIP~\cite{li2013image} & 38.02 & 0.9957 \\
+IFM & Inf.\ Fusion~\cite{li2013matting} & 36.60 & 0.9905 \\
+QB & Inf.\ Fusion~\cite{bai2015quadtree} & 38.04 & 0.9955 \\
+BFMF & Inf.\ Fusion~\cite{zhang2017boundary} & 36.88 & 0.9889 \\
+GFDF & SPIC~\cite{qiu2019guided} & 37.56 & 0.9963 \\
+MGFF & CSSP~\cite{bavirisetti2019multiscale} & 31.04 & 0.9637 \\
+\addlinespace[2pt]
+CVT & Opt.\ Express~\cite{guo2012multifocus} & 35.41 & 0.9877 \\
+DWT & GMIP~\cite{li1995multisensor} & 31.76 & 0.9704 \\
+DCT & CEE~\cite{HAGHIGHAT2011789} & 27.52 & 0.9519 \\
+DTCWT & Inf.\ Fusion~\cite{lewis2007pixel} & 34.53 & 0.9897 \\
+NSCT & ICIG~\cite{yang2007image} & 34.72 & 0.9910 \\
+\addlinespace[2pt]
+IFCNN (MAX) & Inf.\ Fusion~\cite{zhang2020ifcnn} & 37.13 & 0.9910 \\
+U2Fusion & TPAMI~\cite{xu2020u2fusion} & 24.18 & 0.9248 \\
+SDNet & IJCV~\cite{zhang2021sdnet} & 35.34 & 0.9886 \\
+MFF-GAN & Inf.\ Fusion~\cite{zhang2021mff} & 31.76 & 0.9771 \\
+SwinFusion & JAS~\cite{ma2022swinfusion} & 31.58 & 0.9647 \\
+MUFusion & Inf.\ Fusion~\cite{cheng2023mufusion} & 26.96 & 0.9488 \\
+SwinMFF & Vis.\ Comput.~\cite{xie2024swinmff} & 25.80 & 0.9511 \\
+DDBFusion & Inf.\ Fusion~\cite{zhang2025ddbfusion} & 28.45 & 0.9144 \\
+CCSR-Net & Inf.\ Fusion~\cite{ZHENG2025102974} & \second{38.52} & 0.9923 \\
+MCCSR-Net & Inf.\ Fusion~\cite{ZHENG2025102974} & \best{40.95} & 0.9968 \\
+DeFusion & ECCV~\cite{liang2022defusion} & 28.10 & 0.8785 \\
+MFIF-GAN & SPIC~\cite{wang2021mfifgan} & 37.01 & 0.9972 \\
+GIFNet & CVPR~\cite{cheng2025gifnet} & 21.18 & 0.8648 \\
+CSNet & arXiv~\cite{csnet2026} & 38.40 & 0.9960 \\
+ZMFF & Inf.\ Fusion~\cite{hu2023zmff} & 25.31 & 0.9380 \\
+ReDiffuse & arXiv~\cite{rediffuse2026} & 31.22 & 0.9911 \\
+\addlinespace[2pt]
+Helicon Focus (A) & --- & 34.11 & 0.9946 \\
+Helicon Focus (B) & --- & 34.73 & 0.9955 \\
+Helicon Focus (C) & --- & 34.73 & 0.9962 \\
+Zerene (DMap) & --- & 37.12 & 0.9861 \\
+Zerene (PMax) & --- & 34.93 & 0.9931 \\
+\addlinespace[2pt]
+StackMFF & Appl.\ Intell.~\cite{xie2025stackmff} & 29.42 & 0.9404 \\
+StackMFF V2 & EAAI~\cite{xie2025stackmffv2} & 36.36 & 0.9951 \\
+VAEEDOF & arXiv~\cite{vaeedof2025} & 25.95 & 0.7964 \\
+Ours (hard selection) & --- & 34.90 & \second{0.9975} \\
+Ours (weighted) & --- & 35.52 & \best{0.9978} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

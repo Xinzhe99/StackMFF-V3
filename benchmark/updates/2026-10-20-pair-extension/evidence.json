@@ -1,0 +1,29 @@
+{
+  "manifest_sha256": "51d3561a700f601a479b0d961be115de1e64306254caadc507bab20534a63e32",
+  "metric_provenance_sha256": "17330ac120baa225061f837e3b600b2de6a1da25482872f853c6ad1169a8e51d",
+  "pairs": 863,
+  "expected_per_dataset": {
+    "Lytro": 20,
+    "MFFW": 13,
+    "MFI-WHU": 120,
+    "RealMFF": 710
+  },
+  "scored_records": 31931,
+  "complete_configurations": 148,
+  "active_configurations": 37,
+  "commercial_outputs": {
+    "Helicon_A": 863,
+    "Helicon_B": 863,
+    "Helicon_C": 863,
+    "Zerene_PMax": 863,
+    "Zerene_DMap": 863
+  },
+  "datasets_with_tables": [
+    "Lytro",
+    "MFFW",
+    "MFI-WHU",
+    "RealMFF"
+  ],
+  "protocol": "PROTOCOL.md (scope revision 4)",
+  "metric_implementations": "work/pair_eval_2026-10-19/metrics, validated in metrics/mex_validation.json and work/audit_codex/status_2026-10-20_2110/README.md"
+}
