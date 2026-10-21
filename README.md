@@ -309,7 +309,7 @@ coverage tables and the LaTeX tables are in
 | DWT | 36.74 | 0.9723 |
 | MGFF | 36.72 | 0.9776 |
 | IFM | 36.42 | 0.9780 |
-| ZMFF | 36.29 | 0.9756 |
+| ZMFF | 36.28 | 0.9756 |
 | SwinFusion | 34.92 | 0.9773 |
 | MFF-GAN | 34.56 | 0.9707 |
 | DDBFusion | 34.00 | 0.9692 |
