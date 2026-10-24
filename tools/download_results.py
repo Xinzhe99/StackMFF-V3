@@ -47,6 +47,8 @@ def fetch(record, cache):
 
 def obtain(record, cache):
     if 'download' in record:return fetch(record['download'],cache)
+    if record.get('url') and not record.get('parts'):return fetch(record,cache)
+    if not record.get('parts'):raise ValueError('Archive record has neither a url nor parts: '+str(record.get('name')))
     dest=cache/record['name']
     if dest.exists():
         if dest.stat().st_size==record['size'] and sha256(dest)==record['sha256']:return dest

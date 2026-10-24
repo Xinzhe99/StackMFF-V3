@@ -39,3 +39,33 @@ def test_rejects_corrupt_cached_part(tmp_path):
     (tmp_path/'part').write_bytes(b'changed')
     with pytest.raises(ValueError,match='Cached file differs'):
         D.fetch(dict(name='part',size=8,sha256='0'*64,url='https://invalid.example/unused'),tmp_path)
+
+def test_downloads_single_url_archive_record(tmp_path):
+    # The consolidated index lists whole-asset downloads (url, parts: []) rather than
+    # split parts; those records must still be fetched and verified.
+    import threading
+    from functools import partial
+    from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+    source = tmp_path / 'served.tar'
+    archive(source, [('results/Method/Set/scene.png', b'single url bytes')])
+    data = source.read_bytes()
+    handler = partial(SimpleHTTPRequestHandler, directory=str(tmp_path))
+    server = ThreadingHTTPServer(('127.0.0.1', 0), handler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        cache = tmp_path / 'cache'; cache.mkdir()
+        record = dict(name='served.tar', size=len(data),
+                      sha256=hashlib.sha256(data).hexdigest(),
+                      url=f'http://127.0.0.1:{server.server_port}/served.tar', parts=[])
+        got = D.obtain(record, cache)
+        assert got.read_bytes() == data
+        dest = tmp_path / 'dest'; D.extract(got, dest)
+        assert (dest / 'results/Method/Set/scene.png').read_bytes() == b'single url bytes'
+    finally:
+        server.shutdown(); server.server_close(); thread.join(timeout=5)
+
+
+def test_rejects_record_without_url_or_parts(tmp_path):
+    with pytest.raises(ValueError, match='neither a url nor parts'):
+        D.obtain(dict(name='empty.tar', size=0, sha256='0' * 64, parts=[]), tmp_path)
