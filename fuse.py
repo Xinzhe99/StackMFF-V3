@@ -27,7 +27,7 @@ sys.path.insert(0, HERE)
 from stackmff_v3.model_io import DEFAULT_WEIGHTS, load_checkpoint  # noqa: E402
 from stackmff_v3.network import smooth_probs  # noqa: E402
 
-WEIGHTS_URL = 'https://github.com/Xinzhe99/StackMFF-V3/releases/download/v1.0/stackmff_v3_final.pth'
+WEIGHTS_URL = 'https://github.com/Xinzhe99/StackMFF-V3/releases/download/v2.0/stackmff_v3_final.pth'
 WEIGHTS_SHA256 = '39b2ea3738e8fea1676c379238d6be81a87988fc9952dbd6ac3825d5d7249f46'
 EXTS = ('.png', '.jpg', '.jpeg', '.bmp', '.tif', '.tiff', '.webp')
 
