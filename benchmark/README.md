@@ -54,7 +54,7 @@ experiment. The release's own `release_index.json` carries the same information.
 
 ```bash
 python tools/download_results.py --list                 # show the 18 groups
-python tools/download_results.py --groups ours stackmff # fetch and verify a selection
+python tools/download_results.py --groups ours zmff   # fetch and verify a selection
 ```
 
 The downloader resumes interrupted transfers and checks every part against the

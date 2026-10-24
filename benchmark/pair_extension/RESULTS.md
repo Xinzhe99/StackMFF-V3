@@ -17,7 +17,7 @@ Eight source-based metrics are reported; `QCV` is minimized and the rest are
 maximized. A dataset appears here only when all 37 configurations are complete
 for it, so no row is ever ranked on a successful subset. Per-image records,
 coverage tables and the LaTeX tables are in
-[benchmark/updates/2026-10-20-pair-extension](benchmark/updates/2026-10-20-pair-extension/README.md).
+[benchmark/updates/2026-10-20-pair-extension](../updates/2026-10-20-pair-extension/README.md).
 
 **Lytro**
 
