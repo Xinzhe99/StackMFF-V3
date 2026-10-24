@@ -37,6 +37,13 @@ row is ever ranked on a successful subset. `per_image.csv` uses `primary=True` t
 the evaluation the paper reports where a method has more than one legitimate reading
 (Helicon Focus, whose output is cropped and needs alignment).
 
+The file therefore has 8,242 rows rather than 7,622. The 620 extra rows are all
+`primary=False`: 618 record the raw, unaligned reading of the three Helicon Focus
+settings next to their aligned `primary=True` row, and one each records an alternative
+reading of a single scene for CCSR-Net (FlyingThings3D `0000030`) and DeFusion
+(Road-MF `25`). Filter on `primary=True` to recover the 37 × 206 = 7,622 evaluations
+behind the tables.
+
 ## The two-input experiment
 
 `../pair_extension/` holds the toolkit and `../pair_extension/RESULTS.md` holds the
