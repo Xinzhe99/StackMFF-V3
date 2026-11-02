@@ -11,7 +11,7 @@
 [![License: Source-Available](https://img.shields.io/badge/License-Source--Available%20%28research%20use%29-orange.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1%2B-EE4C2C.svg?logo=pytorch&logoColor=white)](https://pytorch.org/)
-[![Weights](https://img.shields.io/badge/Weights-v2.0-244A68.svg)](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.0)
+[![Weights](https://img.shields.io/badge/Weights-v2.1-244A68.svg)](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.1)
 [![GitHub stars](https://img.shields.io/github/stars/Xinzhe99/StackMFF-V3?cacheSeconds=3600&style=social)](https://github.com/Xinzhe99/StackMFF-V3/stargazers)
 
 Official PyTorch implementation of *StackMFF V3: Order-Invariant Focus Stacking via Pixel-Wise Source Classification*.
@@ -81,7 +81,8 @@ the complete per-scene numbers, statistics and tables are in
 | [`benchmark/current/per_image.csv`](benchmark/current/per_image.csv) | one row per method and scene, with the metric vector |
 | [`benchmark/current/stats.md`](benchmark/current/stats.md) | paired Wilcoxon with Holm correction, Friedman ranks, Nemenyi intervals |
 | [`benchmark/pair_extension/RESULTS.md`](benchmark/pair_extension/RESULTS.md) | the 863-pair two-input experiment, eight source metrics and PSNR/SSIM |
-| [v2.0 data release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.0) | every released output image and the checkpoint |
+| [v2.0 data release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.0) | every released output image |
+| [v2.1 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.1) | the checkpoint, redistributed under the StackMFF V3 License |
 
 ## Installation
 
@@ -140,9 +141,9 @@ fused_hard = fuse(P_hard, imgs, hard=True)
 
 | File | Description | Size | SHA-256 |
 |---|---|---|---|
-| [stackmff_v3_final.pth](https://github.com/Xinzhe99/StackMFF-V3/releases/download/v2.0/stackmff_v3_final.pth) | final model of the paper (EMA weights after the third of six epochs); architecture arguments included | 0.66 MB | `39b2ea3738e8fea1676c379238d6be81a87988fc9952dbd6ac3825d5d7249f46` |
+| [stackmff_v3_final.pth](https://github.com/Xinzhe99/StackMFF-V3/releases/download/v2.1/stackmff_v3_final.pth) | final model of the paper (EMA weights after the third of six epochs); architecture arguments included | 0.66 MB | `39b2ea3738e8fea1676c379238d6be81a87988fc9952dbd6ac3825d5d7249f46` |
 
-The checkpoint is a dictionary `{'model': state_dict, 'args': architecture}` (fp32, no optimizer state) and is loaded with `stackmff_v3.model_io.load_checkpoint`. Checkpoints are distributed as release assets rather than in this repository: the v2.0 asset was published under the MIT License with that release, and later releases are published under the [StackMFF V3 License](LICENSE). Running `fuse.py` with these weights reproduces the reported configuration. Floating-point differences can affect a few rounded weighted values or change hard selection at near-tied probabilities; the archived outputs are the canonical inputs for recomputing the reported metrics.
+The checkpoint is a dictionary `{'model': state_dict, 'args': architecture}` (fp32, no optimizer state) and is loaded with `stackmff_v3.model_io.load_checkpoint`. Checkpoints are distributed as release assets rather than in this repository. The asset in the [v2.1 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.1) is released under the [StackMFF V3 License](LICENSE); the copy published with v2.0 stays under the MIT License for everyone who obtained it there. Running `fuse.py` with these weights reproduces the reported configuration. Floating-point differences can affect a few rounded weighted values or change hard selection at near-tied probabilities; the archived outputs are the canonical inputs for recomputing the reported metrics.
 
 ## Reproducing the paper
 

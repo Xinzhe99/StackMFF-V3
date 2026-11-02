@@ -54,8 +54,9 @@ compares byte for byte; it prints `REPRODUCED` when they agree.
 
 ## The images
 
-All released outputs and the checkpoint are in the single
-[v2.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.0).
+All released outputs are in the single
+[v2.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.0); the checkpoint is in the
+[v2.1 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.1).
 `archives.json` lists each archive with its size, SHA-256 and image count, grouped by
 experiment. The release's own `release_index.json` carries the same information.
 
