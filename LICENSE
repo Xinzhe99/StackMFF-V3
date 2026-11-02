@@ -1,21 +1,54 @@
-MIT License
+# StackMFF V3 License 1.0
 
-Copyright (c) 2026 Xinzhe Xie
+SPDX-License-Identifier: LicenseRef-StackMFF-V3-1.0
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Copyright (c) 2026 Xinzhe Xie. All rights reserved.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This is a source-available license for research and personal use. It is **not** an open-source license: it does not allow the software to be included in other software projects, or redistributed, without written permission. By using, copying or modifying the Software you accept these terms.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+## 1. Definitions
+
+**Software** means the source code, scripts, documentation and model checkpoint distributed in this repository, and any part of them.
+
+**Derivative** means a modified version of the Software, or any work that includes the Software or a modified version of it.
+
+**Distribute** means to make the Software or a Derivative available to anyone other than yourself, by any means, including a public repository, package index, container image, installer, plugin, application bundle, or hosted service.
+
+**Project** means any software program, library, application, tool, pipeline, product or service.
+
+**You** means the individual or legal entity agreeing to these terms.
+
+## 2. Permission
+
+Subject to sections 3 to 6, you may use, copy and modify the Software, and run the released checkpoint, for research, teaching, evaluation, and personal use. Modifications are permitted only for your own use and must not be Distributed.
+
+## 3. Conditions
+
+Without the licensor's prior written permission, you must not:
+
+1. use the Software, a Derivative, or the checkpoint as part of, as a dependency of, or in combination with any Project that is Distributed or otherwise made available to anyone outside your organisation — whether that Project is open source, noncommercial, commercial or otherwise, including a public repository, a released application, a plugin or a service;
+2. Distribute the Software, the checkpoint, or a Derivative;
+3. use the Software, the checkpoint, or a Derivative for any commercial purpose, including in a product or service offered for a fee, or in the business operations of a for-profit organisation;
+4. remove or alter any copyright, license or attribution notice in the Software or a Derivative.
+
+Nothing in this license limits rights you have under applicable law, such as fair use.
+
+## 4. Written permission
+
+Send requests in writing to the licensor at guobuyuwork@163.com. Permission is effective only if given in writing by the licensor and only on the terms it states. The licensor may grant permission for use in an open-source project, integration into another application, commercial use, or redistribution, under separate terms.
+
+## 5. Attribution and citation
+
+Any publication that reports results obtained with the Software must cite the accompanying paper. You may not use the names "StackMFF", "StackMFF V3", or the authors' names to endorse or promote a Project without written permission.
+
+## 6. Termination
+
+Your rights under this license end automatically if you breach these terms. Section 7 survives termination.
+
+## 7. Disclaimer
+
+As far as the law allows, the Software comes as is, without any warranty or condition, and the licensor will not be liable to you for any damages arising out of these terms or the use or nature of the Software, under any kind of legal claim.
+
+## 8. Third-party material
+
+This license covers the Software only. Datasets, third-party implementations and image-derived outputs retain the terms of their sources; see `THIRD_PARTY_NOTICES.md`.

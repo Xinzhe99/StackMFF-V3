@@ -8,7 +8,7 @@
 **Multi-focus image stack fusion by pixel-wise classification over the input images**
 
 [![Paper](https://img.shields.io/badge/Paper-coming%20soon-lightgrey.svg)](#citation)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License: Source-Available](https://img.shields.io/badge/License-Source--Available%20%28research%20use%29-orange.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1%2B-EE4C2C.svg?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Weights](https://img.shields.io/badge/Weights-v2.0-244A68.svg)](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.0)
@@ -22,6 +22,7 @@ Official PyTorch implementation of *StackMFF V3: Order-Invariant Focus Stacking 
 
 ## News
 
+- **2026.11**: The license changed from MIT to the [StackMFF V3 License](LICENSE): research and personal use are permitted, use in other software projects and redistribution require written permission. Releases up to and including v2.0 were published under the MIT License and remain so for the copies already distributed.
 - **2026.10**: Code, pretrained weights and the evaluation toolkit of StackMFF V3 are released. The manuscript (*StackMFF V3: Order-Invariant Focus Stacking via Pixel-Wise Source Classification*) is being prepared for submission.
 - **2026.10**: All **7,622 evaluated benchmark outputs** (37 configurations × 206 scenes, including 412 of ours) and **2,170 registered real-stack outputs** are archived with SHA-256 manifests. The benchmark archives hold 7,674 stack images; the 52 extra are earlier 26-scene ReDiffuse and ZMFF runs retained inside the pairwise archive. See the [archive index and downloader](benchmark/README.md). All data assets are in the [v2.0 release](https://github.com/Xinzhe99/StackMFF-V3/releases/tag/v2.0); audited code is versioned separately.
 - **Available now**: StackMFF V3 ships inside [OpenFocus](https://github.com/Xinzhe99/OpenFocus) as an AI fusion option. OpenFocus registers the stack, lists StackMFF V3 next to the classical methods, and fuses a whole folder in one batch, so the paper model can be tried without writing any code.
@@ -141,7 +142,7 @@ fused_hard = fuse(P_hard, imgs, hard=True)
 |---|---|---|---|
 | [stackmff_v3_final.pth](https://github.com/Xinzhe99/StackMFF-V3/releases/download/v2.0/stackmff_v3_final.pth) | final model of the paper (EMA weights after the third of six epochs); architecture arguments included | 0.66 MB | `39b2ea3738e8fea1676c379238d6be81a87988fc9952dbd6ac3825d5d7249f46` |
 
-The checkpoint is a dictionary `{'model': state_dict, 'args': architecture}` (fp32, no optimizer state) and is loaded with `stackmff_v3.model_io.load_checkpoint`. Running `fuse.py` with these weights reproduces the reported configuration. Floating-point differences can affect a few rounded weighted values or change hard selection at near-tied probabilities; the archived outputs are the canonical inputs for recomputing the reported metrics.
+The checkpoint is a dictionary `{'model': state_dict, 'args': architecture}` (fp32, no optimizer state) and is loaded with `stackmff_v3.model_io.load_checkpoint`. The checkpoint is covered by the same [license](LICENSE) as the code. Running `fuse.py` with these weights reproduces the reported configuration. Floating-point differences can affect a few rounded weighted values or change hard selection at near-tied probabilities; the archived outputs are the canonical inputs for recomputing the reported metrics.
 
 ## Reproducing the paper
 
@@ -310,7 +311,15 @@ Earlier work of the series:
 
 ## License
 
-Our code is released under the [MIT License](LICENSE). Benchmark images, fused outputs and third-party components retain the rights and conditions of their underlying sources; they are not relicensed as MIT. See [third-party notices](THIRD_PARTY_NOTICES.md).
+The code and the released checkpoint are source-available under the [StackMFF V3 License](LICENSE). It is not an open-source license.
+
+- **Permitted**: use, copy and modify the code, and run the checkpoint, for research, teaching, evaluation and personal use. Universities, public research organisations, charities and government bodies can use it for their noncommercial research, as can an individual.
+- **Not permitted without written permission**: using the code, the checkpoint or a derivative as part of, as a dependency of, or together with any other software project, application, plugin or service that is distributed or otherwise made available to anyone outside your organisation — including public open-source repositories and noncommercial projects; redistributing the code, the checkpoint or a derivative; and any commercial use, including in a paid product or service.
+- **Written permission** for an open-source project, integration into another application, commercial use or redistribution: guobuyuwork@163.com.
+
+Releases up to and including v2.0 were published under the MIT License; those copies remain MIT, and this license applies to this and later versions.
+
+Benchmark images, fused outputs and third-party components retain the rights and conditions of their underlying sources; they are not relicensed here. See [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ## Acknowledgements
 
