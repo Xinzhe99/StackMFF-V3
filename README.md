@@ -142,7 +142,7 @@ fused_hard = fuse(P_hard, imgs, hard=True)
 |---|---|---|---|
 | [stackmff_v3_final.pth](https://github.com/Xinzhe99/StackMFF-V3/releases/download/v2.0/stackmff_v3_final.pth) | final model of the paper (EMA weights after the third of six epochs); architecture arguments included | 0.66 MB | `39b2ea3738e8fea1676c379238d6be81a87988fc9952dbd6ac3825d5d7249f46` |
 
-The checkpoint is a dictionary `{'model': state_dict, 'args': architecture}` (fp32, no optimizer state) and is loaded with `stackmff_v3.model_io.load_checkpoint`. The checkpoint is covered by the same [license](LICENSE) as the code. Running `fuse.py` with these weights reproduces the reported configuration. Floating-point differences can affect a few rounded weighted values or change hard selection at near-tied probabilities; the archived outputs are the canonical inputs for recomputing the reported metrics.
+The checkpoint is a dictionary `{'model': state_dict, 'args': architecture}` (fp32, no optimizer state) and is loaded with `stackmff_v3.model_io.load_checkpoint`. Checkpoints are distributed as release assets rather than in this repository: the v2.0 asset was published under the MIT License with that release, and later releases are published under the [StackMFF V3 License](LICENSE). Running `fuse.py` with these weights reproduces the reported configuration. Floating-point differences can affect a few rounded weighted values or change hard selection at near-tied probabilities; the archived outputs are the canonical inputs for recomputing the reported metrics.
 
 ## Reproducing the paper
 
